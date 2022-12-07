@@ -39,6 +39,9 @@ export class AuthComponent implements OnInit{
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
         this.router.navigate(["home"])
+        environment.currentUser = result.getIdToken().payload['name']
+
+       
       },
       onFailure: (err) => {
         alert(err.message || JSON.stringify(err));

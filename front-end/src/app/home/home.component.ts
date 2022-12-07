@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
     let userPool = new CognitoUserPool(poolData);
     let cognitoUser = userPool.getCurrentUser();
     cognitoUser?.signOut();
-    console.log(cognitoUser);
     this.router.navigate([""])
   }
 
