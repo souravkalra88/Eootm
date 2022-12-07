@@ -4,6 +4,14 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: python3.8
+  httpApi:
+    authorizers:
+      serviceAuthorizer:
+        type: jwt
+        identitySource: $request.header.Authorization
+        issuerUrl: https://cognito-idp.${self:provider.region}.amazonaws.com/${self:provider.environment.user_pool_id}
+        audience: 
+          - ${self:provider.environment.client_id}
   region: ap-south-1
   stage: dev
   timeout: 10
@@ -12,6 +20,9 @@ provider:
     
     DYNAMODB_TABLE: EOOMT
     REGION_NAME: ${self:provider.region}
+    user_pool_id: ap-south-1_sQeBGTxl8
+    client_id: 48hko2q1qsd36p6d3kcrla334j
+
 
   iam:
       role:
@@ -28,14 +39,31 @@ provider:
               - dynamodb:UpdateItem
               - dynamodb:DeleteItem
             Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
-  
+
+          - Effect: Allow
+            Action:
+              - cognito-identity:*
+              - cognito-sync:*
+              - cognito-idp:*
+              - lambda:*
+            Resource: "arn:aws:cognito-idp:ap-south-1:377944167346:userpool/ap-south-1_sQeBGTxl8"  
+
+
+package: 
+  patterns:
+    - '!front-end/**'
+
 functions:
   hello:
     handler: handler.hello
     events:
-      - http:
+      - httpApi:
           path: /
           method: get
+          authorizer: 
+            name: serviceAuthorizer
+          
 
 plugins:
   - serverless-python-requirements
+
