@@ -1,0 +1,24 @@
+.custom-btn{
+    font-weight: 600;
+    color: antiquewhite;
+    background-color: red !important;
+    width: 50%;
+    padding: 10px;
+    
+    border: none;
+    cursor: pointer;
+}
+.loginbtn {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-size:50%;
+    background-repeat:no-repeat;
+    
+    background-size: 20%;
+    
+    background-image: url("https://yt3.ggpht.com/ytc/AMLnZu8U5w-gmMy7p3RnTE3_9b9yiB4oRAdQbGeGw8md=s900-c-k-c0x00ffffff-no-rj");
+    background-blend-mode: lighten;
+    align-items: center;
+}
