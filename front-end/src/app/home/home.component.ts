@@ -14,15 +14,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  logOut(): void {
-    let poolData = {
-      UserPoolId: environment.cognitoUserPoolId,
-      ClientId: environment.cognitoAppClientId
-    };
-    let userPool = new CognitoUserPool(poolData);
-    let cognitoUser = userPool.getCurrentUser();
-    cognitoUser?.signOut();
-    this.router.navigate([""])
+  sideBarOpen = true;
+
+  sideBarToggler(){
+    this.sideBarOpen= !this.sideBarOpen;
   }
+
+  
+  
 
 }

@@ -62,6 +62,7 @@ functions:
           method: get
           authorizer: 
             name: serviceAuthorizer
+            
           
 
 plugins:

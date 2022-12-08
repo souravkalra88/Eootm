@@ -1,0 +1,26 @@
+mat-toolbar{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #DDDDDD
+}
+.list-item{
+    
+        list-style: none  !important;
+ 
+}
+button{
+    border:0;
+    outline:none;
+    background: transparent;
+
+}
+
+.user{
+    font-size: 14px;
+
+}
+
+.nav{
+    cursor: pointer;
+}

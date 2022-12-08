@@ -1,0 +1,34 @@
+.logo{
+    margin-left: 9%;
+}
+.mat-icon{
+    vertical-align: center;
+    margin-left : 1rem;
+
+}
+.mat-divider{
+    border-top-width: 2px;
+    border-color: red;
+}
+
+.mat-list-item{
+    color: #DDDDDD;
+    font-size: 0.8rem;
+    height: 44px !important;
+    margin-bottom: 4px ;
+    border-radius: 5px;
+    margin: 0 8px;
+    
+    }
+    
+.mat-list-item:hover{
+    background-color: red !important;
+}
+.appname{
+    margin-left: 20%;
+}
+
+.list-item-active{
+    color: white !important;
+   
+}
