@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-task-type-list',
-  templateUrl: './task-type-list.component.html',
-  styleUrls: ['./task-type-list.component.css']
+  selector: 'app-employee',
+  templateUrl: './employee.component.html',
+  styleUrls: ['./employee.component.css']
 })
-export class TaskTypeListComponent implements OnInit {
+export class EmployeeComponent implements OnInit {
 
   constructor(private router: Router) { }
 

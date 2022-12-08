@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-task-type-list',
-  templateUrl: './task-type-list.component.html',
-  styleUrls: ['./task-type-list.component.css']
+  selector: 'app-task-list',
+  templateUrl: './task-list.component.html',
+  styleUrls: ['./task-list.component.css']
 })
-export class TaskTypeListComponent implements OnInit {
+export class TaskListComponent implements OnInit {
 
   constructor(private router: Router) { }
 
@@ -17,6 +17,5 @@ export class TaskTypeListComponent implements OnInit {
   sideBarToggler(){
     this.sideBarOpen= !this.sideBarOpen;
   }
-
 
 }

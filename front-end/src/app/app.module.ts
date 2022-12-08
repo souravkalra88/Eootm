@@ -16,6 +16,9 @@ import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { TaskTypeListComponent } from './task-type-list/task-type-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeComponent } from './employee/employee.component';
+import { TaskListComponent } from './task-list/task-list.component';
+import { AdminsComponent } from './admins/admins.component';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HeaderComponent,
     SidenavComponent,
     TaskTypeListComponent,
+    EmployeeComponent,
+    TaskListComponent,
+    AdminsComponent,
  
   ],
   imports: [
