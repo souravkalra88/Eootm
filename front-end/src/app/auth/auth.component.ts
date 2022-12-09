@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthComponent implements OnInit{
   ngOnInit(): void {}
+  imgSrc = "assets/img/logo.jpg";
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";

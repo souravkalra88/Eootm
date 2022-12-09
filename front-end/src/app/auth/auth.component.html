@@ -1,22 +1,20 @@
-
-
-
 <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
-  
-      <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="https://yt3.ggpht.com/ytc/AMLnZu8U5w-gmMy7p3RnTE3_9b9yiB4oRAdQbGeGw8md=s900-c-k-c0x00ffffff-no-rj" id="icon" alt="User Icon" width="40" height="150" />
-      </div>
-  
-      <!-- Login Form -->
-      <form #loginForm="ngForm" (ngSubmit)="OnSignIn(loginForm)">
-        <input type="text" id="login" class="fadeIn second" name="login" ngModel placeholder="Enter Email" >
-        <input type="password"  id="password" class="fadeIn third" name="password" ngModel placeholder="password">
-        <input type="submit" class="fadeIn fourth" value="Log In">
-      </form>
-  
-     
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img [src]=imgSrc
+        id="icon" alt="User Icon" width="40" height="150" />
     </div>
+
+    <!-- Login Form -->
+    <form #loginForm="ngForm" (ngSubmit)="OnSignIn(loginForm)">
+      <input type="text" id="login" class="fadeIn second" name="login" ngModel placeholder="Enter Email">
+      <input type="password" id="password" class="fadeIn third" name="password" ngModel placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+
   </div>
+</div>
