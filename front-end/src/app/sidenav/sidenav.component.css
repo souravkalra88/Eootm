@@ -1,5 +1,5 @@
-.logo{
-    margin-left: 9%;
+.appname{
+    padding-top: 10%;
 }
 .mat-icon{
     vertical-align: center;
@@ -7,7 +7,7 @@
 
 }
 .mat-divider{
-    margin-top: -7.5px ;
+    margin-top: -7.6px ;
     border-top-width: 2px;
     border-color: red;
 }

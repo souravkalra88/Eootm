@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   UserName: string = environment.currentUser;
-  imgSrc = "assets/img/logo.jpg";
+  imgSrc = "https://www.watchguard.com/sites/default/files/images/branding/watchguard-logo_0.svg";
   @Output() toogleSidebarForMe: EventEmitter<any> = new EventEmitter();
   constructor(public router: Router) {}
 ;
