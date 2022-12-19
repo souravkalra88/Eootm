@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 
 export class AuthComponent implements OnInit{
   ngOnInit(): void {}
-  imgSrc:string = "assets/img/logo.jpg";
+  imgSrc:string = "assets/img/logo-wg.svg";
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";
