@@ -55,15 +55,6 @@ package:
 
 functions:
 
-  hello:
-    handler: handler.hello
-    events:
-      - httpApi:
-          path: /
-          method: get
-          authorizer: 
-            name: serviceAuthorizer
-
   task-type:
     handler: task-type/handler.get  
     events:
@@ -72,7 +63,15 @@ functions:
           method: get
           authorizer: 
             name: serviceAuthorizer        
-            
+
+  employees:
+    handler: employees/handler.empByTaskType  
+    events:
+      - httpApi:
+          path: /employees/emp
+          method: get
+          authorizer: 
+            name: serviceAuthorizer                   
           
 
 plugins:
