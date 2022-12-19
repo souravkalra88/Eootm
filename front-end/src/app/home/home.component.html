@@ -2,13 +2,14 @@
 <!-- <button type="button" class="btn btn-lg custom-btn" (click) = "logOut()">Sign OUT</button> -->
 <!-- <app-header></app-header>
 <app-sidenav></app-sidenav> -->
-
+<app-header (toogleSidebarForMe)="sideBarToggler()"></app-header>
 <mat-drawer-container>
     <mat-drawer mode = "side" [opened] = "sideBarOpen" >
-        <app-sidenav></app-sidenav>
+        <div class="sidenav"><app-sidenav></app-sidenav></div>
+        
     </mat-drawer>
     <mat-drawer-content>
-        <app-header (toogleSidebarForMe)="sideBarToggler()"></app-header>
+        
         <div class="conntainer-fluid page">
             <div class="page__box" p-3 mt-2>Home</div>
             <div class="page__content shadow p-3 position-relative">

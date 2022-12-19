@@ -1,5 +1,5 @@
 :host{
-    display:flex;
+    /* display:flex; */
     flex-direction: column;
     height: 100%
 }
@@ -11,7 +11,9 @@ mat-drawer{
 mat-drawer-container{
     height : 100%;
 }
-
+/* .sidenav{
+    margin-top: 56px;
+} */
 .page{
     color: white;
     padding : 0 1rem;
