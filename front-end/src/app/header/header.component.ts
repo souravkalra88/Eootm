@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   UserName: string = environment.currentUser;
+  imgSrc = "assets/img/logo.jpg";
   @Output() toogleSidebarForMe: EventEmitter<any> = new EventEmitter();
   constructor(public router: Router) {}
 ;
