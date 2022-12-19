@@ -54,6 +54,7 @@ package:
     - '!front-end/**'
 
 functions:
+
   hello:
     handler: handler.hello
     events:
@@ -62,6 +63,15 @@ functions:
           method: get
           authorizer: 
             name: serviceAuthorizer
+
+  task-type:
+    handler: task-type/handler.get  
+    events:
+      - httpApi:
+          path: /task-type/getAll
+          method: get
+          authorizer: 
+            name: serviceAuthorizer        
             
           
 

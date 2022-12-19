@@ -23,6 +23,9 @@ button{
 
 .nav{
     cursor: pointer;
+    text-align: center;
+    align-content: center;
+    padding-left: 25px ;
 }
 
 .user-image-icon{
