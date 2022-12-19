@@ -9,9 +9,10 @@ import { environment } from 'src/environments/environment';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
+
 export class AuthComponent implements OnInit{
   ngOnInit(): void {}
-  imgSrc = "assets/img/logo.jpg";
+  imgSrc:string = "assets/img/logo.jpg";
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";
@@ -30,8 +31,8 @@ export class AuthComponent implements OnInit{
 
 
     let poolData = {
-      UserPoolId: environment.cognitoUserPoolId, // Your user pool id here
-      ClientId: environment.cognitoAppClientId // Your client id here
+      UserPoolId: environment.cognitoUserPoolId, 
+      ClientId: environment.cognitoAppClientId 
     };
 
     let userPool = new CognitoUserPool(poolData);

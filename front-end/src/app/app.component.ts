@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  title = 'front-end';
+  title = 'EOOMT';
   constructor(private authService: AuthService, private router: Router) {}
   
 
