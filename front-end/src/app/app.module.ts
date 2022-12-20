@@ -1,38 +1,45 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule} from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatSidenavModule} from '@angular/material/sidenav';
-import { HomeComponent } from './home/home.component';
+
+
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
-import { HeaderComponent } from './header/header.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { TaskTypeListComponent } from './task-type-list/task-type-list.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EmployeeComponent } from './employee/employee.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { TaskTypeComponent } from './task-type/task-type.component';
+import { EmployeesComponent } from './employees/employees.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AdminsComponent } from './admins/admins.component';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    // HomeComponent,
     AuthComponent,
-    
-    HeaderComponent,
     SidenavComponent,
-    TaskTypeListComponent,
-    EmployeeComponent,
+    HeaderComponent,
+    HomeComponent,
+    TaskTypeComponent,
+    EmployeesComponent,
     TaskListComponent,
     AdminsComponent,
+    
+    // HeaderComponent,
+    // SidenavComponent,
+    // TaskTypeListComponent,
+    // EmployeeComponent,
+    // TaskListComponent,
+    // AdminsComponent,
  
   ],
   imports: [
@@ -40,10 +47,8 @@ import { AdminsComponent } from './admins/admins.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
-    MatToolbarModule,MatMenuModule,MatDividerModule,MatListModule,MatIconModule
-
-     
+    
+    
   ],
   providers: [AuthService],
   bootstrap: [AppComponent ]

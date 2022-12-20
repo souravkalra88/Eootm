@@ -26,7 +26,13 @@ h2 {
   color: #cccccc;
 }
 
-
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  margin-top: 35px;
+}
 
 /* STRUCTURE */
 
@@ -37,14 +43,14 @@ h2 {
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  padding: 20px;
+  padding: 60px;
 }
 
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #fff;
-  padding: 30px;
+  padding: 20px;
   width: 90%;
   max-width: 350px;
   position: relative;

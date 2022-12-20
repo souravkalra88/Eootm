@@ -1,26 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CognitoUserPool } from 'amazon-cognito-identity-js';
-import { environment } from 'src/environments/environment';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor(private router: Router) { }
+  sideNavStatus:boolean = false;
 
-  ngOnInit(): void {
-  }
-  sideBarOpen = true;
-
-  sideBarToggler(){
-    this.sideBarOpen= !this.sideBarOpen;
-  }
-
-  
   
 
 }

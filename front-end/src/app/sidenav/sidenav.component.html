@@ -1,11 +1,13 @@
 
-<mat-nav-list>
-    
-    <mat-divider></mat-divider>
-    <h2 matSubHeader class="mt-2" class = "appname" >EOOMT</h2>
-    <a mat-list-item class ="mat-list-item" routerLink="/home" routerLinkActive="list-item-active"><mat-icon>home</mat-icon> Home</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/task-type" routerLinkActive="list-item-active"><mat-icon>menu</mat-icon>Task Type</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/app-employee" routerLinkActive="list-item-active"><mat-icon>people_outline</mat-icon>Employee</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/app-task-list" routerLinkActive="list-item-active"><mat-icon>list_alt</mat-icon>Task List</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/admins" routerLinkActive="list-item-active"><mat-icon>people_outline</mat-icon>Admins</a>
-</mat-nav-list>
+
+<div class = "side-nav-content w-100" >
+    <ul class = "nav-list w-100" >
+        <li class = "nav-list-item " *ngFor="let item of list">
+            <i class = "{{item.icon}}"></i>
+            <span class = "routeName">
+                <a [routerLink] = "[ '/' ,item.route] ">{{item.name}}</a>
+            </span>
+
+        </li>
+    </ul>
+</div>

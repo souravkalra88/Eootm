@@ -1,35 +1,38 @@
-.appname{
-    padding-top: 10%;
+.nav-list-item{
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    height: 50px;
+    width:min-content;
 }
-.mat-icon{
-    vertical-align: center;
-    margin-left : 1rem;
-
+.border-white{
+    border: 1px solid white;
 }
-.mat-divider{
-    margin-top: -7.6px ;
-    border-top-width: 2px;
-    border-color: red;
+.nav-list{
+    list-style: none;
+    height: 100%;
+    padding : 0%;
+    margin-bottom: 0%;
 }
-
-.mat-list-item{
-    color: #DDDDDD;
-    font-size: 0.8rem;
-    height: 44px !important;
-    margin-bottom: 4px ;
-    border-radius: 5px;
-    margin: 0 8px;
-    
-    }
-    
-.mat-list-item:hover{
-    background-color: red !important;
-}
-.appname{
-    margin-left: 20%;
+.side-nav-content{
+    color: black;
+    width: 230px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
-.list-item-active{
-    color: white !important;
-   
+.nav-list-item span{
+    width: 120px;
+    text-transform: capitalize;
+}
+.nav-list-item:hover{
+    background-color: red;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.routeName{
+    padding-left: 10px;
 }
