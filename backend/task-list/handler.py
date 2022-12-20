@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import json
 import os
 import boto3
@@ -11,21 +13,18 @@ dbtable = str(os.environ['DYNAMODB_TABLE'])
 
 table = dynamodb.Table(dbtable)
 
-
-
-
 def add_new_task(event,context):
-    bod = json.loads(event['body'])
+    body = json.loads(event['body'])
     response = table.put_item(
         Item={
-            "pk":bod['task_type'],
-            "sk":bod['task_name'],
-            
-            "description":bod['task_description']
-            
+            "pk": body["tasktype"],
+            "sk": body["taskname"],
+            "assignee": body["assignee"],
+            "created_at": datetime.now(),
+            "created_by": body["CurrentUser"],
+            "due_duration": body["due_duration"]         
         }
     )
-    
-    response = {"statusCode": 200, "body": json.dumps(response)}
+    response = {"statusCode": 200, "body": "post success"}
 
     return response

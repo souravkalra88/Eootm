@@ -13,7 +13,7 @@ table = dynamodb.Table(dbtable)
 
 
 
-def empByTaskType(event,response):
+def emp_by_task_type(event,response):
   
   emp_by_tasktype={}
   key="pk"
@@ -35,3 +35,6 @@ def empByTaskType(event,response):
 
 
 
+def get_all_employees(event,response):
+
+  
