@@ -4,11 +4,13 @@ import boto3
 import requests
 from boto3 import resource
 from boto3.dynamodb.conditions import Key
-dynamodb = boto3.resource('dynamodb')
 
-table = dynamodb.Table('EOOMT')
+dynamodb = boto3.resource(
+    'dynamodb', region_name=str(os.environ['REGION_NAME']))
+dbtable = str(os.environ['DYNAMODB_TABLE'])
 
-import decimal
+table = dynamodb.Table(dbtable)
+
 
 
 def empByTaskType(event,response):

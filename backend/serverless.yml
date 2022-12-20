@@ -71,7 +71,16 @@ functions:
           path: /employees/emp
           method: get
           authorizer: 
-            name: serviceAuthorizer                   
+            name: serviceAuthorizer 
+
+  add_Task:
+    handler: task-list/handler.add_new_task  
+    events:
+      - httpApi:
+          path: /addTask
+          method: post
+          authorizer: 
+            name: serviceAuthorizer                             
           
 
 plugins:
