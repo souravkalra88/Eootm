@@ -1,17 +1,22 @@
 import json
 import os
+import boto3
 from boto3 import resource
 from boto3.dynamodb.conditions import Key
 from datetime import datetime
 
-dynamodb_resource = resource('dynamodb')
-table = str(os.environ['DYNAMODB_TABLE'])
+dynamodb = boto3.resource(
+    'dynamodb', region_name=str(os.environ['REGION_NAME']))
+dbtable = str(os.environ['DYNAMODB_TABLE'])
+
+table = dynamodb.Table(dbtable)
+
 
 def get_all_task_types(event,context):
     key="pk"
     value='tasktype'
     tasks=[]
-    table = dynamodb_resource.Table(table_name)
+    
     if key is not None and value is not None:
       filtering_exp = Key(key).eq(value)
       resp= table.query(KeyConditionExpression=filtering_exp)
@@ -24,7 +29,14 @@ def get_all_task_types(event,context):
     
     response = {"statusCode": 200, "body": json.dumps(tasks)}  
 
-    return response
+    # return response
+    return {
+        'statusCode': 200,
+        'headers': {'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'},
+        'body': json.dumps(tasks),
+        'isBase64Encoded': False,
+    }
   
 def  add_new_task_type(event, response):
   body=json.loads(event["body"])

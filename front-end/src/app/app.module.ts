@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { DataTablesModule } from "angular-datatables";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import {HttpClientModule} from '@angular/common/http'
 
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
@@ -24,7 +24,6 @@ import { AdminsComponent } from './admins/admins.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // HomeComponent,
     AuthComponent,
     SidenavComponent,
     HeaderComponent,
@@ -47,7 +46,8 @@ import { AdminsComponent } from './admins/admins.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    
+    DataTablesModule,
+    HttpClientModule
     
   ],
   providers: [AuthService],

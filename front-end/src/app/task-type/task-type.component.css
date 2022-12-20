@@ -13,6 +13,7 @@ main{
     z-index:1;
 
 }
+
 app-sidenav{
     
     background-color:#DDDDDD;
@@ -28,5 +29,18 @@ app-sidenav{
     left: 230px;
     /* width: calc(100%-230px); */
     width: 100%;
+    height: 100%;
     top: 55px;
 }
+
+.addtasktype{
+    justify-content: right;
+}
+/* thead th {
+    background-color: red;
+    
+}  */
+
+#addtasktypeId{
+    z-index: 9999
+   }

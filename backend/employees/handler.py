@@ -37,4 +37,4 @@ def emp_by_task_type(event,response):
 
 def get_all_employees(event,response):
 
-  
+  pass
