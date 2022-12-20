@@ -55,8 +55,8 @@ package:
 
 functions:
 
-  task-type:
-    handler: task-type/handler.get  
+  get_all_task_types:
+    handler: task-type/handler.get_all_task_types  
     events:
       - httpApi:
           path: /task-type/getAll
@@ -64,15 +64,34 @@ functions:
           authorizer: 
             name: serviceAuthorizer        
 
-  employees:
-    handler: employees/handler.empByTaskType  
+  emp_by_task_type:
+    handler: employees/handler.emp_by_task_type  
     events:
       - httpApi:
           path: /employees/emp
           method: get
           authorizer: 
-            name: serviceAuthorizer                   
-          
+            name: serviceAuthorizer 
+
+  add_new_task:
+    handler: task-list/handler.add_new_task  
+    events:
+      - httpApi:
+          path: /addTask
+          method: put
+          authorizer: 
+            name: serviceAuthorizer                             
+  
+  add_new_task_type:
+    handler: task-type/handler.add_new_task_type  
+    events:
+      - httpApi:
+          path: /addTaskType
+          method: put
+          authorizer: 
+            name: serviceAuthorizer                             
+  
+
 
 plugins:
   - serverless-python-requirements

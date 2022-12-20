@@ -10,10 +10,12 @@ import { OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
   userName: string = environment.currentUser;
  
  
+
 
 
   constructor(public router: Router) {}
