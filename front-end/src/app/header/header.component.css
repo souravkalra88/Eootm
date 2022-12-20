@@ -1,42 +1,53 @@
-.mat-toolbar{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: #DDDDDD
+nav{
+    height:100%;
 }
-.list-item{
+
+.custom{
+    background-color: rgb(215, 44, 44);
+}
+.side-nav-button{
     
-        list-style: none  !important;
- 
-}
-button{
-    border:0;
-    outline:none;
-    background: transparent;
-
-}
-
-.user{
-    font-size: 14px;
-
-}
-.logo{
-    margin-left: -7.7px;
-}
-
-.nav{
-    cursor: pointer;
-    text-align: center;
-    align-content: center;
-    padding-left: 5px ;
-}
-
-.user-image-icon{
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
     cursor: pointer;
 }
-.user_name{
-    cursor: pointer;
+.side-nav-button:hover{
+    border-radius: 30%;
+   
 }
-.mat-icon{
-    cursor: pointer;
+
+.user-icon{
+    margin-left:-2px;
+}
+
+.icon{
+    padding-right: 0px;
+    color: aliceblue;
+
+}
+
+.userbutton{
+    background-color: rgb(215, 44, 44);
+    color: white;
+    border-radius: 0%;
+    border-color: rgb(215, 44, 44);
+    border: 0ch;
+    border-block-color: rgb(215, 44, 44);
+}
+.username{
+    background-color: rgb(215, 44, 44);
+    color: white;
+    border-radius: 0%;
+    border-color: rgb(215, 44, 44);
+    border: 0ch;
+    border-block-color: rgb(215, 44, 44);
+    cursor: default;
+    pointer-events: none;
+    
+}
+.menuicon{
+    padding-right: 10px;
+    
 }
