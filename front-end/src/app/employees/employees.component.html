@@ -7,9 +7,9 @@
         <app-sidenav class="mcontent"></app-sidenav>
         <div class="display-area w-75 h-100 ">
             <!-- <p>Main Display Area</p> -->
-            <div align="right">
-            <button class="btnAddemp" (click)="openPopup()" type="button"  data-toggle="modal" data-target="#exampleModal">
-                ADD EMPLOYEE
+            <div align="right" d-flex>
+            <button class="btnAddemp btn btn-danger" (click)="openPopup()" type="button"  data-toggle="modal" data-target="#exampleModal">
+                Add Employee
             </button>
         </div>
             <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
