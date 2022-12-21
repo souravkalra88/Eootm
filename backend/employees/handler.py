@@ -47,12 +47,10 @@ def get_all_employees(event,response):
       items = resp.get('Items')
          
       response = {"statusCode": 200,
-                'headers': {
-                  'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": '*',
-                "Access-Control-Allow-Methods": '*',
-             
-                },
+                'headers': {'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': '*'
+        },
                 "body":json.dumps(items)}
     return response
   

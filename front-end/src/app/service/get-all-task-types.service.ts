@@ -16,7 +16,8 @@ url = "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/task-type/getAll"
     console.log(environment.idToken);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' +environment.idToken
+      'Authorization': 'Bearer ' +environment.idToken,
+      
     })
     return this.http.get(this.url, { headers: headers })
    }

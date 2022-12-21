@@ -21,9 +21,10 @@ ngOnInit(): void{
     this.AllEmployees=responsedata;
     this.dtTrigger.next(void 0);
     console.log(responsedata);
-  }
-
-  )
+  })
+  // this.AllEmployees=[{"name":"bhawana","email":"b@t.com", "phone":"1323324543", "profile":"intern","DOJ":"12/12/12"},
+  // {"name":"sourav","email":"s@t.com", "phone":"132330024543", "profile":"intern","DOJ":"12/11/12"}]
+  
 }
  
 displayStyle = "none";

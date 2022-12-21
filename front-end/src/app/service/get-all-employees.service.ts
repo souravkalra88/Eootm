@@ -15,7 +15,8 @@ export class GetAllEmployeesService {
     console.log(environment.idToken);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' +environment.idToken
+      'Authorization': 'Bearer ' +environment.idToken,
+      'access-control-allow-origin': '*',
     })
     return this.http.get(this.url, { headers: headers })
    }
