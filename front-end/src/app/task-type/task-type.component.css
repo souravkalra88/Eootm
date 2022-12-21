@@ -11,6 +11,7 @@ main{
     width: 100%;
     top : 4rem;
     z-index:1;
+     
 
 }
 
@@ -27,8 +28,10 @@ app-sidenav{
 .display-area{
     position: absolute;
     left: 230px;
+     
     /* width: calc(100%-230px); */
     width: 100%;
+    margin-left: 57px;
     height: 100%;
     top: 55px;
 }
