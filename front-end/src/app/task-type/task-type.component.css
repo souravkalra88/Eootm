@@ -44,3 +44,9 @@ app-sidenav{
 #addtasktypeId{
     z-index: 9999
    }
+
+.editpop{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}   

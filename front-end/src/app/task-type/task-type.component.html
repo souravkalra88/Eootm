@@ -10,37 +10,128 @@
                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addtasktypeId"
                     (click)="openAddNewTaskType()">Add Task type</button>
 
-                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                <div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog"
+                    [ngStyle]="{'display':displayStyleAdd}">
+
                     <div class="modal-dialog" role="document">
+
                         <div class="modal-content">
+
                             <div class="modal-header">
                                 <h4 class="modal-title">Add New Task Type</h4>
                             </div>
-                            <div class="modal-body">
-                                
-                                <div class="form-outline">
-                                    <label class="form-label" for="newTaskTypeTitle">Enter New Task Type</label>
-                                    <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" class="form-control" />
-                                   
+                            <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
+                                <div class="modal-body">
+
+
+
+                                    <label for="newTaskTypeTitle">Enter New Task Type</label>
+                                    <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
+                                        name="newTaskTypeTitle" class="form-control" />
+
+                                    <label for="newTaskTypeDesc">Enter New Task Type Description</label>
+                                    <input type="text" id="newTaskTypeDesc" onfocus="this.value=''" value="" ngModel
+                                        name="newTaskTypeDesc" class="form-control" />
+
+
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">
+                                        Save
+                                    </button>
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" (click)="addNewTaskType()">
-                                    Save
-                                </button>
-
-                                <button type="button" class="btn btn-danger" (click)="closeAddNewTaskType()">
-                                    Close
-                                </button>
+                                    <button type="button" class="btn btn-danger" (click)="closeAddNewTaskType()">
+                                        Close
+                                    </button>
 
 
-                            </div>
+                                </div>
+                            </form>
+
                         </div>
+
                     </div>
+
                 </div>
 
             </div>
+
+
+            <div class="edittasktype d-flex flex-column">
+
+
+                <div class="modal" id="#edittasktypeId" tabindex="-1" role="dialog"
+                    [ngStyle]="{'display':displayStyleEdit}">
+
+                    <div class="modal-dialog" role="document">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Task Type</h4>
+                            </div>
+                            <form #editTaskTypeform="ngForm" (ngSubmit)="editTaskType(editTaskTypeform)">
+                                <div class="modal-body d-flex editpop" >
+
+
+                                    <table class="table text-center table-bordered table-striped table-hover display"
+                                        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                                        <thead>
+
+                                            <tr>
+
+                                                <th>Existing Tasks</th>
+                                                 
+
+                                            </tr>
+
+                                        </thead>
+
+                                        <tbody>
+
+                                            <tr *ngFor="let tasksTypes of tasksTypeData">
+
+                                                
+                                                <td>demo</td>
+                                              
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                    <br>
+
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addtasktypeId"
+                    (click)="openAddNewTaskType()">Add New Task</button>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">
+                                        Save
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger" (click)="closeEditTaskType()">
+                                        Close
+                                    </button>
+
+
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
             <br>
             <table class="table text-center table-bordered table-striped table-hover display" datatable
                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
@@ -50,6 +141,7 @@
                     <tr>
 
                         <th>Task Type</th>
+                        <th>Description</th>
                         <th>Operation</th>
 
                     </tr>
@@ -61,7 +153,9 @@
                     <tr *ngFor="let tasksTypes of tasksTypeData">
 
                         <td>{{tasksTypes}}</td>
-                        <td><button type="button" class="btn btn-danger">Edit</button></td>
+                        <td>demo</td>
+                        <td><button type="button" class="btn btn-danger" data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="openEditTaskType()">Edit</button></td>
 
                     </tr>
 

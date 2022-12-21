@@ -33,7 +33,9 @@ def get_all_task_types(event,context):
     return {
         'statusCode': 200,
         'headers': {'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'},
+                    'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': '*'
+        },
         'body': json.dumps(tasks),
         'isBase64Encoded': False,
     }

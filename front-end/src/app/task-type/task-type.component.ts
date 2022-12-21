@@ -15,7 +15,8 @@ export class TaskTypeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   tasksTypeData:any;
-  displayStyle = "none";
+  displayStyleAdd = "none";
+  displayStyleEdit = "none";
   formModal: any;
 
   constructor(private allTaskTypeData: GetAllTaskTypesService) { 
@@ -30,10 +31,7 @@ export class TaskTypeComponent implements OnInit {
       this.dtTrigger.next(void 0);
     });
 
-    
-this.formModal = new window.bootstrap.Modal(
-  document.getElementById("addtasktypeId")
-)
+     
 
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -42,19 +40,37 @@ this.formModal = new window.bootstrap.Modal(
     
   }
  
+  addNewTaskType(form: NgForm):void{
+  console.log(form.value.newTaskTypeTitle);
+  console.log(form.value.newTaskTypeDesc);
 
+  
+  this.closeAddNewTaskType(); 
+  }
+
+  editTaskType(form: NgForm):void{
+     
+  
+    
+    this.closeEditTaskType(); 
+    }
+  
 openAddNewTaskType(){
-  this.displayStyle = "block";
+  this.displayStyleAdd = "block";
 }
 
 closeAddNewTaskType(){
-  this.displayStyle = "none";
+  this.displayStyleAdd = "none";
 }
 
-addNewTaskType(){
-   
-  this.closeAddNewTaskType(); 
+openEditTaskType(){
+  this.displayStyleEdit = "block";
 }
+
+closeEditTaskType(){
+  this.displayStyleEdit = "none";
+}
+
 
   ngOnDestroy(): void {
     

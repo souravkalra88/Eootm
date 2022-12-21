@@ -27,7 +27,7 @@
     "datatables.net": "^1.13.1",
     "datatables.net-dt": "^1.13.1",
     "domino": "^2.1.6",
-    "jquery": "^3.6.2",
+    "jquery": "^3.6.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
