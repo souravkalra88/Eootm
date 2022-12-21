@@ -27,7 +27,11 @@
     text-transform: capitalize;
 }
 .nav-list-item:hover{
-    background-color: red;
+    
+    background-color: #DDDDDD;
+    text-decoration: underline;
+     
+    
 }
 a{
     text-decoration: none;

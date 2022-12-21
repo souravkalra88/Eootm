@@ -13,7 +13,7 @@ import { OnInit } from '@angular/core';
 
 export class HeaderComponent implements OnInit {
   userName: string = environment.currentUser;
- 
+  imgSrc:string = "assets/img/home_logo.svg";
  
 
 

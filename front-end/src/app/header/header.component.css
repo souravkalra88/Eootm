@@ -3,7 +3,7 @@ nav{
 }
 
 .custom{
-    background-color: rgb(215, 44, 44);
+    background-color: #e81410;
 }
 .side-nav-button{
     
@@ -29,25 +29,29 @@ nav{
 }
 
 .userbutton{
-    background-color: rgb(215, 44, 44);
+    background-color: #e81410;
     color: white;
     border-radius: 0%;
-    border-color: rgb(215, 44, 44);
+    border-color: #e81410;
     border: 0ch;
-    border-block-color: rgb(215, 44, 44);
+    border-block-color: #e81410;
 }
 .username{
-    background-color: rgb(215, 44, 44);
+    background-color: #e81410;
     color: white;
     border-radius: 0%;
-    border-color: rgb(215, 44, 44);
+    border-color: #e81410;
     border: 0ch;
-    border-block-color: rgb(215, 44, 44);
+    border-block-color: #e81410;
     cursor: default;
     pointer-events: none;
     
 }
-.menuicon{
-    padding-right: 10px;
+.logo{
+    display: flex;
+    justify-content:end;
+}
+.or{
+    color: white;
     
 }

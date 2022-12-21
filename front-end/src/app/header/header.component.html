@@ -4,9 +4,9 @@
 } -->
 <div class="custom">
     <nav class="navbar-expand  px-2  d-flex justify-content-between"  >
-        <div class="side-nav-button p-2 me-3 text-light child"  >
-            <i class="fa-solid fa-bars menuicon"></i>
-            <img src="https://raw.githubusercontent.com/souravkalra88/Eootm/sourav/front-end/src/assets/img/logo-wg.svg"  width=120px height=80px alt="logo">
+        <div class="side-nav-button p-2 me-3 text-light child logo"  >
+             
+            <img [src]=imgSrc  width=180px height=80px alt="logo" class="logo">
             <!-- <div class="navbar-collapse"> -->
 
         </div>
@@ -17,9 +17,9 @@
         <i class="fa-solid fa-user icon fa-xl icon"></i>
         <button class="btn btn-secondary  username"   >
           {{userName}}
-        </button> |
+        </button> <span class="or">|</span>
         <button class="btn btn-secondary  userbutton" ng-class="{'no-border': border}" (click) = "logOut()"   >
-          logOut
+          Logout
         </button>
         
         
