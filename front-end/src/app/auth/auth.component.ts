@@ -13,8 +13,8 @@ import { environment } from 'src/environments/environment';
 export class AuthComponent implements OnInit{
   ngOnInit(): void {}
 
-  imgSrc:string = "https://raw.githubusercontent.com/souravkalra88/Eootm/sourav/front-end/src/assets/img/logo-wg.svg";
-
+  // imgSrc:string = "https://raw.githubusercontent.com/souravkalra88/Eootm/sourav/front-end/src/assets/img/logo-wg.svg";
+  imgSrc:string = "assets/img/home_logo.svg";
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";
