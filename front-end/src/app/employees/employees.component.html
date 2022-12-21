@@ -1,16 +1,86 @@
 <div class="w-100 vh-100">
-   
-    <main class = "d-flex h-100">
-        
+
+    <main class="d-flex h-100">
+
         <app-header></app-header>
-         
-            <app-sidenav class ="mcontent"></app-sidenav>
-            <div class = "display-area w-75 h-100 ">
-                <p>Main Display Area</p>
+
+        <app-sidenav class="mcontent"></app-sidenav>
+        <div class="display-area w-75 h-100 ">
+            <!-- <p>Main Display Area</p> -->
+            <div align="right">
+            <button class="btnAddemp" (click)="openPopup()" type="button"  data-toggle="modal" data-target="#exampleModal">
+                ADD EMPLOYEE
+            </button>
+        </div>
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">User's Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>User details and assigned tasks                             
+                            </p>
+                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" (click)="closePopup()">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          
-       
+
+
+
+
+
+
+            <div class="display-area w-75 h-100 ">
+                <div class="d-flex justify-content-center">
+                    <h1>Registered Employees</h1>
+                    <!-- <div class="spinner-border" role="status" >
+                        <span class="sr-only" id="loading">Loading...</span>
+                    </div> -->
+
+                </div>
+                <div class="container">
+                    <div class="card m-5 p-3">
+                        <div class="card-body">
+                            <table class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>email</th>
+                                        <th>phone</th>
+                                        <th>profile</th>
+                                        <th>DOJ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let employee of AllEmployees">
+                                        <td>{{ employee.name }}</td>
+                                        <td>{{ employee.email }}</td>
+                                        <td>{{ employee.phone }}</td>
+                                        <td>{{ employee.profile }}</td>
+                                        <td>{{employee.DOJ}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
     </main>
 
-    
+
 </div>

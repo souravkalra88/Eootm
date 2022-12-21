@@ -55,7 +55,3 @@ def  add_new_task_type(event, response):
   response = {"statusCode": 200, "body": resp}
   return response
   
-     
-     
-     
-     

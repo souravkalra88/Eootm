@@ -90,10 +90,21 @@ functions:
           path: /addTaskType
           method: put
           authorizer: 
-            name: serviceAuthorizer                             
+            name: serviceAuthorizer      
+
+
+  get_all_employees:
+    handler: employees/handler.get_all_employees  
+    events:
+      - httpApi:
+          path: /allemp
+          method: get
+          authorizer: 
+            name: serviceAuthorizer                                   
   
 
 
 plugins:
   - serverless-python-requirements
+
 

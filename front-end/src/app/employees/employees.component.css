@@ -6,6 +6,15 @@ app-header{
     z-index:2;
 
 }
+
+.btnAddemp{
+    background-color: rgb(215, 44, 44);
+    color: hsl(0, 100%, 99%);
+    border: 0ch;
+    height:5%;
+    
+    
+}
 main{
     position: absolute;
     width: 100%;
