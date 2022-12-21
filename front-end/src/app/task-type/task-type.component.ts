@@ -37,7 +37,8 @@ export class TaskTypeComponent implements OnInit {
 
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 5,
+      lengthMenu: [5,10,15,20] ,
     };
     
   }
