@@ -50,3 +50,6 @@ app-sidenav{
     justify-content: center;
     flex-direction: column;
 }   
+.modal-content{
+    background-color: #DDDDDD;
+}

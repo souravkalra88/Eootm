@@ -14,9 +14,11 @@ declare var window:any;
 export class TaskTypeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-  tasksTypeData:any;
+  tasksTypeData:any; 
+
   displayStyleAdd = "none";
   displayStyleEdit = "none";
+  displayStyleAddTask = "none";
   formModal: any;
 
   constructor(private allTaskTypeData: GetAllTaskTypesService) { 
@@ -40,10 +42,38 @@ export class TaskTypeComponent implements OnInit {
     
   }
  
-  addNewTaskType(form: NgForm):void{
+  addNewTask(form: NgForm):void{
+    if(form.valid){
   console.log(form.value.newTaskTypeTitle);
   console.log(form.value.newTaskTypeDesc);
 
+  
+  
+    }
+    this.closeAddNewTask(); 
+  }
+
+   
+  
+openAddNewTask(){
+  this.displayStyleAddTask = "block";
+  this.displayStyleEdit = "none";
+}
+
+closeAddNewTask(){
+  this.displayStyleAddTask = "none";
+  this.displayStyleEdit = "block";
+}
+
+openEditTask(){
+  this.displayStyleEdit = "block";
+}
+
+addNewTaskType(form: NgForm):void{
+  if(form.valid){
+  console.log(form.value.newTaskTypeTitle);
+  console.log(form.value.newTaskTypeDesc);
+  }
   
   this.closeAddNewTaskType(); 
   }

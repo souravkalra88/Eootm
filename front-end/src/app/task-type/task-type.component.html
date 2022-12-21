@@ -13,7 +13,7 @@
                 <div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog"
                     [ngStyle]="{'display':displayStyleAdd}">
 
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
 
                         <div class="modal-content">
 
@@ -63,7 +63,7 @@
                 <div class="modal" id="#edittasktypeId" tabindex="-1" role="dialog"
                     [ngStyle]="{'display':displayStyleEdit}">
 
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
 
                         <div class="modal-content">
 
@@ -103,8 +103,8 @@
                                     </table>
                                     <br>
 
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addtasktypeId"
-                    (click)="openAddNewTaskType()">Add New Task</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addTask"
+                    (click)="openAddNewTask()">Add New Task</button>
 
 
                                 </div>
@@ -130,10 +130,54 @@
             </div>
 
 
+            <div class="addTask d-flex flex-column">
+
+
+                <div class="modal" id="#addTask" tabindex="-1" role="dialog" 
+                    [ngStyle]="{'display':displayStyleAddTask}">
+
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Task Type</h4>
+                            </div>
+                            <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)">
+                                <div class="modal-body d-flex editpop" >
+
+
+                                    New Task <Form></Form>
+                                    <br>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">
+                                        Save
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger" (click)="closeAddNewTask()">
+                                        Close
+                                    </button>
+
+
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
 
 
             <br>
-            <table class="table text-center table-bordered table-striped table-hover display" datatable
+            <table class="table text-center table-bordered table-striped table-hover display text-center" datatable
                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
 
                 <thead>
