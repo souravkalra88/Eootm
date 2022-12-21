@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { GetAllTaskTypesService } from '../services/get-all-task-types.service';
+import { GetAllTaskTypesService } from '../service/get-all-task-types.service';
 import { NgForm } from '@angular/forms';
 
 declare var window:any;
