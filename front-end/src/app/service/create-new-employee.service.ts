@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CreateNewEmployee {
-  url = "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/createnewemp";
+  url = "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/newemp";
   constructor(private http : HttpClient) {
    }
    createEmployee(body:any):Observable<any> {{
@@ -16,6 +16,7 @@ export class CreateNewEmployee {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' +environment.idToken
+
     })
     return this.http.put(this.url,body, { headers: headers })
    }

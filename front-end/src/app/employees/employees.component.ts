@@ -14,8 +14,9 @@ export class EmployeesComponent {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>=new Subject<any>();
   AllEmployees:any;
+ 
   tasktypes=["onboarding","offboarding"];
-  selectedtask:any;
+  selectedtask:string="";
     
 displayStyleEdit = "none";
 displayStyle = "none";
@@ -38,7 +39,10 @@ ngOnInit(): void{
 
     lengthMenu: [5,10,15,20] 
 
-  }; }
+  }; 
+}
+
+
   // this.AllEmployees=[{"name":"bhawana","email":"b@t.com", "phone":"1323324543", "profile":"intern","DOJ":"12/12/12"},
   // {"name":"sourav","email":"s@t.com", "phone":"132330024543", "profile":"intern","DOJ":"12/11/12"}]
  
@@ -54,24 +58,31 @@ closePopup() {
   this.displayStyle = "none";
 }
 
-Input(form:NgForm){
+Input(form:  NgForm){
   var data = form.value;
-  debugger;
-  var myPostObject = {
+  console.log(data.name);
+  // debugger;
+  var myPostObject ={
+    "tasktype":this.selectedtask,
     "name":data.name,
-    "phone":data.phone,
     "email":data.email,
-    "profile":data.profile,
-    "date of event": data.DOJ,
-    "tasktype":this.selectedtask
-  }  
+    "phone":data.phone,
+    "profile":data.empsprofile,
+    "date_of_event":"12/12/12"
+}
+console.log(myPostObject);
+ 
   this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
     console.log(responsedata);
   });
-    this.closeEditPopup();
+    this.closePopup();
   }
 
 
+  
+InputEdit(form:  NgForm){
+
+  }
 openEditPopup(){
   this.displayStyleEdit = "block";
 

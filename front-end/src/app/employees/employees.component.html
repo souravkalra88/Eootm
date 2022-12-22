@@ -14,7 +14,7 @@
                 </button>
             </div>
             <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
                             <div class="modal-body">
@@ -42,15 +42,16 @@
                                     <select class='select-option' #Selecttasktype
                                         (change)='onOptionsSelected(Selecttasktype.value)'>
                                         <option value="undefined" selected disabled>Select tasktype</option>
-                                        <option class='option' *ngFor='let option of tasktypes' [value]="option">
-                                            {{option}}</option>
+                                        <option class='option' *ngFor='let option of tasktypes' [value]="option" >
+                                            {{option}} </option>
                                     </select>
                                 </div>
                                 <br>
+
+
                                 <label for="DOJ" class="textbox-label">Date Of {{Selecttasktype.value}}</label>
                                 <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel name="DOJ"
                                     class="form-control" />
-
 
 
 
@@ -129,7 +130,7 @@
                 <div class="modaledit" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form #inputform="ngForm" (ngSubmit)="Input(inputform)" >
+                            <form #inputform="ngForm" (ngSubmit)="InputEdit(inputform)" >
                                 <div class="modal-body">
     
     

@@ -4,7 +4,7 @@ import boto3
 import requests
 from boto3 import resource
 from boto3.dynamodb.conditions import Key
-
+import uuid
 dynamodb = boto3.resource(
     'dynamodb', region_name=str(os.environ['REGION_NAME']))
 dbtable = str(os.environ['DYNAMODB_TABLE'])
@@ -55,21 +55,20 @@ def get_all_employees(event,response):
     return response
   
 
-def create_new_employee(event,context):
-    
-      
-    
-    if key is not None and value is not None:
-      filtering_exp = Key(key).eq(value)
-      resp= table.query(KeyConditionExpression=filtering_exp)
-         
-      items = resp.get('Items')
-         
-      response = {"statusCode": 200,
-                'headers': {'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                      'Access-Control-Allow-Methods': '*'
-        },
-                "body":json.dumps(items)}
-    return response
-  
+def create_new_employee(event,response):
+  body=json.loads(event["body"])
+  resp=table.put_item(
+    Item={
+      "pk":"employee",
+      "sk":body["tasktype"]+"#"+str(uuid.uuid4()),
+      "phone":body["phone"],
+      "name":body["name"],
+      "email":body["email"],
+      "profile":body["profile"],
+      "date_of_event":body["date_of_event"]
+          }
+  )
+  response = {"statusCode": 200,
+                "body":json.dumps(resp),
+                "message":"put_success"}
+  return response

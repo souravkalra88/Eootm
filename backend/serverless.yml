@@ -100,10 +100,18 @@ functions:
           path: /allemp
           method: get
           authorizer: 
-            name: serviceAuthorizer                                   
+            name: serviceAuthorizer    
+
+  create_new_employee:
+    handler: employees/handler.create_new_employee  
+    events:
+      - httpApi:
+          path: /newemp
+          method: put
+          authorizer: 
+            name: serviceAuthorizer    
+
   
-
-
 plugins:
   - serverless-python-requirements
 
