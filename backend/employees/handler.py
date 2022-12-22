@@ -24,7 +24,7 @@ def emp_by_task_type(event,response):
   # tasktypes=["onboarding", "offboarding"]
   for tasktype in tasktypes:
     response = table.query(
-        KeyConditionExpression=Key(key).eq(tasktype)
+        KeyConditionExpression=Key(key).eq(tasktype['sk'])
     )
     
     emp_by_tasktype[tasktype]=response.get('Items')

@@ -15,8 +15,16 @@ export class EmployeesComponent {
   dtTrigger: Subject<any>=new Subject<any>();
   AllEmployees:any;
  
-  tasktypes=["onboarding","offboarding"];
-  selectedtask:string="";
+  tasktypes:string[]=["onboarding","offboarding"];
+  selectedtask:string = "";
+  tdoj:any;
+  tname:any;
+  tphone:any;
+  tprofile:any;
+  temail:any;
+   
+
+ 
     
 displayStyleEdit = "none";
 displayStyle = "none";
@@ -68,7 +76,7 @@ Input(form:  NgForm){
     "email":data.email,
     "phone":data.phone,
     "profile":data.empsprofile,
-    "date_of_event":"12/12/12"
+    "date_of_event":data.DOJ
 }
 console.log(myPostObject);
  
@@ -79,11 +87,19 @@ console.log(myPostObject);
   }
 
 
-  
-InputEdit(form:  NgForm){
+ 
+ 
+ 
+openEditPopup(employee: any,inputForm: NgForm){
+  this.tname = employee.name;
+  this.temail = employee.email
+  this.tphone = employee.phone;
+  this.tdoj = employee.DOJ;
+   
+  this.tprofile=employee.profile;
+   
 
-  }
-openEditPopup(){
+ 
   this.displayStyleEdit = "block";
 
 }
