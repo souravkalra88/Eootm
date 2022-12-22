@@ -4,16 +4,17 @@ import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
-
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
-  styleUrls: ['./employees.component.css']
-})
+  styleUrls: ['./employees.component.css'],
+ })
 export class EmployeesComponent {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>=new Subject<any>();
   AllEmployees:any;
+  tasktypes=["onboarding","offboarding"];
+  selectedtask:any;
   constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService){
     // this.lis=[];
 }
@@ -23,6 +24,8 @@ ngOnInit(): void{
     this.dtTrigger.next(void 0);
     console.log(responsedata);
   })
+
+
   this.dtOptions = {
 
     pagingType: 'full_numbers',
@@ -38,7 +41,9 @@ ngOnInit(): void{
 }
  
 displayStyle = "none";
-
+onOptionsSelected(value:string){
+  console.log("the selected value is " + value);
+}
 openPopup() {
   this.displayStyle = "block";
 }
@@ -50,5 +55,6 @@ Input(form:NgForm){
   console.log(form.value.newTaskTypeTitle);
   this.closePopup();
 }
+
 
 }

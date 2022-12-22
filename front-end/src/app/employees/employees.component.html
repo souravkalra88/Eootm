@@ -28,40 +28,39 @@
 
 
 
-                                <label for="newname">Name</label>
+                                <label for="newname" class="textbox-label">Name</label>
                                 <input type="text" id="newname" onfocus="this.value=''" value="" ngModel name="newname"
                                     class="form-control" />
 
-                                <label for="newphone">Phone</label>
+                                <label for="newphone" class="textbox-label">Phone</label>
                                 <input type="text" id="newphone" onfocus="this.value=''" value="" ngModel
                                     name="newphone" class="form-control" />
 
 
-                                <label for="newemail">Email</label>
+                                <label for="newemail" class="textbox-label">Email</label>
                                 <input type="text" id="newemail" onfocus="this.value=''" value="" ngModel
                                     name="newemail" class="form-control" />
 
-                                <label for="newempsprofile">Profile</label>
+                                <label for="newempsprofile" class="textbox-label">Profile</label>
                                 <input type="text" id="newempsprofile" onfocus="this.value=''" value="" ngModel
                                     name="newempsprofile" class="form-control" />
 
-                                    
-                                <label for="DOJ">Date Of Joining</label>
-                                <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel
-                                    name="DOJ" class="form-control" />
 
-                                    <div class="dropdown">
-                                        <button type="submit" class="btn btn-outline-dark tasktypebtn" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          TaskType
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                          <a class="dropdown-item" href="#">Action</a>
-                                          <a class="dropdown-item" href="#">Another action</a>
-                                          <a class="dropdown-item" href="#">Something else here</a>
+                                <label for="DOJ" class="textbox-label">Date Of Joining</label>
+                                <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel name="DOJ"
+                                    class="form-control" />
+
+                                    <div class="col">
+                                         <select   class='select-option'
+                                         #Selecttasktype (change)='onOptionsSelected(Selecttasktype.value)'>
+                                         <option value="undefined" selected disabled>Select tasktype</option>   
+                                         <option class='option' 
+                                            *ngFor='let option of tasktypes' 
+                                            [value]="option">{{option}}</option>
+                                            </select>
                                         </div>
-                                      </div>
+                               
 
-    
                             </div>
 
                             <div class="modal-footer">
@@ -93,11 +92,10 @@
 
 
 
-                <div class="container">
+                <div class="row container-fluid ">
                     <div class="card m-5 p-3">
                         <div class="card-body">
-                            <table
-                            style="width:100%"
+                            <table style="width:100%"
                                 class="table text-center table-bordered table-striped table-hover display text-center"
                                 datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                                 <thead>
@@ -107,6 +105,7 @@
                                         <th>phone</th>
                                         <th>profile</th>
                                         <th>DOJ</th>
+                                        <th>Edit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,6 +115,10 @@
                                         <td>{{ employee.phone }}</td>
                                         <td>{{ employee.profile }}</td>
                                         <td>{{employee.DOJ}}</td>
+                                        <td><button class="  btn btn-outline-dark" (click)="openPopup()" type="button"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                Edit
+                                            </button></td>
                                     </tr>
                                 </tbody>
                             </table>

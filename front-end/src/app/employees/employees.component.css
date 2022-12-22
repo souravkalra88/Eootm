@@ -8,6 +8,19 @@ app-header{
 }
 tr{
     width:100%;
+ }
+.col{
+    margin-left: -3%;
+}
+
+
+.textbox-label{
+    padding-bottom:-10%;
+}
+
+.form-control{
+    margin-bottom: 5%;
+    border-color: black;
 }
 
 .btnAddemp{
@@ -15,9 +28,13 @@ tr{
     color: hsl(0, 100%, 99%);
     border: 0ch;
     height:5%;
-    
-    
 }
+.container{
+    width: 200%;
+    margin-right: 100%;
+}
+
+
 main{
     position: absolute;
     width: 100%;
