@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { CreateNewEmployee } from '../service/create-new-employee.service';
 
 @Component({
   selector: 'app-employees',
@@ -15,7 +16,10 @@ export class EmployeesComponent {
   AllEmployees:any;
   tasktypes=["onboarding","offboarding"];
   selectedtask:any;
-  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService){
+    
+displayStyleEdit = "none";
+displayStyle = "none";
+  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private CreateEmployee:CreateNewEmployee){
     // this.lis=[];
 }
 ngOnInit(): void{
@@ -32,16 +36,15 @@ ngOnInit(): void{
 
     pageLength: 5,
 
-    lengthMenu: [5,10,15,20] ,
+    lengthMenu: [5,10,15,20] 
 
-  }; 
+  }; }
   // this.AllEmployees=[{"name":"bhawana","email":"b@t.com", "phone":"1323324543", "profile":"intern","DOJ":"12/12/12"},
   // {"name":"sourav","email":"s@t.com", "phone":"132330024543", "profile":"intern","DOJ":"12/11/12"}]
-  
-}
  
-displayStyle = "none";
+
 onOptionsSelected(value:string){
+  this.selectedtask=value;
   console.log("the selected value is " + value);
 }
 openPopup() {
@@ -52,9 +55,32 @@ closePopup() {
 }
 
 Input(form:NgForm){
-  console.log(form.value.newTaskTypeTitle);
-  this.closePopup();
+  var data = form.value;
+  debugger;
+  var myPostObject = {
+    "name":data.name,
+    "phone":data.phone,
+    "email":data.email,
+    "profile":data.profile,
+    "date of event": data.DOJ,
+    "tasktype":this.selectedtask
+  }  
+  this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
+    console.log(responsedata);
+  });
+    this.closeEditPopup();
+  }
+
+
+openEditPopup(){
+  this.displayStyleEdit = "block";
+
 }
 
-
+closeEditPopup() {
+  this.displayStyleEdit = "none";
+}
+openTaskPopup(){
+  
+}
 }

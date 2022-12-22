@@ -7,59 +7,52 @@
         <app-sidenav class="mcontent"></app-sidenav>
         <div class="display-area w-75 h-100 ">
             <!-- <p>Main Display Area</p> -->
-            <div align="right" d-flex>
+            <div d-flex align="right">
                 <button class="  btn btn-outline-dark" (click)="openPopup()" type="button" data-toggle="modal"
                     data-target="#exampleModal">
                     Add Employee
                 </button>
-
-
-
-
             </div>
             <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add Employee</h4>
-                        </div>
                         <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
                             <div class="modal-body">
 
 
-
-                                <label for="newname" class="textbox-label">Name</label>
-                                <input type="text" id="newname" onfocus="this.value=''" value="" ngModel name="newname"
+                                <label for="name" class="textbox-label">Name</label>
+                                <input type="text" id="name" onfocus="this.value=''" value="" ngModel name="name"
                                     class="form-control" />
 
-                                <label for="newphone" class="textbox-label">Phone</label>
-                                <input type="text" id="newphone" onfocus="this.value=''" value="" ngModel
-                                    name="newphone" class="form-control" />
+                                <label for="phone" class="textbox-label">Phone</label>
+                                <input type="text" id="phone" onfocus="this.value=''" value="" ngModel
+                                    name="phone" class="form-control" />
 
 
-                                <label for="newemail" class="textbox-label">Email</label>
-                                <input type="text" id="newemail" onfocus="this.value=''" value="" ngModel
-                                    name="newemail" class="form-control" />
+                                <label for="email" class="textbox-label">Email</label>
+                                <input type="text" id="email" onfocus="this.value=''" value="" ngModel
+                                    name="email" class="form-control" />
 
-                                <label for="newempsprofile" class="textbox-label">Profile</label>
-                                <input type="text" id="newempsprofile" onfocus="this.value=''" value="" ngModel
-                                    name="newempsprofile" class="form-control" />
-
-
-                                <label for="DOJ" class="textbox-label">Date Of Joining</label>
+                                <label for="empsprofile" class="textbox-label">Profile</label>
+                                <input type="text" id="empsprofile" onfocus="this.value=''" value="" ngModel
+                                    name="empsprofile" class="form-control" />
+                            
+                            
+                                <div class="col">
+                                    <select class='select-option' #Selecttasktype
+                                        (change)='onOptionsSelected(Selecttasktype.value)'>
+                                        <option value="undefined" selected disabled>Select tasktype</option>
+                                        <option class='option' *ngFor='let option of tasktypes' [value]="option">
+                                            {{option}}</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <label for="DOJ" class="textbox-label">Date Of {{Selecttasktype.value}}</label>
                                 <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel name="DOJ"
                                     class="form-control" />
 
-                                    <div class="col">
-                                         <select   class='select-option'
-                                         #Selecttasktype (change)='onOptionsSelected(Selecttasktype.value)'>
-                                         <option value="undefined" selected disabled>Select tasktype</option>   
-                                         <option class='option' 
-                                            *ngFor='let option of tasktypes' 
-                                            [value]="option">{{option}}</option>
-                                            </select>
-                                        </div>
-                               
+
+
 
                             </div>
 
@@ -78,7 +71,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
             <div class="display-area w-75 h-100 ">
@@ -106,6 +99,7 @@
                                         <th>profile</th>
                                         <th>DOJ</th>
                                         <th>Edit</th>
+                                        <th>Task</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -115,10 +109,15 @@
                                         <td>{{ employee.phone }}</td>
                                         <td>{{ employee.profile }}</td>
                                         <td>{{employee.DOJ}}</td>
-                                        <td><button class="  btn btn-outline-dark" (click)="openPopup()" type="button"
-                                                data-toggle="modal" data-target="#exampleModal">
-                                                Edit
+                                        <td><button class="  btn " type="button" data-toggle="modaledit"
+                                                (click)="openEditPopup()" data-target="#exampleModal1">
+                                                <i class="fas fa-edit"></i>
                                             </button></td>
+                                        <td><button class="btn" type="button" data-toggle="modaltaskedit"
+                                                (click)="openTaskPopup()" data-target="#exampleModal1">
+                                                <i class="fas fa-tasks"></i>
+                                            </button></td>
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -126,6 +125,64 @@
 
                     </div>
                 </div>
+
+                <div class="modaledit" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form #inputform="ngForm" (ngSubmit)="Input(inputform)" >
+                                <div class="modal-body">
+    
+    
+                                    <label for="newname" class="textbox-label">Name</label>
+                                    <input type="text" id="newname" onfocus="this.value=''" value="" ngModel name="newname"
+                                        class="form-control" />
+    
+                                    <label for="newphone" class="textbox-label">Phone</label>
+                                    <input type="text" id="newphone" onfocus="this.value=''" value="" ngModel
+                                        name="newphone" class="form-control" />
+    
+    
+                                    <label for="newemail" class="textbox-label">Email</label>
+                                    <input type="text" id="newemail" onfocus="this.value=''" value="" ngModel
+                                        name="newemail" class="form-control" />
+    
+                                    <label for="newempsprofile" class="textbox-label">Profile</label>
+                                    <input type="text" id="newempsprofile" onfocus="this.value=''" value="" ngModel
+                                        name="newempsprofile" class="form-control" />
+                                
+                                
+                                    <div class="col">
+                                        <select class='select-option' #Selecttasktype
+                                            (change)='onOptionsSelected(Selecttasktype.value)'>
+                                            <option value="undefined" selected disabled>Select tasktype</option>
+                                            <option class='option' *ngFor='let option of tasktypes' [value]="option">
+                                                {{option}}</option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <label for="newDOJ" class="textbox-label">Date Of {{Selecttasktype.value}}</label>
+                                    <input type="text" id="newDOJ" onfocus="this.value=''" value="" ngModel name="newDOJ"
+                                        class="form-control" /> 
+    
+                                </div>
+    
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-dark"  >
+                                        Save
+                                    </button>
+    
+                                    <button type="button" class="btn btn-outline-dark" (click)="closeEditPopup()">
+                                        Close
+                                    </button>   
+                                </div>
+                            </form>
+    
+                        </div>
+                    </div>
+                </div>
+    
+
+
 
             </div>
 

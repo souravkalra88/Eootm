@@ -38,7 +38,26 @@ def emp_by_task_type(event,response):
 def get_all_employees(event,response):
     key="pk"
     value='employee'
-    tasks=[]
+    
+    
+    if key is not None and value is not None:
+      filtering_exp = Key(key).eq(value)
+      resp= table.query(KeyConditionExpression=filtering_exp)
+         
+      items = resp.get('Items')
+         
+      response = {"statusCode": 200,
+                'headers': {'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': '*'
+        },
+                "body":json.dumps(items)}
+    return response
+  
+
+def create_new_employee(event,context):
+    
+      
     
     if key is not None and value is not None:
       filtering_exp = Key(key).eq(value)
