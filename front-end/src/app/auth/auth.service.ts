@@ -5,10 +5,11 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
   constructor() { }
-
+  result :any
   isLoggedIn(): boolean {
     var isAuth = false;
 
@@ -25,6 +26,11 @@ export class AuthService {
         if (err) {
           alert(err.message || JSON.stringify(err));
         }
+
+        environment.idToken  = environment.idToken  == '' ? session.getRefreshToken().getToken() : session.getAccessToken().getJwtToken() ;
+        // this.result =  session.getAccessToken().payload
+
+        // console.log(this.result)
         isAuth = session.isValid();
       })
     }

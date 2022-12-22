@@ -39,6 +39,7 @@ export class AuthComponent implements OnInit{
 
     let userPool = new CognitoUserPool(poolData);
     let userData = { Username: this.email_address, Pool: userPool };
+     
     var cognitoUser = new CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {

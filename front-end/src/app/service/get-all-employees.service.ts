@@ -12,7 +12,7 @@ export class GetAllEmployeesService {
   constructor(private http : HttpClient) {
    }
    allEmployeesData():Observable<any> {{
-    console.log(environment.idToken);
+    // console.log(environment.idToken);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' +environment.idToken

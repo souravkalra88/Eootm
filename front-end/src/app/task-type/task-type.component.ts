@@ -4,7 +4,6 @@ import { Subject } from 'rxjs';
 import { GetAllTaskTypesService } from '../service/get-all-task-types.service';
 import { NgForm } from '@angular/forms';
 
-declare var window:any;
 
 @Component({
   selector: 'app-task-type',
