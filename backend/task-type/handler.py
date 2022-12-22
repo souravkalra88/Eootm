@@ -12,6 +12,7 @@ dbtable = str(os.environ['DYNAMODB_TABLE'])
 table = dynamodb.Table(dbtable)
 
 
+
 def get_all_task_types(event,context):
     key="pk"
     value='tasktype'
@@ -23,35 +24,31 @@ def get_all_task_types(event,context):
          
       items = resp.get('Items')
          
-      for i in items:
-          tasks.append(i['sk'])
-      tasks=list(set(tasks))
-    
-    response = {"statusCode": 200, "body": json.dumps(tasks)}  
-
-    # return response
+     
     return {
         'statusCode': 200,
         'headers': {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                       'Access-Control-Allow-Methods': '*'
         },
-        'body': json.dumps(tasks),
+        'body': json.dumps(items),
         'isBase64Encoded': False,
     }
   
-def  add_new_task_type(event, response):
+  
+def add_new_task_type(event, context):
   body=json.loads(event["body"])
   resp=table.put_item(
     Item={
       "pk":"tasktype",
       "sk":body["tasktype"],
-      "created_at": datetime.now(),
+      "created_at": "5454894",
       "created_by": body["CurrentUser"],
-      "modified_at": datetime.now(),
+      "modified_at": "6459848",
+      "description": body["description"],
       "modified_by": body["CurrentUser"]
     }
   )
-  response = {"statusCode": 200, "body": resp}
+  response = {"statusCode": 200, "body": json.dumps(resp)}
   return response
   

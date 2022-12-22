@@ -71,7 +71,7 @@
                                 <h4 class="modal-title">Edit Task Type</h4>
                             </div>
                             <form #editTaskTypeform="ngForm" (ngSubmit)="editTaskType(editTaskTypeform)">
-                                <div class="modal-body d-flex editpop" >
+                                <div class="modal-body d-flex editpop">
 
 
                                     <table class="table text-center table-bordered table-striped table-hover display"
@@ -82,7 +82,7 @@
                                             <tr>
 
                                                 <th>Existing Tasks</th>
-                                                 
+
 
                                             </tr>
 
@@ -92,9 +92,9 @@
 
                                             <tr *ngFor="let tasksTypes of tasksTypeData">
 
-                                                
+
                                                 <td>demo</td>
-                                              
+
 
                                             </tr>
 
@@ -103,8 +103,8 @@
                                     </table>
                                     <br>
 
-                                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#addTask"
-                    (click)="openAddNewTask()">Add New Task</button>
+                                    <button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                                        data-target="#addTask" (click)="openAddNewTask()">Add New Task</button>
 
 
                                 </div>
@@ -133,7 +133,7 @@
             <div class="addTask d-flex flex-column">
 
 
-                <div class="modal" id="#addTask" tabindex="-1" role="dialog" 
+                <div class="modal" id="#addTask" tabindex="-1" role="dialog"
                     [ngStyle]="{'display':displayStyleAddTask}">
 
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -141,15 +141,28 @@
                         <div class="modal-content">
 
                             <div class="modal-header">
-                                <h4 class="modal-title">Edit Task Type</h4>
+                                <h4 class="modal-title">Add new Task</h4>
                             </div>
                             <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)">
-                                <div class="modal-body d-flex editpop" >
+                                <div class="modal-body d-flex editpop">
 
 
-                                    New Task <Form></Form>
-                                    <br>
+                                    <label for="newTaskTypeTitle">Enter New Task NAme</label>
+                                    <input type="text" id="newTaskName" onfocus="this.value=''" value="" ngModel
+                                        name="newTaskName" class="form-control" />
 
+                                    <label for="newTaskTypeDesc">Enter New Task Description</label>
+                                    <input type="text" id="newTaskDesc" onfocus="this.value=''" value="" ngModel
+                                        name="newTaskDesc" class="form-control" />
+
+                                    <label for="newTaskAssignee">Enter New Task Assignee</label>
+                                    <button type="button" class="btn btn-outline-dark" >
+                                         Assignee
+                                    </button>
+
+                                    <label for="newTaskCompletion">Enter New Task Completion Duration</label>
+                                    <input type="text" id="newTaskCompletion" onfocus="this.value=''" value="" ngModel
+                                        name="newTaskAssignee" class="form-control" />
 
                                 </div>
                                 <div class="modal-footer">
@@ -178,7 +191,7 @@
 
             <br>
             <table class="table text-center table-bordered table-striped table-hover display text-center" datatable
-                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"   >
 
                 <thead>
 
@@ -196,8 +209,8 @@
 
                     <tr *ngFor="let tasksTypes of tasksTypeData">
 
-                        <td>{{tasksTypes}}</td>
-                        <td>demo</td>
+                        <td>{{tasksTypes['sk']}}</td>
+                        <td>{{tasksTypes['description']}}</td>
                         <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
                                 data-target="#edittasktypeId" (click)="openEditTaskType()">Assign Task</button></td>
 
