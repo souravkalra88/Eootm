@@ -14,8 +14,14 @@ export class EmployeesComponent {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>=new Subject<any>();
   AllEmployees:any;
-  tasktypes=["onboarding","offboarding"];
-  selectedtask:any;
+  tasktypes:string[]=["onboarding","offboarding"];
+  selectedtask:string = "";
+  tdoj:any;
+  tname:any;
+  tphone:any;
+  tprofile:any;
+  temail:any;
+
     
 displayStyleEdit = "none";
 displayStyle = "none";
@@ -72,7 +78,15 @@ Input(form:NgForm){
   }
 
 
-openEditPopup(){
+openEditPopup(employee: any,inputForm: NgForm){
+  this.tname = employee.name;
+  this.temail = employee.email
+  this.tphone = employee.phone;
+  this.tdoj = employee.DOJ;
+   
+  this.tprofile=employee.profile;
+   
+
   this.displayStyleEdit = "block";
 
 }
