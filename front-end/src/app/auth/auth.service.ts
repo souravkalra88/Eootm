@@ -25,6 +25,7 @@ export class AuthService {
         if (err) {
           alert(err.message || JSON.stringify(err));
         }
+        environment.idToken  = session.getAccessToken().getJwtToken() == '' ? session.getRefreshToken().getToken() : session.getAccessToken().getJwtToken() ;
         isAuth = session.isValid();
       })
     }

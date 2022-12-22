@@ -6,6 +6,9 @@ app-header{
     z-index:2;
 
 }
+tr{
+    width:100%;
+}
 
 .btnAddemp{
     
