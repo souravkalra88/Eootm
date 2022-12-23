@@ -28,3 +28,43 @@ def add_new_task(event,context):
     response = {"statusCode": 200, "body": "post success"}
 
     return response
+
+
+def get_tasks_by_tasktype(event, context):
+    bb=json.loads(event["body"])
+    body = event['pathParameters']['type'] 
+    key="pk"
+    value=body["tasktype"]
+
+    if key is not None and value is not None:
+      filtering_exp = Key(key).eq(value)
+      resp= table.query(KeyConditionExpression=filtering_exp)
+         
+      items = resp.get('Items')
+    tasks=[]
+    for i in items:
+        d={}
+        d["task"]=i["task"]
+        d["task_description"]=i["task_description"]
+        d["owned_by"]=i["owned_by"]
+        d["completion duration"]=i["task"]
+        tasks.append(d)
+   
+    return {
+
+        'statusCode': 200,
+
+        'headers': {'Content-Type': 'application/json',
+
+                    'Access-Control-Allow-Origin': '*',
+
+                      'Access-Control-Allow-Methods': '*'
+
+        },
+
+        'body': json.dumps(tasks),
+
+
+        'isBase64Encoded': False,
+
+    }    

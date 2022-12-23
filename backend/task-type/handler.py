@@ -36,10 +36,13 @@ def get_all_task_types(event,context):
       items = resp.get('Items')
     
     tasktypes=[]     
+    
+    
     for i in items:
+      print(i)
       d={}
-      d["tasktype"]=i["Name"]
-      d["description"]=i["Description"]
+      d["tasktype"]=i['tasktype_name']
+      d["description"]=i['Description']
       tasktypes.append(d)
 
     return {
@@ -54,7 +57,7 @@ def get_all_task_types(event,context):
 
         },
 
-        'body': json.dumps(tasktypes),
+        'body':json.dumps(tasktypes),
 
 
         'isBase64Encoded': False,
@@ -85,8 +88,29 @@ def add_new_task_type(event, context):
     }
 
   )
-
   response = {"statusCode": 200, "body": json.dumps(resp)}
   return response
   
 
+def update_tasktype(event,context):
+  body=json.loads(event)
+  response = table.update_item(
+
+        Key={
+            'pk': "tasktype",
+            'sk': '1324z25x4udh356'
+            },
+
+        UpdateExpression = 'SET created_at = :val1 ',
+
+        ExpressionAttributeValues={
+
+            ':val1': "awanti"
+         }
+
+    )
+
+  return {
+        'statusCode': 200,
+        'body': json.dumps(response)
+   }
