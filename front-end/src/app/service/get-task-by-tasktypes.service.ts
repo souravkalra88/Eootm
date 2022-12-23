@@ -1,29 +1,31 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment, urls } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetTaskByTasktypesService {
 
-  // url = "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/tasks_by_tasktype";
+  url : string= "";
   constructor(private http : HttpClient) {
 
    }
 
-   allTaskByTaskType(url:string ):Observable<any> {{
+   allTaskByTaskType(type:string ):Observable<any> {{
     console.log(environment.idToken);
-    console.log(url);
-    // this.url = this.url + '/' + type;
+     this.url = urls.getTaskByTaskType + type ;
+     
+    
+    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' +environment.idToken,
       
     })
      
-    return this.http.get(url,  { headers: headers })
+    return this.http.get(this.url,  { headers: headers })
    }
   }
 }

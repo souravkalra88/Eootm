@@ -16,7 +16,7 @@ export class ManageTaskComponent implements OnInit {
   displayStyleAddTask = "none";
   title :string= ""
   eTasks:any
-  url:string = "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/tasks_by_tasktype"
+  url:string = ""
   constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType'] 
     console.log(tname)
