@@ -3,7 +3,7 @@ nav{
 }
 
 .custom{
-
+    height:90%;
     background-color: #e81410;
 }
 .side-nav-button{
@@ -50,7 +50,8 @@ nav{
 }
 .logo{
     display: flex;
-    justify-content:end;
+    justify-content:left;
+    
 }
 .or{
     color: white;

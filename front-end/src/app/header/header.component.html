@@ -1,30 +1,29 @@
-
 <!-- .navbar-custom {
     background-color: red;
 } -->
 <div class="custom">
-    <nav class="navbar-expand  px-2  d-flex justify-content-between"  >
-        <div class="side-nav-button p-2 me-3 text-light child logo"  >
-             
-            <img [src]=imgSrc  width=180px height=80px alt="logo" class="logo">
-            <!-- <div class="navbar-collapse"> -->
+  <nav class="navbar-expand  px-2  d-flex justify-content-between">
+    <div class="side-nav-button p-2 me-3 text-light child logo">
 
-        </div>
-        
-<div class="user-icon d-flex align-items-center">
-    
-    <div class="dropdown">
+      <img [src]=imgSrc width=180px height=80px alt="logo" class="logo">
+      <!-- <div class="navbar-collapse"> -->
+
+    </div>
+
+    <div class="user-icon d-flex align-items-center">
+
+      <div class="dropdown">
         <i class="fa-solid fa-user icon fa-xl icon"></i>
-        <button class="btn btn-secondary  username"   >
+        <button class="btn btn-secondary  username">
           {{userName}}
         </button> <span class="or">|</span>
-        <button class="btn btn-secondary  userbutton" ng-class="{'no-border': border}" (click) = "logOut()"   >
+        <button class="btn btn-secondary  userbutton" ng-class="{'no-border': border}" (click)="logOut()">
           Logout
         </button>
-        
-        
+
+
       </div>
-      </div> 
-  
-    </nav>
     </div>
+
+  </nav>
+</div>

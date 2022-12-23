@@ -20,6 +20,8 @@ export class AuthService {
 
     var userPool = new CognitoUserPool(poolData);
     var cognitoUser = userPool.getCurrentUser();
+    console.log(cognitoUser)
+    
 
     if (cognitoUser != null) {
       cognitoUser.getSession((err: any, session: any) => {
@@ -30,8 +32,9 @@ export class AuthService {
 
         environment.idToken  = environment.idToken  == '' ? session.getRefreshToken().getToken() : session.getAccessToken().getJwtToken() ;
         // this.result =  session.getAccessToken().payload
-
-        // console.log(this.result)
+        var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name'] 
+        environment.currentUser = currentUsername
+        // console.log(this.result.username)
 
         isAuth = session.isValid();
       })
