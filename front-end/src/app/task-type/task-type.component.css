@@ -11,48 +11,26 @@ main{
     width: 100%;
     top : 4rem;
     z-index:1;
-     
 
 }
-
 app-sidenav{
     
     background-color:#DDDDDD;
-    margin-top: 2rem;
+ 
+    margin-top: -7px;
+ 
    
     position: fixed;
     left:0rem;
     width: 200px;
-    height: calc(100vh - 6rem);
+ 
+    height: calc(100vh );
+ 
 }
 .display-area{
     position: absolute;
     left: 230px;
-     
     /* width: calc(100%-230px); */
     width: 100%;
-    margin-left: 57px;
-    height: 100%;
     top: 55px;
-}
-
-.addtasktype{
-    justify-content: right;
-}
-/* thead th {
-    background-color: red;
-    
-}  */
-
-#addtasktypeId{
-    z-index: 9999
-   }
-
-.editpop{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}   
-.modal-content{
-    background-color: #DDDDDD;
 }

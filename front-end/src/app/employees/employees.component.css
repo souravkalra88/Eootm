@@ -6,57 +6,26 @@ app-header{
     z-index:2;
 
 }
-/* .dtable{
-display: flex;
-width: 100%;
-align-items: stretch;
-} */
-tr{
-    width:100%;
- }
-.col{
-    margin-left: -3%;
-}
-
-
-.textbox-label{
-    padding-bottom:-10%;
-}
-
-.form-control{
-    margin-bottom: 5%;
-    border-color: black;
-}
-
-.btnAddemp{
-    
-    color: hsl(0, 100%, 99%);
-    border: 0ch;
-    height:5%;
-}
-.container{
-    width: 200%;
-    margin-right: 100%;
-}
-
-
 main{
     position: absolute;
     width: 100%;
     top : 4rem;
     z-index:1;
-    display:flex;
 
 }
 app-sidenav{
     
     background-color:#DDDDDD;
-    margin-top: 2rem;
+ 
+    margin-top: -7px;
+ 
    
     position: fixed;
     left:0rem;
     width: 200px;
-    height: calc(100vh - 6rem);
+ 
+    height: calc(100vh );
+ 
 }
 .display-area{
     position: absolute;
@@ -65,20 +34,3 @@ app-sidenav{
     width: 100%;
     top: 55px;
 }
-
-.popup{
-    background-color: rgb(230, 225, 225);
-    border:2px;
-    border-style: solid;
-    border-radius: 4%;
-}
-
-.modal-footer{
-    background-color: rgb(230, 225, 225);
-
-}
-
-.popup{
-    border: black;
-}
-
