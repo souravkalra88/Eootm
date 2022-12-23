@@ -4,6 +4,7 @@ import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { CreateNewEmployee } from '../service/create-new-employee.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees',
@@ -28,7 +29,7 @@ export class EmployeesComponent {
     
 displayStyleEdit = "none";
 displayStyle = "none";
-  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private CreateEmployee:CreateNewEmployee){
+  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private CreateEmployee:CreateNewEmployee, private router:Router){
     // this.lis=[];
 }
 ngOnInit(): void{
@@ -83,6 +84,12 @@ console.log(myPostObject);
   this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
     console.log(responsedata);
   });
+  const currentRoute = this.router.url;
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentRoute]);  
+    }); 
+
     this.closePopup();
   }
 

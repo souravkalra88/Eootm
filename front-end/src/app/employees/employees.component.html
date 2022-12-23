@@ -86,9 +86,9 @@
 
 
 
-                <div class="row container-fluid ">
-                    <div class="card m-5 p-3">
-                        <div class="card-body">
+                <div class="container-fluid dtable">
+                    <!-- <div class="card m-5 p-3"> -->
+                        <!-- <div class="card-body"> -->
                             <table style="width:100%"
                                 class="table text-center table-bordered table-striped table-hover display text-center"
                                 datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
@@ -109,7 +109,7 @@
                                         <td>{{ employee.email }}</td>
                                         <td>{{ employee.phone }}</td>
                                         <td>{{ employee.profile }}</td>
-                                        <td>{{employee.DOJ}}</td>
+                                        <td>{{employee.date_of_event}}</td>
                                         <td><button class="  btn " type="button" data-toggle="modaledit"
                                                 (click)="openEditPopup(employee,inputform)" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
@@ -122,9 +122,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        <!-- </div> -->
 
-                    </div>
+                    <!-- </div> -->
                 </div>
 
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}" id="#editModal">
@@ -132,8 +132,8 @@
                         <div class="modal-content">
  
 
-                            <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
- 
+                            <form #inputform="ngForm" (ngSubmit)="Input(inputform)" class="popup">
+                                <div class="popup">
                                 <div class="modal-body">
 
 
@@ -197,6 +197,7 @@
                                         Close
                                     </button>
                                 </div>
+                            </div>
                             </form>
 
                         </div>

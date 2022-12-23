@@ -17,9 +17,10 @@
 .side-nav-content{
     color: black;
     width: 230px;
+    height: 100%;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .nav-list-item span{
