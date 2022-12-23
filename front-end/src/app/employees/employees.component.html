@@ -1,139 +1,133 @@
-<div class="w-100 vh-100">
+<div class="w-100">
+    <app-header></app-header>
+    <main class="d-flex">
 
-    <main class="d-flex h-100">
 
-        <app-header></app-header>
 
-        <app-sidenav class="mcontent"></app-sidenav>
-        <div class="display-area w-75 h-100 ">
-            <!-- <p>Main Display Area</p> -->
-            <div d-flex align="right">
+        <app-sidenav class="black-border"></app-sidenav>
+
+        <div class="display-area w-75">
+            <div class="title d-flex">
+                <h3>Registered Employees </h3>
+                <br>
+
                 <button class="  btn btn-outline-dark" (click)="openPopup()" type="button" data-toggle="modal"
                     data-target="#exampleModal">
                     Add Employee
                 </button>
+
             </div>
-            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
-                            <div class="modal-body">
+            <div class="addTask d-flex flex-column">
 
 
-                                <label for="name" class="textbox-label">Name</label>
-                                <input type="text" id="name" onfocus="this.value=''" value="" ngModel name="name"
-                                    class="form-control" />
-
-                                <label for="phone" class="textbox-label">Phone</label>
-                                <input type="text" id="phone" onfocus="this.value=''" value="" ngModel name="phone"
-                                    class="form-control" />
-
-
-                                <label for="email" class="textbox-label">Email</label>
-                                <input type="text" id="email" onfocus="this.value=''" value="" ngModel name="email"
-                                    class="form-control" />
-
-                                <label for="empsprofile" class="textbox-label">Profile</label>
-                                <input type="text" id="empsprofile" onfocus="this.value=''" value="" ngModel
-                                    name="empsprofile" class="form-control" />
-
-
-                                <div class="col">
-                                    <select class='select-option' #Selecttasktype
-                                        (change)='onOptionsSelected(Selecttasktype.value)'>
-                                        <option value="undefined" selected disabled>Select tasktype</option>
-                                        <option class='option' *ngFor='let option of tasktypes' [value]="option" >
-                                            {{option}} </option>
-                                    </select>
-                                </div>
-                                <br>
-
-
-                                <label for="DOJ" class="textbox-label">Date Of {{Selecttasktype.value}}</label>
-                                <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel name="DOJ"
-                                    class="form-control" />
-
-
-
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-outline-dark">
-                                    Save
-                                </button>
-
-                                <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
-                                    Close
-                                </button>
-
-
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="display-area w-75 h-100 ">
-                <div class="d-flex justify-content-center">
-                    <h1>Registered Employees</h1>
-                    <!-- <div class="spinner-border" role="status" >
-                        <span class="sr-only" id="loading">Loading...</span>
-                    </div> -->
-
-                </div>
-
-
-
-                <div class="container-fluid dtable">
-                    <!-- <div class="card m-5 p-3"> -->
-                        <!-- <div class="card-body"> -->
-                            <table style="width:100%"
-                                class="table text-center table-bordered table-striped table-hover display text-center"
-                                datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-                                <thead>
-                                    <tr >
-                                        <th class="headings">Name</th>
-                                        <th class="headings">Email</th>
-                                        <th class="headings">Phone</th>
-                                        <th class="headings">Profile</th>
-                                        <th class="headings">DOJ</th>
-                                        <th class="headings">Edit</th>
-                                        <th class="headings">Task</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let employee of AllEmployees">
-                                        <td>{{ employee.name }}</td>
-                                        <td>{{ employee.email }}</td>
-                                        <td>{{ employee.phone }}</td>
-                                        <td>{{ employee.profile }}</td>
-                                        <td>{{employee.date_of_event}}</td>
-                                        <td><button class="  btn " type="button" data-toggle="modaledit"
-                                                (click)="openEditPopup(employee,inputform)" data-target="#editModal">
-                                                <i class="fas fa-edit"></i>
-                                            </button></td>
-                                        <td><button class="btn" type="button" data-toggle="modaltaskedit"
-                                                (click)="openTaskPopup()" data-target="#exampleModal1">
-                                                <i class="fas fa-tasks"></i>
-                                            </button></td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        <!-- </div> -->
-
-                    <!-- </div> -->
-                </div>
-
-                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}" id="#editModal">
+                <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
- 
+                            <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
+                                <div class="modal-body">
 
-                            <form #inputform="ngForm" (ngSubmit)="Input(inputform)" class="popup">
-                                <div class="popup">
+
+                                    <label for="name" class="textbox-label">Name</label>
+                                    <input type="text" id="name" onfocus="this.value=''" value="" ngModel name="name"
+                                        class="form-control" />
+
+                                    <label for="phone" class="textbox-label">Phone</label>
+                                    <input type="text" id="phone" onfocus="this.value=''" value="" ngModel name="phone"
+                                        class="form-control" />
+
+
+                                    <label for="email" class="textbox-label">Email</label>
+                                    <input type="text" id="email" onfocus="this.value=''" value="" ngModel name="email"
+                                        class="form-control" />
+
+                                    <label for="empsprofile" class="textbox-label">Profile</label>
+                                    <input type="text" id="empsprofile" onfocus="this.value=''" value="" ngModel
+                                        name="empsprofile" class="form-control" />
+
+
+                                    <div class="col">
+                                        <select class='select-option' #Selecttasktype
+                                            (change)='onOptionsSelected(Selecttasktype.value)'>
+                                            <option value="undefined" selected disabled>Select tasktype</option>
+                                            <option class='option' *ngFor='let option of tasktypes' [value]="option">
+                                                {{option}} </option>
+                                        </select>
+                                    </div>
+                                    <br>
+
+
+                                    <label for="DOJ" class="textbox-label">Date Of {{Selecttasktype.value}}</label>
+                                    <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel name="DOJ"
+                                        class="form-control" />
+
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-dark">
+                                        Save
+                                    </button>
+
+                                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                                        Close
+                                    </button>
+
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <br>
+            <br>
+
+            <table style="width:100%"
+                class="table text-center table-bordered table-striped table-hover display text-center" datatable
+                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
+                    <tr>
+                        <th class="headings">Name</th>
+                        <th class="headings">Email</th>
+                        <th class="headings">Phone</th>
+                        <th class="headings">Profile</th>
+                        <th class="headings">DOJ</th>
+                        <th class="headings">Edit</th>
+                        <th class="headings">Task</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of AllEmployees">
+                        <td>{{ employee.name }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.phone }}</td>
+                        <td>{{ employee.profile }}</td>
+                        <td>{{employee.date_of_event}}</td>
+                        <td><button class="  btn " type="button" data-toggle="modaledit"
+                                (click)="openEditPopup(employee,inputform)" data-target="#editModal">
+                                <i class="fas fa-edit"></i>
+                            </button></td>
+                        <td><button class="btn" type="button" data-toggle="modaltaskedit" (click)="openTaskPopup()"
+                                data-target="#exampleModal1">
+                                <i class="fas fa-tasks"></i>
+                            </button></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}" id="#editModal">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+
+
+                        <form #inputform="ngForm" (ngSubmit)="Input(inputform)" class="popup">
+                            <div class="popup">
                                 <div class="modal-body">
 
 
@@ -155,7 +149,7 @@
                                         name="newempsprofile" class="form-control" />
 
                                     <label for="newempsdoj" class="textbox-label">DOJ</label>
-                                    <input type="text" id="newempsdoj" [value]="tdoj" ngModel name="newempsprofile"
+                                    <input type="text" id="newempsdoj" [value]="tdoj" ngModel name="newempdoj"
                                         class="form-control" />
 
 
@@ -198,23 +192,20 @@
                                     </button>
                                 </div>
                             </div>
-                            </form>
+                        </form>
 
-                        </div>
                     </div>
                 </div>
-
-
-
-
             </div>
+
 
 
 
         </div>
 
 
+
+
+
     </main>
-
-
 </div>

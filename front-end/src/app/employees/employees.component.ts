@@ -37,7 +37,7 @@ ngOnInit(): void{
   this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
     this.AllEmployees=responsedata;
     this.dtTrigger.next(void 0);
-    console.log(responsedata);
+    // console.log(responsedata);
   })
 
 
@@ -70,7 +70,7 @@ closePopup() {
 
 Input(form:  NgForm){
   var data = form.value;
-  console.log(data.name);
+  // console.log(data.name);
   // debugger;
   var myPostObject ={
     "tasktype":this.selectedtask,
@@ -106,7 +106,8 @@ openEditPopup(employee: any,inputForm: NgForm){
   this.temail = employee.email
   this.tphone = employee.phone;
   this.tdoj = employee.DOJ;
-   
+  // console.log(employee)
+  console.log("doj" + this.tdoj) 
   this.tprofile=employee.profile;
    
 
