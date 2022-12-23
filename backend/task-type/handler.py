@@ -24,7 +24,6 @@ table = dynamodb.Table(dbtable)
 
 
 
-
 def get_all_task_types(event,context):
     key="pk"
     value='tasktype'
@@ -35,8 +34,13 @@ def get_all_task_types(event,context):
       resp= table.query(KeyConditionExpression=filtering_exp)
          
       items = resp.get('Items')
-         
-     
+    
+    tasktypes=[]     
+    for i in items:
+      d={}
+      d["tasktype"]=i["Name"]
+      d["description"]=i["Description"]
+      tasktypes.append(d)
 
     return {
 
@@ -50,13 +54,14 @@ def get_all_task_types(event,context):
 
         },
 
-        'body': json.dumps(items),
+        'body': json.dumps(tasktypes),
 
 
         'isBase64Encoded': False,
 
     }
 
+  
   
   
 def add_new_task_type(event, context):
