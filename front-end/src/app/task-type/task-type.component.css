@@ -34,3 +34,7 @@ app-sidenav{
     width: 100%;
     top: 55px;
 }
+
+.headings{
+    font-weight: 600;
+}
