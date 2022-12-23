@@ -5,7 +5,10 @@ nav{
 .custom{
     height:90%;
     background-color: #e81410;
+    height:90%;
 }
+    
+
 .side-nav-button{
     
    display: flex;
