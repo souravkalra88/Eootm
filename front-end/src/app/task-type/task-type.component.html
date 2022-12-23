@@ -1,60 +1,68 @@
 <div class="w-100 vh-100">
 
-    <main class="d-flex h-100">
+    <main class="d-flex  ">
 
         <app-header></app-header>
 
         <app-sidenav class="mcontent"></app-sidenav>
         <div class="display-area w-75 h-80 ">
             <div class="addtasktype d-flex">
-                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#addtasktypeId"
-                    (click)="openAddNewTaskType()">Add Task type</button>
 
-                <div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog"
-                    [ngStyle]="{'display':displayStyleAdd}">
+                <h3>TaskType </h3>
+                <br>
 
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                <button type="button" class="btn addbtn btn-outline-dark" data-toggle="modal"
+                    data-target="#addtasktypeId" (click)="openAddNewTaskType()">Add Task type</button>
 
-                        <div class="modal-content">
+            </div>
 
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add New Task Type</h4>
-                            </div>
-                            <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
-                                <div class="modal-body">
+            <br>
+            <br>
 
 
+            <div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleAdd}">
 
-                                    <label for="newTaskTypeTitle">Enter New Task Type</label>
-                                    <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
-                                        name="newTaskTypeTitle" class="form-control" />
+                <div class="modal-dialog modal-dialog-centered" role="document">
 
-                                    <label for="newTaskTypeDesc">Enter New Task Type Description</label>
-                                    <input type="text" id="newTaskTypeDesc" onfocus="this.value=''" value="" ngModel
-                                        name="newTaskTypeDesc" class="form-control" />
+                    <div class="modal-content">
 
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-dark">
-                                        Save
-                                    </button>
-
-                                    <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTaskType()">
-                                        Close
-                                    </button>
-
-
-                                </div>
-                            </form>
-
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add New Task Type</h4>
                         </div>
+                        <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
+                            <div class="modal-body">
+
+
+
+                                <label for="newTaskTypeTitle">Enter New Task Type</label>
+                                <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
+                                    name="newTaskTypeTitle" class="form-control" />
+
+                                <label for="newTaskTypeDesc">Enter New Task Type Description</label>
+                                <input type="text" id="newTaskTypeDesc" onfocus="this.value=''" value="" ngModel
+                                    name="newTaskTypeDesc" class="form-control" />
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-dark">
+                                    Save
+                                </button>
+
+                                <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTaskType()">
+                                    Close
+                                </button>
+
+
+                            </div>
+                        </form>
 
                     </div>
 
                 </div>
 
             </div>
+
 
 
             <div class="edittasktype d-flex flex-column">
@@ -74,37 +82,18 @@
                                 <div class="modal-body d-flex editpop">
 
 
-                                    <table class="table text-center table-bordered table-striped table-hover display"
-                                        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
-
-                                        <thead>
-
-                                            <tr>
-
-                                                <th>Existing Tasks</th>
 
 
-                                            </tr>
 
-                                        </thead>
+                                    <label for="newTaskTypeTitle">Edit Task Type</label>
+                                    <input type="text" id="editTaskTypeTitle" value={{ctasktitle}} ngModel
+                                        name="editTaskTypeTitle" class="form-control" />
 
-                                        <tbody>
-
-                                            <tr *ngFor="let tasksTypes of tasksTypeData">
-
-
-                                                <td>demo</td>
+                                    <label for="newTaskTypeDesc">Edit Task Type Description</label>
+                                    <input type="text" id="editTaskTypeDesc" value={{ctaskdesc}} ngModel
+                                        name="editTaskTypeDesc" class="form-control" />
 
 
-                                            </tr>
-
-                                        </tbody>
-
-                                    </table>
-                                    <br>
-
-                                    <button type="button" class="btn btn-outline-dark" data-toggle="modal"
-                                        data-target="#addTask" (click)="openAddNewTask()">Add New Task</button>
 
 
                                 </div>
@@ -130,68 +119,10 @@
             </div>
 
 
-            <div class="addTask d-flex flex-column">
-
-
-                <div class="modal" id="#addTask" tabindex="-1" role="dialog"
-                    [ngStyle]="{'display':displayStyleAddTask}">
-
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add new Task</h4>
-                            </div>
-                            <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)">
-                                <div class="modal-body d-flex editpop">
-
-
-                                    <label for="newTaskTypeTitle">Enter New Task NAme</label>
-                                    <input type="text" id="newTaskName" onfocus="this.value=''" value="" ngModel
-                                        name="newTaskName" class="form-control" />
-
-                                    <label for="newTaskTypeDesc">Enter New Task Description</label>
-                                    <input type="text" id="newTaskDesc" onfocus="this.value=''" value="" ngModel
-                                        name="newTaskDesc" class="form-control" />
-
-                                    <label for="newTaskAssignee">Enter New Task Assignee</label>
-                                    <button type="button" class="btn btn-outline-dark" >
-                                         Assignee
-                                    </button>
-
-                                    <label for="newTaskCompletion">Enter New Task Completion Duration</label>
-                                    <input type="text" id="newTaskCompletion" onfocus="this.value=''" value="" ngModel
-                                        name="newTaskAssignee" class="form-control" />
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-dark">
-                                        Save
-                                    </button>
-
-                                    <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTask()">
-                                        Close
-                                    </button>
-
-
-                                </div>
-                            </form>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
 
             <br>
             <table class="table text-center table-bordered table-striped table-hover display text-center" datatable
-                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"   >
+                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
 
                 <thead>
 
@@ -199,8 +130,8 @@
 
                         <th class="headings">Task Type</th>
                         <th class="headings">Description</th>
-                        <th class="headings">Operation</th>
-
+                        <th class="headings"> </th>
+                        <th class="headings"> </th>
                     </tr>
 
                 </thead>
@@ -209,10 +140,13 @@
 
                     <tr *ngFor="let tasksTypes of tasksTypeData">
 
-                        <td>{{tasksTypes['sk']}}</td>
+                        <td>{{tasksTypes['tasktype']}}</td>
                         <td>{{tasksTypes['description']}}</td>
+
                         <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="openEditTaskType()">Assign Task</button></td>
+                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)">Edit</button></td>
+                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)">Manage</button></td>
 
                     </tr>
 

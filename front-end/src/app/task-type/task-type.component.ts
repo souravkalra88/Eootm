@@ -24,7 +24,8 @@ export class TaskTypeComponent implements OnInit {
   displayStyleAddTask = "none";
   formModal: any;
    
-
+  ctasktitle:string = ""
+  ctaskdesc:string = ""
   constructor(private allTaskTypeData: GetAllTaskTypesService, private addTaskType: AddTaskTypeService,private router: Router) { 
    
   }
@@ -47,30 +48,9 @@ export class TaskTypeComponent implements OnInit {
     };
     
   }
- 
-  addNewTask(form: NgForm):void{
-    if(form.valid){
-  console.log(form.value.newTaskTypeTitle);
-  console.log(form.value.newTaskTypeDesc);
-
-
-  this.closeAddNewTask();
-    }
-     
-  }
-
-   
   
-openAddNewTask(){
-  this.displayStyleAddTask = "block";
-  this.displayStyleEdit = "none";
-}
-
-closeAddNewTask(){
-  this.displayStyleAddTask = "none";
-  this.displayStyleEdit = "block";
-}
-
+   
+ 
 openEditTask(){
   this.displayStyleEdit = "block";
 }
@@ -125,7 +105,7 @@ addNewTaskType(form: NgForm):void{
    
   editTaskType(form: NgForm):void{
      
-  
+  console.log(form.value)
     
     this.closeEditTaskType(); 
     }
@@ -139,14 +119,22 @@ closeAddNewTaskType(){
   
 }
 
-openEditTaskType(){
+openEditTaskType(taskType:any){
+  this.ctasktitle  = taskType['tasktype']
+  
+  this.ctaskdesc  = taskType['description']
   this.displayStyleEdit = "block";
 }
 
 closeEditTaskType(){
   this.displayStyleEdit = "none";
 }
+manageTaskType(taskType:any){
 
+  this.router.navigate(['/task-type/manage'],{
+    state:{taskType:taskType.tasktype}
+  });
+}
 
   ngOnDestroy(): void {
     

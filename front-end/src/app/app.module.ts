@@ -19,6 +19,7 @@ import { TaskTypeComponent } from './task-type/task-type.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AdminsComponent } from './admins/admins.component';
+import { ManageTaskComponent } from './task-type/manage-task/manage-task.component';
 
 
 
@@ -34,6 +35,7 @@ import { AdminsComponent } from './admins/admins.component';
     EmployeesComponent,
     TaskListComponent,
     AdminsComponent,
+    ManageTaskComponent,
     
   ],
   imports: [

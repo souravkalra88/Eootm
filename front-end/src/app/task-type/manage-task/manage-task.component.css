@@ -34,25 +34,6 @@ app-sidenav{
     width: 100%;
     top: 55px;
 }
-
-.headings{
-    font-weight: 600;
-}
-
-.addtasktype{
-    
-    justify-content:space-between;
-}
- 
-#addtasktypeId{
-    z-index: 9999
-   }
-
-.editpop{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}   
-.modal-content{
-    background-color: #DDDDDD;
+.title{
+    justify-content: space-between;
 }
