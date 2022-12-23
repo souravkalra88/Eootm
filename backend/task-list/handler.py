@@ -30,11 +30,13 @@ def add_new_task(event,context):
     return response
 
 
+
 def get_tasks_by_tasktype(event, context):
-    bb=json.loads(event["body"])
+    
     body = event['pathParameters']['type'] 
+     
     key="pk"
-    value=body["tasktype"]
+    value=body
 
     if key is not None and value is not None:
       filtering_exp = Key(key).eq(value)
