@@ -16,7 +16,7 @@ export class GetAllTaskTypesService {
     this.url = urls.getAllTasks
     console.log(environment.idToken);
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json',  
       'Authorization': 'Bearer ' +environment.idToken,
       
     })
