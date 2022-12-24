@@ -8,8 +8,20 @@
 
         <div class="display-area w-75">
             <div class="title d-flex">
-                <h3>TaskType {{title}}</h3>
-                <br>
+                
+                 <span class="name">
+                    <h3>TaskType</h3>
+                     <span class="options">
+                <select class="form-select form-select-sm form-control" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example" id = "type" name = "type" [(ngModel)] = "title">
+                    
+                    
+                    <option *ngFor="let type of taskTypes" [value]="type.tasktype " >{{type.tasktype}}</option>
+                    
+                    
+                  </select>
+                  </span>
+                 
+                </span>
 
                 <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#addTask"
                     (click)="openAddNewTask()">Add New Task</button>
