@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
-
+import {GetAllTaskTypesService} from 'src/app/service/get-all-task-types.service'
 @Component({
   selector: 'app-manage-task',
   templateUrl: './manage-task.component.html',
@@ -16,24 +16,32 @@ export class ManageTaskComponent implements OnInit {
   displayStyleAddTask = "none";
   title :string= ""
   eTasks:any
+  taskTypes:any
   url:string = ""
-  constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService){
+  constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType'] 
-    console.log(tname)
+    
     this.title = tname == undefined ?  "Onboarding" : tname
   }
   ngOnInit(): void {
-    this.title = this.title == "" ?  "Onboarding" : this.title
-    console.log(this.title)
+    // this.title = this.title == "" ?  "Onboarding" : this.title
+    // console.log(this.title)
 
     this.url += "/" + this.title.toLowerCase() 
     this.getTaskByType.allTaskByTaskType(this.url).subscribe((data: any)=>{
-      console.log(data);
+      
       this.eTasks = data;
-      console.log(this.eTasks);
+       
       
       this.dtTrigger.next(void 0);
     });
+
+    this.getAllTaskType.allTaskTypesData().subscribe((tdata: any)=>{
+      this.taskTypes = tdata;
+      console.log(this.taskTypes);
+    });
+
+
 
     
    
@@ -44,7 +52,17 @@ export class ManageTaskComponent implements OnInit {
     };
   }
 
+switchType(type: any){
+  console.log(type);
 
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    this.router.navigate(['/task-type/manage'],{
+      state:{taskType:this.title}
+    });
+  }); 
+
+ 
+}
   addNewTask(form: NgForm): void {
     if (form.valid) {
       console.log(form.value);

@@ -37,3 +37,17 @@ app-sidenav{
 .title{
     justify-content: space-between;
 }
+.name{
+    /* width: 30% ;
+   
+    display: flex;
+    align-items: flex-start; */
+    display: flex;
+    justify-content:space-between;
+    width: 30%;
+     
+}
+.options{
+    margin-right: 5%;
+    width: 50%;
+}
