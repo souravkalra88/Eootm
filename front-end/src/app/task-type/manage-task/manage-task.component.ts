@@ -18,6 +18,7 @@ export class ManageTaskComponent implements OnInit {
   eTasks:any
   taskTypes:any
   url:string = ""
+  newTasks:any[] = []
   constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType'] 
     
@@ -63,17 +64,25 @@ switchType(type: any){
 
  
 }
-  addNewTask(form: NgForm): void {
-    if (form.valid) {
-      console.log(form.value);
-      console.log(form.value);
+  // addNewTask(form: NgForm): void {
+  //   if (form.valid) {
+  //     console.log(form.value);
+  //     console.log(form.value);
 
 
-      this.closeAddNewTask();
-    }
+  //     this.closeAddNewTask();
+  //   }
 
+  // }
+  receiveNewTasks(event:any[]){
+    this.newTasks = event
+    
   }
-
+  saveNewTasks(){
+    // api call to post new tasks
+    console.log(this.newTasks);
+    this.closeAddNewTask()
+  }
   openAddNewTask() {
     this.displayStyleAddTask = "block";
 

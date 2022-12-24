@@ -33,22 +33,23 @@
                 <div class="modal" id="#addTask" tabindex="-1" role="dialog"
                     [ngStyle]="{'display':displayStyleAddTask}">
 
-                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-dialog   modal-dialog-centered" style="max-width: 80%;" role="document">
 
-                        <div class="modal-content">
+                        <div class="modal-content"  >
 
                             <div class="modal-header">
                                 <h4 class="modal-title">Add new Task</h4>
                             </div>
-                            <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)">
+                            <!-- <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)"> -->
                                 <div class="modal-body d-flex editpop">
 
-
-                                    BODY
+                                    <span>
+                                    <app-add-task-form (emitTasksList)="receiveNewTasks($event)"></app-add-task-form>
+                                    </span>
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-dark">
+                                    <button type="submit" class="btn btn-outline-dark" (click)="saveNewTasks()">
                                         Save
                                     </button>
 
@@ -58,7 +59,7 @@
 
 
                                 </div>
-                            </form>
+                            <!-- </form> -->
 
                         </div>
 
