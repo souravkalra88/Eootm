@@ -18,6 +18,7 @@ export class TaskTypeComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   tasksTypeData:any; 
+  ctasktypeid:string="";
     
   displayStyleAdd = "none";
   displayStyleEdit = "none";
@@ -92,24 +93,58 @@ addNewTaskType(form: NgForm):void{
  
   })  
 
- 
-
-  
   }
-  
-  this.closeAddNewTaskType()
-   
-   
-  }
+   this.closeAddNewTaskType()
+   }
 
    
-  editTaskType(form: NgForm):void{
+  UpdateTaskType(form: NgForm):void{
      
   console.log(form.value)
+  if(form.valid){
+    let taskTypeName = form.value.newTaskTypeTitle
     
+  console.log(form.value.newTaskTypeTitle);
+  console.log(form.value.newTaskTypeDesc);
+    let taskTypeDesc = form.value.newTaskTypeDesc
+    let body = {
+      "tasktype": taskTypeName,
+      "description": taskTypeDesc,
+      "sk":this.ctasktypeid
+  } 
+  console.log(this.ctasktypeid);
+  // DataTables.Api.ajax.reload(); 
+  this.addTaskType.addTaskType(body).subscribe((response: any )=> {
+    console.log(response);
+     
+
+    this.allTaskTypeData.allTaskTypesData().subscribe((data: any)=>{
+     
+      this.tasksTypeData = data;
+      console.log(this.tasksTypeData);
+    
+     
+    });  
+
+    // table refresh
+
+
+    const currentRoute = this.router.url;
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentRoute]);  
+    }); 
+
+ 
+  })  
+
+  }
+  
     this.closeEditTaskType(); 
     }
-  
+
+
+     
 openAddNewTaskType(){
   this.displayStyleAdd = "block";
 }
@@ -123,6 +158,7 @@ openEditTaskType(taskType:any){
   this.ctasktitle  = taskType['tasktype']
   
   this.ctaskdesc  = taskType['description']
+  this.ctasktypeid=taskType['sk'];
   this.displayStyleEdit = "block";
 }
 

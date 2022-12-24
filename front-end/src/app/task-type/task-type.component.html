@@ -78,22 +78,16 @@
                             <div class="modal-header">
                                 <h4 class="modal-title">Edit Task Type</h4>
                             </div>
-                            <form #editTaskTypeform="ngForm" (ngSubmit)="editTaskType(editTaskTypeform)">
+                            <form #editTaskTypeform="ngForm" (ngSubmit)="UpdateTaskType(editTaskTypeform)">
                                 <div class="modal-body d-flex editpop">
 
-
-
-
-
-                                    <label for="newTaskTypeTitle">Edit Task Type</label>
+                                    <label for="newTaskTypeTitle">Task Type</label>
                                     <input type="text" id="editTaskTypeTitle" value={{ctasktitle}} ngModel
                                         name="editTaskTypeTitle" class="form-control" />
 
-                                    <label for="newTaskTypeDesc">Edit Task Type Description</label>
+                                    <label for="newTaskTypeDesc">Task Type Description</label>
                                     <input type="text" id="editTaskTypeDesc" value={{ctaskdesc}} ngModel
                                         name="editTaskTypeDesc" class="form-control" />
-
-
 
 
                                 </div>
@@ -130,8 +124,9 @@
 
                         <th class="headings">Task Type</th>
                         <th class="headings">Description</th>
-                        <th class="headings"> </th>
-                        <th class="headings"> </th>
+                                                 
+                       <th class="headings"> Edit </th>
+                        <th class="headings"> Manage</th>
                     </tr>
 
                 </thead>
@@ -142,6 +137,7 @@
 
                         <td>{{tasksTypes['tasktype']}}</td>
                         <td>{{tasksTypes['description']}}</td>
+                        
 
                         <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
                                 data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)">Edit</button></td>

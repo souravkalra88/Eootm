@@ -43,6 +43,7 @@ def get_all_task_types(event,context):
       d={}
       d["tasktype"]=i['tasktype_name']
       d["description"]=i['Description']
+      d["sk"]=i["sk"]
       tasktypes.append(d)
 
     return {
@@ -91,26 +92,29 @@ def add_new_task_type(event, context):
   response = {"statusCode": 200, "body": json.dumps(resp)}
   return response
   
-
 def update_tasktype(event,context):
-  body=json.loads(event)
+  # event=json.loads(event)
+  updated_vals=json.loads(event["body"])
+  
   response = table.update_item(
 
         Key={
             'pk': "tasktype",
-            'sk': '1324z25x4udh356'
+            'sk': updated_vals["sk"]
             },
 
-        UpdateExpression = 'SET created_at = :val1 ',
+        UpdateExpression = 'SET tasktype_name = :val1 , Description=:val2',
 
         ExpressionAttributeValues={
 
-            ':val1': "awanti"
-         }
+            ':val1': updated_vals['tasktype'],
+            ':val2': updated_vals['description']
+        }
 
     )
 
+  # return event
   return {
         'statusCode': 200,
         'body': json.dumps(response)
-   }
+  }
