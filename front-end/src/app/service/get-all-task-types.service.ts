@@ -15,7 +15,7 @@ url = "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/task-type/getAll"
    allTaskTypesData():Observable<any> {{
     console.log(environment.idToken);
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json',  
       'Authorization': 'Bearer ' +environment.idToken,
       
     })
