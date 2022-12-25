@@ -15,14 +15,18 @@ table = dynamodb.Table(dbtable)
 
 def add_new_task(event,context):
     body = json.loads(event['body'])
+    taskid="task"+str(uuid.uuid4())
     response = table.put_item(
         Item={
             "pk": body["tasktype"],
-            "sk": body["taskname"],
-            "assignee": body["assignee"],
+            "sk": taskid,
+            "assignee": body["owned_by"],
             "created_at": datetime.now(),
             "created_by": body["CurrentUser"],
-            "due_duration": body["due_duration"]         
+            "due_duration": body["due_duration"],
+            "task":body["task"],
+            "task_description":body["task_description"],
+            "viewed_by": "None"   
         }
     )
     response = {"statusCode": 200, "body": "post success"}
