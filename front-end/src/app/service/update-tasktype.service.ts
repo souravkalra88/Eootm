@@ -12,7 +12,7 @@ export class UpdateTaskTypeService {
    }
 
    UpdateTaskType(body: any):Observable<any> {{
-    this.url = urls.addTaskType
+    this.url = urls.UpdateTaskType
     // console.log(environment.idToken);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

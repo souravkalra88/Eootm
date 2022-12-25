@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
 import { AddTaskTypeService } from '../service/add-task-type.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-
+import { UpdateTaskTypeService } from '../service/update-tasktype.service';
 
 
 @Component({
@@ -27,7 +27,7 @@ export class TaskTypeComponent implements OnInit {
    
   ctasktitle:string = ""
   ctaskdesc:string = ""
-  constructor(private allTaskTypeData: GetAllTaskTypesService, private addTaskType: AddTaskTypeService,private router: Router) { 
+  constructor(private allTaskTypeData: GetAllTaskTypesService, private addTaskType: AddTaskTypeService,private UpdateTaskType: UpdateTaskTypeService, private router: Router) { 
    
   }
   
@@ -98,23 +98,23 @@ addNewTaskType(form: NgForm):void{
    }
 
    
-  UpdateTaskType(form: NgForm):void{
-     
+  EditTaskType(form: NgForm):void{
+  console.log("inside updatetasktype");
   console.log(form.value)
   if(form.valid){
-    let taskTypeName = form.value.newTaskTypeTitle
+    let taskTypeName = form.value.editTaskTypeTitle
     
-  console.log(form.value.newTaskTypeTitle);
-  console.log(form.value.newTaskTypeDesc);
-    let taskTypeDesc = form.value.newTaskTypeDesc
+    let taskTypeDesc = form.value.editTaskTypeDesc
     let body = {
       "tasktype": taskTypeName,
       "description": taskTypeDesc,
       "sk":this.ctasktypeid
   } 
+  
+  // console.log(this.taskTypeName);
   console.log(this.ctasktypeid);
   // DataTables.Api.ajax.reload(); 
-  this.addTaskType.addTaskType(body).subscribe((response: any )=> {
+  this.UpdateTaskType.UpdateTaskType(body).subscribe((response: any )=> {
     console.log(response);
      
 
