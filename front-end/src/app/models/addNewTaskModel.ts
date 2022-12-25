@@ -1,6 +1,7 @@
 export class newTask{
     taskTitle: any;
     taskDescription: any;
-    taskAssignee: any;
+    taskOwnedBy: any;
     taskDuration: any;
+
 }

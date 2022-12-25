@@ -40,11 +40,12 @@ export class ManageTaskComponent implements OnInit {
 
     this.getAllTaskType.allTaskTypesData().subscribe((tdata: any)=>{
       this.taskTypes = tdata;
+      
       console.log(this.taskTypes);
     });
 
 
-
+    // console.log(this.title)
     
    
     this.dtOptions = {
@@ -86,7 +87,7 @@ switchType(type: any){
     this.closeAddNewTask()
     }
     else{alert("click done first")}
-    console.log(this.newTasks);
+    
     
   }
   openAddNewTask() {

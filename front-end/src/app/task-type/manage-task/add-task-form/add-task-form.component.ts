@@ -11,7 +11,7 @@ export class AddTaskFormComponent implements OnInit {
   newTaskList:any[] = [];
   newTaskItem = new newTask();
   isButtonVisible:boolean = true;
-
+  disableForm:boolean = false;
   @Output() emitTasksList = new EventEmitter<any>();
   @Output() emitDone = new EventEmitter<boolean>();
   ngOnInit(): void {
@@ -21,6 +21,7 @@ export class AddTaskFormComponent implements OnInit {
   done(){
     this.isButtonVisible = false;
     // console.log(this.newTaskList)
+    this.disableForm = true;
     this.emitDone.emit(true);
     this.emitTasksList.emit(this.newTaskList); 
   }
