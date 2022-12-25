@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 import {GetAllTaskTypesService} from 'src/app/service/get-all-task-types.service'
+import { newTask } from 'src/app/models/addNewTaskModel';
 @Component({
   selector: 'app-manage-task',
   templateUrl: './manage-task.component.html',
   styleUrls: ['./manage-task.component.css']
 })
 export class ManageTaskComponent implements OnInit {
-
+  doneClicked = false
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   displayStyleAddTask = "none";
@@ -18,6 +19,7 @@ export class ManageTaskComponent implements OnInit {
   eTasks:any
   taskTypes:any
   url:string = ""
+  newTasks:newTask[] = []
   constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType'] 
     
@@ -63,17 +65,30 @@ switchType(type: any){
 
  
 }
-  addNewTask(form: NgForm): void {
-    if (form.valid) {
-      console.log(form.value);
-      console.log(form.value);
+  // addNewTask(form: NgForm): void {
+  //   if (form.valid) {
+  //     console.log(form.value);
+  //     console.log(form.value);
 
 
-      this.closeAddNewTask();
-    }
+  //     this.closeAddNewTask();
+  //   }
 
+  // }
+  receiveNewTasks(event:newTask[]){
+    this.newTasks = event
+    
   }
-
+  saveNewTasks(){
+    if(this.doneClicked){
+    // api call to post new tasks
+    console.log(this.newTasks);
+    this.closeAddNewTask()
+    }
+    else{alert("click done first")}
+    console.log(this.newTasks);
+    
+  }
   openAddNewTask() {
     this.displayStyleAddTask = "block";
 
@@ -81,6 +96,11 @@ switchType(type: any){
 
   closeAddNewTask() {
     this.displayStyleAddTask = "none";
+    const currentRoute = this.router.url;
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentRoute]);  
+    }); 
 
   }
 

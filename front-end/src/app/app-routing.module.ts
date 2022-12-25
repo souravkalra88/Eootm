@@ -10,6 +10,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AdminsComponent } from './admins/admins.component';
 import { ManageTaskComponent } from './task-type/manage-task/manage-task.component';
+import { AddTaskFormComponent } from './task-type/manage-task/add-task-form/add-task-form.component';
 const routes: Routes = [
   { path: "", component: AuthComponent},
 { path: "home" ,component : HomeComponent, canActivate : [AuthGuard]},
@@ -18,6 +19,7 @@ const routes: Routes = [
 { path: "task-list" ,component : TaskListComponent, canActivate : [AuthGuard]},
 { path: "admins" ,component : AdminsComponent, canActivate : [AuthGuard]},
 { path: "task-type/manage" ,component : ManageTaskComponent,canActivate : [AuthGuard]},
+ {path: 'nt' , component: AddTaskFormComponent}
 // {  path : "app-employee", component: EmployeeComponent , canActivate: [AuthGuard] },
 
 

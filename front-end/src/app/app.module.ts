@@ -20,6 +20,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AdminsComponent } from './admins/admins.component';
 import { ManageTaskComponent } from './task-type/manage-task/manage-task.component';
+import { AddTaskFormComponent } from './task-type/manage-task/add-task-form/add-task-form.component';
 
 
 
@@ -36,6 +37,7 @@ import { ManageTaskComponent } from './task-type/manage-task/manage-task.compone
     TaskListComponent,
     AdminsComponent,
     ManageTaskComponent,
+    AddTaskFormComponent,
     
   ],
   imports: [
