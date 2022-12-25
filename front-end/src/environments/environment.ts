@@ -14,5 +14,6 @@ export const urls = {
     getAllEmployees:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/allemp",
     createNewEmployee:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/newemp",
     addTaskType:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTaskType",
-    UpdateTaskType: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_tasktype"
+    UpdateTaskType: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_tasktype",
+    addNewTask: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTask"
 }

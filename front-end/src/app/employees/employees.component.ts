@@ -82,9 +82,9 @@ Input(form:  NgForm){
 }
 console.log(myPostObject);
  
-  this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
-    console.log(responsedata);
-  });
+  // this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
+  //   console.log(responsedata);
+  // });
  
   
   const currentRoute = this.router.url;
@@ -97,7 +97,9 @@ console.log(myPostObject);
     this.closePopup();
   }
 
-
+  saveEditEmploee(){
+    console.log(this.tname);
+  }
  
  
  

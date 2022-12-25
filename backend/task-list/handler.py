@@ -1,4 +1,3 @@
-from datetime import datetime
 
 import json
 import os
@@ -15,21 +14,22 @@ table = dynamodb.Table(dbtable)
 
 def add_new_task(event,context):
     body = json.loads(event['body'])
-    taskid="task"+str(uuid.uuid4())
-    response = table.put_item(
-        Item={
-            "pk": body["tasktype"],
-            "sk": taskid,
-            "assignee": body["owned_by"],
-            "created_at": datetime.now(),
-            "created_by": body["CurrentUser"],
-            "due_duration": body["due_duration"],
-            "task":body["task"],
-            "task_description":body["task_description"],
-            "viewed_by": "None"   
-        }
-    )
-    response = {"statusCode": 200, "body": "post success"}
+    for eItem in body :
+        taskid="task"+str(uuid.uuid4())
+        response = table.put_item(
+            Item={
+                "pk": eItem["tasktype"],
+                "sk": taskid,
+                "assignee": eItem["owned_by"],
+                "created_at": eItem["created_at"],
+                "created_by": eItem["CurrentUser"],
+                "due_duration": eItem["due_duration"],
+                "task":eItem["task"],
+                "task_description":eItem["task_description"],
+                "viewed_by": "None"   
+            }
+        )
+    response = {"statusCode": 200, "body": json.dumps({"message" : "post success"})}
 
     return response
 
@@ -47,14 +47,7 @@ def get_tasks_by_tasktype(event, context):
       resp= table.query(KeyConditionExpression=filtering_exp)
          
       items = resp.get('Items')
-    tasks=[]
-    for i in items:
-        d={}
-        d["task"]=i["task"]
-        d["task_description"]=i["task_description"]
-        d["owned_by"]=i["owned_by"]
-        d["completion duration"]=i["task"]
-        tasks.append(d)
+   
    
     return {
 
@@ -68,7 +61,7 @@ def get_tasks_by_tasktype(event, context):
 
         },
 
-        'body': json.dumps(tasks),
+        'body': json.dumps(items),
 
 
         'isBase64Encoded': False,

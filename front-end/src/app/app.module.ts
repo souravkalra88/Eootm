@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import {HttpClientModule} from '@angular/common/http'
 
+import { DatePipe } from '@angular/common';
 
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
@@ -51,7 +52,7 @@ import { AddTaskFormComponent } from './task-type/manage-task/add-task-form/add-
     HttpClientModule
     
   ],
-  providers: [AuthService],
+  providers: [AuthService , DatePipe],
   bootstrap: [AppComponent ]
 })
 export class AppModule { }

@@ -23,6 +23,9 @@
                 <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new Task</h4>
+                            </div>
                             <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
                                 <div class="modal-body">
 
@@ -125,31 +128,35 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
 
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Task</h4>
+                        </div>
 
-                        <form #inputform="ngForm" (ngSubmit)="Input(inputform)" class="popup">
+                        <form #inputform="ngForm" (ngSubmit)="saveEditEmploee()" class="popup">
                             <div class="popup">
+
                                 <div class="modal-body">
 
 
-                                    <label for="newname" class="textbox-label">Name</label>
-                                    <input type="text" id="newname" [value]="tname" ngModel name="newname"
+                                    <label for="editName" class="textbox-label">Name</label>
+                                    <input type="text" id="editName" [(ngModel)]="tname" name="editName"
                                         class="form-control" />
 
-                                    <label for="newphone" class="textbox-label">Phone</label>
-                                    <input type="text" id="newphone" [value]="tphone" ngModel name="newphone"
+                                    <label for="editPhone" class="textbox-label">Phone</label>
+                                    <input type="text" id="editPhone" [(ngModel)]="tphone" name="editPhone"
                                         class="form-control" />
 
 
-                                    <label for="newemail" class="textbox-label">Email</label>
-                                    <input type="text" id="newemail" [value]="temail" ngModel name="newemail"
+                                    <label for="editEmail" class="textbox-label">Email</label>
+                                    <input type="text" id="editEmail" [(ngModel)]="temail" name="editEmail"
                                         class="form-control" />
 
-                                    <label for="newempsprofile" class="textbox-label">Profile</label>
-                                    <input type="text" id="newempsprofile" [value]="tprofile" ngModel
-                                        name="newempsprofile" class="form-control" />
+                                    <label for="editProfile" class="textbox-label">Profile</label>
+                                    <input type="text" id="editProfile" [(ngModel)]="tprofile" name="editDoj"
+                                        class="form-control" />
 
-                                    <label for="newempsdoj" class="textbox-label">DOJ</label>
-                                    <input type="text" id="newempsdoj" [value]="tdoj" ngModel name="newempdoj"
+                                    <label for="editDoj" class="textbox-label">DOJ</label>
+                                    <input type="text" id="editDoj" [(ngModel)]="tdoj" name="editDoj"
                                         class="form-control" />
 
 

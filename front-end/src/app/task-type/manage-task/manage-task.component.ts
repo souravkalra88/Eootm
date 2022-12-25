@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 import {GetAllTaskTypesService} from 'src/app/service/get-all-task-types.service'
 import { newTask } from 'src/app/models/addNewTaskModel';
+import { AddNewTaskService } from 'src/app/service/add-new-task.service';
+import { DatePipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { timer } from 'rxjs';
 @Component({
   selector: 'app-manage-task',
   templateUrl: './manage-task.component.html',
@@ -20,7 +24,7 @@ export class ManageTaskComponent implements OnInit {
   taskTypes:any
   url:string = ""
   newTasks:newTask[] = []
-  constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService){
+  constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService,private addNewTask: AddNewTaskService, private datePipe:DatePipe){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType'] 
     
     this.title = tname == undefined ?  "Onboarding" : tname
@@ -41,7 +45,7 @@ export class ManageTaskComponent implements OnInit {
     this.getAllTaskType.allTaskTypesData().subscribe((tdata: any)=>{
       this.taskTypes = tdata;
       
-      console.log(this.taskTypes);
+      // console.log(this.taskTypes);
     });
 
 
@@ -82,11 +86,47 @@ switchType(type: any){
   }
   saveNewTasks(){
     if(this.doneClicked){
+    var body : any[] = [];
     // api call to post new tasks
     console.log(this.newTasks);
+    var bodyTemplate = {
+      
+      "tasktype":this.title.toLowerCase(),
+      "owned_by":"",
+      "CurrentUser" : "",
+      "due_duration" : "",
+      "task"  : "",
+      "task_description" : "",
+      "created_at": this.datePipe.transform((new Date), 'dd/MM/yyyy; h:mm:ss') as string
+  }
+    this.newTasks.forEach(function (val:newTask) {
+      var bodyItem = bodyTemplate;
+      bodyItem.owned_by = val.taskOwnedBy
+      bodyItem.CurrentUser = environment.currentUser
+      bodyItem.due_duration = val.taskDuration
+      bodyItem.task = val.taskTitle
+      bodyItem.task_description = val.taskDescription
+      
+      body.push(bodyItem)
+
+
+      
+    }); 
+    console.log(body);
+    this.addNewTask.addNewTask(body).subscribe(data=>{
+      this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+          this.router.navigate(['/task-type/manage'],{
+            state:{taskType:this.title}
+          });
+        })
+      console.log(data);
+    })
+
+     
+    
     this.closeAddNewTask()
     }
-    else{alert("click done first")}
+    else{alert("Click done to finalize new tasks list")}
     
     
   }
@@ -97,11 +137,13 @@ switchType(type: any){
 
   closeAddNewTask() {
     this.displayStyleAddTask = "none";
-    const currentRoute = this.router.url;
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentRoute]);  
-    }); 
+   
+    this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+      this.router.navigate(['/task-type/manage'],{
+        state:{taskType:this.title}
+      });
+    })
+    
 
   }
 
