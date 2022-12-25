@@ -78,20 +78,20 @@ addNewTaskType(form: NgForm):void{
       this.tasksTypeData = data;
       console.log(this.tasksTypeData);
       
-    const currentRoute = this.router.url;
+   
+      const currentRoute = this.router.url;
 
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentRoute]);  
-    }); 
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate([currentRoute]);  
+      }); 
+   
 
     
      
     });  
 
     // table refresh
-
-
- 
+   
   })  
 
   }
@@ -123,6 +123,12 @@ addNewTaskType(form: NgForm):void{
      
       this.tasksTypeData = data;
       console.log(this.tasksTypeData);
+      const currentRoute = this.router.url;
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate([currentRoute]);  
+    }); 
+
     
      
     });  
@@ -130,12 +136,7 @@ addNewTaskType(form: NgForm):void{
     // table refresh
 
 
-    const currentRoute = this.router.url;
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentRoute]);  
-    }); 
-
+    
  
   })  
 

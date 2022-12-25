@@ -20,7 +20,7 @@ export class AddTaskTypeService {
     })
    console.log(body)
    
-    return  this.http.put(this.url,body,{ headers: headers })
+    return  this.http.post(this.url,body,{ headers: headers })
    }
   }
 
