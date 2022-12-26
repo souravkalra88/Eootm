@@ -4,15 +4,15 @@
     <div class="container">
       <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
 
-        <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}" [(ngModel)]="obj.taskTitle" placeholder="  Ttile"
+        <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}" [(ngModel)]="obj.taskTitle" placeholder="  Title"
             class="form-control"></div>
 
         <div class="form-group col-md-4"> <input type="taskTitle" name="taskDescription{{i}}" [(ngModel)]="obj.taskDescription" placeholder="  Description"
             class="form-control"> </div>
-        <div class="form-group col-md-2"> <input type="taskTitle" name="taskAssignee{{i}}" [(ngModel)]="obj.taskAssignee" placeholder="  Assignee"
+        <div class="form-group col-md-2"> <input type="taskTitle" name="taskAssignee{{i}}" [(ngModel)]="obj.taskAssignee" placeholder="  Owned_by"
             class="form-control"> </div>
             <div class = "form-group col-md-2">
-        <input type="taskTitle" name="taskDuration{{i}}" [(ngModel)]="obj.taskDuration" placeholder=" Completetion " class="form-control"></div>
+        <input type="taskTitle" name="taskDuration{{i}}" [(ngModel)]="obj.taskDuration" placeholder=" Completion " class="form-control"></div>
         <div class="form-group col-md-2">
           <button (click)="removeForm(i)"   class="btn btn-outline-danger" *ngIf="i!=0 && this.isButtonVisible">
             <i class="fa-solid fa-minus"></i>
