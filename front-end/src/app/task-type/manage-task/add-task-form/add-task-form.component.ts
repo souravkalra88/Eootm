@@ -20,7 +20,7 @@ export class AddTaskFormComponent implements OnInit {
     }
   done(){
     this.isButtonVisible = false;
-    // console.log(this.newTaskList)
+   // console.log(this.newTaskList)
     this.disableForm = true;
     this.emitDone.emit(true);
     this.emitTasksList.emit(this.newTaskList); 

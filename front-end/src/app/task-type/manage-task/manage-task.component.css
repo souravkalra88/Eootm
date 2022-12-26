@@ -43,13 +43,13 @@ app-sidenav{
     display: flex;
     align-items: flex-start; */
     display: flex;
-    justify-content:space-between;
-    width: 30%;
+    justify-content:flex-start;
+    width: 80%;
      
 }
 .options{
-    margin-right: 5%;
-    width: 50%;
+    margin-left: 4%;
+    width: 30%;
 }
 
 
@@ -57,3 +57,4 @@ app-sidenav{
     max-height: calc(100vh - 210px);
     overflow-y: auto;
 }
+ 

@@ -6,42 +6,47 @@
         <li class = "nav-list-item ">
             <i class = "fa-solid fa-house"></i>
             <span class = "routeName">
-                <a [routerLink] = "['/home']">Home</a>
+                <a routerLinkActive="active sub-active-item" [routerLink] = "['/home']">Home</a>
             </span>
 
         </li>
         <li class = "nav-list-item ">
             <i class = "fa-solid fa-bars"></i>
             <span class = "routeName">
-                <a [routerLink] = "[ '/task-type'] ">Task Type</a>
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-type'] ">Task Type</a>
             </span>
 
         </li><li class = "nav-list-item manage">
             <i class = "fa-solid fa-arrow-right"></i>
             <span class = "routeName ">
-                <a [routerLink] = "[ '/task-type/manage'] ">Manage</a>
-            </span>
-
-        </li><li class = "nav-list-item ">
-            <i class = "fa-solid fa-list-check"></i>
-            <span class = "routeName">
-                <a [routerLink] = "[ '/task-list'] ">Task List</a>
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-type/manage'] ">Manage</a>
             </span>
 
         </li>
+        
         
         <li class = "nav-list-item ">
             <i class = "fa-solid fa-people-roof"></i>
             <span class = "routeName">
-                <a [routerLink] = "['/employees'] ">Employees</a>
+                <a routerLinkActive="active sub-active-item" [routerLink] = "['/employees'] ">Employees</a>
+            </span>
+
+        </li>
+
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-list-check"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-list']  ">Task List</a>
             </span>
 
         </li>
         
+      
+        
         <li class = "nav-list-item ">
             <i class = "fa-solid fa-users"></i>
             <span class = "routeName">
-                <a [routerLink] = "[ '/admins'] ">Admins</a>
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/admins'] ">Admins</a>
             </span>
 
         </li>

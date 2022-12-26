@@ -48,3 +48,18 @@ a{
     padding-left: 35px;
     width: 60%;
 }
+/* 
+.active-item{
+    
+    background-color: red;
+
+  } */
+.sub-active-item{
+    text-decoration: underline ;
+    
+    text-decoration-color: black !important;
+    text-underline-offset: 20%;
+    text-decoration-thickness: 10%;
+    
+
+  }

@@ -5,5 +5,6 @@ export class newTask{
     taskDescription: any;
     taskOwnedBy: any = environment.currentUser
     taskDuration: any;
-
+    dueDays:any;
+    daysType:any
 }
