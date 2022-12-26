@@ -82,11 +82,11 @@
                                 <div class="modal-body d-flex editpop">
 
                                     <label for="newTaskTypeTitle">Task Type</label>
-                                    <input type="text" id="editTaskTypeTitle" [(ngModel)]=this.ctasktitle ngModel
+                                    <input type="text" id="editTaskTypeTitle" value={{ctasktitle}} ngModel
                                         name="editTaskTypeTitle" class="form-control" />
 
                                     <label for="newTaskTypeDesc">Task Type Description</label>
-                                    <input type="text" id="editTaskTypeDesc" [(ngModel)]=this.ctaskdesc  ngModel
+                                    <input type="text" id="editTaskTypeDesc" value={{ctaskdesc}} ngModel
                                         name="editTaskTypeDesc" class="form-control" />
 
 
@@ -125,8 +125,8 @@
                         <th class="headings">Task Type</th>
                         <th class="headings">Description</th>
                                                  
-                       <th class="headings"></th>
-                        <th class="headings"> </th>
+                       <th class="headings"> Edit </th>
+                        <th class="headings"> Manage</th>
                     </tr>
 
                 </thead>
@@ -139,10 +139,10 @@
                         <td>{{tasksTypes['description']}}</td>
                         
 
-                        <td><button type="button" class="btn  " data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)" ><i class="fas fa-edit"></i></button></td>
-                        <td><button type="button" class="btn  " data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)"><i class="fa-solid fa-list-check"></i></button></td>
+                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)">Edit</button></td>
+                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)">Manage</button></td>
 
                     </tr>
 

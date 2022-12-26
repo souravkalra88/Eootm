@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./addtask.component.css']
 })
 export class AddtaskComponent {
+  
+  displayStyleAdd = "none";
 
+
+  openAddNewTask(){
+    this.displayStyleAdd="block";
+  } 
+  closeAddNewTask(){
+    this.displayStyleAdd = "none";
+  }
 }
