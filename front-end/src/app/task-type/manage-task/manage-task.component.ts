@@ -27,25 +27,27 @@ export class ManageTaskComponent implements OnInit {
   constructor(private router:Router,private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService,private addNewTask: AddNewTaskService, private datePipe:DatePipe){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType'] 
     
-    this.title = tname == undefined ?  "Onboarding" : tname
+    this.title = tname
+    
   }
   ngOnInit(): void {
-    // this.title = this.title == "" ?  "Onboarding" : this.title
-    // console.log(this.title)
+    
+    
 
-    this.url += "/" + this.title.toLowerCase() 
-    this.getTaskByType.allTaskByTaskType(this.url).subscribe((data: any)=>{
+    this.getAllTaskType.allTaskTypesData().subscribe((tdata: any)=>{
+      this.taskTypes = tdata;
+      
+      if(this.title === undefined)
+      this.title = tdata[0].tasktype
+
+      this.url += "/" + this.title.toLowerCase() 
+     this.getTaskByType.allTaskByTaskType(this.url).subscribe((data: any)=>{
       
       this.eTasks = data;
        
       
       this.dtTrigger.next(void 0);
     });
-
-    this.getAllTaskType.allTaskTypesData().subscribe((tdata: any)=>{
-      this.taskTypes = tdata;
-      
-      // console.log(this.taskTypes);
     });
 
 
