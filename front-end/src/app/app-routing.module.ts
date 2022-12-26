@@ -19,7 +19,7 @@ const routes: Routes = [
 { path: "task-list" ,component : TaskListComponent, canActivate : [AuthGuard]},
 { path: "admins" ,component : AdminsComponent, canActivate : [AuthGuard]},
 { path: "task-type/manage" ,component : ManageTaskComponent,canActivate : [AuthGuard]},
-
+ 
 
 
 ];

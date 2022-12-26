@@ -3,7 +3,7 @@ import { environment } from "src/environments/environment";
 export class newTask{
     taskTitle: any;
     taskDescription: any;
-    taskOwnedBy: any = environment.currentUser
+    taskOwnedBy: any  = "" ;
     taskDuration: any;
     dueDays:any;
     daysType:any
