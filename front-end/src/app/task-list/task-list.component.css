@@ -6,11 +6,6 @@ app-header{
     z-index:2;
 
 }
-
-.Addbtn{
-    float: right;
-    margin-bottom: 2%;
-}
 main{
     position: absolute;
     width: 100%;
@@ -38,4 +33,7 @@ app-sidenav{
     /* width: calc(100%-230px); */
     width: 100%;
     top: 55px;
+}
+.title{
+    justify-content: space-between;
 }
