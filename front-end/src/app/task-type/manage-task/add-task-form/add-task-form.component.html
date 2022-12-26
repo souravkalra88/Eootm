@@ -1,10 +1,10 @@
 <span class="addTaskItem">
   <form #loginForm="ngForm" (ngSubmit)="done()">
     <fieldset [disabled]="this.disableForm">
-      <div class="container">
+    <div class="container">
         <div class="form-group col-md-2"><label for="ownedBy">Owned By</label></div>
 
-        <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
+      <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
           <div class="form-group col-md-2">
 
             <input type="taskTitle" name="taskOwnedBy{{i}}" [(ngModel)]="obj.taskOwnedBy" disabled
@@ -38,7 +38,7 @@
 
           <div class="form-group">
             <button (click)="removeForm(i)" class="btn btn-outline-danger" *ngIf="i!=0 && this.isButtonVisible">
-              <i class="fa-solid fa-minus"></i>
+            <i class="fa-solid fa-minus"></i>
             </button>
           </div>
 
