@@ -6,6 +6,11 @@ app-header{
     z-index:2;
 
 }
+
+.Addbtn{
+    float: right;
+    margin-bottom: 2%;
+}
 main{
     position: absolute;
     width: 100%;
