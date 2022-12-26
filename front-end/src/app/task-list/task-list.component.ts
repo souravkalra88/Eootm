@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { AddtaskComponent } from './addtask/addtask.component';
 
 @Component({
   selector: 'app-task-list',
@@ -15,8 +15,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   AllEmployees:any;
-  displayStyle = "none";
-  displayStyleEdit = "none"
+
+  // @ViewChild(AddtaskComponent) child:AddtaskComponent;
+
+
   constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
  
   }
