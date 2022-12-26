@@ -1,4 +1,7 @@
 import json
+import botocore.exceptions
+from logging import Logger
+import boto3
 import os
 import boto3
 import requests
@@ -72,3 +75,28 @@ def create_new_employee(event,response):
                 "body":json.dumps(resp),
                 "message":"put_success"}
   return response
+
+def get_all_admins(event,response):
+    cognito_idp_client =boto3.client('cognito-idp')
+    user_pool_id = "ap-south-1_sQeBGTxl8"
+    client_id = "48hko2q1qsd36p6d3kcrla334j"
+    client_secret=None
+    admin_list=[]
+    try:
+        response = cognito_idp_client.list_users(UserPoolId=user_pool_id,  AttributesToGet=[
+            'name'
+        ])
+        users = response['Users']
+        for i in users:
+            for j in i["Attributes"]:
+                admin_list.append(j['Value'])
+
+    except ClientError as err:
+        Logger.error(
+            "Couldn't list users for %s. Here's why: %s: %s", user_pool_id,
+            err.response['Error']['Code'], err.response['Error']['Message'])
+        raise
+    else:
+        response={"statusCode":200,
+        "body": json.dumps(admin_list)}
+        return response    

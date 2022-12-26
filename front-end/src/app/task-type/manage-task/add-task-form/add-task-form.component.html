@@ -1,10 +1,13 @@
 <span class="addTaskItem">
   <form #loginForm="ngForm" (ngSubmit)="done()">
     <fieldset [disabled]="this.disableForm">
+
       <div class="container">
         
 
         <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
+
+   
 
           <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}" [(ngModel)]="obj.taskTitle"
               placeholder="  Titile" class="form-control"></div>
@@ -45,14 +48,9 @@
 
           <div class="form-group">
             <button (click)="removeForm(i)" class="btn btn-outline-danger" *ngIf="i!=0 && this.isButtonVisible">
-              <i class="fa-solid fa-minus"></i>
+            <i class="fa-solid fa-minus"></i>
             </button>
           </div>
-
-
-
-
-
         </div>
         <span>
           <button type="button" (click)="addForm()" *ngIf="this.isButtonVisible" class="btn btn-outline-success">

@@ -129,7 +129,14 @@ functions:
           authorizer: 
             name: serviceAuthorizer   
   
-  
+  get_all_admins:
+    handler: employees/handler.get_all_admins  
+    events:
+      - httpApi:
+          path: /get_all_admins
+          method: get
+          authorizer: 
+            name: serviceAuthorizer    
 plugins:
   - serverless-python-requirements
 
