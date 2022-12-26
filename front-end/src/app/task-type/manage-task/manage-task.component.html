@@ -1,0 +1,110 @@
+ 
+
+<div class="w-100">
+    <app-header></app-header>
+    <main class="d-flex">
+
+
+
+        <app-sidenav class="black-border"></app-sidenav>
+
+        <div class="display-area w-75">
+            <div class="title d-flex">
+                
+                 <span class="name">
+                    <h3>Manage TaskType {{title}}  </h3>
+                     <span class="options">
+                <select class="form-select form-select-sm form-control" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" [(ngModel)] = "title">
+                    
+                    <option *ngFor="let type of taskTypes" [value]="type.tasktype " >{{type.tasktype}}</option>
+                    
+                    
+                  </select>
+                  </span>
+                 
+                </span>
+
+                <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#addTask"
+                    (click)="openAddNewTask()">Add New Task</button>
+
+            </div>
+            <div class="addTask d-flex flex-column">
+
+
+                <div class="modal" id="#addTask" tabindex="-1" role="dialog"
+                    [ngStyle]="{'display':displayStyleAddTask}">
+
+                    <div class="modal-dialog   modal-dialog-centered" style="max-width: 70%;" role="document">
+
+                        <div class="modal-content"  >
+
+                            <div class="modal-header">
+                                <h4 class="modal-title">Add new Task</h4>
+                            </div>
+                            <!-- <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)"> -->
+                                <div class="modal-body d-flex editpop">
+
+                                    <span>
+                                    <app-add-task-form   (emitDone)="this.doneClicked = true" (emitTasksList)="receiveNewTasks($event)"></app-add-task-form>
+                                    </span>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-outline-dark" (click)="saveNewTasks()">
+                                        Save
+                                    </button>
+
+                                    <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTask()">
+                                        Close
+                                    </button>
+
+
+                                </div>
+                            <!-- </form> -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <br>
+            <br>
+
+            <table class="table text-center table-bordered table-striped table-hover display " datatable
+                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Existing Tasks</th>
+                        <th>Description</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor = "let tasks of eTasks">
+
+
+                        <td>{{tasks['task']}}</td>
+                        <td>{{tasks['task_description']}}</td>
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <br>
+
+
+        </div>
+
+    </main>
+</div>

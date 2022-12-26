@@ -11,8 +11,8 @@ import { environment } from 'src/environments/environment';
 })
 
 export class AuthComponent implements OnInit{
-  ngOnInit(): void {}
-  imgSrc:string = "assets/img/logo.jpg";
+  ngOnInit(): void {} 
+  imgSrc:string = "assets/img/home_lg.svg";
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";
@@ -37,6 +37,7 @@ export class AuthComponent implements OnInit{
 
     let userPool = new CognitoUserPool(poolData);
     let userData = { Username: this.email_address, Pool: userPool };
+     
     var cognitoUser = new CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {

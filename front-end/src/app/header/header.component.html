@@ -1,29 +1,29 @@
-<!-- <p>header works!</p> -->
-<mat-toolbar>
-    <mat-toolbar-row class = "justify-content-between">
-        <div class="logo py-4">
-            <img [src] = imgSrc height ="170" width="185" class = "logo"  alt="LOGO">
-            
-        </div>
-        <button mat-icon-button (click)="toggleSideBar()" class = "nav"><mat-icon>menu</mat-icon></button>
-        
-        <div class="row mr-2 ml-auto">
-            <ul class = "list">
-                <li class = "list-item">
-                <button mat-button [matMenuTriggerFor]="menu" class = "user mt-2 d-flex align-items-center">
-                    <mat-icon class = "user_name">account_circle</mat-icon>
-                    {{UserName}}
-                    <mat-icon class = "user-image-icon ml-1">keyboard_arrow_down</mat-icon>
-                </button>
-                <mat-menu #menu = "matMenu">
-                    <button mat-menu-item (click) = "logOut()">
-                        <mat-icon>exit_to_app</mat-icon>
-                        logOut
-                    </button>
-                </mat-menu>
-            </li>
-            </ul>
+<!-- .navbar-custom {
+    background-color: red;
+} -->
+<div class="custom">
+  <nav class="navbar-expand  px-2  d-flex justify-content-between">
+    <div class="side-nav-button p-2 me-3 text-light child logo">
 
-        </div>
-    </mat-toolbar-row>
-</mat-toolbar>
+      <img [src]=imgSrc width=180px height=80px alt="logo" class="logo">
+      <!-- <div class="navbar-collapse"> -->
+
+    </div>
+
+    <div class="user-icon d-flex align-items-center">
+
+      <div class="dropdown">
+        <i class="fa-solid fa-user icon fa-xl icon"></i>
+        <button class="btn btn-secondary  username">
+          {{userName}}
+        </button> <span class="or">|</span>
+        <button class="btn btn-secondary  userbutton" ng-class="{'no-border': border}" (click)="logOut()">
+          Logout
+        </button>
+
+
+      </div>
+    </div>
+
+  </nav>
+</div>

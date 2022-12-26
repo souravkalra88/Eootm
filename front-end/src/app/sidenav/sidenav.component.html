@@ -1,11 +1,56 @@
 
-<mat-nav-list>
-    
-    <mat-divider></mat-divider>
-    <h2 matSubHeader class="mt-2" class = "appname" >EOOMT</h2>
-    <a mat-list-item class ="mat-list-item" routerLink="/home" routerLinkActive="list-item-active"><mat-icon>home</mat-icon> Home</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/task-type" routerLinkActive="list-item-active"><mat-icon>menu</mat-icon>Task Type</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/app-employee" routerLinkActive="list-item-active"><mat-icon>people_outline</mat-icon>Employee</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/app-task-list" routerLinkActive="list-item-active"><mat-icon>list_alt</mat-icon>Task List</a>
-    <a mat-list-item class ="mat-list-item" routerLink="/admins" routerLinkActive="list-item-active"><mat-icon>people_outline</mat-icon>Admins</a>
-</mat-nav-list>
+
+<div class = "side-nav-content w-100" >
+    <ul class = "nav-list w-100" >
+        
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-house"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "['/home']">Home</a>
+            </span>
+
+        </li>
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-bars"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-type'] ">Task Type</a>
+            </span>
+
+        </li><li class = "nav-list-item manage">
+            <i class = "fa-solid fa-arrow-right"></i>
+            <span class = "routeName ">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-type/manage'] ">Manage</a>
+            </span>
+
+        </li>
+        
+        
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-people-roof"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "['/employees'] ">Employees</a>
+            </span>
+
+        </li>
+
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-list-check"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-list']  ">Task List</a>
+            </span>
+
+        </li>
+        
+      
+        
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-users"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/admins'] ">Admins</a>
+            </span>
+
+        </li>
+        
+        
+    </ul>
+</div>

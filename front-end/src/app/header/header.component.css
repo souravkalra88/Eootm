@@ -1,42 +1,63 @@
-.mat-toolbar{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: #DDDDDD
+nav{
+    height:100%;
 }
-.list-item{
+
+.custom{
+    height:90%;
+    background-color: #e81410;
+    height:100%;
+}
     
-        list-style: none  !important;
- 
+
+.side-nav-button{
+    
+   display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
-button{
-    border:0;
-    outline:none;
-    background: transparent;
+.side-nav-button:hover{
+    border-radius: 30%;
+   
+}
+
+.user-icon{
+    margin-left:-2px;
+}
+
+.icon{
+    padding-right: 0px;
+    color: aliceblue;
 
 }
 
-.user{
-    font-size: 14px;
-
+.userbutton{
+    background-color: #e81410;
+    color: white;
+    border-radius: 0%;
+    border-color: #e81410;
+    border: 0ch;
+    border-block-color: #e81410;
+}
+.username{
+    background-color: #e81410;
+    color: white;
+    border-radius: 0%;
+    border-color: #e81410;
+    border: 0ch;
+    border-block-color: #e81410;
+    cursor: default;
+    pointer-events: none;
+    
 }
 .logo{
-    margin-left: -7.7px;
+    display: flex;
+    justify-content:left;
+    
 }
-
-.nav{
-    cursor: pointer;
-    text-align: center;
-    align-content: center;
-    padding-left: 5px ;
-}
-
-.user-image-icon{
-    cursor: pointer;
-}
-.user_name{
-    cursor: pointer;
-}
-.mat-icon{
-    cursor: pointer;
+.or{
+    color: white;
+    cursor:default;
+    
 }

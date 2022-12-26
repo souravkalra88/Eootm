@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
@@ -6,5 +6,48 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent {
-  imgSrc = "assets/img/logo.jpg";
+
+
+
+  list = [
+    {
+       
+      name: 'Home',
+      icon: 'fa-solid fa-house',
+      route: 'home'
+      
+    },
+    {
+       
+      name: 'Task Type',
+      icon: 'fa-solid fa-bars',
+      route: 'task-type'
+    },
+    {
+       
+      name: 'Manage ',
+      icon: 'fa-solid fa-bars',
+      route: 'task-type'
+    },
+    
+    {
+      
+      name: 'Task List',
+      icon: 'fa-solid fa-list-check',
+      route: 'task-list'
+    },
+    {
+       
+      name: 'Employee',
+      icon: 'fa-solid fa-people-roof',
+      route: 'employees'
+    },{
+      
+      name: 'Admins',
+      icon: 'fa-solid fa-users',
+      route: 'admins'
+    }
+  ]
+  
+
 }

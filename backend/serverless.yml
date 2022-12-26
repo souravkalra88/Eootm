@@ -5,6 +5,7 @@ provider:
   name: aws
   runtime: python3.8
   httpApi:
+    cors: true
     authorizers:
       serviceAuthorizer:
         type: jwt
@@ -55,26 +56,81 @@ package:
 
 functions:
 
-  hello:
-    handler: handler.hello
-    events:
-      - httpApi:
-          path: /
-          method: get
-          authorizer: 
-            name: serviceAuthorizer
-
-  task-type:
-    handler: task-type/handler.get  
+  get_all_task_types:
+    handler: task-type/handler.get_all_task_types  
     events:
       - httpApi:
           path: /task-type/getAll
           method: get
           authorizer: 
             name: serviceAuthorizer        
-            
-          
 
+  emp_by_task_type:
+    handler: employees/handler.emp_by_task_type  
+    events:
+      - httpApi:
+          path: /employees/emp
+          method: get
+          authorizer: 
+            name: serviceAuthorizer 
+
+  add_new_task:
+    handler: task-list/handler.add_new_task  
+    events:
+      - httpApi:
+          path: /addTask
+          method: post
+          authorizer: 
+            name: serviceAuthorizer                             
+  
+  add_new_task_type:
+    handler: task-type/handler.add_new_task_type  
+    events:
+      - httpApi:
+          path: /addTaskType
+          method: post
+          authorizer: 
+            name: serviceAuthorizer      
+
+
+  get_all_employees:
+    handler: employees/handler.get_all_employees  
+    events:
+      - httpApi:
+          path: /allemp
+          method: get
+          authorizer: 
+            name: serviceAuthorizer    
+
+  create_new_employee:
+    handler: employees/handler.create_new_employee  
+    events:
+      - httpApi:
+          path: /newemp
+          method: post
+          authorizer: 
+            name: serviceAuthorizer   
+
+  get_tasks_by_tasktype:           
+    handler: task-list/handler.get_tasks_by_tasktype  
+    events:
+      - httpApi:
+          path: /tasks_by_tasktype/{type}
+          method: get
+          authorizer: 
+            name: serviceAuthorizer   
+  
+  update_tasktype:
+    handler: task-type/handler.update_tasktype  
+    events:
+      - httpApi:
+          path: /update_tasktype
+          method: put
+          authorizer: 
+            name: serviceAuthorizer   
+  
+  
 plugins:
   - serverless-python-requirements
+
 

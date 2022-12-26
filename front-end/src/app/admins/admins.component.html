@@ -1,23 +1,17 @@
-<app-header (toogleSidebarForMe)="sideBarToggler()"></app-header>
-<mat-drawer-container>
-    <mat-drawer mode = "side" [opened] = "sideBarOpen" >
-        <app-sidenav></app-sidenav>
-    </mat-drawer>
-    <mat-drawer-content>
+
+<div class="w-100 vh-100">
+   
+    <main class = "d-flex h-100">
         
-        <div class="conntainer-fluid page">
-            <div class="page__box" p-3 mt-2>Admins</div>
-            <div class="page__content shadow p-3 position-relative">
-                
-                <div class="page__content-data position-absolue text-center">
-                    <p>Admins  dataa</p>
-                </div>
-                
+        <app-header></app-header>
+         
+            <app-sidenav class ="mcontent"></app-sidenav>
+            <div class = "display-area w-75 h-100 ">
+                <p>Main Display Area</p>
             </div>
-            
-        </div>
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
-</mat-drawer-container>
+          
+       
+    </main>
 
-
+    
+</div>
