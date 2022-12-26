@@ -37,7 +37,30 @@ app-sidenav{
 .title{
     justify-content: space-between;
 }
-
-.table{
-    width: 100%;
+.name{
+    /* width: 30% ;
+   
+    display: flex;
+    align-items: flex-start; */
+    display: flex;
+    justify-content:flex-start;
+    width: 80%;
+     
 }
+.options{
+    margin-left: 4%;
+    width: 30%;
+}
+
+
+.modal-content {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+ 
+
+.checkbox{
+    height: 20px;
+    width: 60px;
+}
+

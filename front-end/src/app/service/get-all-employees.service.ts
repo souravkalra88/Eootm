@@ -8,7 +8,7 @@ import { environment, urls } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class GetAllEmployeesService {
-  url :string= "";
+  url = "";
   constructor(private http : HttpClient) {
    }
    allEmployeesData():Observable<any> {{

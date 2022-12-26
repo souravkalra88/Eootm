@@ -11,7 +11,7 @@
         <h3>Employee Task-list Management </h3>
         <br>
 
-        <button class="  btn btn-outline-dark" (click)="openPopup()" type="button" data-toggle="modal"
+        <button class="  btn btn-outline-dark"  type="button" data-toggle="modal"
           data-target="#exampleModal">
           Add
         </button>
@@ -38,16 +38,16 @@
             <td>{{ emp.name }}</td>
             <td>{{ emp.tasktype }}</td>
             <td>{{ emp.DOJ }}</td>
-            <td><button class="  btn " type="button" data-toggle="modaledit">
+            <td><button class="  btn " type="button"   >
                 <i class="fas fa-edit"></i>
               </button></td>
-            <td><button class="btn" type="button" data-toggle="modaltaskedit" data-target="#exampleModal1">
+            <td><button class="btn" type="button" (click)="manageEmployee(emp)"  >
                 <i class="fas fa-tasks"></i>
               </button></td>
           </tr>
         </tbody>
       </table>
-      <br>
+     
 
 
 

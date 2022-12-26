@@ -28,7 +28,7 @@ export class ManageTaskComponent implements OnInit {
   taskTypes: any
   url: string = ""
   newTasks: newTask[] = []
-  constructor(private router: Router, private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService, private addNewTask: AddNewTaskService, private datePipe: DatePipe) {
+  constructor(private allTaskTypeData: GetAllTaskTypesService, private router: Router, private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService, private addNewTask: AddNewTaskService, private datePipe: DatePipe) {
     var tname = this.router.getCurrentNavigation()?.extras.state?.['taskType']
 
     this.title = tname
@@ -47,10 +47,10 @@ export class ManageTaskComponent implements OnInit {
       this.url += "/" + this.title.toLowerCase()
       this.getTaskByType.allTaskByTaskType(this.url).subscribe((data: any) => {
 
-        this.eTasks = data;
+      this.eTasks = data;
 
-
-        this.dtTrigger.next(void 0);
+      console.log(this.eTasks);  
+         this.dtTrigger.next(void 0);
       });
     });
 

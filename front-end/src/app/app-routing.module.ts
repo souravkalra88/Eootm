@@ -11,15 +11,19 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { AdminsComponent } from './admins/admins.component';
 import { ManageTaskComponent } from './task-type/manage-task/manage-task.component';
 import { AddTaskFormComponent } from './task-type/manage-task/add-task-form/add-task-form.component';
+import { ManageEmpTaskListComponent } from './task-list/manage-emp-task-list/manage-emp-task-list.component';
+import { EmpEditTaskListComponent } from './task-list/emp-edit-task-list/emp-edit-task-list.component';
 const routes: Routes = [
   { path: "", component: AuthComponent},
 { path: "home" ,component : HomeComponent, canActivate : [AuthGuard]},
 { path: "task-type" ,component : TaskTypeComponent, canActivate : [AuthGuard]},
 { path: "employees" ,component : EmployeesComponent, canActivate : [AuthGuard]},
 { path: "task-list" ,component : TaskListComponent, canActivate : [AuthGuard]},
+{ path: "task-list/manage" ,component : ManageEmpTaskListComponent,canActivate : [AuthGuard]},
+{ path: "task-list/edit" ,component : EmpEditTaskListComponent,canActivate : [AuthGuard]},
 { path: "admins" ,component : AdminsComponent, canActivate : [AuthGuard]},
 { path: "task-type/manage" ,component : ManageTaskComponent,canActivate : [AuthGuard]},
- 
+
 
 
 ];

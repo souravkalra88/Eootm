@@ -40,18 +40,25 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }; 
   }
 
- Input(form:NgForm){
 
- }
-  openPopup() {
-    this.displayStyle = "block";
+  manageEmployee(Employee:any):void {
+    this.router.navigate(['/task-list/manage'],{
+      state:{employee:Employee}
+    });
   }
-  closePopup() {
-    this.displayStyle = "none";
-  }
-  closeEditPopup(){
-    this.displayStyleEdit = "none";
-  }
+
+//  Input(form:NgForm){
+
+//  }
+//   openPopup() {
+//     this.displayStyle = "block";
+//   }
+//   closePopup() {
+//     this.displayStyle = "none";
+//   }
+//   closeEditPopup(){
+//     this.displayStyleEdit = "none";
+//   }
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
