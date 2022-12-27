@@ -1,15 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {newTask} from '../../../models/addNewTaskModel';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { GetAllAdminsService } from 'src/app/service/get-all-admins.service';
 @Component({
   selector: 'app-add-task-form',
   templateUrl: './add-task-form.component.html',
   styleUrls: ['./add-task-form.component.css']
 })
-export class AddTaskFormComponent implements OnInit {
+export class AddTaskFormComponent  implements OnInit {
    
+  userForm!: NgForm; 
+  someSubscription: any;
   newTaskList:any[] = [];
   newTaskItem = new newTask();
   isButtonVisible:boolean = true;
@@ -19,7 +21,9 @@ export class AddTaskFormComponent implements OnInit {
 
   adminsList:any[] = [];
 
-  constructor(private getAllAdmins: GetAllAdminsService) {}
+  constructor(private getAllAdmins: GetAllAdminsService , private router: Router) {
+    
+  }
   ngOnInit(): void {
     this.newTaskItem = new newTask();
     this.newTaskList.push(this.newTaskItem)
@@ -45,6 +49,14 @@ addForm(){
 removeForm(idx: number){
   this.newTaskList.splice(idx,1)
 }
-refresh(){}
- 
+refresh()
+{
+  
+
+}
+ngOnDestroy() {
+  if (this.someSubscription) {
+    this.someSubscription.unsubscribe();
+  }
+}
 }

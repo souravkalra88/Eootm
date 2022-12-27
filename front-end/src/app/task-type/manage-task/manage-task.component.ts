@@ -144,7 +144,7 @@ export class ManageTaskComponent implements OnInit {
   closeAddNewTask() {
     this.displayStyleAddTask = "none";
  
-  
+    this.child.refresh  ()
   }
 
 
