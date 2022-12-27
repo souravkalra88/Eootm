@@ -15,8 +15,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   AllEmployees:any;
-
-  // @ViewChild(AddtaskComponent) child:AddtaskComponent;
+  openaddpopup:boolean=false;
 
 
   constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
@@ -43,29 +42,30 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
 
+
   manageEmployee(Employee:any):void {
     this.router.navigate(['/task-list/manage'],{
       state:{employee:Employee}
     });
   }
 
-//  Input(form:NgForm){
+  
+  openPopup(){
+  this.openaddpopup=true;
+  }
 
-//  }
-//   openPopup() {
-//     this.displayStyle = "block";
-//   }
-//   closePopup() {
-//     this.displayStyle = "none";
-//   }
-//   closeEditPopup(){
-//     this.displayStyleEdit = "none";
-//   }
+
+  closeAdd(val : boolean){
+    this.openaddpopup=false;
+  }
 
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
+
+
+
 
 }
 

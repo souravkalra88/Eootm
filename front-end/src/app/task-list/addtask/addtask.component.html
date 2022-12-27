@@ -1,43 +1,51 @@
-<p>addtask works!</p>
-            <div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog">
+<div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
 
-                <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
 
-                    <div class="modal-content">
+        <div class="modal-content">
 
-                        <div class="modal-header">
-                            <h4 class="modal-title">Add New Task Type</h4>
-                        </div>
-                        <form #saveNewTaskType="ngForm" >
-                            <div class="modal-body">
-
+            <div class="modal-header">
+                <h4 class="modal-title">Add New Task Type</h4>
+            </div>
+            <form #saveNewTaskType="ngForm" (ngSubmit)="Input(saveNewTaskType)">
+                <div class="modal-body">
 
 
-                                <label for="newTaskTypeTitle">Enter New Task Type</label>
-                                <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
-                                    name="newTaskTypeTitle" class="form-control" />
 
-                                <label for="newTaskTypeDesc">Enter New Task Type Description</label>
-                                <input type="text" id="newTaskTypeDesc" onfocus="this.value=''" value="" ngModel
-                                    name="newTaskTypeDesc" class="form-control" />
+                    <label for="newTaskTypeTitle">Employee</label>
+                    <select class="form-select form-select-sm form-control" 
+                        aria-label=".form-select-sm example" id="type" name="type" >
+                        <option *ngFor="let emp of allEmpsData"  [value]="emp.name" >{{emp.name}}</option>
+                    </select><!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
+                                    name="newTaskTypeTitle" class="form-control" /> -->
 
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-outline-dark">
-                                    Save
-                                </button>
-
-                                <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTask()">
-                                    Close
-                                </button>
+                    <label for="newTaskTypeDesc">Task Type</label>
+                    <select class="form-select form-select-sm form-control" 
+                        aria-label=".form-select-sm example" id="type" name="type" >
+                        <option *ngFor="let task of taskTypes"  [value]="task" >{{task}}</option>
+                    </select>
 
 
-                            </div>
-                        </form>
-
-                    </div>
+                    <label for="newTaskTypeDesc">DOJ</label>
+                    <input type="date" id="date" onfocus="this.value=''" value="" ngModel
+                        name="newTaskTypeDesc" class="form-control" />
 
                 </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark">
+                        Save
+                    </button>
 
-            </div>
+                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                        Close
+                    </button>
+
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
