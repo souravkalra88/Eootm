@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { AllEmployeesData } from 'src/app/models/EmployessDataModel';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 
@@ -14,8 +15,8 @@ export class ManageEmpTaskListComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   AllEmployees:any;
   isChecked: boolean = false;
-  currentEmployee:any 
-  currentEmployeeTaskTypes : any[] = [];
+  currentEmployee:AllEmployeesData 
+  currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
   constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
@@ -70,13 +71,17 @@ export class ManageEmpTaskListComponent implements OnInit {
     console.log(this.isChecked);
   }
   switchType(obj:any):void {
-    
-
-  //   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-  //     this.router.navigate(['/task-list/manage'],{
-  //       state:{employee:obj}
-  //     });  
-  // });
+    for(var val of this.currentEmployeeTaskTypes ) {
+      if(val.emp_id === obj){
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/task-list/manage'],{
+        state:{employee:val}
+      });  
+  });
+      }
+      break;
+    }
+  
     
   }
 }
