@@ -6,7 +6,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Add New Task Type</h4>
+                <h4 class="modal-title">Add New Task Type for Employee</h4>
             </div>
             <form #saveNewTaskType="ngForm" (ngSubmit)="Input(saveNewTaskType)">
                 <div class="modal-body">
@@ -19,15 +19,15 @@
                         <option *ngFor="let emp of allEmpsData"  [value]="emp.name" >{{emp.name}}</option>
                     </select><!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
                                     name="newTaskTypeTitle" class="form-control" /> -->
-
+                    <br>
                     <label for="newTaskTypeDesc">Task Type</label>
                     <select class="form-select form-select-sm form-control" 
                         aria-label=".form-select-sm example" id="type" name="type" >
-                        <option *ngFor="let task of taskTypes"  [value]="task" >{{task}}</option>
+                        <option *ngFor="let task of TaskTypes"  [value]="task" >{{task.tasktype}}</option>
                     </select>
+                    <br>
 
-
-                    <label for="newTaskTypeDesc">DOJ</label>
+                    <label for="newTaskTypeDesc" >DOJ</label>
                     <input type="date" id="date" onfocus="this.value=''" value="" ngModel
                         name="newTaskTypeDesc" class="form-control" />
 

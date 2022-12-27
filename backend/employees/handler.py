@@ -48,7 +48,10 @@ def get_all_employees(event,response):
       resp= table.query(KeyConditionExpression=filtering_exp)
          
       items = resp.get('Items')
-         
+      for i in items:
+        [tasktype, emp_id]=i['sk'].split("#")
+        i["tasktype"]=tasktype
+        i["emp_id"]=emp_id   
       response = {"statusCode": 200,
                 'headers': {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
