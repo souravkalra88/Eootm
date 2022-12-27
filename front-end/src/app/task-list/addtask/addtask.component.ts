@@ -41,5 +41,3 @@ this.closePopup();
     this.displayStyle = "none";
     this.closeClicked.emit(true)
   }
- 
-}

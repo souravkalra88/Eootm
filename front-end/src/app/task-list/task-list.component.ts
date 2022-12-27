@@ -18,6 +18,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
   openaddpopup:boolean=false;
 
 
+
   constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
  
   }
@@ -59,14 +60,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.openaddpopup=false;
   }
 
+
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
 
 
-
-
 }
-
 

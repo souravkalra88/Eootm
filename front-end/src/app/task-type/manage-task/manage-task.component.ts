@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -9,16 +9,12 @@ import { AddNewTaskService } from 'src/app/service/add-new-task.service';
 import { DatePipe } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { timer } from 'rxjs';
-import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
 @Component({
   selector: 'app-manage-task',
   templateUrl: './manage-task.component.html',
   styleUrls: ['./manage-task.component.css']
 })
 export class ManageTaskComponent implements OnInit {
-  @ViewChild(AddTaskFormComponent)
-  child!: AddTaskFormComponent;
-  
   doneClicked = false
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
@@ -144,6 +140,12 @@ export class ManageTaskComponent implements OnInit {
   closeAddNewTask() {
     this.displayStyleAddTask = "none";
  
+    this.router.navigateByUrl('/add-task-form.component', { skipLocationChange: false }).then(() => {
+      this.router.navigate(['/task-type/manage'], {
+        state: { taskType: this.title }
+      });
+    })
+
   
   }
 
