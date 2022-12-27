@@ -28,47 +28,7 @@
                     (click)="openAddNewTask()">Add New Task</button>
 
             </div>
-            <div class="addTask d-flex flex-column">
-
-
-                <div class="modal" id="#addTask" tabindex="-1" role="dialog"
-                    [ngStyle]="{'display':displayStyleAddTask}">
-
-                    <div class="modal-dialog   modal-dialog-centered" style="max-width: 70%;" role="document">
-
-                        <div class="modal-content"  >
-
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add new Task</h4>
-                            </div>
-                            <!-- <form #AddTask="ngForm" (ngSubmit)="addNewTask(AddTask)"> -->
-                                <div class="modal-body d-flex editpop">
-
-                                    <span>
-                                    <app-add-task-form   (emitDone)="this.doneClicked = true" (emitTasksList)="receiveNewTasks($event)"></app-add-task-form>
-                                    </span>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-dark" (click)="saveNewTasks()">
-                                        Save
-                                    </button>
-
-                                    <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTask()">
-                                        Close
-                                    </button>
-
-
-                                </div>
-                            <!-- </form> -->
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
+            <app-add-task-form *ngIf="this.openPopup" [title]="this.title" (closeClicked)  ="closeAddNewTask()" (saveClicked)  ="saveAddNewTask()" ></app-add-task-form>
 
             <br>
             <br>

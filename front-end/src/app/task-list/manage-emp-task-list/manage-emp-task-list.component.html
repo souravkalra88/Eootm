@@ -16,9 +16,9 @@
 
                 <span class="options">
                    
-                 <select class="form-select form-select-sm form-control" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" [(ngModel)] = "currentEmployee">
+                 <select class="form-select form-select-sm form-control" [(ngModel)] = "currentEmployee.emp_id" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" >
                 
-                    <option *ngFor="let emps of currentEmployeeTaskTypes" [value]="emps" >{{emps.tasktype}}</option>
+                    <option *ngFor="let emps of currentEmployeeTaskTypes" [value]="emps.emp_id" >{{emps.tasktype}}</option>
                     
                     
                   </select>
@@ -33,7 +33,7 @@
                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Assign</th>
                         <th>Available Tasks</th>
                         <th>Description</th>
                         <th>Assignee</th>
