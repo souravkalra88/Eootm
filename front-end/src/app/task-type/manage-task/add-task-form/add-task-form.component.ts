@@ -7,7 +7,7 @@ import {newTask} from '../../../models/addNewTaskModel';
   styleUrls: ['./add-task-form.component.css']
 })
 export class AddTaskFormComponent implements OnInit {
- 
+   
   newTaskList:any[] = [];
   newTaskItem = new newTask();
   isButtonVisible:boolean = true;

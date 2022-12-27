@@ -139,14 +139,14 @@ export class ManageTaskComponent implements OnInit {
 
   closeAddNewTask() {
     this.displayStyleAddTask = "none";
-
+ 
     this.router.navigateByUrl('/add-task-form.component', { skipLocationChange: false }).then(() => {
       this.router.navigate(['/task-type/manage'], {
         state: { taskType: this.title }
       });
     })
 
-
+  
   }
 
 

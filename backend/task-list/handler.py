@@ -23,7 +23,7 @@ def add_new_task(event,context):
                 "assignee": eItem["owned_by"],
                 "created_at": eItem["created_at"],
                 "created_by": eItem["CurrentUser"],
-                "due_duration": eItem["due_duration"],
+                "due_duration": eItem["dueDays"]+eItem["daysType"][0],
                 "task":eItem["task"],
                 "task_description":eItem["task_description"],
                 "viewed_by": "None"   
