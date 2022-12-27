@@ -64,3 +64,6 @@ app-sidenav{
     width: 60px;
 }
 
+.backButton{
+    cursor: pointer;
+}

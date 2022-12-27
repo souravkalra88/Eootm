@@ -6,34 +6,37 @@
 
         <app-sidenav class="mcontent"></app-sidenav>
         <div class="display-area w-75  ">
+
             <div class="title d-flex">
 
                 <span class="name">
-                    <h3 *ngIf="this.currentEmployee !== undefined" >{{currentEmployee.name | titlecase}} {{currentEmployee.tasktype}} tasks </h3>
-                    
+                    <h3 *ngIf="this.currentEmployee !== undefined">{{currentEmployee.name | titlecase}}
+                        {{currentEmployee.tasktype}} tasks </h3>
+
 
                 </span>
 
                 <span class="options">
-                   
-                 <select class="form-select form-select-sm form-control" [(ngModel)] = "currentEmployee.emp_id" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" >
+
+                    <!-- <select class="form-select form-select-sm form-control" [(ngModel)] = "currentEmployee.emp_id" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" >
                 
                     <option *ngFor="let emps of currentEmployeeTaskTypes" [value]="emps.emp_id" >{{emps.tasktype}}</option>
                     
                     
-                  </select>
+                  </select> -->
                 </span>
 
             </div>
+            <div class="backButton"><button class="btn " type="button" (click)="goBack()">
+                    <i class="fa fa-arrow-left"> </i>
+                </button><span  (click)="goBack()"> Back to Tasks </span></div>
+            <br>
 
-
-            <br><br>
-
-            <table class="table text-center table-bordered table-striped table-hover display " datatable
-                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <table class="table   table-bordered table-striped table-hover display " datatable [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger">
                 <thead>
                     <tr>
-                        <th>Assign</th>
+                        <th>Completetion Status</th>
                         <th>Available Tasks</th>
                         <th>Description</th>
                         <th>Assignee</th>
@@ -45,14 +48,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let task of eTasks">
-                       
-                            <td> <input type="checkbox" class="checkbox"     id="flexCheckDefault"> </td>
-                            <td>{{task.task}}</td>
-                            <td>{{task.task_description}}</td>
-                            <td>{{task.owned_by}}</td>
-                            <td>{{currentEmployee.DOJ}}</td>
 
-                       
+                        <td> <input type="checkbox" class="checkbox" id="flexCheckDefault"> </td>
+                        <td>{{task.task}}</td>
+                        <td>{{task.task_description}}</td>
+                        <td>{{task.owned_by}}</td>
+                        <td>{{currentEmployee.DOJ}}</td>
+
+
 
 
                     </tr>

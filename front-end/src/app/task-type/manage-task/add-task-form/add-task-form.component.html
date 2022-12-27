@@ -19,16 +19,12 @@
   <form #loginForm="ngForm" (ngSubmit)="done()">
     <fieldset [disabled]="this.disableForm">
       <div class="container">
-        <div class="form-group col-md-2"><label for="ownedBy">Owned By</label></div>
+        
 
         <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
-          <div class="form-group col-md-2">
-
-            <input type="taskTitle" name="taskOwnedBy{{i}}" [(ngModel)]="obj.taskOwnedBy" disabled
-              placeholder=" Owned By" class="form-control" id="ownedBy">
-          </div>
+          
           <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}" [(ngModel)]="obj.taskTitle"
-              placeholder="  Ttile" class="form-control"></div>
+              placeholder="  Title" class="form-control"></div>
 
           <div class="form-group col-md-4"> <input type="taskTitle" name="taskDescription{{i}}"
               [(ngModel)]="obj.taskDescription" placeholder="  Description" class="form-control"> </div>
