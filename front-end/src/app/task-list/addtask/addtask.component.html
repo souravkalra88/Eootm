@@ -6,7 +6,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Add New Task Type</h4>
+                <h4 class="modal-title">Add Task</h4>
             </div>
             <form #saveNewTaskType="ngForm" (ngSubmit)="Input(saveNewTaskType)">
                 <div class="modal-body">
@@ -27,7 +27,7 @@
                     </select>
 
 
-                    <label for="newTaskTypeDesc">DOJ</label>
+                    <label for="newTaskTypeDesc">Date</label>
                     <input type="date" id="date" onfocus="this.value=''" value="" ngModel
                         name="newTaskTypeDesc" class="form-control" />
 
