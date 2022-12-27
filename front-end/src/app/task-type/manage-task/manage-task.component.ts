@@ -44,15 +44,15 @@ export class ManageTaskComponent implements OnInit {
       this.url += "/" + this.title.toLowerCase()
       this.getTaskByType.allTaskByTaskType(this.url).subscribe((data: any) => {
 
-      this.eTasks = data;
+        this.eTasks = data;
 
-      console.log(this.eTasks);  
-         this.dtTrigger.next(void 0);
+        console.log(this.eTasks);
+        this.dtTrigger.next(void 0);
       });
     });
 
 
-     
+
 
 
     this.dtOptions = {
@@ -63,8 +63,8 @@ export class ManageTaskComponent implements OnInit {
   }
 
   switchType(type: any) {
-    
-  
+
+
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/task-type/manage'], {
         state: { taskType: type }
@@ -73,7 +73,7 @@ export class ManageTaskComponent implements OnInit {
 
 
   }
- 
+
 
 
   openAddNewTask() {
@@ -81,15 +81,20 @@ export class ManageTaskComponent implements OnInit {
 
 
   }
-closeAddNewTask() {
-  this.openPopup = false
-}
-saveAddNewTask(){
-  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['/task-type/manage'], {
-      state: { taskType: this.title }
+  closeAddNewTask() {
+    this.openPopup = false
+  }
+  saveAddNewTask() {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/task-type/manage'], {
+        state: { taskType: this.title }
+      });
     });
-  });
-}
+  }
+
+  goBack(): void {
+    this.router.navigate(['/task-type']);
+  }
+
 
 }

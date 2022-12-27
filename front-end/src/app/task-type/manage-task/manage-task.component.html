@@ -28,6 +28,9 @@
                     (click)="openAddNewTask()">Add New Task</button>
 
             </div>
+            <div class="backButton"><button class="btn " type="button" (click)="goBack()">
+                <i class="fa fa-arrow-left"> </i>
+            </button><span  (click)="goBack()"> Back to Task Types </span></div>
             <app-add-task-form *ngIf="this.openPopup" [title]="this.title" (closeClicked)  ="closeAddNewTask()" (saveClicked)  ="saveAddNewTask()" ></app-add-task-form>
 
             <br>
