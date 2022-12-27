@@ -1,15 +1,19 @@
 <table  
-                class="table   text-center table-bordered table-striped table-hover display " datatable
+                class="table     table-bordered table-striped table-hover display " datatable
                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                 <thead>
                     <tr>
-                        <th >Admins</th>
+                        <th >Admin Name</th>
+                        <th>Admin Email</th>
+                        <th></th>
                          
                     </tr>
                 </thead>
                 <tbody>
                     <tr  *ngFor="let admin of allAdminsList">
-                        <td>{{admin}}</td>
+                        <td>{{admin.name}}</td>
+                        <td><{{admin.email}}</td>
+                        <td><i class="fa fa-trash"></i></td>
                         
 
                     </tr>

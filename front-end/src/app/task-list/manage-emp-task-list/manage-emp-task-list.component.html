@@ -6,7 +6,12 @@
 
         <app-sidenav class="mcontent"></app-sidenav>
         <div class="display-area w-75  ">
-
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a [routerLink] = "['/task-list']">Tasks</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Manage</li>
+                </ol>
+              </nav>
             <div class="title d-flex">
 
                 <span class="name">
@@ -27,11 +32,8 @@
                 </span>
 
             </div>
-            <div class="backButton"><button class="btn " type="button" (click)="goBack()">
-                    <i class="fa fa-arrow-left"> </i>
-                </button><span  (click)="goBack()"> Back to Tasks </span></div>
-            <br>
-
+            <br><br>
+          
             <table class="table   table-bordered table-striped table-hover display " datatable [dtOptions]="dtOptions"
                 [dtTrigger]="dtTrigger">
                 <thead>

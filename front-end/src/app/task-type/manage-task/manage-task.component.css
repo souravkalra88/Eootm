@@ -32,7 +32,7 @@ app-sidenav{
     left: 230px;
     /* width: calc(100%-230px); */
     width: 100%;
-    top: 55px;
+    top: 0px;
 }
 .title{
     justify-content: space-between;
@@ -60,5 +60,9 @@ app-sidenav{
 
 .backButton{
     cursor: pointer;
+}
+
+.breadcrumb{
+    background-color: #ffff;
 }
  

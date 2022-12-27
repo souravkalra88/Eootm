@@ -92,9 +92,5 @@ export class ManageTaskComponent implements OnInit {
     });
   }
 
-  goBack(): void {
-    this.router.navigate(['/task-type']);
-  }
-
 
 }

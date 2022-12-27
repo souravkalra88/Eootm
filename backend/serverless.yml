@@ -136,7 +136,15 @@ functions:
           path: /get_all_admins
           method: get
           authorizer: 
-            name: serviceAuthorizer    
+            name: serviceAuthorizer 
+  delete_user:
+    handler: employees/handler.deleteUser  
+    events:
+      - httpApi:
+          path: /delete_user/{user_name}
+          method: delete
+          authorizer: 
+            name: serviceAuthorizer               
 plugins:
   - serverless-python-requirements
 
