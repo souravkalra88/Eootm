@@ -3,9 +3,9 @@ import json
 import os
 
 import boto3
-
+import uuid
 from boto3 import resource
-
+import requests
 from boto3.dynamodb.conditions import Key
 
 from datetime import datetime
@@ -21,6 +21,44 @@ dbtable = str(os.environ['DYNAMODB_TABLE'])
 
 
 table = dynamodb.Table(dbtable)
+
+
+def add_new_tasktype_to_employee(event, response):
+  body=json.loads(event["body"])
+  tasktype=body["tasktype"]
+  token = str(event['headers']['authorization'].split(" ")[1])
+  
+  tasklist= requests.get('https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/task-list/tasks_by_tasktype/{}'.format(tasktype), headers={'Authorization': token})
+
+  with table.batch_writer() as batch:
+
+    for item in tasklist:
+        data={
+            
+        }
+        batch.put_item(
+            Item=item
+        )
+  # response = table.put_item(
+
+  #   Item={
+
+  #     "pk":"tasktype",
+
+  #     "sk":tasktype_id,
+  #     "tasktype_name":body["tasktype"],
+
+  #     "created_at": "5454894",
+  #     "created_by": body["CurrentUser"],
+  #     "modified_at": "6459848",
+  #     "Description": body["description"],
+  #     "modified_by": body["CurrentUser"]
+
+  #   }
+
+  # )
+  response = {"statusCode": 200, "body": json.dumps(resp)}
+  return response
 
 
 
@@ -71,14 +109,14 @@ def get_all_task_types(event,context):
 def add_new_task_type(event, context):
 
   body=json.loads(event["body"])
-
+  tasktype_id=str(uuid.uuid4())
   resp=table.put_item(
 
     Item={
 
       "pk":"tasktype",
 
-      "sk":body["tasktype"],
+      "sk":tasktype_id,
       "tasktype_name":body["tasktype"],
 
       "created_at": "5454894",
@@ -119,3 +157,5 @@ def update_tasktype(event,context):
         'statusCode': 200,
         'body': json.dumps(response)
   }
+
+

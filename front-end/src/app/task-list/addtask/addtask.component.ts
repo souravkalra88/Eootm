@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
+import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.service';
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
@@ -13,11 +14,13 @@ export class AddtaskComponent implements OnInit {
   displayStyleAdd = "none";
   openaddpopup:boolean=false;
   displayStyle : string = "block"
-  taskTypes:any=["a","b","c"];
+  TaskTypes:any;
   allEmpsData:any;
 
-  constructor(private AllEmployees:GetAllEmployeesService){
-    
+
+
+  constructor(private AllEmployees:GetAllEmployeesService, private AllTaskTypes : GetAllTaskTypesService){
+
   }
 
   ngOnInit(): void {
@@ -28,8 +31,13 @@ export class AddtaskComponent implements OnInit {
       // console.log(this.allEmpsData);
           });
 
-  }
+    this.AllTaskTypes.allTaskTypesData().subscribe((data: any)=>{
+      console.log(data);
+      this.TaskTypes = data;
+      // console.log(this.allEmpsData);
+          });     
 
+  }
 
 
   Input(form:NgForm){
