@@ -16,13 +16,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
   dtTrigger: Subject<any> = new Subject<any>();
   AllEmployees:any;
   openaddpopup:boolean=false;
-
-
+  openEditPopUp:boolean=false;
+  editEmployee:any = ""
 
   constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
- 
+   
   }
   ngOnInit(): void{
+   
     this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
       this.AllEmployees=responsedata;
       console.log(this.AllEmployees);
@@ -59,8 +60,13 @@ export class TaskListComponent implements OnInit, OnDestroy {
   closeAdd(val : boolean){
     this.openaddpopup=false;
   }
-
-
+  openEditPopup(emp:any){
+    this.openEditPopUp=true;
+    this.editEmployee=emp;
+  }
+closeEditPopup(){
+  this.openEditPopUp = false
+}
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();

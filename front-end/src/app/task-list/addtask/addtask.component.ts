@@ -17,10 +17,11 @@ export class AddtaskComponent implements OnInit {
   allEmpsData:any;
 
   constructor(private AllEmployees:GetAllEmployeesService){
-
+    
   }
 
   ngOnInit(): void {
+    
     this.AllEmployees.allEmployeesData().subscribe((data: any)=>{
       console.log(data);
       this.allEmpsData = data;

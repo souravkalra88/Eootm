@@ -29,7 +29,7 @@
           <tr>
             <th>Name</th>
             <th>Tasktype</th>
-            <th>DOJ</th>
+            <th>Date</th>
             <th>Edit</th>
             <th>Manage</th>
           </tr>
@@ -39,7 +39,7 @@
             <td>{{ emp.name }}</td>
             <td>{{ emp.tasktype }}</td>
             <td>{{ emp.DOJ }}</td>
-            <td><button class="  btn " type="button"   >
+            <td><button class="  btn " type="button" (click) = "openEditPopup(emp)"  >
                 <i class="fas fa-edit"></i>
               </button></td>
             <td><button class="btn" type="button" (click)="manageEmployee(emp)"  >
@@ -48,6 +48,8 @@
           </tr>
         </tbody>
       </table>
+
+      <app-emp-edit-task-list [editEmpTask] = "this.editEmployee" [AllEmployees]="this.AllEmployees" (closeClicked) = "closeEditPopup()" *ngIf="this.openEditPopUp"></app-emp-edit-task-list>
 
 
     </div>

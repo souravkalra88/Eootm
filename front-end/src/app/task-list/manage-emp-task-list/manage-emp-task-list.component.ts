@@ -71,7 +71,9 @@ export class ManageEmpTaskListComponent implements OnInit {
     console.log(this.isChecked);
   }
   goBack():void{
-    this.router.navigate(['/task-list']);  
+    this.router.navigate(['/task-list'],{
+      state:{reload:'false'}
+    }); 
   }
   switchType(obj:any):void {
     for(var val of this.currentEmployeeTaskTypes ) {

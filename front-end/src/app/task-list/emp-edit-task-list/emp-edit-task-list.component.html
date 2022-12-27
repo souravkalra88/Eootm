@@ -1,17 +1,46 @@
+<div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
 
-<div class="w-100 vh-100">
-   
-    <main class = "d-flex h-100">
-        
-        <app-header></app-header>
-         
-            <app-sidenav class ="mcontent"></app-sidenav>
-            <div class = "display-area w-75 h-100 ">
-                <p>Main Display Area</p>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Task</h4>
             </div>
-          
-       
-    </main>
+            <form #saveEditTaskType="ngForm" (ngSubmit)="Input(saveEditTaskType)">
+                <div class="modal-body">
 
-    
+
+
+                    <label for="name">Employee</label>
+
+                    <input type="text" id="name"  [(ngModel)]="editEmpTask.name" name="name"
+                        class="form-control" />
+
+                    <label for="tasktype">Task Type</label>
+                    <input type="text" id="tasktype"  [(ngModel)]="editEmpTask.tasktype" name="tasktype"
+                    class="form-control" />
+
+
+                    <label for="DOJ">Date</label>
+                    <input type="date" id="DOJ"   [(ngModel)]="editEmpTask.DOJ" name="DOJ" class="form-control"  />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark">
+                        Save
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                        Close
+                    </button>
+
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
 </div>
