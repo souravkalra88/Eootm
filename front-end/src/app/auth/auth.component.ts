@@ -43,6 +43,8 @@ export class AuthComponent implements OnInit{
       onSuccess: (result) => {
         this.router.navigate(["home"])
         environment.currentUser = result.getIdToken().payload['name']
+        environment.role =  result.getIdToken().payload['role']
+        console.log(environment.role)
         console.log(result.getIdToken().getJwtToken())
         environment.idToken = result.getIdToken().getJwtToken()
         environment.currentUserName = result.getIdToken().payload['cognito:username']

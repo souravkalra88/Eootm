@@ -4,7 +4,8 @@ export const environment = {
     cognitoAppClientId: '48hko2q1qsd36p6d3kcrla334j',
     idToken : '',
     currentUser: "",
-    currentUserName: ""
+    currentUserName: "",
+    role:""
 
 }
 
