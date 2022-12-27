@@ -136,7 +136,10 @@ functions:
           path: /get_all_admins
           method: get
           authorizer: 
-            name: serviceAuthorizer    
+            name: serviceAuthorizer  
+
+
+ 
 plugins:
   - serverless-python-requirements
 

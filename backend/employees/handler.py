@@ -37,7 +37,6 @@ def emp_by_task_type(event,response):
   return {"status_code":200, "response": emp_by_tasktype}
 
 
-
 def get_all_employees(event,response):
     key="pk"
     value='employee'
@@ -46,20 +45,35 @@ def get_all_employees(event,response):
     if key is not None and value is not None:
       filtering_exp = Key(key).eq(value)
       resp= table.query(KeyConditionExpression=filtering_exp)
-         
       items = resp.get('Items')
+      emp_response=[]
+      print(items)
       for i in items:
-        [tasktype, emp_id]=i['sk'].split("#")
-        i["tasktype"]=tasktype
-        i["emp_id"]=emp_id   
+        l=[]   
+        emp_id=i['sk']
+        records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
+                              ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
+        for rec in records:                      
+            l.append(rec['tasktype'])
+
+        i['tasktype']=l[0]
+        emp_response.append(i)
+        for j in range(1,len(l)):
+          new=i.copy()
+          new['tasktype']=l[j]
+          emp_response.append(new)
+                                      
+
+    
       response = {"statusCode": 200,
                 'headers': {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                       'Access-Control-Allow-Methods': '*'
         },
-                "body":json.dumps(items)}
+                "body":json.dumps(emp_response)}
     return response
   
+
 
 def create_new_employee(event,response):
   body=json.loads(event["body"])
