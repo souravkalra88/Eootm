@@ -1,0 +1,17 @@
+<table  
+                class="table   text-center table-bordered table-striped table-hover display " datatable
+                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                <thead>
+                    <tr>
+                        <th >Admins</th>
+                         
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let admin of allAdminsList">
+                        <td>{{admin}}</td>
+                        
+
+                    </tr>
+                </tbody>
+            </table>

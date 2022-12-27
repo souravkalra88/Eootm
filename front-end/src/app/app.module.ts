@@ -26,6 +26,7 @@ import { AddtaskComponent } from './task-list/addtask/addtask.component';
 import { ManageEmpTaskListComponent } from './task-list/manage-emp-task-list/manage-emp-task-list.component'; 
 
 import { EmpEditTaskListComponent } from './task-list/emp-edit-task-list/emp-edit-task-list.component';
+import { AdminsTableComponent } from './admins/admins-table/admins-table.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { EmpEditTaskListComponent } from './task-list/emp-edit-task-list/emp-edi
     AddTaskFormComponent,
     AddtaskComponent,
     ManageEmpTaskListComponent,
-    EmpEditTaskListComponent
+    EmpEditTaskListComponent,
+    AdminsTableComponent
     
   ],
   imports: [
