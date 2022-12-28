@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { CreateNewEmployee } from '../service/create-new-employee.service';
+ 
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,14 +23,14 @@ export class EmployeesComponent {
   tphone:any;
   tprofile:any;
   temail:any;
-   
+  openAddPopup:boolean = false; 
 
  
     
 displayStyleEdit = "none";
-displayStyle = "none";
+
  
-  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private CreateEmployee:CreateNewEmployee,private router :Router){
+  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
  
 }
 ngOnInit(): void{
@@ -61,47 +61,12 @@ onOptionsSelected(value:string){
   this.selectedtask=value;
   console.log("the selected value is " + value);
 }
-openPopup() {
-  this.displayStyle = "block";
+openAddPopUpFn(){
+  this.openAddPopup = true;
 }
-closePopup() {
-  this.displayStyle = "none";
+closeAddPopUpFn(){
+  this.openAddPopup = false;
 }
-
-Input(form:  NgForm){
-  var data = form.value;
-  // console.log(data.name);
-  // debugger;
-  var myPostObject ={
-    "tasktype":this.selectedtask,
-    "name":data.name,
-    "email":data.email,
-    "phone":data.phone,
-    "profile":data.empsprofile,
-    "date_of_event":data.DOJ
-}
-console.log(myPostObject);
- 
-  // this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
-  //   console.log(responsedata);
-  // });
- 
-  
-  const currentRoute = this.router.url;
-
-  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentRoute]);  
-  }); 
- 
-
-    this.closePopup();
-  }
-
-  saveEditEmploee(){
-    console.log(this.tname);
-  }
- 
- 
  
 openEditPopup(employee: any,inputForm: NgForm){
   this.tname = employee.name;
@@ -121,7 +86,12 @@ openEditPopup(employee: any,inputForm: NgForm){
 closeEditPopup() {
   this.displayStyleEdit = "none";
 }
-openTaskPopup(){
-  
+ 
+saveEditEmploee(){
+  console.log(this.tname);
 }
+closeAddClicked(){
+this.openAddPopup = false;  
+}
+
 }

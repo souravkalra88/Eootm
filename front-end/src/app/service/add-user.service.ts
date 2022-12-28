@@ -23,11 +23,12 @@ export class AddUserService {
       
       "gender" : data.gender,
       "phone_number" : data.phone_number,
-      "custom:role" : data.role
+      "custom:role" : data.role,
+      "custom:date_of_joining" : data.date_of_joining
 
     }
     var res :any
-
+    //api call to get
     for (let key  in nUser) {
       let attrData = {
         Name: key,
@@ -46,7 +47,7 @@ export class AddUserService {
         return;
       }
       res = result
-      console.log("User created Successfully")
+      console.log(res)
     });
     return res;
 

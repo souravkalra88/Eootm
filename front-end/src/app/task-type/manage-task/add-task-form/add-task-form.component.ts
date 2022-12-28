@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { AddNewTaskService } from 'src/app/service/add-new-task.service';
 import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
-import { GetAllAdminsService } from 'src/app/service/get-all-admins.service';
+import { GetAllAdminsService } from 'src/app/service/get-all-usersservice';
 
 @Component({
   selector: 'app-add-task-form',

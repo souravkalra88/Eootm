@@ -156,9 +156,7 @@ def get_all_users(event,response):
    
 
   response={"statusCode":200, "body": json.dumps(list, indent=4, sort_keys=True, default=str)}
-
   return response  
-
  
 
 
