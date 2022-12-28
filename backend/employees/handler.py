@@ -54,7 +54,7 @@ def get_all_employees(event,response):
         records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
                               ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
         for rec in records:                      
-            l.append(rec['tasktype'])
+            l.append(rec.get('tasktype_name'))
 
         i['tasktype']=l[0]
         emp_response.append(i)
@@ -73,7 +73,6 @@ def get_all_employees(event,response):
                 "body":json.dumps(emp_response)}
     return response
   
-
 
 def create_new_employee(event,response):
   body=json.loads(event["body"])
@@ -170,3 +169,17 @@ def deleteUser(event , response):
     )
     
   return {"statusCode":200, "body": json.dumps("User Deleted")}
+
+
+def updateUser(event,response):
+  client = boto3.client('cognito-idp')
+  body=json.loads(event["body"])
+  response = client.admin_update_user_attributes(
+    UserPoolId='ap-south-1_sQeBGTxl8',
+    Username= body['username'] ,
+    UserAttributes= body['attributes'],
+    ClientMetadata={
+        'string': 'string'
+    }
+)
+  return {"statusCode":200, "body": json.dumps(response)}

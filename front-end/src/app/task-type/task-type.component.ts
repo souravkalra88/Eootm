@@ -7,6 +7,7 @@ import { AddTaskTypeService } from '../service/add-task-type.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { UpdateTaskTypeService } from '../service/update-tasktype.service';
+import { NONE_TYPE } from '@angular/compiler';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class TaskTypeComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   tasksTypeData:any; 
   ctasktypeid:string="";
-    
+
   displayStyleAdd = "none";
   displayStyleEdit = "none";
   displayStyleAddTask = "none";
@@ -90,8 +91,7 @@ addNewTaskType(form: NgForm):void{
      
     });  
 
-    // table refresh
-   
+    
   })  
 
   }

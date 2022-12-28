@@ -9,30 +9,30 @@
                 <h4 class="modal-title">Add New Task Type for Employee</h4>
 
             </div>
-            <form #saveNewTaskType="ngForm" (ngSubmit)="Input(saveNewTaskType)">
+            <form #saveNewTaskTypeForEmployee="ngForm" (ngSubmit)="NewTasktypeEmployee(saveNewTaskTypeForEmployee)">
                 <div class="modal-body">
 
 
 
                     <label for="newTaskTypeTitle">Employee</label>
                     <select class="form-select form-select-sm form-control" 
-                        aria-label=".form-select-sm example" id="type" name="type" >
-                        <option *ngFor="let emp of allEmpsData"  [value]="emp.name" >{{emp.name}}</option>
+                        aria-label=".form-select-sm example" id="emp" name="emp" [(ngModel)]="empID">
+                        <option *ngFor="let emp of allEmpsData"  [value]="emp.sk" >{{emp.name}}</option>
                     </select><!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
                                     name="newTaskTypeTitle" class="form-control" /> -->
                     <br>
                     <label for="newTaskTypeDesc">Task Type</label>
                     <select class="form-select form-select-sm form-control" 
-                        aria-label=".form-select-sm example" id="type" name="type" >
-                        <option *ngFor="let task of TaskTypes"  [value]="task" >{{task.tasktype}}</option>
+                        aria-label=".form-select-sm example" id="tasktype" name="tasktype" [(ngModel)]="task" >
+                        <option *ngFor="let task of TaskTypes ; let i=index"  [value]="i" >{{task.tasktype}}</option>
                     </select>
                     <br>
 
 
                     <label for="date">Date</label>
 
-                    <input type="date" id="date" onfocus="this.value=''" value="" ngModel
-                        name="newTaskTypeDesc" class="form-control" />
+                    <input type="date" id="date" onfocus="this.value=''" value="" [(ngModel)]="date"
+                        name="date" class="form-control" />
 
                 </div>
                 <div class="modal-footer">
