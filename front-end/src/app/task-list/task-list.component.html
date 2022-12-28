@@ -1,15 +1,62 @@
 <div class="w-100">
-    <app-header></app-header>
+  <app-header></app-header>
      <main class = "d-flex">
-         
-            
-          
+
+
+
              <app-sidenav class  = "black-border"></app-sidenav>
-             
-             <div class = "display-area w-75">
-                 <p>Main Display Area</p>
-             </div>
-        
-     </main>
- </div>
+
+    <div class="display-area w-75">
+
+   
+
+      <div class="title d-flex">
+        <h3>Employee Task-list Management </h3>
+        <br>
+
+        <button class="  btn btn-outline-dark" type="button" (click)="openPopup()" data-toggle="modal"
+          data-target="#exampleModal">
+          Add
+        </button>
+
+      </div>
+      <app-addtask *ngIf="this.openaddpopup" (closeClicked) = "closeAdd($event)"></app-addtask>
+
+      <br>
+      <br>
+
+      <table  class="table text-center table-bordered table-striped table-hover display text-center"
+        datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+        <thead>
+
+          <tr>
+            <th>Name</th>
+            <th>Tasktype</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of AllEmployees">
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.tasktype }}</td>
+            <td>{{ emp.DOJ }}</td>
+            <td><button class="  btn " type="button" (click) = "openEditPopup(emp)"  >
+                <i class="fas fa-edit"></i>
+              </button></td>
+            <td><button class="btn" type="button" (click)="manageEmployee(emp)"  >
+                <i class="fas fa-tasks"></i>
+              </button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <app-emp-edit-task-list [editEmpTask] = "this.editEmployee" [AllEmployees]="this.AllEmployees" (closeClicked) = "closeEditPopup()" *ngIf="this.openEditPopUp"></app-emp-edit-task-list>
+
+
+    </div>
+
+  </main>
+</div>
  

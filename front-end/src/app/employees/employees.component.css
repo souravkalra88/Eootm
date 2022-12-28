@@ -32,8 +32,20 @@ app-sidenav{
     left: 230px;
     /* width: calc(100%-230px); */
     width: 100%;
-    top: 55px;
+    top: 64px;
 }
 .title{
     justify-content: space-between;
+}
+
+.table{
+    width: 100%;
+}
+
+
+/* #editModal{
+    margin-top : 40px
+} */
+.addTask{
+    height: 60%;
 }

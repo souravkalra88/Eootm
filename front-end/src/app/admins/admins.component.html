@@ -1,17 +1,27 @@
-
 <div class="w-100 vh-100">
-   
-    <main class = "d-flex h-100">
-        
+
+    <main class="d-flex h-100">
+
         <app-header></app-header>
-         
-            <app-sidenav class ="mcontent"></app-sidenav>
-            <div class = "display-area w-75 h-100 ">
-                <p>Main Display Area</p>
+
+        <app-sidenav class="mcontent"></app-sidenav>
+        <div class="display-area w-75 ">
+            <div class="title d-flex">
+                <h3>All Admins </h3>
+                <br>
+
+                <button class="  btn btn-outline-dark"    type="button" (click)="openAddAdmin()">
+                    Add Admin
+                </button>
+
             </div>
-          
-       
+            <app-add-admins *ngIf="this.addAdminPopUp" [users] = "this.allNonAdminsList"  (closeClicked)="closeAddAdmin()"></app-add-admins>
+            <br><br>
+            <app-admins-table [allAdminsList]= "this.allAdminsList" [allNonAdminsList] = "this.allNonAdminsList" [allUsers] = "this.allUsers"></app-admins-table>
+        </div>
+
+
     </main>
 
-    
+
 </div>

@@ -3,7 +3,7 @@ import json
 import os
 
 import boto3
-
+import uuid
 from boto3 import resource
 
 from boto3.dynamodb.conditions import Key
@@ -22,6 +22,53 @@ dbtable = str(os.environ['DYNAMODB_TABLE'])
 
 table = dynamodb.Table(dbtable)
 
+
+# def get_tasktype_by_empID(event,response):
+#   empID=event["pathParameters"]["empID"]
+#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
+#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
+
+  
+#   return {
+
+#         'statusCode': 200,
+
+#         'headers': {'Content-Type': 'application/json',
+
+#                     'Access-Control-Allow-Origin': '*',
+
+#                       'Access-Control-Allow-Methods': '*'
+
+#         },
+
+#         'body': json.dumps(records),
+
+
+#         'isBase64Encoded': False,
+
+#     }
+        
+
+
+
+def add_new_tasktype_to_employee(event, response):
+  body=json.loads(event["body"])
+  resp=table.put_item(
+
+    Item={
+
+      "pk":"emp_tasktype",
+      "sk":body["empID"]+"#"+body["tasktypeID"],
+      "tasktype":body["tasktype_name"],
+      "date":body["date"],
+      "created_at": "12/12/12",
+      "created_by": body["CurrentUser"],
+      "modified_at": "12/12/12",
+      "modified_by": body["CurrentUser"]
+    })
+  response = {"statusCode": 200, "body": json.dumps(resp)}
+  return response
+  
 
 
 def get_all_task_types(event,context):
@@ -71,19 +118,19 @@ def get_all_task_types(event,context):
 def add_new_task_type(event, context):
 
   body=json.loads(event["body"])
-
+  tasktype_id=str(uuid.uuid4())
   resp=table.put_item(
 
     Item={
 
       "pk":"tasktype",
 
-      "sk":body["tasktype"],
+      "sk":tasktype_id,
       "tasktype_name":body["tasktype"],
 
-      "created_at": "5454894",
+      "created_at": datetime.now(),
       "created_by": body["CurrentUser"],
-      "modified_at": "6459848",
+      "modified_at": datetime.now(),
       "Description": body["description"],
       "modified_by": body["CurrentUser"]
 
@@ -119,3 +166,5 @@ def update_tasktype(event,context):
         'statusCode': 200,
         'body': json.dumps(response)
   }
+
+

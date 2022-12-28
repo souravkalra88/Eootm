@@ -22,7 +22,7 @@ ngOnInit(): void{
   this.GetAllTaskTypes.allTaskTypesData().subscribe((responsedata:any)=>{
     this.alltasktypes=responsedata;
     this.dtTrigger.next(void 0);
-    console.log(this.alltasktypes.body);
+ //   console.log(this.alltasktypes.body);
   }
 
   )

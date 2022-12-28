@@ -1,3 +1,20 @@
+
+
+
+ <div class="addTask d-flex flex-column">
+
+
+  <div class="modal" id="#addTask" tabindex="-1" role="dialog"
+      [ngStyle]="{'display':displayStyleAddTask}">
+
+      <div class="modal-dialog   modal-dialog-centered" style="max-width: 70%;" role="document">
+
+          <div class="modal-content"  >
+
+              <div class="modal-header">
+                  <h4 class="modal-title">Add new Task </h4>
+              </div>
+              
 <span class="addTaskItem">
   <form #loginForm="ngForm" (ngSubmit)="done()">
     <fieldset [disabled]="this.disableForm">
@@ -5,26 +22,27 @@
         
 
         <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
-
+          
           <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}" [(ngModel)]="obj.taskTitle"
-              placeholder="  Titile" class="form-control"></div>
+              placeholder="  Title" class="form-control"></div>
 
           <div class="form-group col-md-4"> <input type="taskTitle" name="taskDescription{{i}}"
               [(ngModel)]="obj.taskDescription" placeholder="  Description" class="form-control"> </div>
+
               <div class="form-group col-md-2">
 
-                <!-- <input type="taskTitle" name="taskOwnedBy{{i}}" [(ngModel)]="obj.taskOwnedBy" id="ownedBy"
-                  placeholder=" Owned By" class="form-control" id="ownedBy"> -->
+                
                   <select class="form-select form-select-sm form-control"   aria-label=".form-select-sm example" required   name="taskOwnedBy{{i}}" [(ngModel)] = "obj.taskOwnedBy" >
                     <option hidden  value = "" >Owned By</option>
-                    <option *ngFor="let admin of adminsList" [value]="admin" >{{admin}}</option>
+                    <option *ngFor="let admin of adminsList" [value]="admin.name" >{{admin.name}}</option>
                     
                     
                   </select>
               </div>
 
+
           <div class="form-group col-md-1">
-            <input type="taskTitle" name="dueDays{{i}}" value="" [(ngModel)]="obj.dueDays" placeholder="days"
+            <input type="taskTitle" name="dueDays{{i}}" value = "" [(ngModel)]="obj.dueDays" placeholder="days"
               class="form-control">
           </div>
 
@@ -45,14 +63,9 @@
 
           <div class="form-group">
             <button (click)="removeForm(i)" class="btn btn-outline-danger" *ngIf="i!=0 && this.isButtonVisible">
-              <i class="fa-solid fa-minus"></i>
+            <i class="fa-solid fa-minus"></i>
             </button>
           </div>
-
-
-
-
-
         </div>
         <span>
           <button type="button" (click)="addForm()" *ngIf="this.isButtonVisible" class="btn btn-outline-success">
@@ -63,7 +76,37 @@
       </div>
     </fieldset>
     <br>
-    <button class="btn btn-outline-danger" *ngIf="this.isButtonVisible" type="submit">Done</button>
+    
+
+    <div class="modal-body d-flex editpop">
+
+      <span>
+      
+      </span>
+
+  </div>
+  <div class="modal-footer">
+      <button type="submit" class="btn btn-outline-dark"  >
+          Save
+      </button>
+
+      <button type="button" class="btn btn-outline-dark" (click)="closePopup()" >
+          Close
+      </button>
+
+
+  </div>
 
   </form>
 </span>
+                  
+              <!-- </form> -->
+
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+

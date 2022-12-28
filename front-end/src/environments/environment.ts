@@ -4,7 +4,8 @@ export const environment = {
     cognitoAppClientId: '48hko2q1qsd36p6d3kcrla334j',
     idToken : '',
     currentUser: "",
-    currentUserName: ""
+    currentUserName: "",
+    role:""
 
 }
 
@@ -16,5 +17,11 @@ export const urls = {
     addTaskType:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTaskType",
     UpdateTaskType: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_tasktype",
     addNewTask: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTask",
-    getAllAdmins : "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_admins"
+    getAllUsers:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_users",
+
+    updateUser : "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_user",
+
+    add_new_tasktype_to_employee:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/add_new_tasktype_to_employee"
+    
+
 }

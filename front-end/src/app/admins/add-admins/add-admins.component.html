@@ -1,0 +1,45 @@
+<div class="addAdmin">
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Admin</h4>
+                </div>
+                <!-- <form #inputform="ngForm" (ngSubmit)="Input(inputform)"> -->
+                <div class="modal-body">
+
+
+                    <ul class="users item">
+                        <li  class = "item" *ngFor="let user of users">
+                            <button [class.selected]="user === selectedUser" type="button" (click)="onSelect(user)">
+                                <!-- <span class="username">{{user.sub}}</span> -->
+                                <span class="name">{{user.name}}</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                   
+
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="makeAdmin()">
+                        Save
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                        Close
+                    </button>
+
+
+                </div>
+                <!-- </form> -->
+
+            </div>
+        </div>
+    </div>
+</div>

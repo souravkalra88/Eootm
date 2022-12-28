@@ -8,7 +8,7 @@
         <div class="display-area w-75 h-80 ">
             <div class="addtasktype d-flex">
 
-                <h3>TaskType </h3>
+                <h3>TaskTypes </h3>
                 <br>
 
                 <button type="button" class="btn addbtn btn-outline-dark" data-toggle="modal"
@@ -20,7 +20,7 @@
             <br>
 
 
-            <div class="modal" id="#addtasktypeId" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleAdd}">
+            <div class="modal  " id="#addtasktypeId" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleAdd}">
 
                 <div class="modal-dialog modal-dialog-centered" role="document">
 
@@ -29,7 +29,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Add New Task Type</h4>
                         </div>
-                        <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
+                       <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
                             <div class="modal-body">
 
 
@@ -82,11 +82,11 @@
                                 <div class="modal-body d-flex editpop">
 
                                     <label for="newTaskTypeTitle">Task Type</label>
-                                    <input type="text" id="editTaskTypeTitle" [(ngModel)]=this.ctasktitle ngModel
+                                    <input type="text" id="editTaskTypeTitle" [(ngModel)]="ctasktitle"
                                         name="editTaskTypeTitle" class="form-control" />
 
                                     <label for="newTaskTypeDesc">Task Type Description</label>
-                                    <input type="text" id="editTaskTypeDesc" [(ngModel)]=this.ctaskdesc  ngModel
+                                    <input type="text" id="editTaskTypeDesc" [(ngModel)] = "ctaskdesc"
                                         name="editTaskTypeDesc" class="form-control" />
 
 
@@ -125,8 +125,8 @@
                         <th class="headings">Task Type</th>
                         <th class="headings">Description</th>
                                                  
-                       <th class="headings"></th>
-                        <th class="headings"> </th>
+                       <th class="headings"> Edit </th>
+                        <th class="headings"> Manage</th>
                     </tr>
 
                 </thead>
@@ -139,10 +139,10 @@
                         <td>{{tasksTypes['description']}}</td>
                         
 
-                        <td><button type="button" class="btn  " data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)" ><i class="fas fa-edit"></i></button></td>
-                        <td><button type="button" class="btn  " data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)"><i class="fa-solid fa-list-check"></i></button></td>
+                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)">Edit</button></td>
+                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)">Manage</button></td>
 
                     </tr>
 

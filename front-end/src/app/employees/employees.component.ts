@@ -3,8 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { CreateNewEmployee } from '../service/create-new-employee.service';
+ 
 import { Router } from '@angular/router';
+import { GetAllUsersService } from '../service/get-all-usersservice';
+import { User } from '../models/UserModel';
+import { UpdateTaskTypeService } from '../service/update-tasktype.service';
+import { UpdateUserService } from '../service/update-user.service';
 
 @Component({
   selector: 'app-employees',
@@ -18,28 +22,30 @@ export class EmployeesComponent {
  
   tasktypes:string[]=["onboarding","offboarding"];
   selectedtask:string = "";
-  tdoj:any;
-  tname:any;
-  tphone:any;
-  tprofile:any;
-  temail:any;
-   
+  
+  currentUserSelected : User = new User();
+  
+  openAddPopup:boolean = false; 
 
  
     
 displayStyleEdit = "none";
-displayStyle = "none";
+  
+
  
-  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private CreateEmployee:CreateNewEmployee,private router :Router){
+  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router, private getAllUsers: GetAllUsersService, private updateUser:UpdateUserService){
  
 }
 ngOnInit(): void{
-  this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
-    this.AllEmployees=responsedata;
-    this.dtTrigger.next(void 0);
-    // console.log(responsedata);
-  })
+  
+  this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
+    //   this.allAdminsList = responsedata;
+  //  console.log(responsedata);
+    this.AllEmployees = responsedata;
+    
 
+    this.dtTrigger.next(void 0);
+  })
 
   this.dtOptions = {
 
@@ -53,64 +59,27 @@ ngOnInit(): void{
 }
 
 
-  // this.AllEmployees=[{"name":"bhawana","email":"b@t.com", "phone":"1323324543", "profile":"intern","DOJ":"12/12/12"},
-  // {"name":"sourav","email":"s@t.com", "phone":"132330024543", "profile":"intern","DOJ":"12/11/12"}]
- 
-
-onOptionsSelected(value:string){
-  this.selectedtask=value;
-  console.log("the selected value is " + value);
-}
-openPopup() {
-  this.displayStyle = "block";
-}
-closePopup() {
-  this.displayStyle = "none";
-}
-
-Input(form:  NgForm){
-  var data = form.value;
-  // console.log(data.name);
-  // debugger;
-  var myPostObject ={
-    "tasktype":this.selectedtask,
-    "name":data.name,
-    "email":data.email,
-    "phone":data.phone,
-    "profile":data.empsprofile,
-    "date_of_event":data.DOJ
-}
-console.log(myPostObject);
- 
-  // this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
-  //   console.log(responsedata);
-  // });
- 
   
-  const currentRoute = this.router.url;
 
-  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentRoute]);  
-  }); 
- 
 
-    this.closePopup();
-  }
-
-  saveEditEmploee(){
-    console.log(this.tname);
-  }
- 
- 
+openAddPopUpFn(){
+  this.openAddPopup = true;
+}
+closeAddPopUpFn(){
+  this.openAddPopup = false;
+}
  
 openEditPopup(employee: any,inputForm: NgForm){
-  this.tname = employee.name;
-  this.temail = employee.email
-  this.tphone = employee.phone;
-  this.tdoj = employee.DOJ;
-  // console.log(employee)
-  console.log("doj" + this.tdoj) 
-  this.tprofile=employee.profile;
+  this.currentUserSelected['name'] = employee.name;
+  this.currentUserSelected['email'] = employee.email
+  this.currentUserSelected['phone_number'] = employee.phone_number;
+  this.currentUserSelected['custom:date_of_joining']= employee['custom:date_of_joining'];
+  this.currentUserSelected['gender'] = employee.gender;
+  this.currentUserSelected['profile'] = employee.profile;
+  this.currentUserSelected['username'] = employee.sub;
+
+  // console.log(this.currentUserSelected)
+   
    
 
  
@@ -121,7 +90,27 @@ openEditPopup(employee: any,inputForm: NgForm){
 closeEditPopup() {
   this.displayStyleEdit = "none";
 }
-openTaskPopup(){
-  
+ 
+saveEditEmploee(){
+
+  this.updateUser.updateUser(this.currentUserSelected).subscribe(data => {
+   // console.log(data);
+    const currentRoute = this.router.url;
+
+
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+
+        this.router.navigate([currentRoute]);  
+
+    });
+  })
+ // console.log(this.tname);
+this.closeEditPopup()
+
 }
+closeAddClicked(){
+this.openAddPopup = false;  
+}
+
 }
