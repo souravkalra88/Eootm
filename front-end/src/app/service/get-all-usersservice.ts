@@ -22,7 +22,7 @@ export class GetAllUsersService {
 
 
 
-  getAllAdmins():Observable<any>{
+  getAllUsers():Observable<any>{
 
     this.url = urls.getAllUsers
 
