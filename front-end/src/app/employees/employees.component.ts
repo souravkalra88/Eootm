@@ -37,7 +37,7 @@ ngOnInit(): void{
   this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
     this.AllEmployees=responsedata;
     this.dtTrigger.next(void 0);
-    // console.log(responsedata);
+    console.log(responsedata);
   })
 
 

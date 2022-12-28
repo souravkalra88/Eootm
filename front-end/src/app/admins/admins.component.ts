@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetAllAdminsService } from '../service/get-all-admins.service';
+import { AddUserService } from '../service/add-user.service';
 
 @Component({
   selector: 'app-admins',
@@ -9,9 +10,20 @@ import { GetAllAdminsService } from '../service/get-all-admins.service';
 export class AdminsComponent implements OnInit {
   
 
-  constructor( ) { }
+  constructor( private addUser : AddUserService) { }
 
   ngOnInit(): void {
+    const body = {
+      "name": "Sourav Kalra",
+  
+      "password": "Pass@123",
+      "email": "sk@gmail.com",
+      "gender": "male",
+      "phone_number": "+919417820873",
+      "role": "admin"
      
+    }
+
+     this.addUser.addUser(body);
   }
 }
