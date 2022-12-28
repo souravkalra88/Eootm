@@ -31,7 +31,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       console.log("responsedata",responsedata);
     })
   
-    console.log(this.AllEmployees);
+   // console.log(this.AllEmployees);
     this.dtOptions = {
   
       pagingType: 'full_numbers',
