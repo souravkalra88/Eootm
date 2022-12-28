@@ -14,7 +14,7 @@ import { urls, environment } from 'src/environments/environment';
 
 })
 
-export class GetAllAdminsService {
+export class GetAllUsersService {
 
   url = ""
 
@@ -24,7 +24,7 @@ export class GetAllAdminsService {
 
   getAllAdmins():Observable<any>{
 
-    this.url = urls.getAllAdmins
+    this.url = urls.getAllUsers
 
     const headers = new HttpHeaders({
 

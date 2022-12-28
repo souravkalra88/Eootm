@@ -129,11 +129,11 @@ functions:
           authorizer: 
             name: serviceAuthorizer   
   
-  get_all_admins:
-    handler: employees/handler.get_all_admins  
+  get_all_users:
+    handler: employees/handler.get_all_users
     events:
       - httpApi:
-          path: /get_all_admins
+          path: /get_all_users
           method: get
           authorizer: 
             name: serviceAuthorizer 
@@ -144,7 +144,9 @@ functions:
           path: /delete_user/{user_name}
           method: delete
           authorizer: 
-            name: serviceAuthorizer               
+            name: serviceAuthorizer      
+
+                 
 
 plugins:
   - serverless-python-requirements

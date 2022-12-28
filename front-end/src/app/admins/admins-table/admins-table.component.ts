@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { GetAllAdminsService } from 'src/app/service/get-all-admins.service';
+import { AddUserService } from 'src/app/service/add-user.service';
+import { GetAllAdminsService, GetAllUsersService } from 'src/app/service/get-all-usersservice';
 
 @Component({
   selector: 'app-admins-table',
@@ -12,12 +13,18 @@ export class AdminsTableComponent  implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>=new Subject<any>();
 
-  constructor(private getAllAdmins: GetAllAdminsService) { }
+  constructor(private getAllAdmins: GetAllUsersService,private addUser : AddUserService) { }
 
   ngOnInit(): void {
     this.getAllAdmins.getAllAdmins().subscribe((responsedata: any) => {
-      this.allAdminsList = responsedata;
+   //   this.allAdminsList = responsedata;
       // console.log(responsedata);
+      responsedata.forEach((val : any) =>  {
+        if(val ['custom:role'] === 'admin') {
+          this.allAdminsList.push(val);
+        }
+      })
+      
       this.dtTrigger.next(void 0);
     })
 

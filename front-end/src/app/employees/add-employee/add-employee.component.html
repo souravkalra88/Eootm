@@ -1,0 +1,76 @@
+<!-- <p>add-employee works!</p> -->
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new Employee</h4>
+            </div>
+            <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
+                <div class="modal-body">
+
+
+                    <label for="name" class="textbox-label">Name</label>
+                    <input type="text" id="name" onfocus="this.value=''" value="" ngModel name="empsname"
+                        class="form-control" />
+
+                    <label for="phone" class="textbox-label">Phone</label>
+                    <input type="text" id="phone" onfocus="this.value=''" value="" ngModel name="empsphone"
+                        class="form-control" />
+
+
+                    <label for="email" class="textbox-label">Email</label>
+                    <input type="text" id="email" onfocus="this.value=''" value="" ngModel name="empsemail"
+                        class="form-control" />
+
+
+                    <label for="empsgender" class="textbox-label">Gender</label>
+                    <select id = "empsgender" class="browser-default custom-select" ngModel name="empsgender">
+                        <option selected value = "Male">Male</option>
+                        <option value="Female">Female</option>
+                        
+                    </select>
+
+
+                    <label for="empsprofile" class="textbox-label">Profile</label>
+                    <input type="text" id="empsprofile" onfocus="this.value=''" value="" ngModel name="empsprofile"
+                        class="form-control" />
+
+                    <label for="empsDOJ" class="textbox-label">Date Of Joining</label>
+                    <input type="date" id="empsDOJ" onfocus="this.value=''" value="" ngModel name="empsDOJ"
+                        class="form-control" />
+
+                    <label for="empsRole" class="textbox-label" >Role</label>
+                    <select id = "empsRole" class="browser-default custom-select" ngModel name="empsrole">
+                        <option selected value = "user">User</option>
+                        <option value="admin">Admin</option>
+                        
+                    </select>
+
+
+
+                    <br>
+
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark">
+                        Save
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                        Close
+                    </button>
+
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
