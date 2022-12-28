@@ -14,21 +14,23 @@ table = dynamodb.Table(dbtable)
 
 def add_new_task(event,context):
     body = json.loads(event['body'])
-    for eItem in body :
-        taskid="task"+str(uuid.uuid4())
-        response = table.put_item(
-            Item={
-                "pk": eItem["tasktype"],
-                "sk": taskid,
-                "assignee": eItem["owned_by"],
-                "created_at": eItem["created_at"],
-                "created_by": eItem["CurrentUser"],
-                "due_duration": eItem["dueDays"]+eItem["daysType"][0],
-                "task":eItem["task"],
-                "task_description":eItem["task_description"],
-                "viewed_by": "None"   
-            }
-        )
+    with table.batch_writer() as batch:
+        for eItem in body:
+            taskid="task"+str(uuid.uuid4())
+            response = batch.put_item(
+                Item={
+                    "pk": eItem["tasktype"],
+                    "sk": taskid,
+                    "assignee": eItem["owned_by"],
+                    "created_at": eItem["created_at"],
+                    "created_by": eItem["CurrentUser"],
+                    "due_duration": eItem["due_duration"],
+                    "task":eItem["task"],
+                    "task_description":eItem["task_description"],
+                    "viewed_by": "None"   
+                }
+            )
+
     response = {"statusCode": 200, "body": json.dumps({"message" : "post success"})}
 
     return response

@@ -8,18 +8,18 @@ import { AllEmployeesData } from '../models/EmployessDataModel';
 @Injectable({
   providedIn: 'root'
 })
-export class GetAllEmployeesService {
+export class GetAllUsersService {
   url = "";
   constructor(private http : HttpClient) {
    }
-   allEmployeesData():Observable<any> {{
+   allUsersData():Observable<any> {{
     // console.log(environment.idToken);
-    this.url = urls.getAllEmployees
+    this.url = urls.getAllUsers
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' +environment.idToken
     })
-    return this.http.get<AllEmployeesData>(this.url, { headers: headers })
+    return this.http.get<AllUsersData>(this.url, { headers: headers })
    }
   }
 }

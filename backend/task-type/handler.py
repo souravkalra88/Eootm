@@ -147,9 +147,9 @@ def add_new_task_type(event, context):
       "sk":tasktype_id,
       "tasktype_name":body["tasktype"],
 
-      "created_at": "5454894",
+      "created_at": datetime.now(),
       "created_by": body["CurrentUser"],
-      "modified_at": "6459848",
+      "modified_at": datetime.now(),
       "Description": body["description"],
       "modified_by": body["CurrentUser"]
 

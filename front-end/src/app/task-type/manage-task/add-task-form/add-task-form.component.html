@@ -34,7 +34,7 @@
                 
                   <select class="form-select form-select-sm form-control"   aria-label=".form-select-sm example" required   name="taskOwnedBy{{i}}" [(ngModel)] = "obj.taskOwnedBy" >
                     <option hidden  value = "" >Owned By</option>
-                    <option *ngFor="let admin of adminsList" [value]="admin" >{{admin}}</option>
+                    <option *ngFor="let admin of adminsList" [value]="admin.name" >{{admin.name}}</option>
                     
                     
                   </select>

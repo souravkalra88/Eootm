@@ -82,11 +82,11 @@
                                 <div class="modal-body d-flex editpop">
 
                                     <label for="newTaskTypeTitle">Task Type</label>
-                                    <input type="text" id="editTaskTypeTitle" value={{ctasktitle}} ngModel
+                                    <input type="text" id="editTaskTypeTitle" [(ngModel)]="ctasktitle"
                                         name="editTaskTypeTitle" class="form-control" />
 
                                     <label for="newTaskTypeDesc">Task Type Description</label>
-                                    <input type="text" id="editTaskTypeDesc" value={{ctaskdesc}} ngModel
+                                    <input type="text" id="editTaskTypeDesc" [(ngModel)] = "ctaskdesc"
                                         name="editTaskTypeDesc" class="form-control" />
 
 

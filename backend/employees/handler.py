@@ -93,39 +93,73 @@ def create_new_employee(event,response):
                 "message":"put_success"}
   return response
 
-def get_all_admins(event,response):
+def get_all_users(event,response):
+
   cognito_idp_client =boto3.client('cognito-idp')
+
   user_pool_id = "ap-south-1_sQeBGTxl8"
+
   client_id = "48hko2q1qsd36p6d3kcrla334j"
+
   client_secret=None
-    
+
+   
+
   cognito = boto3.client('cognito-idp')
-    
+
+   
+
   list = []
+
   users= []
+
   next_page = None
+
   kwargs = {
+
         'UserPoolId': user_pool_id
+
     }
 
+
+
   users_remain = True
+
   while(users_remain):
+
       if next_page:
+
           kwargs['PaginationToken'] = next_page
+
       response = cognito.list_users(**kwargs)
+
       users.extend(response['Users'])
+
       next_page = response.get('PaginationToken', None)
+
       users_remain = next_page is not None
-        
+
+       
+
   for i in users:
+
       item = {}
+
       for j in i["Attributes"]:
-            
+
+           
+
           item.update({j['Name'] :j['Value']} )  
+
       list.append(item)    
-    
+
+   
+
   response={"statusCode":200, "body": json.dumps(list, indent=4, sort_keys=True, default=str)}
-  return response    
+
+  return response  
+
+ 
 
 
 def deleteUser(event , response):

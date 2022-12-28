@@ -17,5 +17,5 @@ export const urls = {
     addTaskType:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTaskType",
     UpdateTaskType: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_tasktype",
     addNewTask: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTask",
-    getAllAdmins:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_admins"
+    getAllUsers:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_users"
 }
