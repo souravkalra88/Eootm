@@ -11,6 +11,7 @@ import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.servi
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 import { GetAllUsersService } from 'src/app/service/get-all-usersservice';
 
+
 @Component({
   selector: 'app-add-task-form',
   templateUrl: './add-task-form.component.html',
@@ -32,14 +33,16 @@ export class AddTaskFormComponent  implements OnInit {
   @Output() saveClicked = new EventEmitter();
   adminsList:any[] = [];
 
-  constructor(private getAllAdmins: GetAllUsersService , private allTaskTypeData: GetAllTaskTypesService, private router: Router, private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService, private addNewTask: AddNewTaskService, private datePipe: DatePipe) {
+  constructor(private getAllUsers: GetAllUsersService , private allTaskTypeData: GetAllTaskTypesService, private router: Router, private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService, private addNewTask: AddNewTaskService, private datePipe: DatePipe) {
+
     
   }
   ngOnInit(): void {
     this.newTaskItem = new newTask();
     this.newTaskList.push(this.newTaskItem)
     
-     this.getAllAdmins.getAllUsers().subscribe((data: any[])=>{
+
+     this.getAllUsers.getAllUsers().subscribe((data: any[])=>{
       this.adminsList = data
      // console.log(this.adminsList)
      })
