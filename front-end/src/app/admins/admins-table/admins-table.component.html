@@ -4,6 +4,7 @@
         <tr>
             <th>Admin Name</th>
             <th>Admin Email</th>
+            <th>Admin Contact</th>
             <th></th>
 
         </tr>
@@ -12,7 +13,8 @@
         <tr *ngFor="let admin of allAdminsList">
             <td>{{admin.name}}</td>
             <td>{{admin.email}}</td>
-            <td class="del"><button class=" btn btn-outline-dark" type="button">
+            <td>{{admin.phone_number}}</td>
+            <td class="del"><button class=" btn btn-outline-dark" type="button" (click)="removeAdmin(admin)">
                     <i class="fa fa-trash"></i>
                 </button>
 

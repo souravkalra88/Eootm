@@ -31,4 +31,9 @@ export class AdminsTableComponent  implements OnInit {
   
     }; 
   }
+
+  removeAdmin(admin: any): void {
+    const id = admin.sub;
+    console.log(id);
+  }
 }
