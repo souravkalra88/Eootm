@@ -5,7 +5,7 @@ import os
 import boto3
 import uuid
 from boto3 import resource
-import requests
+
 from boto3.dynamodb.conditions import Key
 
 from datetime import datetime
@@ -51,43 +51,24 @@ table = dynamodb.Table(dbtable)
 
 
 
-# def add_new_tasktype_to_employee(event, response):
-#   body=json.loads(event["body"])
-#   tasktype=body["tasktype"]
-#   token = str(event['headers']['authorization'].split(" ")[1])
+def add_new_tasktype_to_employee(event, response):
+  body=json.loads(event["body"])
+  resp=table.put_item(
+
+    Item={
+
+      "pk":"emp_tasktype",
+      "sk":body["empID"]+"#"+body["tasktypeID"],
+      "tasktype_name":body["tasktype_name"],
+      "date":body["date"],
+      "created_at": "12/12/12",
+      "created_by": body["CurrentUser"],
+      "modified_at": "12/12/12",
+      "modified_by": body["CurrentUser"]
+    })
+  response = {"statusCode": 200, "body": json.dumps(resp)}
+  return response
   
-#   tasklist= requests.get('https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/task-list/tasks_by_tasktype/{}'.format(tasktype), headers={'Authorization': token})
-
-#   with table.batch_writer() as batch:
-
-#     for item in tasklist:
-#         data={
-
-#         }
-#         batch.put_item(
-#             Item=item
-#         )
-#   # response = table.put_item(
-
-#   #   Item={
-
-#   #     "pk":"tasktype",
-
-#   #     "sk":tasktype_id,
-#   #     "tasktype_name":body["tasktype"],
-
-#   #     "created_at": "5454894",
-#   #     "created_by": body["CurrentUser"],
-#   #     "modified_at": "6459848",
-#   #     "Description": body["description"],
-#   #     "modified_by": body["CurrentUser"]
-
-#   #   }
-
-#   # )
-#   response = {"statusCode": 200, "body": json.dumps(resp)}
-#   return response
-
 
 
 def get_all_task_types(event,context):
@@ -147,9 +128,9 @@ def add_new_task_type(event, context):
       "sk":tasktype_id,
       "tasktype_name":body["tasktype"],
 
-      "created_at": "5454894",
+      "created_at": datetime.now(),
       "created_by": body["CurrentUser"],
-      "modified_at": "6459848",
+      "modified_at": datetime.now(),
       "Description": body["description"],
       "modified_by": body["CurrentUser"]
 

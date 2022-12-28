@@ -54,7 +54,7 @@ def get_all_employees(event,response):
         records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
                               ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
         for rec in records:                      
-            l.append(rec['tasktype'])
+            l.append(rec.get('tasktype_name'))
 
         i['tasktype']=l[0]
         emp_response.append(i)
@@ -73,7 +73,6 @@ def get_all_employees(event,response):
                 "body":json.dumps(emp_response)}
     return response
   
-
 
 def create_new_employee(event,response):
   body=json.loads(event["body"])
@@ -94,38 +93,69 @@ def create_new_employee(event,response):
   return response
 
 def get_all_users(event,response):
+
   cognito_idp_client =boto3.client('cognito-idp')
+
   user_pool_id = "ap-south-1_sQeBGTxl8"
+
   client_id = "48hko2q1qsd36p6d3kcrla334j"
+
   client_secret=None
-    
+
+   
+
   cognito = boto3.client('cognito-idp')
-    
+
+   
+
   list = []
+
   users= []
+
   next_page = None
+
   kwargs = {
+
         'UserPoolId': user_pool_id
+
     }
 
+
+
   users_remain = True
+
   while(users_remain):
+
       if next_page:
+
           kwargs['PaginationToken'] = next_page
+
       response = cognito.list_users(**kwargs)
+
       users.extend(response['Users'])
+
       next_page = response.get('PaginationToken', None)
+
       users_remain = next_page is not None
-        
+
+       
+
   for i in users:
+
       item = {}
+
       for j in i["Attributes"]:
-            
+
+           
+
           item.update({j['Name'] :j['Value']} )  
+
       list.append(item)    
-    
+
+   
+
   response={"statusCode":200, "body": json.dumps(list, indent=4, sort_keys=True, default=str)}
-  return response   
+  return response  
  
 
 
@@ -140,6 +170,18 @@ def deleteUser(event , response):
     
   return {"statusCode":200, "body": json.dumps("User Deleted")}
 
-def update_user(event,response):
-  pass
+
+
+def updateUser(event,response):
+  client = boto3.client('cognito-idp')
+  body=json.loads(event["body"])
+  response = client.admin_update_user_attributes(
+    UserPoolId='ap-south-1_sQeBGTxl8',
+    Username= body['username'] ,
+    UserAttributes= body['attributes'],
+    ClientMetadata={
+        'string': 'string'
+    }
+)
+  return {"statusCode":200, "body": json.dumps(response)}
 

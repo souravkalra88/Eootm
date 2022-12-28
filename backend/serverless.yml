@@ -58,6 +58,8 @@ functions:
 
   get_all_task_types:
     handler: task-type/handler.get_all_task_types  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /task-type/getAll
@@ -67,6 +69,8 @@ functions:
 
   emp_by_task_type:
     handler: employees/handler.emp_by_task_type  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /employees/emp
@@ -76,6 +80,8 @@ functions:
 
   add_new_task:
     handler: task-list/handler.add_new_task  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /addTask
@@ -85,6 +91,8 @@ functions:
   
   add_new_task_type:
     handler: task-type/handler.add_new_task_type  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /addTaskType
@@ -95,6 +103,8 @@ functions:
 
   get_all_employees:
     handler: employees/handler.get_all_employees  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /allemp
@@ -104,6 +114,8 @@ functions:
 
   create_new_employee:
     handler: employees/handler.create_new_employee  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /newemp
@@ -113,6 +125,8 @@ functions:
 
   get_tasks_by_tasktype:           
     handler: task-list/handler.get_tasks_by_tasktype  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /tasks_by_tasktype/{type}
@@ -122,6 +136,8 @@ functions:
   
   update_tasktype:
     handler: task-type/handler.update_tasktype  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /update_tasktype
@@ -130,7 +146,10 @@ functions:
             name: serviceAuthorizer   
   
   get_all_users:
+
     handler: employees/handler.get_all_users
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /get_all_users
@@ -139,21 +158,38 @@ functions:
             name: serviceAuthorizer 
   delete_user:
     handler: employees/handler.deleteUser  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /delete_user/{user_name}
           method: delete
           authorizer: 
-            name: serviceAuthorizer 
 
+            name: serviceAuthorizer      
+  
+  add_new_tasktype_to_employee:
+    handler: task-type/handler.add_new_tasktype_to_employee 
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+    events:
+      - httpApi:
+          path: /add_new_tasktype_to_employee 
+          method: post
+          authorizer: 
+            name: serviceAuthorizer      
+  
   update_user:
     handler: employees/handler.updateUser  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
     events:
       - httpApi:
           path: /update_user
-          method: post
+          method: put
           authorizer: 
-            name: serviceAuthorizer 
+            name: serviceAuthorizer      
+
 
 
 plugins:

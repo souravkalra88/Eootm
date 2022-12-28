@@ -34,12 +34,14 @@ export class AddTaskFormComponent  implements OnInit {
   adminsList:any[] = [];
 
   constructor(private getAllUsers: GetAllUsersService , private allTaskTypeData: GetAllTaskTypesService, private router: Router, private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService, private addNewTask: AddNewTaskService, private datePipe: DatePipe) {
+
     
   }
   ngOnInit(): void {
     this.newTaskItem = new newTask();
     this.newTaskList.push(this.newTaskItem)
     
+
      this.getAllUsers.getAllUsers().subscribe((data: any[])=>{
       this.adminsList = data
      // console.log(this.adminsList)
@@ -49,43 +51,43 @@ export class AddTaskFormComponent  implements OnInit {
 
     // api call to
      
-    console.log(this.newTaskList)
+    console.log("newTaskList",this.newTaskList)
      
-      // var body: any[] = [];
-      // // api call to post new tasks
-      // console.log(this.newTaskList);
-      // var bodyTemplate = {
+      var body: any[] = [];
+      // api call to post new tasks
+      console.log(this.newTaskList);
+      var title= this.title.toLowerCase()
+      var date=this.datePipe.transform((new Date), 'dd/MM/yyyy; h:mm:ss') as string
+      this.newTaskList.forEach(function (val: newTask) {
+        var bodyTemplate = {
 
-      //   "tasktype": this.title.toLowerCase(),
-      //   "owned_by": "",
-      //   "CurrentUser": "",
-      //   "due_duration": "",
-      //   "task": "",
-      //   "task_description": "",
-      //   "created_at": this.datePipe.transform((new Date), 'dd/MM/yyyy; h:mm:ss') as string
-      // }
-      // this.newTaskList.forEach(function (val: newTask) {
-      //   var bodyItem = bodyTemplate;
-      //   bodyItem.owned_by = val.taskOwnedBy
-      //   bodyItem.CurrentUser = environment.currentUser
-      //   bodyItem.due_duration = val.taskDuration
-      //   bodyItem.task = val.taskTitle
-      //   bodyItem.task_description = val.taskDescription
+          "tasktype": title,
+          "owned_by": "",
+          "CurrentUser": "",
+          "due_duration": "",
+          "task": "",
+          "task_description": "",
+          "created_at": date
+        }
+        var bodyItem = bodyTemplate;
+        bodyItem.owned_by = val.taskOwnedBy
+        bodyItem.CurrentUser = environment.currentUser
+        bodyItem.due_duration = val.dueDays+val.daysType[0]
+        bodyItem.task = val.taskTitle
+        bodyItem.task_description = val.taskDescription
+        console.log(bodyItem)
+        body.push(bodyItem)
 
-      //   body.push(bodyItem)
-
-
-
-      // });
-      // console.log(body);
-      // this.addNewTask.addNewTask(body).subscribe(data => {
-      //   this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
-      //     this.router.navigate(['/task-type/manage'], {
-      //       state: { taskType: this.title }
-      //     });
-      //   })
-      //   console.log(data);
-      // })
+      });
+      console.log("all tasks added",body);
+      this.addNewTask.addNewTask(body).subscribe(data => {
+        this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
+          this.router.navigate(['/task-type/manage'], {
+            state: { taskType: this.title }
+          });
+        })
+        console.log(data);
+      })
 
 
 
