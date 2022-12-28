@@ -11,23 +11,22 @@
                 <h3>Registered Employees </h3>
                 <br>
 
-                <button class="  btn btn-outline-dark" (click)="openAddPopUpFn()" type="button" >
+                <button class="  btn btn-outline-dark" (click)="openAddPopUpFn()" type="button">
                     Add Employee
                 </button>
 
             </div>
-            <div class="addTask d-flex flex-column">
+            <div class="addTask center-block d-flex flex-column">
 
-                <app-add-employee *ngIf = "this.openAddPopup" (closeClicked)="closeAddPopUpFn()" ></app-add-employee>
-               
+                <app-add-employee *ngIf="this.openAddPopup" (closeClicked)="closeAddPopUpFn()"></app-add-employee>
+
 
             </div>
 
             <br>
             <br>
 
-            <table  
-                class="table text-center table-bordered table-striped table-hover display text-center" datatable
+            <table class="table text-center table-bordered table-striped table-hover display text-center" datatable
                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                 <thead>
                     <tr>
@@ -38,7 +37,7 @@
                         <th class="headings">Gender</th>
                         <th class="headings">DOJ</th>
                         <th class="headings">Edit</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -53,12 +52,13 @@
                                 (click)="openEditPopup(employee,inputform)" data-target="#editModal">
                                 <i class="fas fa-edit"></i>
                             </button></td>
-                        
+
 
                     </tr>
                 </tbody>
             </table>
             <br>
+
             <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}" id="#editModal">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -74,48 +74,43 @@
 
 
                                     <label for="editName" class="textbox-label">Name</label>
-                                    <input type="text" id="editName" [(ngModel)]="tname" name="editName"
-                                        class="form-control" />
+                                    <input type="text" id="editName" [(ngModel)]="this.currentUserSelected['name']"
+                                        name="editName" class="form-control" />
 
-                                    <label for="editPhone" class="textbox-label">Phone</label>
-                                    <input type="text" id="editPhone" [(ngModel)]="tphone" name="editPhone"
-                                        class="form-control" />
 
 
                                     <label for="editEmail" class="textbox-label">Email</label>
-                                    <input type="text" id="editEmail" [(ngModel)]="temail" name="editEmail"
+                                    <input type="text" id="editEmail" [(ngModel)]="this.currentUserSelected['email']"
+                                        name="editEmail" class="form-control" />
+
+                                    <label for="editPhone" class="textbox-label">Phone</label>
+                                    <input type="text" id="editPhone"
+                                        [(ngModel)]="this.currentUserSelected['phone_number']" name="editPhone"
                                         class="form-control" />
 
+
+                                    <label for="editGender" class="textbox-label">Gender</label>
+                                    <select id="editGender" class="browser-default custom-select"
+                                        [(ngModel)]="this.currentUserSelected['gender']" name="editGender">
+                                        <option selected value="Male">Male</option>
+                                        <option value="Female">Female</option>
+
+                                    </select>
+
                                     <label for="editProfile" class="textbox-label">Profile</label>
-                                    <input type="text" id="editProfile" [(ngModel)]="tprofile" name="editDoj"
+                                    <input type="text" id="editProfile"
+                                        [(ngModel)]="this.currentUserSelected['profile']" name="editprofile"
                                         class="form-control" />
 
                                     <label for="editDoj" class="textbox-label">DOJ</label>
-                                    <input type="text" id="editDoj" [(ngModel)]="tdoj" name="editDoj"
+                                    <input type="date" id="editDoj"
+                                        [(ngModel)]="this.currentUserSelected['custom:date_of_joining']" name="editDoj"
                                         class="form-control" />
 
 
-                                    <div class="col">
-
-                                        <select class='select-option' #Selecttasktype
-                                            (change)='onOptionsSelected(Selecttasktype.value)'>
-
-                                            <option value="undefined" selected disabled>Select tasktype</option>
-
-                                            <option class='option' *ngFor='let option of tasktypes' [value]="option">
-
-                                                {{option}}</option>
-
-                                        </select>
-
-                                    </div>
 
                                     <br>
 
-                                    <label for="DOJ" class="textbox-label">Date Of {{selectedtask}}</label>
-
-                                    <input type="text" id="DOJ" onfocus="this.value=''" value="" ngModel name="DOJ"
-                                        class="form-control" />
 
 
 

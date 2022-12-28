@@ -13,31 +13,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./admins-table.component.css']
 })
 export class AdminsTableComponent implements OnInit {
-  allAdminsList: any[] = []
-  allNonAdminsList: any[] = []
-  allUsers:any[] = []
+  @Input () allAdminsList: any[] = []
+  @Input () allNonAdminsList: any[] = []
+  @Input () allUsers:any[] = []
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
    
   constructor(private router:Router,private getAllUsers: GetAllUsersService, private addUser: AddUserService, private removeUserFromAdmin: ChangeUserAttrService, private changeRole: SwitchRoleService) { }
 
   ngOnInit(): void {
-    this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
-      //   this.allAdminsList = responsedata;
-      // console.log(responsedata);
-      this.allUsers = responsedata
-      responsedata.forEach((val: any) => {
-        if (val['custom:role'] === 'admin') {
-          this.allAdminsList.push(val);
-        }
-        else {
-          this.allNonAdminsList.push(val);
-        }
-      })
+    // this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
+    //   //   this.allAdminsList = responsedata;
+    //   // console.log(responsedata);
+    //   this.allUsers = responsedata
+    //   responsedata.forEach((val: any) => {
+    //     if (val['custom:role'] === 'admin') {
+    //       this.allAdminsList.push(val);
+    //     }
+    //     else {
+    //       this.allNonAdminsList.push(val);
+    //     }
+    //   })
       
 
       this.dtTrigger.next(void 0);
-    })
+    // })
 
     this.dtOptions = {
 

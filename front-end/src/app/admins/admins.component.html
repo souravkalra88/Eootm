@@ -10,14 +10,14 @@
                 <h3>All Admins </h3>
                 <br>
 
-                <button class="  btn btn-outline-dark"   type="button" (click)="openAddAdmin()">
+                <button class="  btn btn-outline-dark"    type="button" (click)="openAddAdmin()">
                     Add Admin
                 </button>
 
             </div>
-            <app-add-admins *ngIf="this.addAdminPopUp" (closeClicked)="closeAddAdmin()"></app-add-admins>
+            <app-add-admins *ngIf="this.addAdminPopUp" [users] = "this.allNonAdminsList"  (closeClicked)="closeAddAdmin()"></app-add-admins>
             <br><br>
-            <app-admins-table ></app-admins-table>
+            <app-admins-table [allAdminsList]= "this.allAdminsList" [allNonAdminsList] = "this.allNonAdminsList" [allUsers] = "this.allUsers"></app-admins-table>
         </div>
 
 

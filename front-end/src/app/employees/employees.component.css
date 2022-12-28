@@ -41,3 +41,11 @@ app-sidenav{
 .table{
     width: 100%;
 }
+
+
+/* #editModal{
+    margin-top : 40px
+} */
+.addTask{
+    height: 60%;
+}

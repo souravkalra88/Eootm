@@ -70,3 +70,9 @@ app-sidenav{
 .breadcrumb{
     background-color: #fff;
 }
+
+.status{
+    text-align: center;
+    vertical-align: middle;
+  
+}
