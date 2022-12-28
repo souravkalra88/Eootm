@@ -29,7 +29,7 @@ export class AuthService {
           alert(err.message || JSON.stringify(err));
         }
 
-
+        if(session!=null)
         environment.idToken  = environment.idToken  == '' ? session.getRefreshToken().getToken() : session.getAccessToken().getJwtToken() ;
         // this.result =  session.getAccessToken().payload
         var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name'] 
