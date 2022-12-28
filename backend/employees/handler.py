@@ -54,7 +54,8 @@ def get_all_employees(event,response):
         records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
                               ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
         for rec in records:                      
-            l.append(rec.get('tasktype_name'))
+            l.append(rec.get('tasktype'))
+
 
         i['tasktype']=l[0]
         emp_response.append(i)
@@ -64,14 +65,14 @@ def get_all_employees(event,response):
           emp_response.append(new)
                                       
 
-    
-      response = {"statusCode": 200,
+    response = {"statusCode": 200,
                 'headers': {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                       'Access-Control-Allow-Methods': '*'
         },
                 "body":json.dumps(emp_response)}
     return response
+  
   
 
 def create_new_employee(event,response):

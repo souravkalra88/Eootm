@@ -59,7 +59,7 @@ def add_new_tasktype_to_employee(event, response):
 
       "pk":"emp_tasktype",
       "sk":body["empID"]+"#"+body["tasktypeID"],
-      "tasktype_name":body["tasktype_name"],
+      "tasktype":body["tasktype_name"],
       "date":body["date"],
       "created_at": "12/12/12",
       "created_by": body["CurrentUser"],
