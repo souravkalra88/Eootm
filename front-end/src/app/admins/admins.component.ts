@@ -13,17 +13,17 @@ export class AdminsComponent implements OnInit {
   constructor( private addUser : AddUserService) { }
 
   ngOnInit(): void {
-    const body = {
-      "name": "Sourav Kalra",
+    // const body = {
+    //   "name": "Sourav Kalra",
   
-      "password": "Pass@123",
-      "email": "sk@gmail.com",
-      "gender": "male",
-      "phone_number": "+919417820873",
-      "role": "admin"
+    //   "password": "Pass@123",
+    //   "email": "sk@gmail.com",
+    //   "gender": "male",
+    //   "phone_number": "+919417820873",
+    //   "role": "admin"
      
-    }
+    // }
 
-     this.addUser.addUser(body);
+    //  this.addUser.addUser(body);
   }
 }
