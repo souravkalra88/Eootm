@@ -23,42 +23,70 @@ dbtable = str(os.environ['DYNAMODB_TABLE'])
 table = dynamodb.Table(dbtable)
 
 
-def add_new_tasktype_to_employee(event, response):
-  body=json.loads(event["body"])
-  tasktype=body["tasktype"]
-  token = str(event['headers']['authorization'].split(" ")[1])
+# def get_tasktype_by_empID(event,response):
+#   empID=event["pathParameters"]["empID"]
+#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
+#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
+
   
-  tasklist= requests.get('https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/task-list/tasks_by_tasktype/{}'.format(tasktype), headers={'Authorization': token})
+#   return {
 
-  with table.batch_writer() as batch:
+#         'statusCode': 200,
 
-    for item in tasklist:
-        data={
-            
-        }
-        batch.put_item(
-            Item=item
-        )
-  # response = table.put_item(
+#         'headers': {'Content-Type': 'application/json',
 
-  #   Item={
+#                     'Access-Control-Allow-Origin': '*',
 
-  #     "pk":"tasktype",
+#                       'Access-Control-Allow-Methods': '*'
 
-  #     "sk":tasktype_id,
-  #     "tasktype_name":body["tasktype"],
+#         },
 
-  #     "created_at": "5454894",
-  #     "created_by": body["CurrentUser"],
-  #     "modified_at": "6459848",
-  #     "Description": body["description"],
-  #     "modified_by": body["CurrentUser"]
+#         'body': json.dumps(records),
 
-  #   }
 
-  # )
-  response = {"statusCode": 200, "body": json.dumps(resp)}
-  return response
+#         'isBase64Encoded': False,
+
+#     }
+        
+
+
+
+# def add_new_tasktype_to_employee(event, response):
+#   body=json.loads(event["body"])
+#   tasktype=body["tasktype"]
+#   token = str(event['headers']['authorization'].split(" ")[1])
+  
+#   tasklist= requests.get('https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/task-list/tasks_by_tasktype/{}'.format(tasktype), headers={'Authorization': token})
+
+#   with table.batch_writer() as batch:
+
+#     for item in tasklist:
+#         data={
+
+#         }
+#         batch.put_item(
+#             Item=item
+#         )
+#   # response = table.put_item(
+
+#   #   Item={
+
+#   #     "pk":"tasktype",
+
+#   #     "sk":tasktype_id,
+#   #     "tasktype_name":body["tasktype"],
+
+#   #     "created_at": "5454894",
+#   #     "created_by": body["CurrentUser"],
+#   #     "modified_at": "6459848",
+#   #     "Description": body["description"],
+#   #     "modified_by": body["CurrentUser"]
+
+#   #   }
+
+#   # )
+#   response = {"statusCode": 200, "body": json.dumps(resp)}
+#   return response
 
 
 

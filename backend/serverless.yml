@@ -145,6 +145,7 @@ functions:
           method: delete
           authorizer: 
             name: serviceAuthorizer               
+
 plugins:
   - serverless-python-requirements
 
