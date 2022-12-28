@@ -56,30 +56,30 @@ export class AddTaskFormComponent  implements OnInit {
       var body: any[] = [];
       // api call to post new tasks
       console.log(this.newTaskList);
-      var bodyTemplate = {
-
-        "tasktype": this.title.toLowerCase(),
-        "owned_by": "",
-        "CurrentUser": "",
-        "due_duration": "",
-        "task": "",
-        "task_description": "",
-        "created_at": this.datePipe.transform((new Date), 'dd/MM/yyyy; h:mm:ss') as string
-      }
+      var title= this.title.toLowerCase()
+      var date=this.datePipe.transform((new Date), 'dd/MM/yyyy; h:mm:ss') as string
       this.newTaskList.forEach(function (val: newTask) {
+        var bodyTemplate = {
+
+          "tasktype": title,
+          "owned_by": "",
+          "CurrentUser": "",
+          "due_duration": "",
+          "task": "",
+          "task_description": "",
+          "created_at": date
+        }
         var bodyItem = bodyTemplate;
         bodyItem.owned_by = val.taskOwnedBy
         bodyItem.CurrentUser = environment.currentUser
         bodyItem.due_duration = val.dueDays+val.daysType[0]
         bodyItem.task = val.taskTitle
         bodyItem.task_description = val.taskDescription
-
+        console.log(bodyItem)
         body.push(bodyItem)
 
-
-
       });
-      console.log("all tasks added",body[0]);
+      console.log("all tasks added",body);
       this.addNewTask.addNewTask(body).subscribe(data => {
         this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
           this.router.navigate(['/task-type/manage'], {
