@@ -5,6 +5,7 @@ import { GetAllEmployeesService } from 'src/app/service/get-all-employees.servic
 import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.service';
 import { environment } from 'src/environments/environment';
 import { ConnectableObservable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
@@ -28,7 +29,7 @@ export class AddtaskComponent implements OnInit {
 
 
 
-  constructor(private AllEmployees:GetAllEmployeesService, private AllTaskTypes : GetAllTaskTypesService, private add_new_tasktype_to_employee: AddNewTasktypeToEmployeeService){
+  constructor(private router : Router,private AllEmployees:GetAllEmployeesService, private AllTaskTypes : GetAllTaskTypesService, private add_new_tasktype_to_employee: AddNewTasktypeToEmployeeService){
 
   }
 
@@ -67,6 +68,15 @@ export class AddtaskComponent implements OnInit {
       this.add_new_tasktype_to_employee.add_new_tasktype_to_employee(body).subscribe((data: any)=>{
         
         console.log("POST SUCCESS")});
+        const currentRoute = this.router.url;
+
+
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+
+        this.router.navigate([currentRoute]);  
+
+    });
              
   this.closePopup();
 
