@@ -84,5 +84,6 @@ export class AddtaskComponent implements OnInit {
 
   closePopup(){
     this.displayStyle="None"
+    this.closeClicked.emit()
   }    
     }
