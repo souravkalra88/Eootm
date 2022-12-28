@@ -144,9 +144,17 @@ functions:
           path: /delete_user/{user_name}
           method: delete
           authorizer: 
-            name: serviceAuthorizer      
+            name: serviceAuthorizer 
 
-                 
+  update_user:
+    handler: employees/handler.updateUser  
+    events:
+      - httpApi:
+          path: /update_user
+          method: post
+          authorizer: 
+            name: serviceAuthorizer 
+
 
 plugins:
   - serverless-python-requirements

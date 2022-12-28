@@ -9,10 +9,20 @@ import { AddUserService } from '../service/add-user.service';
 })
 export class AdminsComponent implements OnInit {
   
-
+  allAdminsList: any[] = []
+  allNonAdminsList: any[] = []
+  allUsers:any[] = []
   constructor( ) { }
-
+  addAdminPopUp:boolean = false
   ngOnInit(): void {
   
+   }
+
+  
+   openAddAdmin(){
+    this.addAdminPopUp = true;
+   }
+   closeAddAdmin(){
+    this.addAdminPopUp = false;
    }
 }

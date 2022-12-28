@@ -10,12 +10,12 @@
                 <h3>All Admins </h3>
                 <br>
 
-                <button class="  btn btn-outline-dark"   type="button" data-toggle="modal"
-                    data-target="#exampleModal">
+                <button class="  btn btn-outline-dark"   type="button" (click)="openAddAdmin()">
                     Add Admin
                 </button>
 
             </div>
+            <app-add-admins *ngIf="this.addAdminPopUp" (closeClicked)="closeAddAdmin()"></app-add-admins>
             <br><br>
             <app-admins-table ></app-admins-table>
         </div>

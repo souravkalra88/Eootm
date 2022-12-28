@@ -31,7 +31,7 @@ export class AddEmployeeComponent implements OnInit {
       "phone_number":data.empsphone,
       "profile":data.empsprofile,
       "date_of_joining":data.empsDOJ,
-      "role":data.emosrole
+      "role":data.empsrole
 
   }
 

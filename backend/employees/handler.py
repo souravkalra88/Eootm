@@ -139,3 +139,7 @@ def deleteUser(event , response):
     )
     
   return {"statusCode":200, "body": json.dumps("User Deleted")}
+
+def update_user(event,response):
+  pass
+

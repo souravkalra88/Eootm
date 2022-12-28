@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AuthenticationDetails,CognitoUserAttribute, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 
-import { CognitoUserPool,CognitoUserAttribute } from 'amazon-cognito-identity-js';
 @Injectable({
   providedIn: 'root'
 })
-export class AddUserService {
+export class ChangeUserAttrService {
+
 
   constructor() { }
+
   poolData = {
     UserPoolId: environment.cognitoUserPoolId, // Your user pool id here
     ClientId: environment.cognitoAppClientId // Your client id here
   };
   userPool = new CognitoUserPool(this.poolData);
-  addUser(data : any)   {
+
+  updateAttr(data:any){
+    let userData = { Username: String(data.email_address), Pool: this.userPool };
+    var cognitoUser = new CognitoUser(userData);
 
     var attributeList = [];
 
@@ -24,11 +29,9 @@ export class AddUserService {
       "gender" : data.gender,
       "phone_number" : data.phone_number,
       "custom:role" : data.role,
-      "profile" : data.profile,
       "custom:date_of_joining" : data.date_of_joining
 
     }
-    // console.log(nUser)
     var res :any
     //api call to get
     for (let key  in nUser) {
@@ -39,8 +42,9 @@ export class AddUserService {
       let attribute = new CognitoUserAttribute(attrData);
       attributeList.push(attribute)
     }
-   
-    this.userPool.signUp(data.email, data.password, attributeList, [], (
+
+
+    cognitoUser.updateAttributes(attributeList,(
       err,
       result
     ) => {
@@ -52,7 +56,7 @@ export class AddUserService {
       res = result
       console.log(res)
     });
-    return res;
-
   }
+  
+
 }

@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
  
 import { Router } from '@angular/router';
+import { GetAllUsersService } from '../service/get-all-usersservice';
 
 @Component({
   selector: 'app-employees',
@@ -28,18 +29,26 @@ export class EmployeesComponent {
  
     
 displayStyleEdit = "none";
+  
 
  
-  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
+  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router, private getAllUsers: GetAllUsersService){
  
 }
 ngOnInit(): void{
-  this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
-    this.AllEmployees=responsedata;
-    this.dtTrigger.next(void 0);
+  // this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
+  //   this.AllEmployees=responsedata;
+  //   this.dtTrigger.next(void 0);
+  //   console.log(responsedata);
+  // })
+  this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
+    //   this.allAdminsList = responsedata;
     console.log(responsedata);
-  })
+    this.AllEmployees = responsedata;
+    
 
+    this.dtTrigger.next(void 0);
+  })
 
   this.dtOptions = {
 
