@@ -56,15 +56,14 @@ def get_all_employees(event,response):
         for rec in records:                      
             l.append(rec.get('tasktype'))
 
-
-        i['tasktype']=l[0]
-        emp_response.append(i)
-        for j in range(1,len(l)):
-          new=i.copy()
-          new['tasktype']=l[j]
-          emp_response.append(new)
+        if len(l)>0:
+          i['tasktype']=l[0]
+          emp_response.append(i)
+          for j in range(1,len(l)):
+            new=i.copy()
+            new['tasktype']=l[j]
+            emp_response.append(new)
                                       
-
     response = {"statusCode": 200,
                 'headers': {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
