@@ -25,7 +25,8 @@ export class AddUserService {
       "phone_number" : data.phone_number,
       "custom:role" : data.role,
       "profile" : data.profile,
-      "custom:date_of_joining" : data.date_of_joining
+      "custom:date_of_joining" : data.date_of_joining,
+      "custom:log_in_access" : data.log_in_access
 
     }
     // console.log(nUser)

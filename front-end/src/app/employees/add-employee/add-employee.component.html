@@ -12,21 +12,21 @@
 
 
                         <label for="name" class="textbox-label">Name</label>
-                        <input type="text" id="name" onfocus="this.value=''" value="" ngModel name="empsname"
+                        <input type="text" id="name" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.name" name="empsname"
                             class="form-control" />
 
                         <label for="phone" class="textbox-label">Phone</label>
-                        <input type="text" id="phone" onfocus="this.value=''" value="" ngModel name="empsphone"
+                        <input type="text" id="phone" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.phone_number" name="empsphone"
                             class="form-control" />
 
 
                         <label for="email" class="textbox-label">Email</label>
-                        <input type="text" id="email" onfocus="this.value=''" value="" ngModel name="empsemail"
+                        <input type="text" id="email" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.email" name="empsemail"
                             class="form-control" />
 
 
                         <label for="empsgender" class="textbox-label">Gender</label>
-                        <select id="empsgender" class="browser-default custom-select" ngModel name="empsgender">
+                        <select id="empsgender" class="browser-default custom-select" [(ngModel)]="newUserData.gender" name="empsgender">
                             <option selected value="Male">Male</option>
                             <option value="Female">Female</option>
 
@@ -34,19 +34,27 @@
 
 
                         <label for="empsprofile" class="textbox-label">Profile</label>
-                        <input type="text" id="empsprofile" onfocus="this.value=''" value="" ngModel name="empsprofile"
+                        <input type="text" id="empsprofile" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.profile" name="empsprofile"
                             class="form-control" />
 
                         <label for="empsDOJ" class="textbox-label">Date Of Joining</label>
-                        <input type="date" id="empsDOJ" onfocus="this.value=''" value="" ngModel name="empsDOJ"
+                        <input type="date" id="empsDOJ" onfocus="this.value=''" value="" [(ngModel)] = "newUserData['custom:date_of_joining']" name="empsDOJ"
                             class="form-control" />
 
                         <label for="empsRole" class="textbox-label">Role</label>
-                        <select id="empsRole" class="browser-default custom-select" ngModel name="empsrole">
+                        <select id="empsRole" class="browser-default custom-select" [(ngModel)]="this.newUserData['custom:role']" name="empsrole">
                             <option selected value="user">User</option>
                             <option value="admin">Admin</option>
 
                         </select>
+
+                        <label for="empsCanLogIn" class="textbox-label">Can Login</label>
+                        <select id="empsCanLogIn" class="browser-default custom-select" [(ngModel)]="this.newUserData['custom:log_in_access']" *ngIf="this.newUserData['custom:role'] === 'user' " name="empsCanLogIn">
+                            <option selected value="no">No</option>
+                            <option value="yes">Yes</option>
+
+                        </select>
+                        <span *ngIf="this.newUserData['custom:role'] === 'admin' " >: Yes</span>
 
 
 

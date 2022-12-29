@@ -29,7 +29,7 @@ export class EmployeesComponent {
 
  
     
-displayStyleEdit = "none";
+  displayStyleEdit = "none";
   
 
  
@@ -70,17 +70,20 @@ closeAddPopUpFn(){
 }
  
 openEditPopup(employee: any,inputForm: NgForm){
+  
   this.currentUserSelected['name'] = employee.name;
-  this.currentUserSelected['email'] = employee.email
+  this.currentUserSelected['email'] = employee.email;
+  this.currentUserSelected['custom:role'] = employee['custom:role']
   this.currentUserSelected['phone_number'] = employee.phone_number;
   this.currentUserSelected['custom:date_of_joining']= employee['custom:date_of_joining'];
   this.currentUserSelected['gender'] = employee.gender;
   this.currentUserSelected['profile'] = employee.profile;
   this.currentUserSelected['username'] = employee.sub;
+  this.currentUserSelected['custom:log_in_access'] = employee['custom:log_in_access']
 
   // console.log(this.currentUserSelected)
    
-   
+  console.log(this.currentUserSelected)
 
  
   this.displayStyleEdit = "block";

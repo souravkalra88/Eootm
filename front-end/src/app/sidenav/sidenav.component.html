@@ -1,7 +1,7 @@
 
 
 <div class = "side-nav-content w-100" >
-    <ul class = "nav-list w-100" >
+    <ul class = "nav-list w-100" *ngIf = "this.view === 'admin_view' ">
         
         <li class = "nav-list-item ">
             <i class = "fa-solid fa-house"></i>
@@ -40,15 +40,7 @@
             </span>
 
         </li>
-        
-        <!-- <li class = "nav-list-item manage">
-            <i class = "fa-solid fa-arrow-right"></i>
-            <span class = "routeName ">
-                <a routerLinkActive="active sub-active-item" [routerLink] = "[ '/task-list/edit'] ">Edit</a>
-            </span>
-
-        </li> -->
-        
+      
         <li class = "nav-list-item manage">
             <i class = "fa-solid fa-arrow-right"></i>
             <span class = "routeName ">
@@ -69,5 +61,17 @@
         </li>
         
         
+    </ul>
+
+
+    <ul class = "nav-list w-100"  *ngIf = " this.view === 'user_view' ">
+           
+        <li class = "nav-list-item ">
+            <i class = "fa-solid fa-house"></i>
+            <span class = "routeName">
+                <a routerLinkActive="active sub-active-item" [routerLink] = "['/user-view']">Assigned Tasks</a>
+            </span>
+
+        </li>
     </ul>
 </div>

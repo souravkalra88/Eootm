@@ -3,12 +3,18 @@
 } -->
 <div class="custom">
   <nav class="navbar-expand  px-2  d-flex justify-content-between">
-    <div class="side-nav-button p-2 me-3 text-light child logo">
+    <div class="side-nav-button title p-2 me-3 text-light child logo d-flex justify-content-between" >
 
-      <img [src]=imgSrc width=180px height=80px alt="logo" class="logo">
+      <img [src]=imgSrc width=180px height=80px alt="logo" class="logo" (click) = "reloadHome()">
       <!-- <div class="navbar-collapse"> -->
-
+        <div class="menu">
+        <span routerLinkActive="active sub-active-item"  *ngIf = "this.role === 'admin'  " (click)="switchView('admin_view') " [routerLink] = "['/home']">Admin View</span>
+        <span></span>
+        <span routerLinkActive="active sub-active-item"     class="userView" (click)="switchView('user_view')" [routerLink] = "['/user-view']">User View</span>
+        </div>
     </div>
+   
+    
 
     <div class="user-icon d-flex align-items-center">
 

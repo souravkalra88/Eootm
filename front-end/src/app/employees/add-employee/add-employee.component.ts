@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/UserModel';
 import { AddUserService } from 'src/app/service/add-user.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class AddEmployeeComponent implements OnInit {
 
 
   @Output() closeClicked = new EventEmitter();
+  newUserData:User = new User()
   displayStyle = "block";
   constructor(private router :Router, private addUser:AddUserService){}
 
@@ -19,19 +21,21 @@ export class AddEmployeeComponent implements OnInit {
     
   } 
   Input(form:  NgForm){
-    var data = form.value;
+   
     // console.log(data.name);
     // debugger;
+    if(this.newUserData['custom:role'] === 'admin') this.newUserData['custom:log_in_access'] = 'yes'
     const body ={
       
-      "name":data.empsname,
+      "name":this.newUserData.name,
       "password": "Pass@123",
-      "email":data.empsemail,
-      "gender":data.empsgender,
-      "phone_number":data.empsphone,
-      "profile":data.empsprofile,
-      "date_of_joining":data.empsDOJ,
-      "role":data.empsrole
+      "email":this.newUserData.email,
+      "gender":this.newUserData.gender,
+      "phone_number":this.newUserData.phone_number,
+      "profile":this.newUserData.profile,
+      "date_of_joining": this.newUserData['custom:date_of_joining'],
+      "role": this.newUserData['custom:role'],
+      "log_in_access": this.newUserData['custom:log_in_access'],
 
   }
 

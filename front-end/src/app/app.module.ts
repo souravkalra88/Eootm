@@ -29,10 +29,12 @@ import { EmpEditTaskListComponent } from './task-list/emp-edit-task-list/emp-edi
 import { AdminsTableComponent } from './admins/admins-table/admins-table.component';
 import { AddEmployeeComponent } from './employees/add-employee/add-employee.component';
 import { AddAdminsComponent } from './admins/add-admins/add-admins.component';
-
+import { FilterByStatusPipe } from './admins/filter-status-by-pipe';
+import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
   declarations: [
+    FilterByStatusPipe,
     AppComponent,
     AuthComponent,
     SidenavComponent,
@@ -49,7 +51,8 @@ import { AddAdminsComponent } from './admins/add-admins/add-admins.component';
     EmpEditTaskListComponent,
     AdminsTableComponent,
     AddEmployeeComponent,
-    AddAdminsComponent
+    AddAdminsComponent,
+    UserViewComponent
     
   ],
   imports: [

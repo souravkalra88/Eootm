@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { environment } from 'src/environments/environment';
+import { SwitchHeaderService } from '../service/switch-header.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +17,7 @@ export class AuthComponent implements OnInit{
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";
-  constructor(private router: Router) { }
+  constructor(private router: Router , private switchView:SwitchHeaderService) { }
 
   OnSignIn(form: NgForm){
     // console.log(val);
@@ -44,13 +45,18 @@ export class AuthComponent implements OnInit{
     var cognitoUser = new CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: (result) => {
-        this.router.navigate(["home"])
+        
         environment.currentUser = result.getIdToken().payload['name']
         environment.role =  result.getIdToken().payload['role']
         console.log(environment.role)
         console.log(result.getIdToken().getJwtToken())
         environment.idToken = result.getIdToken().getJwtToken()
         environment.currentUserName = result.getIdToken().payload['cognito:username']
+        if(environment.role === 'admin'){
+        this.switchView.setView("admin_view");this.router.navigate(["home"])
+      }
+
+        else{ this.switchView.setView("user_view") ; this.router.navigate(["user-view"]) }
        
     
       },

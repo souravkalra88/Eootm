@@ -13,6 +13,8 @@ import { ManageTaskComponent } from './task-type/manage-task/manage-task.compone
 import { AddTaskFormComponent } from './task-type/manage-task/add-task-form/add-task-form.component';
 import { ManageEmpTaskListComponent } from './task-list/manage-emp-task-list/manage-emp-task-list.component';
 import { EmpEditTaskListComponent } from './task-list/emp-edit-task-list/emp-edit-task-list.component';
+import { UserViewComponent } from './user-view/user-view.component';
+import { AuthGuardUserGuard } from './auth/auth-guard-user.guard';
 const routes: Routes = [
   { path: "", component: AuthComponent},
 { path: "home" ,component : HomeComponent, canActivate : [AuthGuard]},
@@ -23,6 +25,7 @@ const routes: Routes = [
 { path: "task-list/edit" ,component : EmpEditTaskListComponent,canActivate : [AuthGuard]},
 { path: "admins" ,component : AdminsComponent, canActivate : [AuthGuard]},
 { path: "task-type/manage" ,component : ManageTaskComponent,canActivate : [AuthGuard]},
+{path:"user-view",component : UserViewComponent, canActivate : [AuthGuardUserGuard]},
 
 
 
