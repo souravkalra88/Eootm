@@ -40,11 +40,14 @@ resp:any;
 
     this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
       this.allEmployees = responsedata;
-      this.allEmployees.forEach((val: any) => {
-        if (val['custom:role'] === 'user')  {
-           this.allUsers.push(val);
-        }
-      })})
+      this.allUsers = this.allEmployees
+      // this.allEmployees.forEach((val: any) => {
+      //   if (val['custom:role'] === 'user')  {
+      //      this.allUsers.push(val);
+      //   }
+      // })
+    }
+      )
   
 
     this.AllTaskTypes.allTaskTypesData().subscribe((data: any)=>{
