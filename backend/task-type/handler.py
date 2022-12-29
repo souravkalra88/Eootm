@@ -36,14 +36,6 @@ def add_new_tasktype_to_employee(event, response):
       resp= table.query(KeyConditionExpression=filtering_exp)
       items = resp.get('Items')
 
-  # postitem={
-  #   "pk":"",
-  #   "sk":"",
-  #   "taskname":"",
-  #   "completion_status":"",
-  #   "due_date": ""#date+ item['due duration]
-  # }    
-  
   date_format = '%Y-%m-%d'
   with table.batch_writer() as batch:
     for item in items:
@@ -57,7 +49,7 @@ def add_new_tasktype_to_employee(event, response):
 
       #ADDING INDIVIDUAL ENTRIES FOR ALL TASKS OF TASKTYPE ASSIGNED TO THE EMPLOYEE TO DB  
       postitem["pk"]= body["empID"]
-      postitem["sk"]= body["tasktypeID"]+"#"+item['sk']
+      postitem["sk"]=item['sk']
       postitem["taskname"]= item["task"]
       postitem["completion_status"]= "incomplete"
       postitem["due_date"]=str(due_date)
