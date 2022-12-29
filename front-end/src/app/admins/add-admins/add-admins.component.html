@@ -10,7 +10,7 @@
 
 
                     <ul class="users item">
-                        <li  class = "item" *ngFor="let user of users">
+                        <li  class = "item" *ngFor="let user of users ">
                             <button [class.selected]="user === selectedUser" type="button" (click)="onSelect(user)">
                                 <!-- <span class="username">{{user.sub}}</span> -->
                                 <span class="name">{{user.name}}</span>

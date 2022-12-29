@@ -6,6 +6,8 @@ import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.servi
 import { environment } from 'src/environments/environment';
 import { ConnectableObservable } from 'rxjs';
 import { Router } from '@angular/router';
+import { GetAllUsersService } from 'src/app/service/get-all-usersservice';
+import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
@@ -19,27 +21,34 @@ export class AddtaskComponent implements OnInit {
   openaddpopup:boolean=false;
   displayStyle : string = "block"
   TaskTypes:any;
-  allEmpsData:any;
-  empID: string="";
-
+  allEmployees:any;
+  allUsers:any[]=[];
+  emp: string="";
+resp:any;
   task:number=0
   // tasktypeID:string=""; 
   date:string=""; 
   tasktype_emp_data:any
 
 
-
-  constructor(private router : Router,private AllEmployees:GetAllEmployeesService, private AllTaskTypes : GetAllTaskTypesService, private add_new_tasktype_to_employee: AddNewTasktypeToEmployeeService){
+  constructor(private router : Router,private getAllUsers:GetAllUsersService, private AllTaskTypes : GetAllTaskTypesService, private add_new_tasktype_to_employee: AddNewTasktypeToEmployeeService){
 
   }
 
   ngOnInit(): void {
-    
-    this.AllEmployees.allEmployeesData().subscribe((data: any)=>{
-      console.log(data);
-      this.allEmpsData = data;
-      // console.log(this.allEmpsData);
-          });
+
+
+    this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
+      this.allEmployees = responsedata;
+      this.allUsers = this.allEmployees
+      // this.allEmployees.forEach((val: any) => {
+      //   if (val['custom:role'] === 'user')  {
+      //      this.allUsers.push(val);
+      //   }
+      // })
+    }
+      )
+  
 
     this.AllTaskTypes.allTaskTypesData().subscribe((data: any)=>{
       console.log(data);
@@ -47,43 +56,47 @@ export class AddtaskComponent implements OnInit {
       // console.log(this.allEmpsData);
           });     
         }
-  
-        
+    
   NewTasktypeEmployee(form:NgForm){
     if(form.valid){
-      let emp_id = form.value.emp
+      let emp_index= form.value.emp
       let task_index=form.value.tasktype
       let date=form.value.date
       let tasktypID=this.TaskTypes[task_index]['sk']
       let tasktype_name=this.TaskTypes[task_index]['tasktype']
-
+      let empID=this.allUsers[emp_index]['sub']
       let body={
-        "empID":emp_id,
+        "empID":empID,
         "date": date,
         "tasktypeID":tasktypID,
         "tasktype_name":tasktype_name,
         "CurrentUser":environment.currentUser
       }
-      console.log(body)
+      // console.log(body)
       this.add_new_tasktype_to_employee.add_new_tasktype_to_employee(body).subscribe((data: any)=>{
-        
-        console.log("POST SUCCESS")});
+
+        this.resp=data;
+        console.log(data)
         const currentRoute = this.router.url;
 
+      
+        
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    
+            this.router.navigate([currentRoute]);  
+    
+        });
 
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-
-        this.router.navigate([currentRoute]);  
-
-    });
-             
+      });
+        
+    
+         
   this.closePopup();
-
   }}
-
+  
   closePopup(){
     this.displayStyle="None"
     this.closeClicked.emit()
-  }    
-    }
+  }   
+    
+}  

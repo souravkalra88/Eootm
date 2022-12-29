@@ -1,53 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { SwitchHeaderService } from '../service/switch-header.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit  {
+
+view:string=""
+role:string = environment.role
+constructor(private switchHeader:SwitchHeaderService){
+this.view=this.switchHeader.getCurrentView()
+}  
+  ngOnInit(): void {
+  console.log(this.switchHeader.getCurrentView())
+  }
+getView():string
+{
+ // console.log(this.switchHeader.getCurrentView())
+  return this.switchHeader.getCurrentView()
+}
 
 
-
-  list = [
-    {
-       
-      name: 'Home',
-      icon: 'fa-solid fa-house',
-      route: 'home'
-      
-    },
-    {
-       
-      name: 'Task Type',
-      icon: 'fa-solid fa-bars',
-      route: 'task-type'
-    },
-    {
-       
-      name: 'Manage ',
-      icon: 'fa-solid fa-bars',
-      route: 'task-type'
-    },
-    
-    {
-      
-      name: 'Task List',
-      icon: 'fa-solid fa-list-check',
-      route: 'task-list'
-    },
-    {
-       
-      name: 'Employee',
-      icon: 'fa-solid fa-people-roof',
-      route: 'employees'
-    },{
-      
-      name: 'Admins',
-      icon: 'fa-solid fa-users',
-      route: 'admins'
-    }
-  ]
-  
 
 }

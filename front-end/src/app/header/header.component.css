@@ -7,15 +7,29 @@ nav{
     background-color: #e81410;
     height:100%;
 }
-    
 
+.menu{
+    display: inline-block;
+    justify-content: space-between;
+}
+.title{
+    display: inline-block;
+}
+.userView{
+    margin-left: 50px;
+}
+
+.viewType{
+    cursor: default;
+}
 .side-nav-button{
     
    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: between;
     font-size: 1.5rem;
     cursor: pointer;
+    width: 60%;
 }
 .side-nav-button:hover{
     border-radius: 30%;
@@ -61,3 +75,13 @@ nav{
     cursor:default;
     
 }
+
+.sub-active-item{
+    text-decoration: underline ;
+    
+    text-decoration-color: black !important;
+    text-underline-offset: 20%;
+    text-decoration-thickness: 10%;
+    
+
+  }

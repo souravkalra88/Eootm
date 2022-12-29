@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment, urls } from 'src/environments/environment';
 
 import { CognitoUserPool,CognitoUserAttribute } from 'amazon-cognito-identity-js';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class AddUserService {
-
-  constructor() { }
-  poolData = {
-    UserPoolId: environment.cognitoUserPoolId, // Your user pool id here
-    ClientId: environment.cognitoAppClientId // Your client id here
-  };
-  userPool = new CognitoUserPool(this.poolData);
-  addUser(data : any)   {
+  url = ""
+  constructor(private http:HttpClient) { }
+  
+  
+  addUser(data : any):Observable<any>   {
+    this. url = urls.createUser
 
     var attributeList = [];
 
@@ -25,7 +25,9 @@ export class AddUserService {
       "phone_number" : data.phone_number,
       "custom:role" : data.role,
       "profile" : data.profile,
-      "custom:date_of_joining" : data.date_of_joining
+
+      "custom:log_in_access" : data.log_in_access
+
 
     }
     // console.log(nUser)
@@ -39,20 +41,30 @@ export class AddUserService {
       let attribute = new CognitoUserAttribute(attrData);
       attributeList.push(attribute)
     }
-   
-    this.userPool.signUp(data.email, data.password, attributeList, [], (
-      err,
-      result
-    ) => {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' +environment.idToken
+    })
+
+    var body = {
+      "email" : data.email,
+      "attr":attributeList
+    }
+
+   return this.http.post(this.url , body , {headers: headers})
+    // this.userPool.signUp(data.email, data.password, attributeList, [], (
+    //   err,
+    //   result
+    // ) => {
       
-      if (err) {
-        alert(err.message || JSON.stringify(err));
-        return;
-      }
-      res = result
-      console.log(res)
-    });
-    return res;
+    //   if (err) {
+    //     alert(err.message || JSON.stringify(err));
+    //     return;
+    //   }
+    //   res = result
+    //   console.log(res)
+    // });
+    // return res;
 
   }
 }

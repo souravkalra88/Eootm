@@ -34,6 +34,7 @@ export class TaskTypeComponent implements OnInit {
   
   
   ngOnInit(): void {
+    
     this.allTaskTypeData.allTaskTypesData().subscribe((data: any)=>{
       // console.log(data);
       this.tasksTypeData = data;
@@ -113,8 +114,9 @@ addNewTaskType(form: NgForm):void{
   } 
   
   // console.log(this.taskTypeName);
-  console.log(this.ctasktypeid);
-  // DataTables.Api.ajax.reload(); 
+ 
+  // DataTables.Api.ajax.reload();
+   
   this.UpdateTaskType.UpdateTaskType(body).subscribe((response: any )=> {
     console.log(response);
      

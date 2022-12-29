@@ -12,7 +12,25 @@ export class SwitchRoleService {
   url = ""
   switchToRole(username:string , role:string):Observable<any>{
     this.url = urls.updateUser
-    var body = {
+    var body = {}
+    if(role == "admin"){
+      body = {
+        "username" : username,
+        "attributes" : [
+            {
+                "Name": "custom:role",
+                "Value": role
+            },
+            {
+              "Name": "custom:log_in_access",
+              "Value": "yes"
+          }
+        ]
+    }
+  
+    }
+    else {
+      body = {
       "username" : username,
       "attributes" : [
           {
@@ -21,6 +39,7 @@ export class SwitchRoleService {
           }
       ]
   }
+} 
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' +environment.idToken

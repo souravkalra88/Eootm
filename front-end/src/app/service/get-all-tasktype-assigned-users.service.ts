@@ -13,8 +13,7 @@ import { urls, environment } from 'src/environments/environment';
   providedIn: 'root'
 
 })
-
-export class GetAllUsersService {
+export class GetAllTasktypeAssignedUsersService {
 
   url = ""
 
@@ -22,10 +21,9 @@ export class GetAllUsersService {
 
 
 
-  getAllUsers():Observable<any>{
-  //  console.log(environment.idToken)
+  get_all_tasktype_assigned_users():Observable<any>{
 
-    this.url = urls.getAllUsers
+    this.url = urls.get_all_tasktype_assigned_users
 
     const headers = new HttpHeaders({
 
@@ -38,9 +36,4 @@ export class GetAllUsersService {
     return this.http.get(this.url, { headers: headers })
 
 
-
-  }
-
-
-
-}
+}}

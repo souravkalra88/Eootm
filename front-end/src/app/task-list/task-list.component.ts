@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Router } from '@angular/router';
 import { AddtaskComponent } from './addtask/addtask.component';
+import { GetAllUsersService } from '../service/get-all-usersservice';
+import { GetAllTasktypeAssignedUsersService } from '../service/get-all-tasktype-assigned-users.service';
 
 @Component({
   selector: 'app-task-list',
@@ -19,16 +21,18 @@ export class TaskListComponent implements OnInit, OnDestroy {
   openEditPopUp:boolean=false;
   editEmployee:any = ""
 
-  constructor(private http : HttpClient, private GetAllEmployees:GetAllEmployeesService, private router :Router){
+  constructor(private http : HttpClient,private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService, private GetAllEmployees:GetAllEmployeesService, private router :Router){
    
   }
   ngOnInit(): void{
    
-    this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
-      this.AllEmployees=responsedata;
-      console.log(this.AllEmployees);
+    this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
+      //   this.allAdminsList = responsedata;
+    //  console.log(responsedata);
+      this.AllEmployees = responsedata;
+      console.log("records are" ,this.AllEmployees)
+  
       this.dtTrigger.next(void 0);
-      console.log("responsedata",responsedata);
     })
   
    // console.log(this.AllEmployees);

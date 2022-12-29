@@ -20,8 +20,9 @@ export const urls = {
     getAllUsers:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_users",
 
     updateUser : "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_user",
-
-    add_new_tasktype_to_employee:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/add_new_tasktype_to_employee"
+    createUser: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/create_user",
+    add_new_tasktype_to_employee:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/add_new_tasktype_to_employee",
+    get_all_tasktype_assigned_users:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_tasktype_assigned_users"
     
 
 }

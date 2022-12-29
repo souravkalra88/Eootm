@@ -1,74 +1,74 @@
 import json
-
 import os
-
 import boto3
 import uuid
 from boto3 import resource
-
 from boto3.dynamodb.conditions import Key
-
-from datetime import datetime
-
-
-
+import datetime 
 dynamodb = boto3.resource(
 
     'dynamodb', region_name=str(os.environ['REGION_NAME']))
 
 dbtable = str(os.environ['DYNAMODB_TABLE'])
-
-
-
 table = dynamodb.Table(dbtable)
-
-
-# def get_tasktype_by_empID(event,response):
-#   empID=event["pathParameters"]["empID"]
-#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
-#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
-
-  
-#   return {
-
-#         'statusCode': 200,
-
-#         'headers': {'Content-Type': 'application/json',
-
-#                     'Access-Control-Allow-Origin': '*',
-
-#                       'Access-Control-Allow-Methods': '*'
-
-#         },
-
-#         'body': json.dumps(records),
-
-
-#         'isBase64Encoded': False,
-
-#     }
-        
-
-
 
 def add_new_tasktype_to_employee(event, response):
   body=json.loads(event["body"])
   resp=table.put_item(
-
     Item={
 
       "pk":"emp_tasktype",
       "sk":body["empID"]+"#"+body["tasktypeID"],
       "tasktype":body["tasktype_name"],
       "date":body["date"],
-      "created_at": "12/12/12",
+      "created_at": str(datetime.datetime.utcnow()) ,
       "created_by": body["CurrentUser"],
-      "modified_at": "12/12/12",
+      "modified_at": str(datetime.datetime.utcnow()) ,
       "modified_by": body["CurrentUser"]
     })
   response = {"statusCode": 200, "body": json.dumps(resp)}
+
+
+  key="pk"
+  value=body["tasktype_name"].lower()
+  if key is not None and value is not None:
+      filtering_exp = Key(key).eq(value)
+      resp= table.query(KeyConditionExpression=filtering_exp)
+      items = resp.get('Items')
+
+  # postitem={
+  #   "pk":"",
+  #   "sk":"",
+  #   "taskname":"",
+  #   "completion_status":"",
+  #   "due_date": ""#date+ item['due duration]
+  # }    
+  
+  date_format = '%Y-%m-%d'
+  with table.batch_writer() as batch:
+    for item in items:
+      postitem={}
+      due_days=int(item["due_duration"][:-1])
+      due_type=item["due_duration"][-1]
+      if due_type=="a":
+        due_date = datetime.datetime.strptime(body["date"], date_format) + datetime.timedelta(days=due_days)
+      else:
+        due_date = datetime.datetime.strptime(body["date"], date_format) - datetime.timedelta(days=due_days)
+
+      #ADDING INDIVIDUAL ENTRIES FOR ALL TASKS OF TASKTYPE ASSIGNED TO THE EMPLOYEE TO DB  
+      postitem["pk"]= body["empID"]
+      postitem["sk"]= body["tasktypeID"]+"#"+item['sk']
+      postitem["taskname"]= item["task"]
+      postitem["completion_status"]= "incomplete"
+      postitem["due_date"]=str(due_date)
+      postitem["date_of_assigning"]=body["date"]
+      response_body=table.put_item(
+        Item=postitem
+      )      
+  response={"status_code":200, "body":items}
   return response
   
+
 
 
 def get_all_task_types(event,context):
@@ -167,4 +167,32 @@ def update_tasktype(event,context):
         'body': json.dumps(response)
   }
 
+
+
+
+# def get_tasktype_by_empID(event,response):
+#   empID=event["pathParameters"]["empID"]
+#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
+#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
+
+  
+#   return {
+
+#         'statusCode': 200,
+
+#         'headers': {'Content-Type': 'application/json',
+
+#                     'Access-Control-Allow-Origin': '*',
+
+#                       'Access-Control-Allow-Methods': '*'
+
+#         },
+
+#         'body': json.dumps(records),
+
+
+#         'isBase64Encoded': False,
+
+#     }
+        
 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { environment } from 'src/environments/environment';
+import { SwitchHeaderService } from '../service/switch-header.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +10,9 @@ import { environment } from 'src/environments/environment';
 
 export class AuthService {
 
-  constructor() { }
-  result :any
-  isLoggedIn(): boolean {
+  constructor(private switchView: SwitchHeaderService, private router: Router) { }
+  result: any
+  isLoggedIn(checkForRole: string): boolean {
     var isAuth = false;
 
     let poolData = {
@@ -20,8 +22,8 @@ export class AuthService {
 
     var userPool = new CognitoUserPool(poolData);
     var cognitoUser = userPool.getCurrentUser();
-    // console.log(cognitoUser)
-    
+
+
 
     if (cognitoUser != null) {
       cognitoUser.getSession((err: any, session: any) => {
@@ -29,16 +31,30 @@ export class AuthService {
           alert(err.message || JSON.stringify(err));
         }
 
-        if(session!=null)
-        environment.idToken  = environment.idToken  == '' ? session.getRefreshToken().getToken() : session.getAccessToken().getJwtToken() ;
-        // this.result =  session.getAccessToken().payload
-        var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name'] 
-        environment.role =  cognitoUser?.getSignInUserSession()?.getIdToken().payload['role']
-       // console.log(environment.role)
-        environment.currentUser = currentUsername
-        // console.log(this.result.username)
+        if (session != null)
+          environment.idToken = session.getAccessToken().getJwtToken() ;
 
-        isAuth = session.isValid();
+         
+        var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name']
+        environment.role = cognitoUser?.getSignInUserSession()?.getIdToken().payload['role']
+        environment.currentUser = currentUsername
+     
+
+        if (environment.role === 'admin' && checkForRole === 'admin') {isAuth = true; 
+          // console.log(this.router.url)
+           }
+        else {
+          if (checkForRole === 'user')
+            if (cognitoUser?.getSignInUserSession()?.getIdToken().payload['custom:log_in_access'] === 'yes') {isAuth = session.isValid();}
+          console.log(environment.role)
+
+
+        }
+
+
+        
+
+
       })
     }
     return isAuth;

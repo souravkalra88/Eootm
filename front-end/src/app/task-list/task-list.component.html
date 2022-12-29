@@ -24,8 +24,7 @@
 
       <br>
       <br>
-
-      <table  class="table text-center table-bordered table-striped table-hover display text-center"
+      <table  class="table  table-bordered table-striped table-hover  "  
         datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
         <thead>
 
@@ -41,7 +40,7 @@
           <tr *ngFor="let emp of AllEmployees">
             <td>{{ emp.name }}</td>
             <td>{{ emp.tasktype }}</td>
-            <td>{{ emp.DOJ }}</td>
+            <td>{{ emp.date }}</td>
             <td><button class="  btn " type="button" (click) = "openEditPopup(emp)"  >
                 <i class="fas fa-edit"></i>
               </button></td>

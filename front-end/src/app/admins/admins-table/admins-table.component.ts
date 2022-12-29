@@ -13,32 +13,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./admins-table.component.css']
 })
 export class AdminsTableComponent implements OnInit {
-  @Input () allAdminsList: any[] = []
-  @Input () allNonAdminsList: any[] = []
-  @Input () allUsers:any[] = []
+  @Input() allAdminsList: any[] = []
+  @Input() allNonAdminsList: any[] = []
+  @Input() allUsers: any[] = []
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
-   
-  constructor(private router:Router,private getAllUsers: GetAllUsersService, private addUser: AddUserService, private removeUserFromAdmin: ChangeUserAttrService, private changeRole: SwitchRoleService) { }
+
+
+  constructor(private router: Router, private getAllUsers: GetAllUsersService, private addUser: AddUserService, private removeUserFromAdmin: ChangeUserAttrService, private changeRole: SwitchRoleService) { }
 
   ngOnInit(): void {
-    // this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
-    //   //   this.allAdminsList = responsedata;
-    //   // console.log(responsedata);
-    //   this.allUsers = responsedata
-    //   responsedata.forEach((val: any) => {
-    //     if (val['custom:role'] === 'admin') {
-    //       this.allAdminsList.push(val);
-    //     }
-    //     else {
-    //       this.allNonAdminsList.push(val);
-    //     }
-    //   })
-      
+   console.log(this.allAdminsList)
 
-      this.dtTrigger.next(void 0);
-    // })
-
+    
+  }
+  ngOnChanges(){
+    this.dtTrigger.next(void 0);
     this.dtOptions = {
 
       pagingType: 'full_numbers',
@@ -48,23 +38,25 @@ export class AdminsTableComponent implements OnInit {
       lengthMenu: [5, 10, 15, 20]
 
     };
+    console.log("changes")
   }
 
+    
   removeAdmin(admin: any): void {
 
     this.changeRole.switchToRole(admin.sub as string, 'user').subscribe((result) => {
-        console.log(result);
-        const currentRoute = this.router.url;
-
-        
+      console.log(result);
+      const currentRoute = this.router.url;
 
 
 
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
 
-        this.router.navigate([currentRoute]);  
 
-    });
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+
+        this.router.navigate([currentRoute]);
+
+      });
 
     })
 

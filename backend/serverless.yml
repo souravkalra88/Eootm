@@ -60,6 +60,7 @@ functions:
     handler: task-type/handler.get_all_task_types  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /task-type/getAll
@@ -71,6 +72,7 @@ functions:
     handler: employees/handler.emp_by_task_type  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /employees/emp
@@ -82,6 +84,7 @@ functions:
     handler: task-list/handler.add_new_task  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /addTask
@@ -93,6 +96,7 @@ functions:
     handler: task-type/handler.add_new_task_type  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /addTaskType
@@ -105,6 +109,7 @@ functions:
     handler: employees/handler.get_all_employees  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /allemp
@@ -116,6 +121,7 @@ functions:
     handler: employees/handler.create_new_employee  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /newemp
@@ -127,6 +133,7 @@ functions:
     handler: task-list/handler.get_tasks_by_tasktype  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /tasks_by_tasktype/{type}
@@ -138,6 +145,7 @@ functions:
     handler: task-type/handler.update_tasktype  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /update_tasktype
@@ -150,6 +158,7 @@ functions:
     handler: employees/handler.get_all_users
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /get_all_users
@@ -160,6 +169,7 @@ functions:
     handler: employees/handler.deleteUser  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /delete_user/{user_name}
@@ -172,6 +182,7 @@ functions:
     handler: task-type/handler.add_new_tasktype_to_employee 
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /add_new_tasktype_to_employee 
@@ -183,15 +194,54 @@ functions:
     handler: employees/handler.updateUser  
     layers:
      - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
     events:
       - httpApi:
           path: /update_user
           method: put
           authorizer: 
             name: serviceAuthorizer      
+  
+  get_all_tasktype_assigned_users:
+    handler: employees/handler.get_all_tasktype_assigned_users  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
+    events:
+      - httpApi:
+          path: /get_all_tasktype_assigned_users
+          method: get
+          authorizer: 
+            name: serviceAuthorizer      
+ 
+  create_user:
+    handler: employees/handler.create_user  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
+    events:
+      - httpApi:
+          path: /create_user
+          method: post
+          authorizer: 
+            name: serviceAuthorizer
+  verify_user:
+    handler: employees/handler.verify_user  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
+    events:
+      - httpApi:
+          path: /verify_user
+          method: post
+          authorizer: 
+            name: serviceAuthorizer
 
-
-
+  generate_random_password:
+    handler: employees/handler.generate_random_password      
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1   
 plugins:
   - serverless-python-requirements
 

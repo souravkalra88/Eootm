@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
   
 
-   isAuth = this.authService.isLoggedIn()
+  // isAuth = this.authService.isLoggedIn()
   
   
 
