@@ -6,6 +6,8 @@ import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.servi
 import { environment } from 'src/environments/environment';
 import { ConnectableObservable } from 'rxjs';
 import { Router } from '@angular/router';
+import { GetAllUsersService } from 'src/app/service/get-all-usersservice';
+import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 @Component({
   selector: 'app-addtask',
   templateUrl: './addtask.component.html',
@@ -19,7 +21,8 @@ export class AddtaskComponent implements OnInit {
   openaddpopup:boolean=false;
   displayStyle : string = "block"
   TaskTypes:any;
-  allEmpsData:any;
+  allEmployees:any;
+  allUsers:any[]=[];
   emp: string="";
 resp:any;
   task:number=0
@@ -28,18 +31,21 @@ resp:any;
   tasktype_emp_data:any
 
 
-
-  constructor(private router : Router,private AllEmployees:GetAllEmployeesService, private AllTaskTypes : GetAllTaskTypesService, private add_new_tasktype_to_employee: AddNewTasktypeToEmployeeService){
+  constructor(private router : Router,private getAllUsers:GetAllUsersService, private AllTaskTypes : GetAllTaskTypesService, private add_new_tasktype_to_employee: AddNewTasktypeToEmployeeService){
 
   }
 
   ngOnInit(): void {
-    
-    this.AllEmployees.allEmployeesData().subscribe((data: any)=>{
-      console.log(data);
-      this.allEmpsData = data;
-      // console.log(this.allEmpsData);
-          });
+
+
+    this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
+      this.allEmployees = responsedata;
+      this.allEmployees.forEach((val: any) => {
+        if (val['custom:role'] === 'user')  {
+           this.allUsers.push(val);
+        }
+      })})
+  
 
     this.AllTaskTypes.allTaskTypesData().subscribe((data: any)=>{
       console.log(data);
@@ -55,7 +61,7 @@ resp:any;
       let date=form.value.date
       let tasktypID=this.TaskTypes[task_index]['sk']
       let tasktype_name=this.TaskTypes[task_index]['tasktype']
-      let empID=this.allEmpsData[emp_index]['sk']
+      let empID=this.allUsers[emp_index]['sub']
       let body={
         "empID":empID,
         "date": date,

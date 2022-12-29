@@ -152,8 +152,6 @@ def get_all_users(event,response):
 
       list.append(item)    
 
-   
-
   response={"statusCode":200, "body": json.dumps(list, indent=4, sort_keys=True, default=str)}
   return response  
  
@@ -170,6 +168,74 @@ def deleteUser(event , response):
     
   return {"statusCode":200, "body": json.dumps("User Deleted")}
 
+def get_all_tasktype_assigned_users(event,response):
+  cognito_idp_client =boto3.client('cognito-idp')
+  user_pool_id = "ap-south-1_sQeBGTxl8"
+  client_id = "48hko2q1qsd36p6d3kcrla334j"
+  client_secret=None
+  cognito = boto3.client('cognito-idp')
+  list = []
+  users= []
+  next_page = None
+  kwargs = {
+        'UserPoolId': user_pool_id
+    }
+  users_remain = True
+  while(users_remain):
+      if next_page:
+          kwargs['PaginationToken'] = next_page
+      response = cognito.list_users(**kwargs)
+      users.extend(response['Users'])
+      next_page = response.get('PaginationToken', None)
+      users_remain = next_page is not None
+  for i in users:
+      item = {}
+      for j in i["Attributes"]:
+
+          item.update({j['Name'] :j['Value']} )  
+
+      list.append(item)    
+
+   
+  emp_response=[]
+  for i in list:
+    l=[]   
+    emp_id=i['sub']
+    records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
+                          ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
+    for rec in records:                      
+        l.append({'tasktype':rec.get('tasktype'),"date":rec.get('date')})
+
+    if len(l)>0:
+      i['tasktype']=l[0]['tasktype']
+      i["date"]=l[0]['date']
+      emp_response.append(i)
+      for j in range(1,len(l)):
+        new=i.copy()
+        new['tasktype']=l[j]['tasktype']
+        new['date']=l[j]["date"]
+        emp_response.append(new)
+                                      
+  response = {"statusCode": 200,
+                'headers': {'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                      'Access-Control-Allow-Methods': '*'
+        },
+                "body":json.dumps(emp_response)}
+  return response
+ 
+
+
+def deleteUser(event , response):
+  client = boto3.client('cognito-idp')
+  user_pool_id = "ap-south-1_sQeBGTxl8"
+  user_name = str(event['pathParameters']['user_name'])
+  response = client.admin_delete_user(
+    UserPoolId=user_pool_id,
+    Username=user_name
+    )
+    
+  return {"statusCode":200, "body": json.dumps("User Deleted")}
 
 
 def updateUser(event,response):

@@ -189,7 +189,18 @@ functions:
           method: put
           authorizer: 
             name: serviceAuthorizer      
-
+  
+  get_all_tasktype_assigned_users:
+    handler: employees/handler.get_all_tasktype_assigned_users  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+    events:
+      - httpApi:
+          path: /get_all_tasktype_assigned_users
+          method: get
+          authorizer: 
+            name: serviceAuthorizer      
+ 
 
 
 plugins:

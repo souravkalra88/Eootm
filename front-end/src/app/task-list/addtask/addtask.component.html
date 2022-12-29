@@ -17,7 +17,7 @@
                     <label for="newTaskTypeTitle">Employee</label>
                     <select class="form-select form-select-sm form-control" 
                         aria-label=".form-select-sm example" id="emp" name="emp" [(ngModel)]="emp">
-                        <option *ngFor="let emp of allEmpsData;  let i=index"  [value]="i" >{{emp.name}}</option>
+                        <option *ngFor="let emp of allUsers;  let i=index"  [value]="i" >{{emp.name}}</option>
                     </select><!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
                                     name="newTaskTypeTitle" class="form-control" /> -->
                     <br>
