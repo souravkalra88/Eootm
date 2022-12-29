@@ -26,7 +26,7 @@
             <br>
             <br>
 
-            <table class="table text-center table-bordered table-striped table-hover display text-center" datatable
+            <table class="table table-bordered table-striped table-hover " datatable
                 [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
                 <thead>
                     <tr>
@@ -35,9 +35,10 @@
                         <th class="headings">Phone</th>
                         <th class="headings">Profile</th>
                         <th class="headings">Gender</th>
-                        <th class="headings">DOJ</th>
+
                         <th class="headings">log_in_access</th>
                         <th class="headings">Role</th>
+
                         <th class="headings">Edit</th>
 
                     </tr>
@@ -49,10 +50,10 @@
                         <td>{{ employee.phone_number }}</td>
                         <td>{{ employee.profile }}</td>
                         <td>{{ employee.gender }}</td>
-                        
-                        <td>{{ employee['custom:date_of_joining'] }}</td>
+
                         <td>{{ employee['custom:log_in_access'] }}</td>
                         <td>{{ employee['custom:role'] }}</td>
+
                         <td><button class="  btn " type="button" data-toggle="modaledit"
                                 (click)="openEditPopup(employee,inputform)" data-target="#editModal">
                                 <i class="fas fa-edit"></i>

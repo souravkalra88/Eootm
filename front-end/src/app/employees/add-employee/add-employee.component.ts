@@ -29,13 +29,15 @@ export class AddEmployeeComponent implements OnInit {
       
       "name":this.newUserData.name,
       "password": "Pass@123",
+
       "email":this.newUserData.email,
       "gender":this.newUserData.gender,
       "phone_number":this.newUserData.phone_number,
       "profile":this.newUserData.profile,
-      "date_of_joining": this.newUserData['custom:date_of_joining'],
+   
       "role": this.newUserData['custom:role'],
       "log_in_access": this.newUserData['custom:log_in_access'],
+
 
   }
 
