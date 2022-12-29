@@ -1,31 +1,20 @@
 import json
-
 import os
-
 import boto3
 import uuid
 from boto3 import resource
-
 from boto3.dynamodb.conditions import Key
-
 import datetime 
-
-
-
 dynamodb = boto3.resource(
 
     'dynamodb', region_name=str(os.environ['REGION_NAME']))
 
 dbtable = str(os.environ['DYNAMODB_TABLE'])
-
-
-
 table = dynamodb.Table(dbtable)
 
 def add_new_tasktype_to_employee(event, response):
   body=json.loads(event["body"])
   resp=table.put_item(
-
     Item={
 
       "pk":"emp_tasktype",
@@ -72,6 +61,7 @@ def add_new_tasktype_to_employee(event, response):
       postitem["taskname"]= item["task"]
       postitem["completion_status"]= "incomplete"
       postitem["due_date"]=str(due_date)
+      postitem["date_of_assigning"]=body["date"]
       response_body=table.put_item(
         Item=postitem
       )      
