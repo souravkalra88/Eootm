@@ -73,7 +73,6 @@ functions:
           authorizer: 
             name: serviceAuthorizer        
             
-          
 plugins:
   - serverless-python-requirements
 
