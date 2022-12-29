@@ -26,9 +26,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
    
     this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
       this.AllEmployees=responsedata;
-      console.log(this.AllEmployees);
+      //  console.log(this.AllEmployees);
       this.dtTrigger.next(void 0);
-      console.log("responsedata",responsedata);
+      // console.log("responsedata",responsedata);
     })
   
    // console.log(this.AllEmployees);

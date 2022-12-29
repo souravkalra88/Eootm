@@ -20,8 +20,8 @@ export class AddtaskComponent implements OnInit {
   displayStyle : string = "block"
   TaskTypes:any;
   allEmpsData:any;
-  empID: string="";
-
+  emp: string="";
+resp:any;
   task:number=0
   // tasktypeID:string=""; 
   date:string=""; 
@@ -47,43 +47,47 @@ export class AddtaskComponent implements OnInit {
       // console.log(this.allEmpsData);
           });     
         }
-  
-        
+    
   NewTasktypeEmployee(form:NgForm){
     if(form.valid){
-      let emp_id = form.value.emp
+      let emp_index= form.value.emp
       let task_index=form.value.tasktype
       let date=form.value.date
       let tasktypID=this.TaskTypes[task_index]['sk']
       let tasktype_name=this.TaskTypes[task_index]['tasktype']
-
+      let empID=this.allEmpsData[emp_index]['sk']
       let body={
-        "empID":emp_id,
+        "empID":empID,
         "date": date,
         "tasktypeID":tasktypID,
         "tasktype_name":tasktype_name,
         "CurrentUser":environment.currentUser
       }
-      console.log(body)
+      // console.log(body)
       this.add_new_tasktype_to_employee.add_new_tasktype_to_employee(body).subscribe((data: any)=>{
-        
-        console.log("POST SUCCESS")});
+
+        this.resp=data;
+        console.log(data)
         const currentRoute = this.router.url;
 
+      
+        
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+    
+            this.router.navigate([currentRoute]);  
+    
+        });
 
-
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-
-        this.router.navigate([currentRoute]);  
-
-    });
-             
+      });
+        
+    
+         
   this.closePopup();
-
   }}
-
+  
   closePopup(){
     this.displayStyle="None"
     this.closeClicked.emit()
-  }    
-    }
+  }   
+    
+}  

@@ -8,7 +8,7 @@ from boto3 import resource
 
 from boto3.dynamodb.conditions import Key
 
-from datetime import datetime
+import datetime 
 
 
 
@@ -32,16 +32,16 @@ def add_new_tasktype_to_employee(event, response):
       "sk":body["empID"]+"#"+body["tasktypeID"],
       "tasktype":body["tasktype_name"],
       "date":body["date"],
-      "created_at": str(datetime.utcnow()) ,
+      "created_at": str(datetime.datetime.utcnow()) ,
       "created_by": body["CurrentUser"],
-      "modified_at": str(datetime.utcnow()) ,
+      "modified_at": str(datetime.datetime.utcnow()) ,
       "modified_by": body["CurrentUser"]
     })
   response = {"statusCode": 200, "body": json.dumps(resp)}
 
 
   key="pk"
-  value=body["tasktype_name"]
+  value=body["tasktype_name"].lower()
   if key is not None and value is not None:
       filtering_exp = Key(key).eq(value)
       resp= table.query(KeyConditionExpression=filtering_exp)
@@ -54,11 +54,12 @@ def add_new_tasktype_to_employee(event, response):
   #   "completion_status":"",
   #   "due_date": ""#date+ item['due duration]
   # }    
-  date_format = '%d-%m-%Y'
+  
+  date_format = '%Y-%m-%d'
   with table.batch_writer() as batch:
     for item in items:
       postitem={}
-      due_days=item["due_duration"][:-1]
+      due_days=int(item["due_duration"][:-1])
       due_type=item["due_duration"][-1]
       if due_type=="a":
         due_date = datetime.datetime.strptime(body["date"], date_format) + datetime.timedelta(days=due_days)
@@ -70,11 +71,11 @@ def add_new_tasktype_to_employee(event, response):
       postitem["sk"]= body["tasktypeID"]+"#"+item['sk']
       postitem["taskname"]= item["task"]
       postitem["completion_status"]= "incomplete"
-      postitem["due_date"]=due_date
+      postitem["due_date"]=str(due_date)
       response_body=table.put_item(
         Item=postitem
       )      
-  response={"status_code":200, "body":"POST SUCCESS"}
+  response={"status_code":200, "body":items}
   return response
   
 
