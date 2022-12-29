@@ -60,15 +60,12 @@ export class ManageEmpTaskListComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [5, 10, 15, 20],
-    };
-      
-      
-        
-
-    
+    };   
   } 
   checkValue(val:any){
-    console.log(this.isChecked);
+    if(val===true){
+
+    }
   }
  
   switchType(obj:any):void {
