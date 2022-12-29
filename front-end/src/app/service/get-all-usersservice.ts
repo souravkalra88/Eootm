@@ -23,6 +23,7 @@ export class GetAllUsersService {
 
 
   getAllUsers():Observable<any>{
+  //  console.log(environment.idToken)
 
     this.url = urls.getAllUsers
 

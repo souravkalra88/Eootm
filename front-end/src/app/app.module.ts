@@ -31,6 +31,7 @@ import { AddEmployeeComponent } from './employees/add-employee/add-employee.comp
 import { AddAdminsComponent } from './admins/add-admins/add-admins.component';
 import { FilterByStatusPipe } from './admins/filter-status-by-pipe';
 import { UserViewComponent } from './user-view/user-view.component';
+import { SidenavUserComponent } from './sidenav-user/sidenav-user.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UserViewComponent } from './user-view/user-view.component';
     AdminsTableComponent,
     AddEmployeeComponent,
     AddAdminsComponent,
-    UserViewComponent
+    UserViewComponent,
+    SidenavUserComponent
     
   ],
   imports: [

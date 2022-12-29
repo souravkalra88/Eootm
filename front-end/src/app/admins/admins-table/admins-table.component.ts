@@ -23,7 +23,7 @@ export class AdminsTableComponent implements OnInit {
   constructor(private router: Router, private getAllUsers: GetAllUsersService, private addUser: AddUserService, private removeUserFromAdmin: ChangeUserAttrService, private changeRole: SwitchRoleService) { }
 
   ngOnInit(): void {
-   
+   console.log(this.allAdminsList)
 
     
   }

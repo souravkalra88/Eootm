@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
-  constructor(private switchView : SwitchHeaderService , private router : Router) { }
-  result :any
-  isLoggedIn(checkForRole : string): boolean {
+  constructor(private switchView: SwitchHeaderService, private router: Router) { }
+  result: any
+  isLoggedIn(checkForRole: string): boolean {
     var isAuth = false;
 
     let poolData = {
@@ -22,8 +22,8 @@ export class AuthService {
 
     var userPool = new CognitoUserPool(poolData);
     var cognitoUser = userPool.getCurrentUser();
-    
-    
+
+
 
     if (cognitoUser != null) {
       cognitoUser.getSession((err: any, session: any) => {
@@ -31,23 +31,30 @@ export class AuthService {
           alert(err.message || JSON.stringify(err));
         }
 
-        if(session!=null)
-        environment.idToken  = environment.idToken  == '' ? session.getRefreshToken().getToken() : session.getAccessToken().getJwtToken() ;
-        
-        var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name'] 
-        environment.role =  cognitoUser?.getSignInUserSession()?.getIdToken().payload['role']
+        if (session != null)
+          environment.idToken = session.getAccessToken().getJwtToken() ;
+
+         
+        var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name']
+        environment.role = cognitoUser?.getSignInUserSession()?.getIdToken().payload['role']
         environment.currentUser = currentUsername
-        
-        
-        if(environment.role === 'admin' ) isAuth = true;
-        else{
-          if(checkForRole === 'user')
-          if (cognitoUser?.getSignInUserSession()?.getIdToken().payload['custom:log_in_access'] === 'yes') isAuth = session.isValid();
+     
+
+        if (environment.role === 'admin' && checkForRole === 'admin') {isAuth = true; 
+          // console.log(this.router.url)
+           }
+        else {
+          if (checkForRole === 'user')
+            if (cognitoUser?.getSignInUserSession()?.getIdToken().payload['custom:log_in_access'] === 'yes') {isAuth = session.isValid();}
           console.log(environment.role)
-  
+
+
         }
-       
+
+
         
+
+
       })
     }
     return isAuth;

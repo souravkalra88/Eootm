@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { SwitchHeaderService } from '../service/switch-header.service';
 
@@ -7,13 +7,21 @@ import { SwitchHeaderService } from '../service/switch-header.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent {
+export class SidenavComponent implements OnInit  {
 
 view:string=""
 role:string = environment.role
 constructor(private switchHeader:SwitchHeaderService){
 this.view=this.switchHeader.getCurrentView()
 }  
+  ngOnInit(): void {
+  console.log(this.switchHeader.getCurrentView())
+  }
+getView():string
+{
+ // console.log(this.switchHeader.getCurrentView())
+  return this.switchHeader.getCurrentView()
+}
 
 
 

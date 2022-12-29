@@ -1,7 +1,7 @@
 
 
 <div class = "side-nav-content w-100" >
-    <ul class = "nav-list w-100" *ngIf = "this.view === 'admin_view' ">
+    <ul class = "nav-list w-100" *ngIf = "this.role === 'admin'  ">
         
         <li class = "nav-list-item ">
             <i class = "fa-solid fa-house"></i>
@@ -64,14 +64,4 @@
     </ul>
 
 
-    <ul class = "nav-list w-100"  *ngIf = " this.view === 'user_view' ">
-           
-        <li class = "nav-list-item ">
-            <i class = "fa-solid fa-house"></i>
-            <span class = "routeName">
-                <a routerLinkActive="active sub-active-item" [routerLink] = "['/user-view']">Assigned Tasks</a>
-            </span>
-
-        </li>
-    </ul>
-</div>
+    

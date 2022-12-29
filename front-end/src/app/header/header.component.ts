@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   switchView(view:string):void {
-    this.switchHeader.switchTo(view);
-
+    this.switchHeader.setView(view);
+    console.log(this.switchHeader.getCurrentView())
   }
 }
