@@ -108,10 +108,7 @@
                                         [(ngModel)]="this.currentUserSelected['profile']" name="editprofile"
                                         class="form-control" />
 
-                                    <label for="editDoj" class="textbox-label">DOJ</label>
-                                    <input type="date" id="editDoj"
-                                        [(ngModel)]="this.currentUserSelected['custom:date_of_joining']" name="editDoj"
-                                        class="form-control" />
+                                    
 
                                     <label for="empsCanLogIn" class="textbox-label">Can Login</label>
                                     <select id="empsCanLogIn" class="browser-default custom-select" *ngIf="this.currentUserSelected['custom:role'] === 'user' "

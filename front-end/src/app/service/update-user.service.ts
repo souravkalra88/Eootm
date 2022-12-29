@@ -26,7 +26,7 @@ export class UpdateUserService {
       "phone_number" : user.phone_number,
       
       "profile" : user.profile,
-      "custom:date_of_joining" : user["custom:date_of_joining"],
+      
       "custom:log_in_access" : user["custom:log_in_access"]
     }
   //  console.log(nUser)

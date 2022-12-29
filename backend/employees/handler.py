@@ -4,8 +4,10 @@ from logging import Logger
 import boto3
 import os
 import boto3
+from botocore.exceptions import ClientError
 import requests
 from boto3 import resource
+from passlib import pwd
 from boto3.dynamodb.conditions import Key
 import uuid
 dynamodb = boto3.resource(
@@ -251,3 +253,69 @@ def updateUser(event,response):
 )
   return {"statusCode":200, "body": json.dumps(response)}
 
+def verify_user(event,response):
+  body = json.loads(event["body"])
+  client = boto3.client('cognito-idp')
+  response = client.admin_update_user_attributes(
+    UserPoolId='ap-south-1_sQeBGTxl8',
+    Username=body['username'],
+    UserAttributes=[
+        {
+            'Name': 'email_verified',
+            'Value': 'true'
+        },
+    ],
+    ClientMetadata={
+        'string': 'string'
+    }
+)
+  return {"statusCode" : 200, "body" : json.dumps(response, indent=4, sort_keys=True, default=str)}
+
+def create_user(event,response):
+  body = json.loads(event["body"])
+  client = boto3.client('cognito-idp')
+  _pass = generate_random_password()
+  response = client.admin_create_user(
+    UserPoolId='ap-south-1_sQeBGTxl8',
+    Username=body['email'],
+    UserAttributes=body['attr'],
+    TemporaryPassword= _pass,
+    ForceAliasCreation=False,
+    
+    DesiredDeliveryMediums=[
+        'EMAIL',
+    ],
+    ClientMetadata={
+        'string': 'string'
+    }
+)
+
+
+  attrArr = response['User']['Attributes']
+  sub = attrArr[0]
+
+  username = str(sub['Value'])
+  
+  response = client.admin_update_user_attributes(
+    UserPoolId='ap-south-1_sQeBGTxl8',
+    Username=username,
+    UserAttributes=[
+        {
+            'Name': 'email_verified',
+            'Value': 'true'
+        },
+    ],
+    ClientMetadata={
+        'string': 'string'
+    }
+)
+
+  return {"statusCode" : 200, "body" : json.dumps(response, indent=4, sort_keys=True, default=str)}
+
+
+
+def generate_random_password():
+  
+  _pass = str(pwd.genword(length = 12 , charset = "ascii_72"))
+
+  return _pass

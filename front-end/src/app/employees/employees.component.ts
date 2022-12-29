@@ -42,6 +42,7 @@ ngOnInit(): void{
     //   this.allAdminsList = responsedata;
   //  console.log(responsedata);
     this.AllEmployees = responsedata;
+    console.log(this.AllEmployees);
     
 
     this.dtTrigger.next(void 0);

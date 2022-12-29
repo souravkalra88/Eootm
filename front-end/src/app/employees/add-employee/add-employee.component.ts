@@ -43,7 +43,14 @@ export class AddEmployeeComponent implements OnInit {
 
   
 
- this.addUser.addUser(body);
+ this.addUser.addUser(body).subscribe(data =>{
+
+  const currentRoute = this.router.url;
+  
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentRoute]);  
+  }); 
+ });
   console.log(body);
    
     // this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
@@ -51,11 +58,7 @@ export class AddEmployeeComponent implements OnInit {
     // });
    
     
-    const currentRoute = this.router.url;
-  
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-        this.router.navigate([currentRoute]);  
-    }); 
+    
    
   
       this.closePopup();
