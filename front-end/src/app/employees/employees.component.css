@@ -42,10 +42,12 @@ app-sidenav{
     width: 100%;
 }
 
-
+.addEmp{
+    height: 60%;
+}
 /* #editModal{
     margin-top : 40px
 } */
 .addTask{
-    height: 60%;
+    overflow-y: auto;
 }
