@@ -7,14 +7,30 @@
         <app-sidenav-user class="mcontent"></app-sidenav-user>
         <div class="display-area w-75 ">
             <div class="title d-flex">
-                <h3>Assigned Tasks </h3>
+                <h3>Tasks For You</h3>
                 <br>
 
-                
+
 
             </div>
-            
+
+
+            <br><br>
+            <ul class="list-group text-center">
+                <div *ngFor="let tasks of tasksList">
+                    <li class="list-group-item d-flex item justify-content-between align-items-center">
+                        <button type="button" class=" date btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                            {{tasks['date_of_assigning']}}
+                          </button>
+                        {{tasks['taskname']}}
+                        <span *ngIf = "tasks['completion_status'] === 'complete' " class="badge badge-primary badge-pill badge-success"><i class="fa fa-check" aria-hidden="true"></i></span>
+                        <span *ngIf = "tasks['completion_status'] === 'incomplete' " class="badge badge-primary badge-pill badge-danger"><i class="fa fa-times" aria-hidden="true"></i></span>
+                    </li><br>
+                </div>
+
+            </ul>
         </div>
+
 
 
     </main>

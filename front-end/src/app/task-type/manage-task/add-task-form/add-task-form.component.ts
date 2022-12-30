@@ -82,7 +82,7 @@ export class AddTaskFormComponent  implements OnInit {
       console.log("all tasks added",body);
       this.addNewTask.addNewTask(body).subscribe(data => {
         this.router.navigateByUrl('/', { skipLocationChange: false }).then(() => {
-          this.router.navigate(['/task-type/manage'], {
+          this.router.navigate(['/admin-view/task-type/manage'], {
             state: { taskType: this.title }
           });
         })

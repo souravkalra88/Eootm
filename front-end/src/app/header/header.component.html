@@ -8,7 +8,7 @@
       <img [src]=imgSrc width=180px height=80px alt="logo" class="logo" (click) = "reloadHome()">
       <!-- <div class="navbar-collapse"> -->
         <div class="menu">
-        <span routerLinkActive="active sub-active-item"  *ngIf = "this.role === 'admin'  " (click)="switchView('admin_view') " [routerLink] = "['/home']">Admin View</span>
+        <span routerLinkActive="active sub-active-item"  *ngIf = "this.role === 'admin'  " (click)="switchView('admin_view') " [routerLink] = "['/admin-view']">Admin View</span>
         <span></span>
         <span routerLinkActive="active sub-active-item"     class="userView" (click)="switchView('user_view')" [routerLink] = "['/user-view']">User View</span>
         </div>

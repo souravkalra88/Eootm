@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AllEmployeesData } from 'src/app/models/EmployessDataModel';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
+import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 
 @Component({
@@ -14,20 +15,21 @@ export class ManageEmpTaskListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   AllEmployees:any;
+  index: number = 0
   isChecked: boolean = false;
   currentEmployee:AllEmployeesData 
   currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
-  constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private getTaskByType: GetTaskByTasktypesService){
+  constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-   
+   if(this.router.getCurrentNavigation()?.extras.state?.['index']!== undefined) this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
     this.currentEmployee = tname
-  //  console.log(this.employee)
+    console.log(this.currentEmployee)
   }
 
 
   ngOnInit() {
-    this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
+    this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
       this.AllEmployees=responsedata;
       console.log(this.AllEmployees);
       if(this.currentEmployee === undefined) this.currentEmployee = responsedata[0];
@@ -60,32 +62,27 @@ export class ManageEmpTaskListComponent implements OnInit {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [5, 10, 15, 20],
-    };
-      
-      
-        
-
-    
+    };   
   } 
   checkValue(val:any){
-    console.log(this.isChecked);
+    if(val===true){
+
+    }
   }
  
-  switchType(obj:any):void {
-    for(var val of this.currentEmployeeTaskTypes ) {
-      if(val.emp_id === obj){
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/task-list/manage'],{
-        state:{employee:val}
-      });  
-  });
-      }
-      break;
-    }
-  
-    
+  switchType(obj:number):void {
+
+  console.log(obj)
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/admin-view/task-list/manage'],{
+          state:{employee:this.AllEmployees[obj] , index:obj}
+        });  
+    });
   }
 
 
-
+  isCheckedInv(event:any , task:any){
+    this.isChecked = event.value;
+    console.log(event)
+  }
 }
