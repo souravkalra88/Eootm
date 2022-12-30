@@ -43,7 +43,6 @@
                         <th>Description</th>
                         <th>Assignee</th>
 
-                        <th>DOJ</th>
 
 
                     </tr>
@@ -51,11 +50,10 @@
                 <tbody>
                     <tr *ngFor="let task of eTasks">
 
-                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault"> </td>
+                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" (change)="isChecked($event)" > </td>
                         <td>{{task.task}}</td>
                         <td>{{task.task_description}}</td>
                         <td>{{task.owned_by}}</td>
-                        <td>{{currentEmployee.DOJ}}</td>
 
 
 
