@@ -32,27 +32,28 @@ export class AuthService {
         }
 
         if (session != null)
-          environment.idToken = session.getAccessToken().getJwtToken() ;
+          environment.idToken = session.getAccessToken().getJwtToken();
 
-         
+
         var currentUsername = cognitoUser?.getSignInUserSession()?.getIdToken().payload['name']
         environment.role = cognitoUser?.getSignInUserSession()?.getIdToken().payload['role']
         environment.currentUser = currentUsername
-     
+        environment.emp_id = cognitoUser?.getSignInUserSession()?.getIdToken().payload['sub']
 
-        if (environment.role === 'admin' && checkForRole === 'admin') {isAuth = true; 
+        if (environment.role === 'admin' && checkForRole === 'admin') {
+          isAuth = true;
           // console.log(this.router.url)
-           }
+        }
         else {
           if (checkForRole === 'user')
-            if (cognitoUser?.getSignInUserSession()?.getIdToken().payload['custom:log_in_access'] === 'yes') {isAuth = session.isValid();}
+            if (cognitoUser?.getSignInUserSession()?.getIdToken().payload['custom:log_in_access'] === 'yes') { isAuth = session.isValid(); }
           console.log(environment.role)
 
 
         }
 
 
-        
+
 
 
       })
