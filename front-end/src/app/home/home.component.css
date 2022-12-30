@@ -13,6 +13,11 @@ main{
     z-index:1;
 
 }
+
+.title{
+    justify-content: space-between;
+}
+
 app-sidenav{
     
     background-color:#DDDDDD;
@@ -32,5 +37,8 @@ app-sidenav{
     left: 230px;
     /* width: calc(100%-230px); */
     width: 100%;
-    top: 55px;
+    top: 64px;
+}
+li{
+    border: 3px outset #DDDDDD;
 }

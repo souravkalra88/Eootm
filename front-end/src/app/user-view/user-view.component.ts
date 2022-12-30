@@ -19,7 +19,7 @@ export class UserViewComponent implements OnInit {
 
     this.getCurrentUserTasks.allTaskByTaskType(this.emp_id).subscribe(response => {
         this.tasksList = response
-        // console.log(this.tasksList)
+        console.log(this.tasksList)
     })
   }
   

@@ -34,3 +34,11 @@ app-sidenav-user{
     width: 100%;
     top: 55px;
 }
+.date{
+    cursor: default !important
+}
+.item{
+    border: 10px soild #DDDDDD !important;
+    display: flex;
+    justify-content: space-around;
+}

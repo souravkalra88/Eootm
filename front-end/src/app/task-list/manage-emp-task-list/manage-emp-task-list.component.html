@@ -23,12 +23,12 @@
 
                 <span class="options">
 
-                    <!-- <select class="form-select form-select-sm form-control" [(ngModel)] = "currentEmployee.emp_id" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" >
+                    <select class="form-select form-select-sm form-control"  [(ngModel)] = "index" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" >
                 
-                    <option *ngFor="let emps of currentEmployeeTaskTypes" [value]="emps.emp_id" >{{emps.tasktype}}</option>
+                    <option *ngFor="let emps of AllEmployees;let i = index" [value]="i" >{{AllEmployees[i].name}} | {{AllEmployees[i].tasktype}}</option>
                     
                     
-                  </select> -->
+                  </select>
                 </span>
 
             </div>

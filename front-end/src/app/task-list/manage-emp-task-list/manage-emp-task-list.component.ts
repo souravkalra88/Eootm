@@ -15,13 +15,14 @@ export class ManageEmpTaskListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   AllEmployees:any;
+  index: number = 0
   isChecked: boolean = false;
   currentEmployee:AllEmployeesData 
   currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
   constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-   
+   if(this.router.getCurrentNavigation()?.extras.state?.['index']!== undefined) this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
     this.currentEmployee = tname
     console.log(this.currentEmployee)
   }
@@ -69,19 +70,14 @@ export class ManageEmpTaskListComponent implements OnInit {
     }
   }
  
-  switchType(obj:any):void {
-    for(var val of this.currentEmployeeTaskTypes ) {
-      if(val.emp_id === obj){
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/admin-view/task-list/manage'],{
-        state:{employee:val}
-      });  
-  });
-      }
-      break;
-    }
-  
-    
+  switchType(obj:number):void {
+
+  console.log(obj)
+  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/admin-view/task-list/manage'],{
+          state:{employee:this.AllEmployees[obj] , index:obj}
+        });  
+    });
   }
 
 
