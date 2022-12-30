@@ -84,5 +84,7 @@ export class ManageEmpTaskListComponent implements OnInit {
   }
 
 
-
+  isCheckedInv(event:any){
+    this.isChecked = event
+  }
 }
