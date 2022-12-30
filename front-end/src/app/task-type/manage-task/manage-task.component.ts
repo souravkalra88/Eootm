@@ -66,7 +66,7 @@ export class ManageTaskComponent implements OnInit {
 
 
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/task-type/manage'], {
+      this.router.navigate(['/admin-view/task-type/manage'], {
         state: { taskType: type }
       });
     });
@@ -86,7 +86,7 @@ export class ManageTaskComponent implements OnInit {
   }
   saveAddNewTask() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/task-type/manage'], {
+      this.router.navigate(['/admin-view/task-type/manage'], {
         state: { taskType: this.title }
       });
     });

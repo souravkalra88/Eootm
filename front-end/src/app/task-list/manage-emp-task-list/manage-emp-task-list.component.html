@@ -8,7 +8,7 @@
         <div class="display-area w-75  ">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a [routerLink] = "['/task-list']">Tasks</a></li>
+                  <li class="breadcrumb-item"><a [routerLink] = "['/admin-view/task-list']">Tasks</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
               </nav>
@@ -50,7 +50,7 @@
                 <tbody>
                     <tr *ngFor="let task of eTasks">
 
-                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" (change)="isCheckedInv($event)" > </td>
+                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" (change)="isCheckedInv($event , task.task)" > </td>
                         <td>{{task.task}}</td>
                         <td>{{task.task_description}}</td>
                         <td>{{task.owned_by}}</td>

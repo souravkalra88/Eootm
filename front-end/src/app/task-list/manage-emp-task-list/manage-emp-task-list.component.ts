@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AllEmployeesData } from 'src/app/models/EmployessDataModel';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
+import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 
 @Component({
@@ -18,16 +19,16 @@ export class ManageEmpTaskListComponent implements OnInit {
   currentEmployee:AllEmployeesData 
   currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
-  constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private getTaskByType: GetTaskByTasktypesService){
+  constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
    
     this.currentEmployee = tname
-  //  console.log(this.employee)
+    console.log(this.currentEmployee)
   }
 
 
   ngOnInit() {
-    this.GetAllEmployees.allEmployeesData().subscribe((responsedata:any)=>{
+    this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
       this.AllEmployees=responsedata;
       console.log(this.AllEmployees);
       if(this.currentEmployee === undefined) this.currentEmployee = responsedata[0];
@@ -72,7 +73,7 @@ export class ManageEmpTaskListComponent implements OnInit {
     for(var val of this.currentEmployeeTaskTypes ) {
       if(val.emp_id === obj){
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['/task-list/manage'],{
+      this.router.navigate(['/admin-view/task-list/manage'],{
         state:{employee:val}
       });  
   });
@@ -84,7 +85,8 @@ export class ManageEmpTaskListComponent implements OnInit {
   }
 
 
-  isCheckedInv(event:any){
-    this.isChecked = event
+  isCheckedInv(event:any , task:any){
+    this.isChecked = event.value;
+    console.log(event)
   }
 }

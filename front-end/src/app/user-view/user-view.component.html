@@ -7,14 +7,21 @@
         <app-sidenav-user class="mcontent"></app-sidenav-user>
         <div class="display-area w-75 ">
             <div class="title d-flex">
-                <h3>Assigned Tasks </h3>
+                <h3>Tasks For You</h3>
                 <br>
 
                 
 
             </div>
             
+
+            <br><br>
+            <ul class="list-group text-center">
+                <li class="list-group-item list-group-item" *ngFor="let tasks of tasksList">{{tasks['taskname']}}</li>
+
+              </ul>
         </div>
+        
 
 
     </main>

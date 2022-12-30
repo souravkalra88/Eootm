@@ -53,7 +53,7 @@ export class AuthComponent implements OnInit{
         environment.idToken = result.getIdToken().getJwtToken()
         environment.currentUserName = result.getIdToken().payload['cognito:username']
         if(environment.role === 'admin'){
-        this.switchView.setView("admin_view");this.router.navigate(["home"])
+        this.switchView.setView("admin_view");this.router.navigate(["admin-view/home"])
       }
 
         else{ this.switchView.setView("user_view") ; this.router.navigate(["user-view"]) }
