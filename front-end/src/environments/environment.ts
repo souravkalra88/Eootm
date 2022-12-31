@@ -23,7 +23,7 @@ export const urls = {
     createUser: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/create_user",
     add_new_tasktype_to_employee:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/add_new_tasktype_to_employee",
     get_all_tasktype_assigned_users:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_tasktype_assigned_users",
-    UpdateCompletionStatus:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_completion_status"
-    
+    UpdateCompletionStatus:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_completion_status",
+    getUserTasks: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_user_tasks/{empID}"
 
 }

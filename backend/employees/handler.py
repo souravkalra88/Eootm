@@ -171,59 +171,73 @@ def deleteUser(event , response):
   return {"statusCode":200, "body": json.dumps("User Deleted")}
 
 def get_all_tasktype_assigned_users(event,response):
-  cognito_idp_client =boto3.client('cognito-idp')
-  user_pool_id = "ap-south-1_sQeBGTxl8"
-  client_id = "48hko2q1qsd36p6d3kcrla334j"
-  client_secret=None
-  cognito = boto3.client('cognito-idp')
-  list = []
-  users= []
-  next_page = None
-  kwargs = {
-        'UserPoolId': user_pool_id
-    }
-  users_remain = True
-  while(users_remain):
-      if next_page:
-          kwargs['PaginationToken'] = next_page
-      response = cognito.list_users(**kwargs)
-      users.extend(response['Users'])
-      next_page = response.get('PaginationToken', None)
-      users_remain = next_page is not None
-  for i in users:
-      item = {}
-      for j in i["Attributes"]:
+  key="pk"
+  value="emp_tasktype"
+  if key is not None and value is not None:
+      filtering_exp = Key(key).eq(value)
+      resp= table.query(KeyConditionExpression=filtering_exp)
+      items = resp.get('Items')
+    
+  # cognito_idp_client =boto3.client('cognito-idp')
+  # user_pool_id = "ap-south-1_sQeBGTxl8"
+  # client_id = "48hko2q1qsd36p6d3kcrla334j"
+  # client_secret=None
+  # cognito = boto3.client('cognito-idp')
+  # list = []
+  # users= []
+  # next_page = None
+  # kwargs = {
+  #       'UserPoolId': user_pool_id
+  #   }
+  # users_remain = True
+  # while(users_remain):
+  #     if next_page:
+  #         kwargs['PaginationToken'] = next_page
+  #     response = cognito.list_users(**kwargs)
+  #     users.extend(response['Users'])
+  #     next_page = response.get('PaginationToken', None)
+  #     users_remain = next_page is not None
+  # for i in users:
+  #     item = {}
+  #     for j in i["Attributes"]:
 
-          item.update({j['Name'] :j['Value']} )  
+  #         item.update({j['Name'] :j['Value']} )  
 
-      list.append(item)    
+  #     list.append(item)    
 
    
-  emp_response=[]
-  for i in list:
-    l=[]   
-    emp_id=i['sub']
-    records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
-                          ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
-    for rec in records:                      
-        l.append({'tasktype':rec.get('tasktype'),"date":rec.get('date')})
+  # emp_response=[]
+  # for i in list:
+  #   l=[]   
+  #   emp_id=i['sub']
+  #   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
+  #                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':emp_id})['Items']
+  #   for rec in records:                      
+  #       l.append({'tasktype':rec.get('tasktype'),"date":rec.get('date')})
 
-    if len(l)>0:
-      i['tasktype']=l[0]['tasktype']
-      i["date"]=l[0]['date']
-      emp_response.append(i)
-      for j in range(1,len(l)):
-        new=i.copy()
-        new['tasktype']=l[j]['tasktype']
-        new['date']=l[j]["date"]
-        emp_response.append(new)
+  #   if len(l)>0:
+  #     i['tasktype']=l[0]['tasktype']
+  #     i["date"]=l[0]['date']
+  #     emp_response.append(i)
+  #     for j in range(1,len(l)):
+  #       new=i.copy()
+  #       new['tasktype']=l[j]['tasktype']
+  #       new['date']=l[j]["date"]
+  #       emp_response.append(new)
+  emp_tasktype_list=[]
+  for i in items:
+    d={}
+    d["tasktype"]=i["tasktype"]
+    d["name"]=i["emp_name"]
+    d["date"]=i["date"]
+    emp_tasktype_list.append(d)
                                       
   response = {"statusCode": 200,
                 'headers': {'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
                       'Access-Control-Allow-Methods': '*'
         },
-                "body":json.dumps(emp_response)}
+                "body":json.dumps(emp_tasktype_list)}
   return response
  
 

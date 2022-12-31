@@ -90,9 +90,42 @@ def update_completion_status(event,context):
 
     )
 
-  # return event
   return {
         'statusCode': 200,
-        'body': json.dumps(response)
+        'body': json.dumps(updated_vals)
   }
 
+
+def get_user_tasks(event, response):
+    body = event['pathParameters']['type']
+    resp=table.get_item
+    key="pk"
+    value=body["empID"]
+
+    if key is not None and value is not None:
+        filtering_exp = Key(key).eq(value)
+        resp= table.query(KeyConditionExpression=filtering_exp)
+            
+        items = resp.get('Items')
+   
+   
+    return {
+
+        'statusCode': 200,
+
+        'headers': {'Content-Type': 'application/json',
+
+                    'Access-Control-Allow-Origin': '*',
+
+                      'Access-Control-Allow-Methods': '*'
+
+        },
+
+        'body': json.dumps(items),
+
+
+        'isBase64Encoded': False,
+
+    }    
+   
+    

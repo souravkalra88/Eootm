@@ -249,6 +249,19 @@ functions:
           authorizer: 
             name: serviceAuthorizer
 
+  get_user_tasks:
+    handler: task-list/handler.get_user_tasks  
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
+    events:
+      - httpApi:
+          path: /get_user_tasks/{empID}
+          method: get
+          authorizer: 
+            name: serviceAuthorizer
+
+
   generate_random_password:
     handler: employees/handler.generate_random_password      
     layers:

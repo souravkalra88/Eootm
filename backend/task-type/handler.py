@@ -21,6 +21,7 @@ def add_new_tasktype_to_employee(event, response):
       "sk":body["empID"]+"#"+body["tasktypeID"],
       "tasktype":body["tasktype_name"],
       "date":body["date"],
+      "emp_name":body["emp_name"],
       "created_at": str(datetime.datetime.utcnow()) ,
       "created_by": body["CurrentUser"],
       "modified_at": str(datetime.datetime.utcnow()) ,
@@ -159,32 +160,4 @@ def update_tasktype(event,context):
         'body': json.dumps(response)
   }
 
-
-
-
-# def get_tasktype_by_empID(event,response):
-#   empID=event["pathParameters"]["empID"]
-#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
-#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
-
-  
-#   return {
-
-#         'statusCode': 200,
-
-#         'headers': {'Content-Type': 'application/json',
-
-#                     'Access-Control-Allow-Origin': '*',
-
-#                       'Access-Control-Allow-Methods': '*'
-
-#         },
-
-#         'body': json.dumps(records),
-
-
-#         'isBase64Encoded': False,
-
-#     }
-        
 
