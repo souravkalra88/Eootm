@@ -64,6 +64,7 @@ export class ManageEmpTaskListComponent implements OnInit {
       lengthMenu: [5, 10, 15, 20],
     };   
   } 
+  
   Checked(val:any){
     this.isChecked=!(this.isChecked);
     let taskID=val['sk']
