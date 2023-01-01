@@ -6,6 +6,10 @@ app-header{
     z-index:2;
 
 }
+
+.heading{
+    font-size:x-large;
+}
 main{
     position: absolute;
     width: 100%;

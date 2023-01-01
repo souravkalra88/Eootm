@@ -7,13 +7,18 @@
         <app-sidenav class="mcontent"></app-sidenav>
         <div class="display-area w-75 h-100">
             <div class="d-flex justify-content-left">
-                <h1>Upcoming tasks:</h1>
-                <!-- <div class="spinner-border" role="status" >
-                    <span class="sr-only" id="loading">Loading...</span>
-                </div> -->
+                <h1 class="heading">Upcoming tasks:</h1>
+                <br>
+            </div>    
+                <table *ngFor="let employee of this_week_employees">
+                    <br>
+                    <tr> 
+                        {{employee.name}} {{employee.tasktype}} on {{employee.date}}
+                    </tr>
+                </table>
 
             </div>
-        </div>
+      
 
 </main>
 
