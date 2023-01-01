@@ -260,8 +260,20 @@ functions:
           method: get
           authorizer: 
             name: serviceAuthorizer
+  
+  get_completion_status:
+    handler: task-list/handler.get_completion_status
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
+    events:
+      - httpApi:
+          path: /get_completion_status/{empID}
+          method: get
+          authorizer: 
+            name: serviceAuthorizer
 
-
+  
   generate_random_password:
     handler: employees/handler.generate_random_password      
     layers:
