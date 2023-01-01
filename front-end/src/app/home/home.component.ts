@@ -15,17 +15,17 @@ export class HomeComponent implements OnInit{
    sideNavStatus:boolean = false;
   alltasktypes:any;
   
-  constructor(private http : HttpClient, private GetAllTasktypeAssignedUsersService : GetAllTasktypeAssignedUsersService){
-    // this.lis=[];
-}
+//    constructor(private http : HttpClient, private GetAllTasktypeAssignedUsersService : GetAllTasktypeAssignedUsersService){
+//   //   // this.lis=[];
+// }
 ngOnInit(): void{
-  this.GetAllTasktypeAssignedUsersService.get_all_tasktype_assigned_users().subscribe((responsedata:any)=>{
-    this.alltasktypes=responsedata;
-    this.dtTrigger.next(void 0);
- //   console.log(this.alltasktypes.body);
-  }
+//   this.GetAllTasktypeAssignedUsersService.get_all_tasktype_assigned_users().subscribe((responsedata:any)=>{
+//     this.alltasktypes=responsedata;
+//     this.dtTrigger.next(void 0);
+//  //   console.log(this.alltasktypes.body);
+//   }
 
-  )
+  // )
 }
 
 }

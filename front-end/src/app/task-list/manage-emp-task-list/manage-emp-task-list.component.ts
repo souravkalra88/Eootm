@@ -24,17 +24,17 @@ export class ManageEmpTaskListComponent implements OnInit {
 
   constructor( private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-    var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
-    console.log("tID",tID)
+  //  var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
+   // console.log("tID",tID)
     this.currentEmployee = tname
-    console.log(this.currentEmployee)
+ //   console.log(this.currentEmployee)
   }
 
 
   ngOnInit() {
     this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
       this.AllEmployees=responsedata;
-      console.log(this.AllEmployees);
+     // console.log(this.AllEmployees);
       if(this.currentEmployee === undefined) this.currentEmployee = responsedata[0];
       // this.dtTrigger.next(void 0);
       // console.log(responsedata);
@@ -56,7 +56,7 @@ export class ManageEmpTaskListComponent implements OnInit {
      //     console.log(this.eTasks)
           this.dtTrigger.next(void 0);
         });
-      console.log(this.currentEmployee);
+    //  console.log(this.currentEmployee);
 
         // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       
