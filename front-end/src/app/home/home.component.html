@@ -5,7 +5,7 @@
         <app-header></app-header>
 
         <app-sidenav class="mcontent"></app-sidenav>
-       <div class="display-area w-75 h-100 ">
+        <div class="display-area w-75 h-100 ">
             <div class="title d-flex">
                 <h3>Upcoming Task for Next Seven Days </h3>
                 <br>
@@ -14,28 +14,32 @@
             </div>
             <br><br>
             <div class="list">
-                <ol class="list-group list-group-numbered "><br>
-                    <li class="list-group-item" *ngFor="let employee of this_week_employees"><span class="desc">
-                            {{employee.name}} {{employee.tasktype}} on {{employee.date}}</span> </li>
+                <ul class="list-group text-center">
                     <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
-                    <li class="list-group-item">Task</li> <br>
 
-                </ol>
+
+
+                    <div *ngFor="let employee of this_week_employees">
+                        <li class="list-group-item d-flex item  align-items-center"
+                            *ngFor="let employee of this_week_employees">
+                            <span class="date"> <button type="button" class=" date btn btn-secondary">
+                                    {{employee.date}}
+
+                                </button></span>
+                                <span>{{employee.name}}</span><span>  {{employee.tasktype}}</span>
+                           
+
+                        </li>
+                        <br>
+                    </div>
+
+                </ul>
             </div>
 
 
-</div>
+        </div>
 
 
-</main>
+    </main>
 
 </div>

@@ -290,7 +290,7 @@ def verify_user(event,response):
 def create_user(event,response):
   body = json.loads(event["body"])
   client = boto3.client('cognito-idp')
-  _pass = generate_random_password() 
+  _pass = '#@' + generate_random_password() + '@#'
   response = client.admin_create_user(
     UserPoolId='ap-south-1_sQeBGTxl8',
     Username=body['email'],

@@ -24,8 +24,8 @@ export class ManageEmpTaskListComponent implements OnInit {
 
   constructor( private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-  //  var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
-   // console.log("tID",tID)
+    // var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
+    // console.log("tID",tID)
     this.currentEmployee = tname
  //   console.log(this.currentEmployee)
   }
