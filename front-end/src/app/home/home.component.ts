@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetAllTaskTypesService } from '../service/get-all-task-types.service';
 import { Subject } from 'rxjs';
 import { GetAllTasktypeAssignedUsersService } from '../service/get-all-tasktype-assigned-users.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit{
   alltasktypes:any;
   all_task_type_assigned_users:any[]=[];
   this_week_employees:any[]=[];
-  constructor(private http : HttpClient, private GetAllTasktypeAssignedUsers : GetAllTasktypeAssignedUsersService){
+  constructor(private router : Router ,private http : HttpClient, private GetAllTasktypeAssignedUsers : GetAllTasktypeAssignedUsersService){
     // this.lis=[];
 }
 ngOnInit(): void{
@@ -39,4 +40,9 @@ ngOnInit(): void{
       )
       });
     }  
+    manage(emp:any){
+      this.router.navigate(['/admin-view/task-list/manage'],{
+        state:{employee:emp}
+      });
+    }
 }
