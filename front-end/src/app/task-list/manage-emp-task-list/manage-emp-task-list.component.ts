@@ -27,6 +27,7 @@ export class ManageEmpTaskListComponent implements OnInit {
     // var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
     // console.log("tID",tID)
     this.currentEmployee = tname
+    this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
  //   console.log(this.currentEmployee)
   }
 
@@ -36,16 +37,24 @@ export class ManageEmpTaskListComponent implements OnInit {
       this.AllEmployees=responsedata;
      // console.log(this.AllEmployees);
       if(this.currentEmployee === undefined) this.currentEmployee = responsedata[0];
+      
       // this.dtTrigger.next(void 0);
       // console.log(responsedata);
       // console.log(responsedata)
       // console.log(this.currentEmployee)
      // let val : any
-      for(var val of responsedata)
-       {
-       if(val.name === this.currentEmployee.name) this.currentEmployeeTaskTypes.push(val);
-      }
-      console.log(this.currentEmployeeTaskTypes)
+//       for(var val of responsedata)
+//        {
+//        if(val.name === this.currentEmployee.name) this.currentEmployeeTaskTypes.push(val);
+//  //      if(this.index === undefined) 
+//       }
+  for(let i=0 ; i<responsedata.length ; i++){
+    if(this.index === undefined)
+    if(responsedata[i].name === this.currentEmployee.name) this.index = i;
+      
+    
+  }
+     // console.log(this.currentEmployeeTaskTypes)
     
       var url = "";
         url += "/" + this.currentEmployee.tasktype.toLowerCase()

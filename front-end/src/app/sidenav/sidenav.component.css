@@ -58,8 +58,8 @@ a{
     text-decoration: underline ;
     
     text-decoration-color: black !important;
-    text-underline-offset: 20%;
-    text-decoration-thickness: 10%;
+    /* text-underline-offset: 20%; */
+   
     
 
   }

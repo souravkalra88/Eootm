@@ -37,14 +37,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let emp of AllEmployees">
+          <tr *ngFor="let emp of AllEmployees , let i = index">
             <td>{{ emp.name }}</td>
             <td>{{ emp.tasktype }}</td>
             <td>{{ emp.date }}</td>
             <td><button class="  btn " type="button" (click) = "openEditPopup(emp)"  >
                 <i class="fas fa-edit"></i>
               </button></td>
-            <td><button class="btn" type="button" (click)="manageEmployee(emp)"  >
+            <td><button class="btn" type="button" (click)="manageEmployee(emp , i)"  >
                 <i class="fas fa-tasks"></i>
               </button></td>
           </tr>
