@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { GetUserTasksService } from '../service/get-user-tasks.service';
 import { environment } from 'src/environments/environment';
 import { GetTasksByUserService } from '../service/get-tasks-by-user.service';
+import { GetTasksStatusByEmployeeService } from '../service/get-tasks-status-by-employee.service';
 
 
 @Component({
@@ -17,8 +18,9 @@ export class UserViewComponent implements OnInit {
 
   emp_id: string = (environment.emp_id) as string
   tasksList:any[] = []
+  listStatus:any 
 
-  constructor(private getCurrentUserTasks :GetTasksByUserService ) {}
+  constructor(private statusByEmpId:GetTasksStatusByEmployeeService , private getCurrentUserTasks :GetTasksByUserService ) {}
 
   ngOnInit(): void {
      
@@ -26,6 +28,10 @@ export class UserViewComponent implements OnInit {
     this.getCurrentUserTasks.allTaskByTaskType(this.emp_id).subscribe(response => {
         this.tasksList = response
         console.log(this.tasksList)
+    })
+    this.statusByEmpId.getTasksStatusByEmpId(this.emp_id).subscribe((data: any) =>{
+      this.listStatus = data
+      console.log(data);
     })
   }
   

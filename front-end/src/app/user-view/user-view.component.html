@@ -26,10 +26,10 @@
                                  <!-- :::: {{tasks['due_date']}} -->
                             </button>
                             {{tasks['taskname']}} 
-                            <span *ngIf="tasks['completion_status'] === 'complete' "
+                            <span *ngIf="listStatus[tasks['sk']] === 'complete' "
                                 class="badge badge-primary badge-pill badge-success"><i class="fa fa-check"
                                     aria-hidden="true"></i></span>
-                            <span *ngIf="tasks['completion_status'] === 'incomplete' "
+                            <span *ngIf="listStatus[tasks['sk']] === 'incomplete' "
                                 class="badge badge-primary badge-pill badge-danger"><i class="fa fa-times"
                                     aria-hidden="true"></i></span>
                         </li><br>

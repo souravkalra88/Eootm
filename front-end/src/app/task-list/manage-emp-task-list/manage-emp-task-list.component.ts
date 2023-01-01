@@ -5,6 +5,7 @@ import { AllEmployeesData } from 'src/app/models/EmployessDataModel';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
 import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
+import { GetTasksStatusByEmployeeService } from 'src/app/service/get-tasks-status-by-employee.service';
 import { UpdateCompletionStatusService } from 'src/app/service/update-completion-status.service';
 
 @Component({
@@ -19,10 +20,11 @@ export class ManageEmpTaskListComponent implements OnInit {
   index: number = 0
   isChecked: boolean = false;
   currentEmployee:any 
+  completion_Status : boolean = true;
   currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
-
-  constructor( private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
+  TasksCompleteionStatusByEmployee:any[] = [];
+  constructor(private statusByEmpId:GetTasksStatusByEmployeeService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
     // var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
     // console.log("tID",tID)
@@ -54,6 +56,10 @@ export class ManageEmpTaskListComponent implements OnInit {
       
     
   }
+  this.statusByEmpId.getTasksStatusByEmpId(this.currentEmployee.empID).subscribe((data: any) =>{
+    this.TasksCompleteionStatusByEmployee = data;
+    console.log(data);
+  })
      // console.log(this.currentEmployeeTaskTypes)
     
       var url = "";
@@ -62,7 +68,7 @@ export class ManageEmpTaskListComponent implements OnInit {
   
           this.eTasks = data;
           
-     //     console.log(this.eTasks)
+         console.log(this.eTasks)
           this.dtTrigger.next(void 0);
         });
     //  console.log(this.currentEmployee);
@@ -70,6 +76,7 @@ export class ManageEmpTaskListComponent implements OnInit {
         // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       
     })
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
@@ -77,23 +84,22 @@ export class ManageEmpTaskListComponent implements OnInit {
     };   
   } 
   
-  Checked(val:any){
+  Checked(val:any , event:any){
+    console.log(event)
     this.isChecked=!(this.isChecked);
     let taskID=val['sk']
+    var status = ""
+    if(this.TasksCompleteionStatusByEmployee [val['sk']] === 'complete')status = "incomplete"
+    else status = "complete"
+    this.TasksCompleteionStatusByEmployee[taskID] = status
     let empID=this.currentEmployee.empID
-    let completion_status
-    if(this.isChecked){
-      completion_status="complete"
-    }
-    else{
-      completion_status="incomplete"
-      
-    }
-    console.log(this.currentEmployee)
+    
+    
+   // console.log(this.currentEmployee)
     let body={
       "empID":empID,
       "taskID":taskID,
-      "completion_status":completion_status
+      "completion_status":status
     }
     console.log("body",body)
     this.UpdateCompletionStatus.update_completion_status(body).subscribe((responsedata: any) => {

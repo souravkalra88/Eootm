@@ -76,3 +76,7 @@ app-sidenav{
     vertical-align: middle;
   
 }
+
+.complete{
+    text-decoration: line-through;
+}
