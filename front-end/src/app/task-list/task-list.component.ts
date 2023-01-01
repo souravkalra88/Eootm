@@ -50,7 +50,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
 
   manageEmployee(Employee:any):void {
-    this.router.navigate(['/task-list/manage'],{
+    this.router.navigate(['/admin-view/task-list/manage'],{
       state:{employee:Employee}
     });
   }

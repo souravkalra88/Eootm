@@ -171,7 +171,7 @@ closeEditTaskType(){
 }
 manageTaskType(taskType:any){
 
-  this.router.navigate(['/task-type/manage'],{
+  this.router.navigate(['/admin-view/task-type/manage'],{
     state:{taskType:taskType.tasktype}
   });
 }

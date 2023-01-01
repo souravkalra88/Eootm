@@ -4,10 +4,12 @@ from logging import Logger
 import boto3
 import os
 import boto3
+import random
+import string
 from botocore.exceptions import ClientError
 import requests
 from boto3 import resource
-from passlib import pwd
+
 from boto3.dynamodb.conditions import Key
 import uuid
 dynamodb = boto3.resource(
@@ -288,7 +290,7 @@ def verify_user(event,response):
 def create_user(event,response):
   body = json.loads(event["body"])
   client = boto3.client('cognito-idp')
-  _pass = generate_random_password()
+  _pass = generate_random_password() 
   response = client.admin_create_user(
     UserPoolId='ap-south-1_sQeBGTxl8',
     Username=body['email'],
@@ -330,6 +332,7 @@ def create_user(event,response):
 
 def generate_random_password():
   
-  _pass = str(pwd.genword(length = 12 , charset = "ascii_72"))
+  characters = string.ascii_letters + string.digits + string.punctuation
+  _pass = ''.join(random.choice(characters) for i in range(16))
 
   return _pass

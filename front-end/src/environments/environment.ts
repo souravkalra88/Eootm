@@ -5,7 +5,8 @@ export const environment = {
     idToken : '',
     currentUser: "",
     currentUserName: "",
-    role:""
+    role:"",
+    emp_id : ""
 
 }
 
@@ -18,7 +19,7 @@ export const urls = {
     UpdateTaskType: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_tasktype",
     addNewTask: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/addTask",
     getAllUsers:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_all_users",
-
+    getUserTasksById : "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/get_user_tasks/",
     updateUser : "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/update_user",
     createUser: "https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/create_user",
     add_new_tasktype_to_employee:"https://qfqfrz1b62.execute-api.ap-south-1.amazonaws.com/add_new_tasktype_to_employee",

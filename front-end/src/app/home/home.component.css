@@ -17,6 +17,11 @@ main{
     z-index:1;
 
 }
+
+.title{
+    justify-content: space-between;
+}
+
 app-sidenav{
     
     background-color:#DDDDDD;
@@ -36,5 +41,30 @@ app-sidenav{
     left: 230px;
     /* width: calc(100%-230px); */
     width: 100%;
-    top: 55px;
+    top: 64px;
+}
+.list{
+    max-height: calc(100vh - 250px);
+    border: 1px solid black;
+    overflow-y: auto;
+}
+li{
+    border: 3px solid #DDDDDD;
+    margin-left: 15px;
+    margin-right: 15px;
+    
+}
+/* .list-group {
+    list-style-position: inside;
+}
+
+.list-group-item {
+    display: list-item;
+    margin-left: 0px;
+} */
+
+.desc{
+    display:inline-flex;
+    justify-content: center;
+   
 }

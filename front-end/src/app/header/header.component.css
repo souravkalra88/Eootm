@@ -68,7 +68,13 @@ nav{
 .logo{
     display: flex;
     justify-content:left;
+    align-items: center;
     
+    
+}
+.views{
+    margin-left: 19px;
+    font-size: 90%;
 }
 .or{
     color: white;

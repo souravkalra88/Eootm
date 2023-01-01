@@ -17,6 +17,7 @@ export class AuthComponent implements OnInit{
   isLoading: boolean = false;
   email_address: string = "";
   password: string = "";
+  forgetPasswordUrl : string = "https://eoomt.auth.ap-south-1.amazoncognito.com/forgotPassword?client_id=48hko2q1qsd36p6d3kcrla334j&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone&redirect_uri=https://eoomt-79406.web.app";
   constructor(private router: Router , private switchView:SwitchHeaderService) { }
 
   OnSignIn(form: NgForm){
@@ -53,7 +54,7 @@ export class AuthComponent implements OnInit{
         environment.idToken = result.getIdToken().getJwtToken()
         environment.currentUserName = result.getIdToken().payload['cognito:username']
         if(environment.role === 'admin'){
-        this.switchView.setView("admin_view");this.router.navigate(["home"])
+        this.switchView.setView("admin_view");this.router.navigate(["admin-view/home"])
       }
 
         else{ this.switchView.setView("user_view") ; this.router.navigate(["user-view"]) }

@@ -17,14 +17,14 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { AuthGuardUserGuard } from './auth/auth-guard-user.guard';
 const routes: Routes = [
   { path: "", component: AuthComponent},
-{ path: "home" ,component : HomeComponent, canActivate : [AuthGuard]},
-{ path: "task-type" ,component : TaskTypeComponent, canActivate : [AuthGuard]},
-{ path: "employees" ,component : EmployeesComponent, canActivate : [AuthGuard]},
-{ path: "task-list" ,component : TaskListComponent, canActivate : [AuthGuard]},
-{ path: "task-list/manage" ,component : ManageEmpTaskListComponent,canActivate : [AuthGuard]},
-{ path: "task-list/edit" ,component : EmpEditTaskListComponent,canActivate : [AuthGuard]},
-{ path: "admins" ,component : AdminsComponent, canActivate : [AuthGuard]},
-{ path: "task-type/manage" ,component : ManageTaskComponent,canActivate : [AuthGuard]},
+{ path: "admin-view/home" ,component : HomeComponent, canActivate : [AuthGuard]},
+{ path: "admin-view/task-type" ,component : TaskTypeComponent, canActivate : [AuthGuard]},
+{ path: "admin-view/employees" ,component : EmployeesComponent, canActivate : [AuthGuard]},
+{ path: "admin-view/task-list" ,component : TaskListComponent, canActivate : [AuthGuard]},
+{ path: "admin-view/task-list/manage" ,component : ManageEmpTaskListComponent,canActivate : [AuthGuard]},
+{ path: "admin-view/task-list/edit" ,component : EmpEditTaskListComponent,canActivate : [AuthGuard]},
+{ path: "admin-view/admins" ,component : AdminsComponent, canActivate : [AuthGuard]},
+{ path: "admin-view/task-type/manage" ,component : ManageTaskComponent,canActivate : [AuthGuard]},
 {path:"user-view",component : UserViewComponent, canActivate : [AuthGuardUserGuard]},
 
 

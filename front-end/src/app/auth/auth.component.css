@@ -35,7 +35,9 @@ h2 {
 }
 
 /* STRUCTURE */
-
+.login{
+  background-color: #909090;
+}
 .wrapper {
   display: flex;
   align-items: center;
@@ -43,7 +45,7 @@ h2 {
   justify-content: center;
   width: 100%;
   min-height: 100%;
-  padding: 60px;
+  padding-top: 30px;
 }
 
 #formContent {
@@ -87,10 +89,12 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: red;
+  background-color: #e81410;
   border: none;
   color: white;
-  padding: 20px 70px;
+  margin:10px;
+  width: 80%;
+  padding: 9px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -106,6 +110,10 @@ input[type=button], input[type=submit], input[type=reset]  {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.fourth{
+  margin-top: 10px;
+  height: 10%;
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
