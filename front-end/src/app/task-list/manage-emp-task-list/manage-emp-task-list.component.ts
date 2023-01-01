@@ -5,6 +5,7 @@ import { AllEmployeesData } from 'src/app/models/EmployessDataModel';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
 import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
+import { UpdateCompletionStatusService } from 'src/app/service/update-completion-status.service';
 
 @Component({
   selector: 'app-manage-emp-task-list',
@@ -17,12 +18,14 @@ export class ManageEmpTaskListComponent implements OnInit {
   AllEmployees:any;
   index: number = 0
   isChecked: boolean = false;
-  currentEmployee:AllEmployeesData 
+  currentEmployee:any 
   currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
-  constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService,private getTaskByType: GetTaskByTasktypesService){
+
+  constructor( private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-   if(this.router.getCurrentNavigation()?.extras.state?.['index']!== undefined) this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
+    var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
+    console.log("tID",tID)
     this.currentEmployee = tname
     console.log(this.currentEmployee)
   }
@@ -64,11 +67,34 @@ export class ManageEmpTaskListComponent implements OnInit {
       lengthMenu: [5, 10, 15, 20],
     };   
   } 
-  checkValue(val:any){
-    if(val===true){
-
+  
+  Checked(val:any){
+    this.isChecked=!(this.isChecked);
+    let taskID=val['sk']
+    let empID=this.currentEmployee.sub
+    let completion_status
+    if(this.isChecked){
+      completion_status="complete"
     }
+    else{
+      completion_status="incomplete"
+      
+    }
+    let body={
+      "empID":empID,
+      "taskID":taskID,
+      "completion_status":completion_status
+    }
+    console.log("body",body)
+    this.UpdateCompletionStatus.update_completion_status(body).subscribe((responsedata: any) => {
+      //   this.allAdminsList = responsedata;
+    //  console.log(responsedata);
+      console.log("responsedata",responsedata)
+
+
+    })
   }
+  
  
   switchType(obj:number):void {
 

@@ -64,13 +64,15 @@ resp:any;
       let date=form.value.date
       let tasktypID=this.TaskTypes[task_index]['sk']
       let tasktype_name=this.TaskTypes[task_index]['tasktype']
+      let emp_name=this.allUsers[emp_index]['name']
       let empID=this.allUsers[emp_index]['sub']
       let body={
         "empID":empID,
         "date": date,
         "tasktypeID":tasktypID,
         "tasktype_name":tasktype_name,
-        "CurrentUser":environment.currentUser
+        "CurrentUser":environment.currentUser,
+        "emp_name":emp_name
       }
       // console.log(body)
       this.add_new_tasktype_to_employee.add_new_tasktype_to_employee(body).subscribe((data: any)=>{

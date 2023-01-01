@@ -21,6 +21,7 @@ def add_new_tasktype_to_employee(event, response):
       "sk":body["empID"]+"#"+body["tasktypeID"],
       "tasktype":body["tasktype_name"],
       "date":body["date"],
+      "emp_name":body["emp_name"],
       "created_at": str(datetime.datetime.utcnow()) ,
       "created_by": body["CurrentUser"],
       "modified_at": str(datetime.datetime.utcnow()) ,
@@ -36,14 +37,6 @@ def add_new_tasktype_to_employee(event, response):
       resp= table.query(KeyConditionExpression=filtering_exp)
       items = resp.get('Items')
 
-  # postitem={
-  #   "pk":"",
-  #   "sk":"",
-  #   "taskname":"",
-  #   "completion_status":"",
-  #   "due_date": ""#date+ item['due duration]
-  # }    
-  
   date_format = '%Y-%m-%d'
   with table.batch_writer() as batch:
     for item in items:
@@ -57,7 +50,7 @@ def add_new_tasktype_to_employee(event, response):
 
       #ADDING INDIVIDUAL ENTRIES FOR ALL TASKS OF TASKTYPE ASSIGNED TO THE EMPLOYEE TO DB  
       postitem["pk"]= body["empID"]
-      postitem["sk"]= body["tasktypeID"]+"#"+item['sk']
+      postitem["sk"]=item['sk']
       postitem["taskname"]= item["task"]
       postitem["completion_status"]= "incomplete"
       postitem["due_date"]=str(due_date)
@@ -167,32 +160,4 @@ def update_tasktype(event,context):
         'body': json.dumps(response)
   }
 
-
-
-
-# def get_tasktype_by_empID(event,response):
-#   empID=event["pathParameters"]["empID"]
-#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
-#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
-
-  
-#   return {
-
-#         'statusCode': 200,
-
-#         'headers': {'Content-Type': 'application/json',
-
-#                     'Access-Control-Allow-Origin': '*',
-
-#                       'Access-Control-Allow-Methods': '*'
-
-#         },
-
-#         'body': json.dumps(records),
-
-
-#         'isBase64Encoded': False,
-
-#     }
-        
 

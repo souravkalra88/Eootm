@@ -50,24 +50,18 @@
                 <tbody>
                     <tr *ngFor="let task of eTasks">
 
-                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" (change)="isCheckedInv($event , task.task)" > </td>
+
+
+                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" (change)="Checked(task)" > </td>
                         <td>{{task.task}}</td>
                         <td>{{task.task_description}}</td>
                         <td>{{task.owned_by}}</td>
 
-
-
-
                     </tr>
                 </tbody>
             </table>
-
         </div>
-
-
-
-
-    </main>
+        </main>
 
 
 </div>
