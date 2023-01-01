@@ -44,9 +44,7 @@ app-sidenav{
     top: 64px;
 }
 
-.date{
-    cursor: default !important
-}
+
 .item{
     border: 10px soild #DDDDDD !important;
     display: flex;
