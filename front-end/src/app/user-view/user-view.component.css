@@ -42,3 +42,15 @@ app-sidenav-user{
     display: flex;
     justify-content: space-around;
 }
+li{
+    border: 3px solid #DDDDDD;
+    font-size: large;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.list{
+    max-height: calc(100vh - 250px);
+    border: 1px solid black;
+    overflow-y: auto;
+}
