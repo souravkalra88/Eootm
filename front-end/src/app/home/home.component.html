@@ -5,8 +5,7 @@
         <app-header></app-header>
 
         <app-sidenav class="mcontent"></app-sidenav>
-
-        <div class="display-area w-75 h-100 ">
+       <div class="display-area w-75 h-100 ">
             <div class="title d-flex">
                 <h3>Upcoming Task for Next Seven Days </h3>
                 <br>
@@ -14,25 +13,28 @@
 
             </div>
             <br><br>
-            <div class = "list">
-            <ol class="list-group list-group-numbered "><br>
-                <li class="list-group-item"><span class = "desc">Task</span> </li>
-                <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                <li class="list-group-item">Task</li> <br>
-                
-              </ol></div>
+            <div class="list">
+                <ol class="list-group list-group-numbered "><br>
+                    <li class="list-group-item" *ngFor="let employee of this_week_employees"><span class="desc">
+                            {{employee.name}} {{employee.tasktype}} on {{employee.date}}</span> </li>
+                    <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+                    <li class="list-group-item">Task</li> <br>
+
+                </ol>
+            </div>
 
 
-        </div>
+</div>
+
 
 </main>
 
