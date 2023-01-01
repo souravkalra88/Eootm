@@ -97,10 +97,10 @@ def update_completion_status(event,context):
 
 
 def get_user_tasks(event, response):
-    body = event['pathParameters']['type']
+    body = event['pathParameters']['empID']
     resp=table.get_item
     key="pk"
-    value=body["empID"]
+    value=str(body)
 
     if key is not None and value is not None:
         filtering_exp = Key(key).eq(value)
