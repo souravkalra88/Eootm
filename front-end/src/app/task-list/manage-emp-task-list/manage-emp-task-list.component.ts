@@ -43,7 +43,7 @@ export class ManageEmpTaskListComponent implements OnInit {
       // this.dtTrigger.next(void 0);
       // console.log(responsedata);
       // console.log(responsedata)
-      // console.log(this.currentEmployee)
+      console.log(this.currentEmployee)
      // let val : any
 //       for(var val of responsedata)
 //        {
@@ -52,12 +52,13 @@ export class ManageEmpTaskListComponent implements OnInit {
 //       }
   for(let i=0 ; i<responsedata.length ; i++){
     if(this.index === undefined)
-    if(responsedata[i].name === this.currentEmployee.name) this.index = i;
+    if(responsedata[i].name === this.currentEmployee.name){ this.index = i;break;}
       
     
   }
   this.statusByEmpId.getTasksStatusByEmpId(this.currentEmployee.empID).subscribe((data: any) =>{
     this.TasksCompleteionStatusByEmployee = data;
+    console.log(this.currentEmployee.empID);
     console.log(data);
   })
      // console.log(this.currentEmployeeTaskTypes)
@@ -86,16 +87,19 @@ export class ManageEmpTaskListComponent implements OnInit {
   
   Checked(val:any , event:any){
     console.log(event)
-    this.isChecked=!(this.isChecked);
+    
     let taskID=val['sk']
     var status = ""
-    if(this.TasksCompleteionStatusByEmployee [val['sk']] === 'complete')status = "incomplete"
-    else status = "complete"
-    this.TasksCompleteionStatusByEmployee[taskID] = status
+    
+    if(this.TasksCompleteionStatusByEmployee [val['sk']] === 'incomplete')status = "complete"
+    else status = "incomplete"
+    if(this.TasksCompleteionStatusByEmployee [val['sk']] !== undefined) this.TasksCompleteionStatusByEmployee[taskID] = status
     let empID=this.currentEmployee.empID
     
     
    // console.log(this.currentEmployee)
+   empID = empID.split("#")
+   empID = empID[0]
     let body={
       "empID":empID,
       "taskID":taskID,

@@ -131,6 +131,10 @@ def get_user_tasks(event, response):
    
 def get_completion_status(event,response):
     value = event['pathParameters']['empID']
+    
+    empID = value.split("#")
+    empID = empID[0]
+    value = empID
     key="pk"
     
     if key is not None and value is not None:

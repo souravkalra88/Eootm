@@ -34,10 +34,12 @@ ngOnInit(): void{
       // console.log("date for ",value["name"],"is",value["date"])
       date_after_seven_days=new Date(date_after_seven_days.setDate(date_after_seven_days.getDate() + 7));
       if((date_after_seven_days>tasktype_date)&&(tasktype_date>date_today_obj)){
+        console.log("pushed")
             this.this_week_employees.push(value)
                 }
       }
       )
+  //    console.log(this.all_task_type_assigned_users)
       });
     }  
     manage(emp:any){
