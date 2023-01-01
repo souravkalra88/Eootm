@@ -128,4 +128,23 @@ def get_user_tasks(event, response):
 
     }    
    
+   
+def get_completion_status(event,response):
+    value = event['pathParameters']['empID']
+    key="pk"
     
+    if key is not None and value is not None:
+        filtering_exp = Key(key).eq(value)
+        resp= table.query(KeyConditionExpression=filtering_exp)
+    tasktype_completion_status_dict={}    
+    items = resp.get('Items')   
+    for i in items:
+        tasktype_completion_status_dict[i["sk"]]=i["completion_status"]
+        
+        
+
+    return {
+            'statusCode': 200,
+            'body': json.dumps(tasktype_completion_status_dict)
+    }
+
