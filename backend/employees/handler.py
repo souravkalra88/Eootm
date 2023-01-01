@@ -232,6 +232,7 @@ def get_all_tasktype_assigned_users(event,response):
     d["tasktype"]=i["tasktype"]
     d["name"]=i["emp_name"]
     d["date"]=i["date"]
+    d["empID"]=i["sk"]
     emp_tasktype_list.append(d)
                                       
   response = {"statusCode": 200,

@@ -71,7 +71,7 @@ export class ManageEmpTaskListComponent implements OnInit {
   Checked(val:any){
     this.isChecked=!(this.isChecked);
     let taskID=val['sk']
-    let empID=this.currentEmployee.sub
+    let empID=this.currentEmployee.empID
     let completion_status
     if(this.isChecked){
       completion_status="complete"
@@ -80,6 +80,7 @@ export class ManageEmpTaskListComponent implements OnInit {
       completion_status="incomplete"
       
     }
+    console.log(this.currentEmployee)
     let body={
       "empID":empID,
       "taskID":taskID,
