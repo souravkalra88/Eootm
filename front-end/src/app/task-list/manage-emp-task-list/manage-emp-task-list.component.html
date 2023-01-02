@@ -8,10 +8,10 @@
         <div class="display-area w-75  ">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a [routerLink] = "['/admin-view/task-list']">Tasks</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Manage</li>
+                    <li class="breadcrumb-item"><a [routerLink]="['/admin-view/task-list']">Tasks</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Manage</li>
                 </ol>
-              </nav>
+            </nav>
             <div class="title d-flex">
 
                 <span class="name">
@@ -23,17 +23,19 @@
 
                 <span class="options">
 
-                    <select class="form-select form-select-sm form-control"  [(ngModel)] = "index" (ngModelChange)="switchType($event)" aria-label=".form-select-sm example"  id = "type" name = "type" >
-                
-                    <option *ngFor="let emps of AllEmployees;let i = index" [value]="i" >{{AllEmployees[i].name}} | {{AllEmployees[i].tasktype}}</option>
-                    
-                    
-                  </select>
+                    <select class="form-select form-select-sm form-control" [(ngModel)]="index"
+                        (ngModelChange)="switchType($event)" aria-label=".form-select-sm example" id="type" name="type">
+
+                        <option *ngFor="let emps of AllEmployees;let i = index" [value]="i">{{AllEmployees[i].name}} |
+                            {{AllEmployees[i].tasktype}}</option>
+
+
+                    </select>
                 </span>
 
             </div>
             <br><br>
-          
+
             <table class="table   table-bordered table-striped table-hover display " datatable [dtOptions]="dtOptions"
                 [dtTrigger]="dtTrigger">
                 <thead>
@@ -50,23 +52,24 @@
                 <tbody>
                     <tr *ngFor="let task of eTasks">
 
-                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" (change)="isCheckedInv($event , task.task)" > </td>
-                        <td>{{task.task}}</td>
-                        <td>{{task.task_description}}</td>
-                        <td>{{task.owned_by}}</td>
-
-
-
+                        <!-- 
+                        
+                    
+                    -->
+                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault"
+                                [ngModel]="this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'"
+                                (change)="Checked(task,$event)"> </td>
+                        <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
+                            {{task.task}}</td>
+                        <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
+                            {{task.task_description}}</td>
+                        <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
+                            {{task.owned_by}}</td>
 
                     </tr>
                 </tbody>
             </table>
-
         </div>
-
-
-
-
     </main>
 
 

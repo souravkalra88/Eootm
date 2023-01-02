@@ -83,3 +83,16 @@
     justify-content: center;
 }
 
+.modal-content {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+.searchBar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rounded{
+  width: 40%;
+}

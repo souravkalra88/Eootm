@@ -14,24 +14,31 @@
 
                     <label for="name">Employee</label>
 
-                    <input type="text" id="name"  [(ngModel)]="editEmpTask.name" name="name"
+                    <input type="text" id="name" disabled [(ngModel)]="editEmpTask.name" name="name"
                         class="form-control" />
+                        <!-- <select class="form-select form-select-sm form-control" 
+                        aria-label=".form-select-sm example" id="emp" name="emp" [(ngModel)]="editEmpTask.name">
+                        <option *ngFor="let emp of allUsers;  let i=index"  [value]="i" >{{emp.name}}</option>
+                    </select> -->
 
                     <label for="tasktype">Task Type</label>
-                    <input type="text" id="tasktype"  [(ngModel)]="editEmpTask.tasktype" name="tasktype"
-                    class="form-control" />
+                    
+                    <select class="form-select form-select-sm form-control" 
+                        aria-label=".form-select-sm example" id="tasktype" name="tasktype" [(ngModel)]="editEmpTask.tasktype" >
+                        <option *ngFor="let task of taskTypes ; let i=index"  >{{task.tasktype}}</option>
+                    </select>
 
 
                     <label for="DOJ">Date</label>
-                    <input type="date" id="DOJ"   [(ngModel)]="editEmpTask.DOJ" name="DOJ" class="form-control"  />
+                    <input type="date" id="DOJ"   [(ngModel)]="editEmpTask.date" name="DOJ" class="form-control"  />
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-dark">
+                    <button type="submit" class="btn btn-outline-success">
                         Save
                     </button>
 
-                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                    <button type="button" class="btn btn-outline-danger" (click)="closePopup()">
                         Close
                     </button>
 

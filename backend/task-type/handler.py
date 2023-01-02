@@ -21,6 +21,7 @@ def add_new_tasktype_to_employee(event, response):
       "sk":body["empID"]+"#"+body["tasktypeID"],
       "tasktype":body["tasktype_name"],
       "date":body["date"],
+      "emp_name":body["emp_name"],
       "created_at": str(datetime.datetime.utcnow()) ,
       "created_by": body["CurrentUser"],
       "modified_at": str(datetime.datetime.utcnow()) ,
@@ -36,14 +37,6 @@ def add_new_tasktype_to_employee(event, response):
       resp= table.query(KeyConditionExpression=filtering_exp)
       items = resp.get('Items')
 
-  # postitem={
-  #   "pk":"",
-  #   "sk":"",
-  #   "taskname":"",
-  #   "completion_status":"",
-  #   "due_date": ""#date+ item['due duration]
-  # }    
-  
   date_format = '%Y-%m-%d'
   with table.batch_writer() as batch:
     for item in items:
@@ -57,7 +50,7 @@ def add_new_tasktype_to_employee(event, response):
 
       #ADDING INDIVIDUAL ENTRIES FOR ALL TASKS OF TASKTYPE ASSIGNED TO THE EMPLOYEE TO DB  
       postitem["pk"]= body["empID"]
-      postitem["sk"]= body["tasktypeID"]+"#"+item['sk']
+      postitem["sk"]=item['sk']
       postitem["taskname"]= item["task"]
       postitem["completion_status"]= "incomplete"
       postitem["due_date"]=str(due_date)
@@ -168,31 +161,30 @@ def update_tasktype(event,context):
   }
 
 
+def update_emp_tasktype(event,response):
+  updated_vals=json.loads(event["body"])
+  updated_tasktype=updated_vals["tasktype"]
+  updated_date=updated_vals["date"]
+  response = table.update_item(
 
+        Key={
+            'pk': "emp_tasktype",
+            'sk': updated_vals["empID"]
+            },
 
-# def get_tasktype_by_empID(event,response):
-#   empID=event["pathParameters"]["empID"]
-#   records = table.query(KeyConditionExpression="pk=:pk and begins_with(sk,:sk)",
-#                         ExpressionAttributeValues={':pk':'emp_tasktype',':sk':empID})['Items']
+        UpdateExpression='SET #t = :val1 , #d=:val2',
+          ExpressionAttributeValues={
+            ':val1': updated_tasktype,
+            ':val2': updated_date
+          },
+          ExpressionAttributeNames={
+            "#t": "tasktype",
+            '#d' : "date"
+          }
 
-  
-#   return {
+    )
 
-#         'statusCode': 200,
-
-#         'headers': {'Content-Type': 'application/json',
-
-#                     'Access-Control-Allow-Origin': '*',
-
-#                       'Access-Control-Allow-Methods': '*'
-
-#         },
-
-#         'body': json.dumps(records),
-
-
-#         'isBase64Encoded': False,
-
-#     }
-        
-
+  return {
+        'statusCode': 200,
+        'body': json.dumps(response)
+  }

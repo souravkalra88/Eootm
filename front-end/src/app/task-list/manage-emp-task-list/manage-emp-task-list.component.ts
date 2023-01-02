@@ -5,6 +5,8 @@ import { AllEmployeesData } from 'src/app/models/EmployessDataModel';
 import { GetAllEmployeesService } from 'src/app/service/get-all-employees.service';
 import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-tasktype-assigned-users.service';
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
+import { GetTasksStatusByEmployeeService } from 'src/app/service/get-tasks-status-by-employee.service';
+import { UpdateCompletionStatusService } from 'src/app/service/update-completion-status.service';
 
 @Component({
   selector: 'app-manage-emp-task-list',
@@ -17,32 +19,49 @@ export class ManageEmpTaskListComponent implements OnInit {
   AllEmployees:any;
   index: number = 0
   isChecked: boolean = false;
-  currentEmployee:AllEmployeesData 
+  currentEmployee:any 
+  completion_Status : boolean = true;
   currentEmployeeTaskTypes : AllEmployeesData[] = [];
   eTasks:any
-  constructor(private router: Router,private GetAllEmployees:GetAllEmployeesService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService,private getTaskByType: GetTaskByTasktypesService){
+  TasksCompleteionStatusByEmployee:any[] = [];
+  constructor(private statusByEmpId:GetTasksStatusByEmployeeService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-   if(this.router.getCurrentNavigation()?.extras.state?.['index']!== undefined) this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
+    // var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
+    // console.log("tID",tID)
     this.currentEmployee = tname
-    console.log(this.currentEmployee)
+    this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
+ //   console.log(this.currentEmployee)
   }
 
 
   ngOnInit() {
     this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
       this.AllEmployees=responsedata;
-      console.log(this.AllEmployees);
+     // console.log(this.AllEmployees);
       if(this.currentEmployee === undefined) this.currentEmployee = responsedata[0];
+      
       // this.dtTrigger.next(void 0);
       // console.log(responsedata);
       // console.log(responsedata)
-      // console.log(this.currentEmployee)
+      console.log(this.currentEmployee)
      // let val : any
-      for(var val of responsedata)
-       {
-       if(val.name === this.currentEmployee.name) this.currentEmployeeTaskTypes.push(val);
-      }
-      console.log(this.currentEmployeeTaskTypes)
+//       for(var val of responsedata)
+//        {
+//        if(val.name === this.currentEmployee.name) this.currentEmployeeTaskTypes.push(val);
+//  //      if(this.index === undefined) 
+//       }
+  for(let i=0 ; i<responsedata.length ; i++){
+    if(this.index === undefined)
+    if(responsedata[i].name === this.currentEmployee.name){ this.index = i;break;}
+      
+    
+  }
+  this.statusByEmpId.getTasksStatusByEmpId(this.currentEmployee.empID).subscribe((data: any) =>{
+    this.TasksCompleteionStatusByEmployee = data;
+    console.log(this.currentEmployee.empID);
+    console.log(data);
+  })
+     // console.log(this.currentEmployeeTaskTypes)
     
       var url = "";
         url += "/" + this.currentEmployee.tasktype.toLowerCase()
@@ -50,25 +69,52 @@ export class ManageEmpTaskListComponent implements OnInit {
   
           this.eTasks = data;
           
-     //     console.log(this.eTasks)
+         console.log(this.eTasks)
           this.dtTrigger.next(void 0);
         });
-      console.log(this.currentEmployee);
+    //  console.log(this.currentEmployee);
 
         // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       
     })
+
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [5, 10, 15, 20],
     };   
   } 
-  checkValue(val:any){
-    if(val===true){
-
+  
+  Checked(val:any , event:any){
+    console.log(event)
+    
+    let taskID=val['sk']
+    var status = ""
+    
+    if(this.TasksCompleteionStatusByEmployee [val['sk']] === 'incomplete')status = "complete"
+    else status = "incomplete"
+    if(this.TasksCompleteionStatusByEmployee [val['sk']] !== undefined) this.TasksCompleteionStatusByEmployee[taskID] = status
+    let empID=this.currentEmployee.empID
+    
+    
+   // console.log(this.currentEmployee)
+   empID = empID.split("#")
+   empID = empID[0]
+    let body={
+      "empID":empID,
+      "taskID":taskID,
+      "completion_status":status
     }
+    console.log("body",body)
+    this.UpdateCompletionStatus.update_completion_status(body).subscribe((responsedata: any) => {
+      //   this.allAdminsList = responsedata;
+    //  console.log(responsedata);
+      console.log("responsedata",responsedata)
+
+
+    })
   }
+  
  
   switchType(obj:number):void {
 

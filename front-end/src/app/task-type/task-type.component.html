@@ -45,11 +45,11 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-outline-dark">
+                                <button type="submit" class="btn btn-outline-success">
                                     Save
                                 </button>
 
-                                <button type="button" class="btn btn-outline-dark" (click)="closeAddNewTaskType()">
+                                <button type="button" class="btn btn-outline-danger" (click)="closeAddNewTaskType()">
                                     Close
                                 </button>
 
@@ -92,11 +92,11 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-dark">
+                                    <button type="submit" class="btn btn-outline-success">
                                         Save
                                     </button>
 
-                                    <button type="button" class="btn btn-outline-dark" (click)="closeEditTaskType()">
+                                    <button type="button" class="btn btn-outline-danger" (click)="closeEditTaskType()">
                                         Close
                                     </button>
 
@@ -125,8 +125,8 @@
                         <th class="headings">Task Type</th>
                         <th class="headings">Description</th>
                                                  
-                       <th class="headings"> Edit </th>
-                        <th class="headings"> Manage</th>
+                       <th class="headings" >  </th>
+                        <th class="headings"> </th>
                     </tr>
 
                 </thead>
@@ -139,10 +139,10 @@
                         <td>{{tasksTypes['description']}}</td>
                         
 
-                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)">Edit</button></td>
-                        <td><button type="button" class="btn btn-outline-dark" data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)">Manage</button></td>
+                        <td><button type="button" class="btn " data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)"><i class="fas fa-edit"></i></button></td>
+                        <td><button type="button" class="btn " data-toggle="modal"
+                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)"> <i class="fas fa-tasks"></i></button></td>
 
                     </tr>
 

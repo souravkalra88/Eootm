@@ -18,7 +18,8 @@
                     <select class="form-select form-select-sm form-control" 
                         aria-label=".form-select-sm example" id="emp" name="emp" [(ngModel)]="emp">
                         <option *ngFor="let emp of allUsers;  let i=index"  [value]="i" >{{emp.name}}</option>
-                    </select><!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
+                    </select>
+                    <!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
                                     name="newTaskTypeTitle" class="form-control" /> -->
                     <br>
                     <label for="newTaskTypeDesc">Task Type</label>
@@ -36,11 +37,11 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-dark">
+                    <button type="submit" class="btn btn-outline-success">
                         Save
                     </button>
 
-                    <button type="button" class="btn btn-outline-dark" (click)="closePopup()">
+                    <button type="button" class="btn btn-outline-danger" (click)="closePopup()">
                         Close
                     </button>
 
