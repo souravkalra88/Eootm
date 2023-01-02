@@ -48,8 +48,7 @@ export class EmpEditTaskListComponent implements OnInit {
     this.closePopup();
     this.updateEmpTaskType.update_employee_tasktype(this.editEmpTask).subscribe((data)=>{
       console.log(data);
-    })
-    const currentRoute = this.router.url;
+       const currentRoute = this.router.url;
 
 
 
@@ -58,6 +57,8 @@ export class EmpEditTaskListComponent implements OnInit {
         this.router.navigate([currentRoute]);  
 
     });
+    })
+   
 
     console.log(this.editEmpTask)
   }
