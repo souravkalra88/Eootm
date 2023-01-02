@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GetAllTaskTypesService } from 'src/app/service/get-all-task-types.service';
 import { GetAllUsersService } from 'src/app/service/get-all-usersservice';
 import { UpdateEmpTaskTypeService } from 'src/app/service/update-emp-task-type.service';
@@ -18,7 +19,7 @@ export class EmpEditTaskListComponent implements OnInit {
   taskTypes:any;
   // allUsers:any;
 
-  constructor(private updateEmpTaskType : UpdateEmpTaskTypeService ,private getAllUsers : GetAllUsersService , private AllTaskTypes : GetAllTaskTypesService) { }
+  constructor(private router : Router , private updateEmpTaskType : UpdateEmpTaskTypeService ,private getAllUsers : GetAllUsersService , private AllTaskTypes : GetAllTaskTypesService) { }
 
   ngOnInit(): void {
    // this.editEmpTask.DOJ = new Date(this.editEmpTask.DOJ)
@@ -48,6 +49,15 @@ export class EmpEditTaskListComponent implements OnInit {
     this.updateEmpTaskType.update_employee_tasktype(this.editEmpTask).subscribe((data)=>{
       console.log(data);
     })
+    const currentRoute = this.router.url;
+
+
+
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+
+        this.router.navigate([currentRoute]);  
+
+    });
 
     console.log(this.editEmpTask)
   }
