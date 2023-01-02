@@ -21,14 +21,14 @@
 
 
                     <div *ngFor="let employee of this_week_employees">
-                        <li class="list-group-item d-flex item  align-items-center"
-                            *ngFor="let employee of this_week_employees">
-                            <span class="date"> <button type="button" class=" date btn btn-secondary" (click)="manage(employee)">
+                        <li class="list-group-item d-flex item  align-items-center">
+                            <span class="date"> <button type="button" class=" date btn btn-secondary"
+                                    (click)="manage(employee)">
                                     {{employee.date}}
 
                                 </button></span>
-                                <span>{{employee.name}}</span><span>  {{employee.tasktype}}</span>
-                           
+                            <span>{{employee.name}}</span><span> {{employee.tasktype}}</span>
+
 
                         </li>
                         <br>
