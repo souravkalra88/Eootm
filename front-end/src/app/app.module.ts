@@ -54,7 +54,8 @@ import { SidenavUserComponent } from './sidenav-user/sidenav-user.component';
     AddEmployeeComponent,
     AddAdminsComponent,
     UserViewComponent,
-    SidenavUserComponent
+    SidenavUserComponent,
+    FilterByStatusPipe
     
   ],
   imports: [
@@ -65,7 +66,7 @@ import { SidenavUserComponent } from './sidenav-user/sidenav-user.component';
     FormsModule,
     BrowserAnimationsModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
     
   ],
   providers: [AuthService , DatePipe],

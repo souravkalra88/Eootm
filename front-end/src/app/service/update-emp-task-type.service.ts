@@ -1,18 +1,19 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment, urls } from 'src/environments/environment';
+import { urls, environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UpdateCompletionStatusService {
+export class UpdateEmpTaskTypeService {
+
   url = "";
   constructor(private http : HttpClient) {
    }
 
-   update_completion_status(body: any):Observable<any> {{
-    this.url = urls.updateCompletionStatus
+   update_employee_tasktype(body: any):Observable<any> {
+    this.url = urls.updateEmpTaskType
     // console.log(environment.idToken);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -22,6 +23,4 @@ export class UpdateCompletionStatusService {
    
     return  this.http.put(this.url,body,{ headers: headers })
    }
-  }
-
 }

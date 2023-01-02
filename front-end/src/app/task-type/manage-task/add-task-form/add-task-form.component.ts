@@ -23,7 +23,8 @@ export class AddTaskFormComponent  implements OnInit {
   displayStyleAddTask:any = "block"; 
   userForm!: NgForm; 
   someSubscription: any;
-  newTaskList:any[] = [];
+  newTaskList:newTask[] = [];
+  
   newTaskItem = new newTask();
   isButtonVisible:boolean = true;
   disableForm:boolean = false;
@@ -34,7 +35,7 @@ export class AddTaskFormComponent  implements OnInit {
   adminsList:any[] = [];
 
   constructor(private getAllUsers: GetAllUsersService , private allTaskTypeData: GetAllTaskTypesService, private router: Router, private getTaskByType: GetTaskByTasktypesService, private getAllTaskType: GetAllTaskTypesService, private addNewTask: AddNewTaskService, private datePipe: DatePipe) {
-
+  
     
   }
   ngOnInit(): void {

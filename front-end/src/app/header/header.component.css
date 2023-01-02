@@ -69,19 +69,23 @@ nav{
     display: flex;
     justify-content:left;
     align-items: center;
+    cursor: default !important;
     
     
 }
 .views{
     margin-left: 19px;
     font-size: 90%;
+    cursor: pointer;
 }
 .or{
     color: white;
     cursor:default;
     
 }
-
+img{
+    cursor: pointer;
+}
 .sub-active-item{
     text-decoration: underline ;
     
