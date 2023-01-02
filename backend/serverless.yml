@@ -273,7 +273,18 @@ functions:
           authorizer: 
             name: serviceAuthorizer
 
-  
+  update_emp_tasktype:
+    handler: task-type/handler.update_emp_tasktype
+    layers:
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-p38-requests-html:10
+     - arn:aws:lambda:ap-south-1:770693421928:layer:Klayers-python38-passlib:1
+    events:
+      - httpApi:
+          path: /update_emp_tasktype
+          method: put
+          authorizer: 
+            name: serviceAuthorizer
+ 
   generate_random_password:
     handler: employees/handler.generate_random_password      
     layers:
