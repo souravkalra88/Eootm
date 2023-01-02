@@ -161,3 +161,30 @@ def update_tasktype(event,context):
   }
 
 
+def update_emp_tasktype(event,response):
+  updated_vals=json.loads(event["body"])
+  updated_tasktype=updated_vals["tasktype"]
+  updated_date=updated_vals["date"]
+  response = table.update_item(
+
+        Key={
+            'pk': "emp_tasktype",
+            'sk': updated_vals["empID"]
+            },
+
+        UpdateExpression='SET #t = :val1 , #d=:val2',
+          ExpressionAttributeValues={
+            ':val1': updated_tasktype,
+            ':val2': updated_date
+          },
+          ExpressionAttributeNames={
+            "#t": "tasktype",
+            '#d' : "date"
+          }
+
+    )
+
+  return {
+        'statusCode': 200,
+        'body': json.dumps(response)
+  }
