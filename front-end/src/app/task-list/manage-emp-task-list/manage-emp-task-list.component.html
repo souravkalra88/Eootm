@@ -56,7 +56,7 @@
                         
                     
                     -->
-                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault"
+                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" 
                                 [ngModel]="this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'"
                                 (change)="Checked(task,$event)"> </td>
                         <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">

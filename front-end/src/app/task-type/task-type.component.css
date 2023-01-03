@@ -54,3 +54,6 @@ app-sidenav{
     flex-direction: column;
 }   
 
+.badge{
+    cursor: pointer;
+}

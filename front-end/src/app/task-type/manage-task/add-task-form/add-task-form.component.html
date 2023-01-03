@@ -1,112 +1,115 @@
+<div class="addTask d-flex flex-column">
 
 
+  <div class="modal" id="#addTask" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleAddTask}">
 
- <div class="addTask d-flex flex-column">
+    <div class="modal-dialog   modal-dialog-centered" style="max-width: 70%;" role="document">
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Add new Task </h4>
+          <span  class="badge badge-primary badge-pill badge-danger"><i  (click)="closePopup()" class="fa fa-times"
+            aria-hidden="true"></i></span>
+        </div>
+        <br>
+        <span class="addTaskItem">
+          <form #loginForm="ngForm" (ngSubmit)="done()">
+            <fieldset [disabled]="this.disableForm">
+              <div class="container">
 
 
-  <div class="modal" id="#addTask" tabindex="-1" role="dialog"
-      [ngStyle]="{'display':displayStyleAddTask}">
+                <div class="form-row " *ngFor="let obj of newTaskList; let i=index">
 
-      <div class="modal-dialog   modal-dialog-centered" style="max-width: 70%;" role="document">
+                  <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}"
+                      [(ngModel)]="obj.taskTitle" placeholder="  Title" class="form-control"></div>
 
-          <div class="modal-content"  >
+                  <div class="form-group col-md-4"> 
+                   
+                      <textarea id="newTaskTypeDesc" rows="4" onfocus="this.value=''" placeholder="  Description" class="form-control" value="" [(ngModel)]="obj.taskDescription" name="taskDescription{{i}}" class="form-control " >
 
-              <div class="modal-header">
-                  <h4 class="modal-title">Add new Task </h4>
+                      </textarea>
+                    </div>
+
+                  <div class="form-group col-md-3">
+
+
+                    <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example"
+                      required name="taskOwnedBy{{i}}" [(ngModel)]="obj.taskOwnedBy">
+                      <option hidden value="">Owned By</option>
+                      <option *ngFor="let admin of adminsList" [value]="admin.name">{{admin.name}}</option>
+
+
+                    </select>
+                  </div>
+
+
+                  <div class="form-group col-md-1">
+                    <input type="number" name="dueDays{{i}}" value="" [(ngModel)]="obj.dueDays" placeholder="days"
+                      class="form-control">
+                  </div>
+
+
+                  <div class="form-group col-md-1">
+
+                    <span class="radio">
+                      <label>
+                        <input type="radio" name="daysType{{i}}" value="before" [(ngModel)]="obj.daysType"> before
+                      </label>
+                      <label>
+                        <input type="radio" name="daysType{{i}}" value="after" [(ngModel)]="obj.daysType"> after
+                      </label>
+
+
+                    </span>
+                  </div>
+
+                  <div class="form-group">
+                    <button (click)="removeForm(i)" class="btn btn-outline-danger remove" *ngIf="i!=0 && this.isButtonVisible">
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                  </div>
+                </div>
+                <span>
+                  <button type="button" (click)="addForm()" *ngIf="this.isButtonVisible"
+                    class="btn btn-outline-success">
+                    <i class="fa-solid fa-add"></i>
+                  </button>
+                </span>
+
               </div>
-              <br>
-<span class="addTaskItem">
-  <form #loginForm="ngForm" (ngSubmit)="done()">
-    <fieldset [disabled]="this.disableForm">
-      <div class="container">
-        
-
-        <div class="form-row" *ngFor="let obj of newTaskList; let i=index">
-          
-          <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}" [(ngModel)]="obj.taskTitle"
-              placeholder="  Title" class="form-control"></div>
-
-          <div class="form-group col-md-4"> <input type="taskTitle" name="taskDescription{{i}}"
-              [(ngModel)]="obj.taskDescription" placeholder="  Description" class="form-control"> </div>
-
-              <div class="form-group col-md-2">
-
-                
-                  <select class="form-select form-select-sm form-control"   aria-label=".form-select-sm example" required   name="taskOwnedBy{{i}}" [(ngModel)] = "obj.taskOwnedBy" >
-                    <option hidden  value = "" >Owned By</option>
-                    <option *ngFor="let admin of adminsList" [value]="admin.name" >{{admin.name}}</option>
-                    
-                    
-                  </select>
-              </div>
+            </fieldset>
+            <br>
 
 
-          <div class="form-group col-md-1">
-            <input type="taskTitle" name="dueDays{{i}}" value = "" [(ngModel)]="obj.dueDays" placeholder="days"
-              class="form-control">
-          </div>
+            <div class="modal-body d-flex editpop">
 
-        
-          <div class="form-group col-md-1">
+              <span>
 
-            <div class="radio">
-              <label>
-                <input type="radio" name="daysType{{i}}" value="before" [(ngModel)]="obj.daysType"> before
-              </label>
-              <label>
-                <input type="radio" name="daysType{{i}}" value="after" [(ngModel)]="obj.daysType"> after
-              </label>
+              </span>
+
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-success">
+                Save
+              </button>
+
+              <button type="button" class="btn btn-outline-danger" (click)="closePopup()">
+                Close
+              </button>
 
 
             </div>
-          </div>
 
-          <div class="form-group">
-            <button (click)="removeForm(i)" class="btn btn-outline-danger" *ngIf="i!=0 && this.isButtonVisible">
-            <i class="fa-solid fa-minus"></i>
-            </button>
-          </div>
-        </div>
-        <span>
-          <button type="button" (click)="addForm()" *ngIf="this.isButtonVisible" class="btn btn-outline-success">
-            <i class="fa-solid fa-add"></i>
-          </button>
+          </form>
         </span>
 
-      </div>
-    </fieldset>
-    <br>
-    
-
-    <div class="modal-body d-flex editpop">
-
-      <span>
-      
-      </span>
-
-  </div>
-  <div class="modal-footer">
-      <button type="submit" class="btn btn-outline-success"  >
-          Save
-      </button>
-
-      <button type="button" class="btn btn-outline-danger" (click)="closePopup()" >
-          Close
-      </button>
-
-
-  </div>
-
-  </form>
-</span>
-                  
-              <!-- </form> -->
-
-          </div>
+        <!-- </form> -->
 
       </div>
+
+    </div>
 
   </div>
 
 </div>
-

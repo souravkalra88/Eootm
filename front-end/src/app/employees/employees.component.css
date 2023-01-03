@@ -51,3 +51,6 @@ app-sidenav{
 .addTask{
     overflow-y: auto;
 }
+.badge{
+    cursor: pointer;
+}

@@ -70,7 +70,10 @@
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h4 class="modal-title">Edit Task</h4>
+                            <h4 class="modal-title">Edit Employee</h4>
+                            <span  class="badge badge-primary badge-pill badge-danger"><i   (click)="closeEditPopup()" class="fa fa-times"
+                                aria-hidden="true"></i></span>
+                      
                         </div>
 
                         <form #inputform="ngForm" (ngSubmit)="saveEditEmploee()" class="popup">

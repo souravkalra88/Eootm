@@ -18,3 +18,7 @@
 .modal-dialog{
     overflow-y: initial !important
 }
+
+.badge{
+    cursor: pointer;
+}

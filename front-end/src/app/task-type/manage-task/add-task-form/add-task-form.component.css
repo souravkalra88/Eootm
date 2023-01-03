@@ -6,4 +6,11 @@
 .modal-content {
     max-height: calc(100vh - 210px);
     overflow-y: auto;
+    width: 100%;
+}
+.form-row{
+    width: 100%;
+}
+.badge{
+    cursor: pointer;
 }

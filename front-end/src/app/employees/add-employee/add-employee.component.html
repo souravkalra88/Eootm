@@ -6,6 +6,9 @@
             <div class="modal-content content">
                 <div class="modal-header">
                     <h4 class="modal-title">Add new Employee</h4>
+                    <span  class="badge badge-primary badge-pill badge-danger"><i   (click)="closePopup()" class="fa fa-times"
+                        aria-hidden="true"></i></span>
+                  
                 </div>
                 <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
                     <div class="modal-body">

@@ -15,26 +15,34 @@
             </div>
             <br><br>
             <div class="list">
-                <ul class="list-group text-center">
-                    <br>
+                <div *ngIf = "this.this_week_employees.length > 0 ; else noData">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4" *ngFor="let employee of this_week_employees">
+
+                                <div class="card-body text-center">
+
+                                    <h5 class="card-title">{{employee.name}}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{employee.date}}</h6>
 
 
-
-                    <div *ngFor="let employee of this_week_employees">
-                        <li class="list-group-item d-flex item  align-items-center">
-                            <span class="date"> <button type="button" class=" date btn btn-secondary"
-                                    (click)="manage(employee)">
-                                    {{employee.date}}
-
-                                </button></span>
-                            <span>{{employee.name}}</span><span> {{employee.tasktype}}</span>
+                                    <p class="card-text">{{employee.tasktype}}</p>
+                                    <p class="card-link" (click)="manage(employee)">Manage</p>
 
 
-                        </li>
-                        <br>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-
-                </ul>
+                </div>
+                <ng-template #noData>
+                    <div>
+                        <ul class="list-group text-center"><li class="list-group-item d-flex item justify-content-center align-items-center">No Upcoming Tasks</li></ul>
+                    </div>
+                </ng-template>
+                
+        
             </div>
 
 

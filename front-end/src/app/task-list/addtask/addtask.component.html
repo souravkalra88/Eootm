@@ -7,6 +7,8 @@
 
             <div class="modal-header">
                 <h4 class="modal-title">Add New Task Type for Employee</h4>
+                <span  class="badge badge-primary badge-pill badge-danger"><i (click)="closePopup()" class="fa fa-times"
+                    aria-hidden="true"></i></span>
 
             </div>
             <form #saveNewTaskTypeForEmployee="ngForm" (ngSubmit)="NewTasktypeEmployee(saveNewTaskTypeForEmployee)">

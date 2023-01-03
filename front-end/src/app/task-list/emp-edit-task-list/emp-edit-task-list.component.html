@@ -5,7 +5,9 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Edit Task</h4>
+                <h4 class="modal-title">Edit Task Type</h4>
+                <span  class="badge badge-primary badge-pill badge-danger"><i (click)="closePopup()" class="fa fa-times"
+                    aria-hidden="true"></i></span>
             </div>
             <form #saveEditTaskType="ngForm" (ngSubmit)="Input(saveEditTaskType)">
                 <div class="modal-body">

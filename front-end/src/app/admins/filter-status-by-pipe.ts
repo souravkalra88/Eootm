@@ -7,7 +7,7 @@ export class FilterByStatusPipe implements PipeTransform {
         console.log(items);
         searchText = searchText.toLowerCase();
         return items.filter(it => {
-            return it.name.toLowerCase().includes(searchText);
+            return it.name.toLowerCase().includes(searchText) || it.email.toLowerCase().includes(searchText) || it.phone_number.toLowerCase().includes(searchText);
         });
     }
 
