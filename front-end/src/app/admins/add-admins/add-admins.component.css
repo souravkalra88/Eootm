@@ -28,7 +28,10 @@
 
 .rounded{
   width: 40%;
+  background: url("/assets/img/search_icon.png") no-repeat right;
+  background-size: 25px;
 }
 .badge{
   cursor: pointer;
 }
+

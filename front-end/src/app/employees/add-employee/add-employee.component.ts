@@ -25,6 +25,7 @@ export class AddEmployeeComponent implements OnInit {
     // console.log(data.name);
     // debugger;
     if(this.newUserData['custom:role'] === 'admin') this.newUserData['custom:log_in_access'] = 'yes'
+    this.newUserData.phone_number = "+91" + this.newUserData.phone_number 
     const body ={
       
       "name":this.newUserData.name,
@@ -32,7 +33,7 @@ export class AddEmployeeComponent implements OnInit {
 
       "email":this.newUserData.email,
       "gender":this.newUserData.gender,
-      "phone_number":this.newUserData.phone_number,
+      "phone_number":this.newUserData.phone_number ,
       "profile":this.newUserData.profile,
    
       "role": this.newUserData['custom:role'],

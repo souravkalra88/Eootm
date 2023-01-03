@@ -16,30 +16,49 @@
 
 
 
-                    <label for="newTaskTypeTitle">Employee</label>
-                    <select class="form-select form-select-sm form-control" 
-                        aria-label=".form-select-sm example" id="emp" name="emp" [(ngModel)]="emp">
+                    <label for="empl">Employee</label>
+                    <select class="browser-default custom-select form-control"  
+                         id="empl"  required name="emp" #empl="ngModel" [(ngModel)]="emp">
                         <option *ngFor="let emp of allUsers;  let i=index"  [value]="i" >{{emp.name}}</option>
                     </select>
-                    <!-- <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
-                                    name="newTaskTypeTitle" class="form-control" /> -->
+                    <div class="error" *ngIf="!empl?.valid && (empl?.dirty || empl?.touched)">
+
+                        <div *ngIf="empl.errors?.['required']">
+                            Select Employee 
+                        </div>
+
+                    </div>
                     <br>
-                    <label for="newTaskTypeDesc">Task Type</label>
+                    <label for="empTaskType">Task Type</label>
                     <select class="form-select form-select-sm form-control" 
-                        aria-label=".form-select-sm example" id="tasktype" name="tasktype" [(ngModel)]="task" >
+                        aria-label=".form-select-sm example" id="empTaskType" #empTaskType="ngModel" required name="empTaskType" [(ngModel)]="task" >
                         <option *ngFor="let task of TaskTypes ; let i=index"  [value]="i" >{{task.tasktype}}</option>
                     </select>
+                    <div class="error" *ngIf="!empTaskType?.valid && (empTaskType?.dirty || empTaskType?.touched)">
+
+                        <div *ngIf="empTaskType.errors?.['required']">
+                            Select Task Type 
+                        </div>
+
+                    </div>
                     <br>
 
 
-                    <label for="date">Date</label>
+                    <label for="empdate">Date</label>
 
-                    <input type="date" id="date" onfocus="this.value=''" value="" [(ngModel)]="date"
+                    <input type="date" id="empdate" onfocus="this.value=''" #empdate = "ngModel" value="" [(ngModel)]="date" required
                         name="date" class="form-control" />
+                        <div class="error" *ngIf="!empdate?.valid && (empdate?.dirty || empdate?.touched)">
+
+                            <div *ngIf="empdate.errors?.['required']">
+                                Select Event Date 
+                            </div>
+    
+                        </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success">
+                    <button type="submit" class="btn btn-outline-success" [disabled] = "!saveNewTaskTypeForEmployee.valid">
                         Save
                     </button>
 

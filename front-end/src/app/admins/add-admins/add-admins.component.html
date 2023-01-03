@@ -5,24 +5,16 @@
                 <div class="modal-header searchBar">
                     <h4 class="modal-title">Add Admin</h4>
                     
-                    <input class="form-control rounded" [(ngModel)]="searchText" placeholder="search admin ">
+                    <input class="form-control icon rounded" [(ngModel)]="searchText" placeholder="search admin ">
 
                     <span  class="badge badge-primary badge-pill badge-danger"><i (click)="closePopup()" class="fa fa-times"
                         aria-hidden="true"></i></span>
 
                 </div>
-                <!-- <form #inputform="ngForm" (ngSubmit)="Input(inputform)"> -->
+             
                 <div class="modal-body">
 
-                    <!-- 
-                    <ul class="users item">
-                        <li class="item" *ngFor="let user of users  ">
-                            <button [class.selected]="user === selectedUser" type="button" (click)="onSelect(user)">
-                              
-                                <span class="name">{{user.name}}</span>
-                            </button>
-                        </li>
-                    </ul> -->
+                    
                     <table class="table    table-bordered table-striped table-hover display " >
                         <thead>
                             <tr>
