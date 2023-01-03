@@ -45,9 +45,9 @@ app-sidenav{
 .addEmp{
     height: 60%;
 }
-/* #editModal{
+.dialog{
     margin-top : 40px
-} */
+}
 .addTask{
     overflow-y: auto;
 }

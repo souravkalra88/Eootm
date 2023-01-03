@@ -67,8 +67,8 @@
             <br>
 
             <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}" id="#editModal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog dialog modal-dialog-centered" role="document">
+                    <div class="modal-content ">
 
                         <div class="modal-header">
                             <h4 class="modal-title">Edit Employee</h4>
@@ -142,8 +142,8 @@
                                     <select id="editGender" class="browser-default custom-select" required
                                         #editGender="ngModel" [(ngModel)]="this.currentUserSelected['gender']"
                                         name="editGender">
-                                        <option selected value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option *ngFor="let gender of genders" [value]="gender.gender">{{gender.gender}}</option>
+                           
 
                                     </select>
                                     <div class="error"

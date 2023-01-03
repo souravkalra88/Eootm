@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
- 
+import settings from 'src/assets/settings.json' 
 import { Router } from '@angular/router';
 import { GetAllUsersService } from '../service/get-all-usersservice';
 import { User } from '../models/UserModel';
@@ -22,7 +22,7 @@ export class EmployeesComponent {
  
   tasktypes:string[]=["onboarding","offboarding"];
   selectedtask:string = "";
-  
+  genders:any[]=[]
   currentUserSelected : User = new User();
   
   openAddPopup:boolean = false; 
@@ -37,7 +37,7 @@ export class EmployeesComponent {
  
 }
 ngOnInit(): void{
-  
+  this.genders=settings.genders
   this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
     
   

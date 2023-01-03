@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import {   CognitoUserPool } from 'amazon-cognito-identity-js';
 import { OnInit } from '@angular/core';
 import { SwitchHeaderService } from '../service/switch-header.service';
-
+import settings from 'src/assets/settings.json';
 
 @Component({
   selector: 'app-header',
@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
   }
   switchView(view:string):void {
     this.switchHeader.setView(view);
-    if(view === 'admin_view'){
+    if(view === settings.views['admin_view']){
       this.router.navigate(["admin-view/home"])
     }
     
