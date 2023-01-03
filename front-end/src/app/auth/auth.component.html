@@ -16,7 +16,7 @@
       <!-- Login Form -->
       <form #loginForm="ngForm" (ngSubmit)="OnSignIn(loginForm)">
         <input type="text" id="login" class="fadeIn second" name="login" ngModel placeholder="Enter Email">
-        <input type="password" id="password" class="fadeIn third" name="password" ngModel placeholder="password">
+        <input type="password"  id="password" class="fadeIn third" name="password"  autocomplete="on" ngModel placeholder="password">
         <a class="fadeIn third" [href]="forgetPasswordUrl">forget your password ?</a>
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
