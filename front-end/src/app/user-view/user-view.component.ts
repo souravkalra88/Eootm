@@ -19,7 +19,7 @@ export class UserViewComponent implements OnInit {
   emp_id: string = (environment.emp_id) as string
   tasksList:any[] = []
   listStatus:any 
-
+  length : number =0
   constructor(private statusByEmpId:GetTasksStatusByEmployeeService , private getCurrentUserTasks :GetTasksByUserService ) {}
 
   ngOnInit(): void {
@@ -32,6 +32,7 @@ export class UserViewComponent implements OnInit {
     this.statusByEmpId.getTasksStatusByEmpId(this.emp_id).subscribe((data: any) =>{
       this.listStatus = data
       console.log(data);
+      this.length  = Object.keys(this.listStatus).length
     })
   }
   
