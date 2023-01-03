@@ -42,12 +42,11 @@ export class AuthService {
 
         if (environment.role === 'admin' && checkForRole === 'admin') {
           isAuth = true;
-          // console.log(this.router.url)
         }
         else {
           if (checkForRole === 'user')
             if (cognitoUser?.getSignInUserSession()?.getIdToken().payload['custom:log_in_access'] === 'yes') { isAuth = session.isValid(); }
-          console.log(environment.role)
+          
 
 
         }

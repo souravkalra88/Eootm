@@ -26,30 +26,21 @@ export class ManageEmpTaskListComponent implements OnInit {
   TasksCompleteionStatusByEmployee:any[] = [];
   constructor(private statusByEmpId:GetTasksStatusByEmployeeService, private get_all_tasktype_assigned_users:GetAllTasktypeAssignedUsersService ,private router: Router,private GetAllEmployees:GetAllEmployeesService,private UpdateCompletionStatus: UpdateCompletionStatusService ,private getTaskByType: GetTaskByTasktypesService){
     var tname = this.router.getCurrentNavigation()?.extras.state?.['employee']
-    // var tID = this.router.getCurrentNavigation()?.extras.state?.['empID']
-    // console.log("tID",tID)
+    
+    
     this.currentEmployee = tname
     this.index = this.router.getCurrentNavigation()?.extras.state?.['index']
- //   console.log(this.currentEmployee)
+ 
   }
 
 
   ngOnInit() {
     this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
       this.AllEmployees=responsedata;
-     // console.log(this.AllEmployees);
+     
       if(this.currentEmployee === undefined) this.currentEmployee = responsedata[0];
       
-      // this.dtTrigger.next(void 0);
-      // console.log(responsedata);
-      // console.log(responsedata)
-      console.log(this.currentEmployee)
-     // let val : any
-//       for(var val of responsedata)
-//        {
-//        if(val.name === this.currentEmployee.name) this.currentEmployeeTaskTypes.push(val);
-//  //      if(this.index === undefined) 
-//       }
+
   for(let i=0 ; i<responsedata.length ; i++){
     if(this.index === undefined)
     if(responsedata[i].name === this.currentEmployee.name){ this.index = i;break;}
@@ -58,23 +49,21 @@ export class ManageEmpTaskListComponent implements OnInit {
   }
   this.statusByEmpId.getTasksStatusByEmpId(this.currentEmployee.empID).subscribe((data: any) =>{
     this.TasksCompleteionStatusByEmployee = data;
-    console.log(this.currentEmployee.empID);
-    console.log(data);
+   
   })
-     // console.log(this.currentEmployeeTaskTypes)
+     
     
       var url = "";
         url += "/" + this.currentEmployee.tasktype.toLowerCase()
         this.getTaskByType.allTaskByTaskType(url).subscribe((data: any) => {
   
           this.eTasks = data;
-          
-         console.log(this.eTasks)
+         
           this.dtTrigger.next(void 0);
         });
-    //  console.log(this.currentEmployee);
+    
 
-        // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        
       
     })
 
@@ -86,7 +75,7 @@ export class ManageEmpTaskListComponent implements OnInit {
   } 
   
   Checked(val:any , event:any){
-    console.log(event)
+    
     
     let taskID=val['sk']
     var status = ""
@@ -97,7 +86,7 @@ export class ManageEmpTaskListComponent implements OnInit {
     let empID=this.currentEmployee.empID
     
     
-   // console.log(this.currentEmployee)
+   
    empID = empID.split("#")
    empID = empID[0]
     let body={
@@ -105,11 +94,9 @@ export class ManageEmpTaskListComponent implements OnInit {
       "taskID":taskID,
       "completion_status":status
     }
-    console.log("body",body)
+
     this.UpdateCompletionStatus.update_completion_status(body).subscribe((responsedata: any) => {
-      //   this.allAdminsList = responsedata;
-    //  console.log(responsedata);
-      console.log("responsedata",responsedata)
+      
 
 
     })
@@ -118,7 +105,6 @@ export class ManageEmpTaskListComponent implements OnInit {
  
   switchType(obj:number):void {
 
-  console.log(obj)
   this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
         this.router.navigate(['/admin-view/task-list/manage'],{
           state:{employee:this.AllEmployees[obj] , index:obj}
@@ -129,6 +115,6 @@ export class ManageEmpTaskListComponent implements OnInit {
 
   isCheckedInv(event:any , task:any){
     this.isChecked = event.value;
-    console.log(event)
+  
   }
 }

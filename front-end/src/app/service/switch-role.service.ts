@@ -44,7 +44,7 @@ export class SwitchRoleService {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' +environment.idToken
   })
- console.log(body)
+ 
  
   return  this.http.put(this.url,body,{ headers: headers })
 

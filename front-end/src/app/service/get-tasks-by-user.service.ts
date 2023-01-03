@@ -14,7 +14,7 @@ export class GetTasksByUserService {
    }
 
    allTaskByTaskType(emp_id:string ):Observable<any> {{
- //   console.log(environment.idToken);
+ 
      this.url = urls.getUserTasksById  + emp_id ;
      
     

@@ -22,8 +22,7 @@ export class AddEmployeeComponent implements OnInit {
   } 
   Input(form:  NgForm){
    
-    // console.log(data.name);
-    // debugger;
+    
     if(this.newUserData['custom:role'] === 'admin') this.newUserData['custom:log_in_access'] = 'yes'
     this.newUserData.phone_number = "+91" + this.newUserData.phone_number 
     const body ={
@@ -52,14 +51,6 @@ export class AddEmployeeComponent implements OnInit {
       this.router.navigate([currentRoute]);  
   }); 
  });
-  console.log(body);
-   
-    // this.CreateEmployee.createEmployee(myPostObject).subscribe((responsedata:any)=>{
-    //   console.log(responsedata);
-    // });
-   
-    
-    
    
   
       this.closePopup();

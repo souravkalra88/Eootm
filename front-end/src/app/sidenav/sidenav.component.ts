@@ -15,11 +15,11 @@ constructor(private switchHeader:SwitchHeaderService){
 this.view=this.switchHeader.getCurrentView()
 }  
   ngOnInit(): void {
-  console.log(this.switchHeader.getCurrentView())
+ 
   }
 getView():string
 {
- // console.log(this.switchHeader.getCurrentView())
+ 
   return this.switchHeader.getCurrentView()
 }
 

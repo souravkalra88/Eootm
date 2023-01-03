@@ -36,7 +36,7 @@ export class AddAdminsComponent implements OnInit {
     this.closePopup()
     let idx = 0
     for (let user of this.users) {
-     // console.log(user)
+     
       idx = idx + 1;
       if (user.selected === true) {
         this.changeRole.switchToRole(user.sub as string, 'admin').subscribe((result) => {
@@ -59,7 +59,7 @@ export class AddAdminsComponent implements OnInit {
 
     }
     this.closePopup()
-    //  console.log(this.selectedUser.name);
+    
 
 
 

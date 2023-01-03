@@ -30,9 +30,9 @@ export class AddUserService {
 
 
     }
-    // console.log(nUser)
+   
     var res :any
-    //api call to get
+    
     for (let key  in nUser) {
       let attrData = {
         Name: key,
@@ -52,19 +52,7 @@ export class AddUserService {
     }
 
    return this.http.post(this.url , body , {headers: headers})
-    // this.userPool.signUp(data.email, data.password, attributeList, [], (
-    //   err,
-    //   result
-    // ) => {
-      
-    //   if (err) {
-    //     alert(err.message || JSON.stringify(err));
-    //     return;
-    //   }
-    //   res = result
-    //   console.log(res)
-    // });
-    // return res;
+    
 
   }
 }

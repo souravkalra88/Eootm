@@ -55,6 +55,6 @@ export class HeaderComponent implements OnInit {
     if(view === 'admin_view'){
       this.router.navigate(["admin-view/home"])
     }
-    console.log(this.switchHeader.getCurrentView())
+    
   }
 }

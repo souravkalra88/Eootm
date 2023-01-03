@@ -21,7 +21,7 @@ export class AuthComponent implements OnInit{
   constructor(private router: Router , private switchView:SwitchHeaderService) { }
 
   OnSignIn(form: NgForm){
-    // console.log(val);
+
     this.email_address=  form.value.login;
     this.password = form.value.password
     if (form.valid) {
@@ -49,8 +49,8 @@ export class AuthComponent implements OnInit{
         
         environment.currentUser = result.getIdToken().payload['name']
         environment.role =  result.getIdToken().payload['role']
-        console.log(environment.role)
-        console.log(result.getIdToken().getJwtToken())
+       
+       // console.log(result.getIdToken().getJwtToken())
         environment.idToken = result.getIdToken().getJwtToken()
         environment.currentUserName = result.getIdToken().payload['cognito:username']
         if(environment.role === 'admin'){

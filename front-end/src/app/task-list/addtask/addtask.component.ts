@@ -26,7 +26,7 @@ export class AddtaskComponent implements OnInit {
   emp: string="";
 resp:any;
   task:number=0
-  // tasktypeID:string=""; 
+  
   date:string=""; 
   tasktype_emp_data:any
 
@@ -41,19 +41,19 @@ resp:any;
     this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
       this.allEmployees = responsedata;
       this.allUsers = this.allEmployees
-      // this.allEmployees.forEach((val: any) => {
-      //   if (val['custom:role'] === 'user')  {
-      //      this.allUsers.push(val);
-      //   }
-      // })
+      
+      
+      
+      
+      
     }
       )
   
 
     this.AllTaskTypes.allTaskTypesData().subscribe((data: any)=>{
-      console.log(data);
+     
       this.TaskTypes = data;
-      // console.log(this.allEmpsData);
+      
           });     
         }
     
@@ -74,11 +74,11 @@ resp:any;
         "CurrentUser":environment.currentUser,
         "emp_name":emp_name
       }
-      // console.log(body)
+      
       this.add_new_tasktype_to_employee.add_new_tasktype_to_employee(body).subscribe((data: any)=>{
 
         this.resp=data;
-        console.log(data)
+     
         const currentRoute = this.router.url;
 
       

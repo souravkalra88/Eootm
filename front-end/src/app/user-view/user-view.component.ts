@@ -27,11 +27,11 @@ export class UserViewComponent implements OnInit {
 
     this.getCurrentUserTasks.allTaskByTaskType(this.emp_id).subscribe(response => {
         this.tasksList = response
-        console.log(this.tasksList)
+       
     })
     this.statusByEmpId.getTasksStatusByEmpId(this.emp_id).subscribe((data: any) =>{
       this.listStatus = data
-      console.log(data);
+      
       this.length  = Object.keys(this.listStatus).length
     })
   }
