@@ -29,7 +29,7 @@ export class UpdateUserService {
       
       "custom:log_in_access" : user["custom:log_in_access"]
     }
-  //  console.log(nUser)
+  
     for(let key in nUser){
       let attrData = {
         Name: key,
@@ -49,7 +49,7 @@ export class UpdateUserService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + environment.idToken
     })
-  // console.log(body)
+  
  return this.http.put(this.url, body, { headers: headers })
 
   }

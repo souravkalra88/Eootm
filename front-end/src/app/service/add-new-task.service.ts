@@ -12,12 +12,12 @@ export class AddNewTaskService {
 
   addNewTask(body:any):Observable<any>{
     this.url = urls.addNewTask
-    // console.log(environment.idToken);
+    
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' +environment.idToken
     })
-   console.log(body)
+  
    
     return  this.http.post(this.url,body,{ headers: headers })
     

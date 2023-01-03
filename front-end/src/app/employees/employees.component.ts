@@ -39,10 +39,9 @@ export class EmployeesComponent {
 ngOnInit(): void{
   
   this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
-    //   this.allAdminsList = responsedata;
-  //  console.log(responsedata);
+    
+  
     this.AllEmployees = responsedata;
-    console.log(this.AllEmployees);
     
 
     this.dtTrigger.next(void 0);
@@ -84,9 +83,7 @@ openEditPopup(employee: any,inputForm: NgForm){
   this.currentUserSelected['username'] = employee.sub;
   this.currentUserSelected['custom:log_in_access'] = employee['custom:log_in_access']
 
-  // console.log(this.currentUserSelected)
-   
-  console.log(this.currentUserSelected)
+  
 
  
   this.displayStyleEdit = "block";
@@ -100,7 +97,7 @@ closeEditPopup() {
 saveEditEmploee(){
 
   this.updateUser.updateUser(this.currentUserSelected).subscribe(data => {
-   // console.log(data);
+   
     const currentRoute = this.router.url;
 
 
@@ -111,7 +108,7 @@ saveEditEmploee(){
 
     });
   })
- // console.log(this.tname);
+ 
 this.closeEditPopup()
 
 }

@@ -12,7 +12,7 @@ export class AddNewTasktypeToEmployeeService {
   constructor(private http : HttpClient) {
    }
    add_new_tasktype_to_employee(body:any):Observable<any> {{
-    // console.log(environment.idToken);
+  
     this.url = urls.add_new_tasktype_to_employee
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

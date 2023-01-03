@@ -23,7 +23,7 @@ export class AdminsTableComponent implements OnInit {
   constructor(private router: Router, private getAllUsers: GetAllUsersService, private addUser: AddUserService, private removeUserFromAdmin: ChangeUserAttrService, private changeRole: SwitchRoleService) { }
 
   ngOnInit(): void {
-   console.log(this.allAdminsList)
+   
 
     
   }
@@ -38,14 +38,14 @@ export class AdminsTableComponent implements OnInit {
       lengthMenu: [5, 10, 15, 20]
 
     };
-   // console.log("changes")
+   
   }
 
     
   removeAdmin(admin: any): void {
 
     this.changeRole.switchToRole(admin.sub as string, 'user').subscribe((result) => {
-      console.log(result);
+      
       const currentRoute = this.router.url;
 
 

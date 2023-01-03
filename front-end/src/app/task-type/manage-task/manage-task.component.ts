@@ -46,7 +46,7 @@ export class ManageTaskComponent implements OnInit {
 
         this.eTasks = data;
 
-        console.log(this.eTasks);
+     
         this.dtTrigger.next(void 0);
       });
     });

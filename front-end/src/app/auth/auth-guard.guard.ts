@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   }
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let isAuth = this.authService.isLoggedIn("admin")
-   // console.log(environment.idToken)
+   
     if(!isAuth) {
      
 
@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
       alert("Log in Access denied")
     }
    
-   // console.log(environment.currentUser + " // " + environment.currentUserName)
+   
     
     return isAuth;
   }

@@ -17,37 +17,36 @@ export class EmpEditTaskListComponent implements OnInit {
   @Output() saveClicked = new EventEmitter<boolean>()
   displayStyle: string = "block"
   taskTypes:any;
-  // allUsers:any;
+  
 
   constructor(private router : Router , private updateEmpTaskType : UpdateEmpTaskTypeService ,private getAllUsers : GetAllUsersService , private AllTaskTypes : GetAllTaskTypesService) { }
 
   ngOnInit(): void {
-   // this.editEmpTask.DOJ = new Date(this.editEmpTask.DOJ)
-   console.log(this.editEmpTask)
+   
     this.AllTaskTypes.allTaskTypesData().subscribe((data: any)=>{
-      console.log(data);
+  
       this.taskTypes = data;
-      // console.log(this.allEmpsData);
+      
           });  
 
-          // this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
+          
             
-          //   this.allUsers = responsedata
-          //   // this.allEmployees.forEach((val: any) => {
-          //   //   if (val['custom:role'] === 'user')  {
-          //   //      this.allUsers.push(val);
-          //   //   }
-          //   // })
-          // }
-          //   )
+          
+          
+          
+          
+          
+          
+          
+          
   }
 
   Input(form: NgForm) {
 
-    // api call
+    
     this.closePopup();
     this.updateEmpTaskType.update_employee_tasktype(this.editEmpTask).subscribe((data)=>{
-      console.log(data);
+    
        const currentRoute = this.router.url;
 
 
@@ -60,7 +59,6 @@ export class EmpEditTaskListComponent implements OnInit {
     })
    
 
-    console.log(this.editEmpTask)
   }
 
   closePopup() {

@@ -9,9 +9,9 @@ export class SwitchHeaderService {
   constructor(private router : Router) { }
   switchTo(view:string) {
     this.view = view;
- //   console.log(this.view);
-//  if(view == "user_view")
-//   this.router.navigate(['/user-view']);
+ 
+
+
     
  
     return this.view; 

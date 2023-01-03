@@ -54,7 +54,7 @@ export class ChangeUserAttrService {
         return;
       }
       res = result
-      console.log(res)
+     
     });
   }
   

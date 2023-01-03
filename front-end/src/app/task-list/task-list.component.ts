@@ -27,15 +27,15 @@ export class TaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void{
    
     this.get_all_tasktype_assigned_users.get_all_tasktype_assigned_users().subscribe((responsedata: any) => {
-      //   this.allAdminsList = responsedata;
-    //  console.log(responsedata);
+      
+    
       this.AllEmployees = responsedata;
-      console.log("records are" ,this.AllEmployees)
+    
   
       this.dtTrigger.next(void 0);
     })
   
-   // console.log(this.AllEmployees);
+   
     this.dtOptions = {
   
       pagingType: 'full_numbers',
@@ -72,7 +72,7 @@ closeEditPopup(){
   this.openEditPopUp = false
 }
   ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
+    
     this.dtTrigger.unsubscribe();
   }
 

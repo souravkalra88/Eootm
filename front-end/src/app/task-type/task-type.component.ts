@@ -36,9 +36,9 @@ export class TaskTypeComponent implements OnInit {
   ngOnInit(): void {
     
     this.allTaskTypeData.allTaskTypesData().subscribe((data: any)=>{
-      // console.log(data);
+      
       this.tasksTypeData = data;
-      console.log(this.tasksTypeData);
+     
       this.dtTrigger.next(void 0);
     });
 
@@ -61,8 +61,7 @@ openEditTask(){
 addNewTaskType(form: NgForm):void{
   if(form.valid){
     let taskTypeName = form.value.newTaskTypeTitle
-  console.log(form.value.newTaskTypeTitle);
-  console.log(form.value.newTaskTypeDesc);
+  
     let taskTypeDesc = form.value.newTaskTypeDesc
     let body = {
       "tasktype": taskTypeName,
@@ -70,15 +69,15 @@ addNewTaskType(form: NgForm):void{
       "CurrentUser": environment.currentUser
   } 
   
-  // DataTables.Api.ajax.reload(); 
+  
   this.addTaskType.addTaskType(body).subscribe((response: any )=> {
-    console.log(response);
+   
      
 
     this.allTaskTypeData.allTaskTypesData().subscribe((data: any)=>{
      
       this.tasksTypeData = data;
-      console.log(this.tasksTypeData);
+     
       
    
       const currentRoute = this.router.url;
@@ -101,8 +100,7 @@ addNewTaskType(form: NgForm):void{
 
    
   EditTaskType(form: NgForm):void{
-  console.log("inside updatetasktype");
-  console.log(form.value)
+
   if(form.valid){
     let taskTypeName = form.value.editTaskTypeTitle
     
@@ -113,18 +111,18 @@ addNewTaskType(form: NgForm):void{
       "sk":this.ctasktypeid
   } 
   
-  // console.log(this.taskTypeName);
+  
  
-  // DataTables.Api.ajax.reload();
+  
    
   this.UpdateTaskType.UpdateTaskType(body).subscribe((response: any )=> {
-    console.log(response);
+   
      
 
     this.allTaskTypeData.allTaskTypesData().subscribe((data: any)=>{
      
       this.tasksTypeData = data;
-      console.log(this.tasksTypeData);
+    
       const currentRoute = this.router.url;
 
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
@@ -135,7 +133,7 @@ addNewTaskType(form: NgForm):void{
      
     });  
 
-    // table refresh
+    
 
 
     

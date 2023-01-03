@@ -23,8 +23,8 @@ export class AdminsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
-      //   this.allAdminsList = responsedata;
-      console.log(responsedata);
+      
+     
       this.allUsers = responsedata
       responsedata.forEach((val: any) => {
         if (val['custom:role'] === 'admin') {
