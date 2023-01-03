@@ -34,3 +34,6 @@ app-sidenav{
     width: 100%;
     top: 55px;
 }
+.badge{
+    cursor: pointer;
+}

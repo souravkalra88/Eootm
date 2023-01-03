@@ -38,7 +38,7 @@ export class AdminsTableComponent implements OnInit {
       lengthMenu: [5, 10, 15, 20]
 
     };
-    console.log("changes")
+   // console.log("changes")
   }
 
     

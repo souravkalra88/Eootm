@@ -59,6 +59,20 @@ li{
 
 .list{
     max-height: calc(100vh - 250px);
-    border: 1px solid black;
+    /* border: 1px solid black; */
     overflow-y: auto;
 }
+
+.card-body{
+    border: 2px solid #DDDDDD;
+}
+.card-link{
+  
+    color:blue; 
+    text-decoration:underline; 
+    cursor:pointer; 
+}
+
+
+  
+

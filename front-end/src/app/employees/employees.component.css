@@ -51,3 +51,16 @@ app-sidenav{
 .addTask{
     overflow-y: auto;
 }
+.badge{
+    cursor: pointer;
+}
+
+input.ng-invalid{
+    border-left: 5px solid red !important;
+}
+input.ng-valid{
+    border-left: 5px solid green !important;
+}
+.error{
+    color: red;
+}

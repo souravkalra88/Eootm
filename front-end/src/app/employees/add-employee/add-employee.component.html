@@ -6,64 +6,131 @@
             <div class="modal-content content">
                 <div class="modal-header">
                     <h4 class="modal-title">Add new Employee</h4>
+                    <span class="badge badge-primary badge-pill badge-danger"><i (click)="closePopup()"
+                            class="fa fa-times" aria-hidden="true"></i></span>
+
                 </div>
                 <form #inputform="ngForm" (ngSubmit)="Input(inputform)">
                     <div class="modal-body">
 
 
                         <label for="name" class="textbox-label">Name</label>
-                        <input type="text" id="name" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.name" name="empsname"
-                            class="form-control" />
+                        <input type="text" required minlength="4" id="name" #name="ngModel" onfocus="this.value=''"
+                            value="" [(ngModel)]="newUserData.name" name="empsname" class="form-control" />
+                        <div class="error" *ngIf="!name?.valid && (name?.dirty || name?.touched)">
+
+                            <div *ngIf="name.errors?.['required']">
+                                Name is required
+                            </div>
+                            <div *ngIf="name.errors?.['minlength']">
+                                Minimum Length is
+                                {{name.errors?.["minlength"]["requiredLength"]}}
+                            </div>
+                        </div>
 
                         <label for="phone" class="textbox-label">Phone</label>
-                        <input type="text" id="phone" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.phone_number" name="empsphone"
-                            class="form-control" />
+                        <input type="text" id="phone" onfocus="this.value=''" value="" required maxlength="10"
+                            [(ngModel)]="newUserData.phone_number" name="empsphone" class="form-control"
+                            #phone="ngModel" />
+                        <div class="error" *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)">
+
+                            <div *ngIf="phone.errors?.['required']">
+                                phone is required
+                            </div>
+                            <div *ngIf="phone.errors?.['maxlength']">
+                                Maximum Length is
+                                {{phone.errors?.["maxlength"]["requiredLength"]}}
+                            </div>
+                        </div>
 
 
                         <label for="email" class="textbox-label">Email</label>
-                        <input type="text" id="email" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.email" name="empsemail"
+                        <input type="text" id="email" #email="ngModel" email required minlength="4"
+                            onfocus="this.value=''" value="" [(ngModel)]="newUserData.email" name="empsemail"
                             class="form-control" />
+                        <div class="error" *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+
+                            <div *ngIf="email.errors?.['required']">
+                                email is required
+                            </div>
+                            <div *ngIf="email.errors?.['email']">
+                                Invalid Email Address
+                            </div>
+                            <div *ngIf="email.errors?.['minlength']">
+                                Minimum Length is
+                                {{email.errors?.["minlength"]["requiredLength"]}}
+                            </div>
+                        </div>
 
 
                         <label for="empsgender" class="textbox-label">Gender</label>
-                        <select id="empsgender" class="browser-default custom-select" [(ngModel)]="newUserData.gender" name="empsgender">
+                        <select id="empsgender" #empsgender="ngModel" required class="browser-default custom-select"
+                            [(ngModel)]="newUserData.gender" name="empsgender">
                             <option selected value="Male">Male</option>
                             <option value="Female">Female</option>
 
                         </select>
+                        <div class="error" *ngIf="!empsgender?.valid && (empsgender?.dirty || empsgender?.touched)">
+
+                            <div *ngIf="empsgender.errors?.['required']">
+                                Gender is required
+                            </div>
+
+                        </div>
 
 
                         <label for="empsprofile" class="textbox-label">Profile</label>
-                        <input type="text" id="empsprofile" onfocus="this.value=''" value="" [(ngModel)] = "newUserData.profile" name="empsprofile"
-                            class="form-control" />
+                        <input type="text" id="empsprofile" #empsprofile="ngModel" required minlength="4" onfocus="this.value=''" value=""
+                            [(ngModel)]="newUserData.profile" name="empsprofile" class="form-control" />
+                        <div class="error" *ngIf="!empsprofile?.valid && (empsprofile?.dirty || empsprofile?.touched)">
+
+                            <div *ngIf="empsprofile.errors?.['required']">
+                                Employee Profile is required
+                            </div>
+                            <div *ngIf="empsprofile.errors?.['minlength']">
+                                Minimum Length is
+                                {{empsprofile.errors?.["minlength"]["requiredLength"]}}
+                            </div>
+                        </div>
 
 
 
                         <label for="empsRole" class="textbox-label">Role</label>
-                        <select id="empsRole" class="browser-default custom-select" [(ngModel)]="this.newUserData['custom:role']" name="empsrole">
+                        <select id="empsRole" #empsRole="ngModel" class="browser-default custom-select" required
+                            [(ngModel)]="this.newUserData['custom:role']" name="empsrole">
                             <option selected value="user">User</option>
                             <option value="admin">Admin</option>
 
                         </select>
+                        <div class="error" *ngIf="!empsRole?.valid && (empsRole?.dirty || empsRole?.touched)">
+
+                            <div *ngIf="empsRole.errors?.['required']">
+                                Role is required
+                            </div>
+
+                        </div>
 
                         <label for="empsCanLogIn" class="textbox-label">Can Login</label>
-                        <select id="empsCanLogIn" class="browser-default custom-select" [(ngModel)]="this.newUserData['custom:log_in_access']" *ngIf="this.newUserData['custom:role'] === 'user' " name="empsCanLogIn">
+                        <select id="empsCanLogIn" class="browser-default custom-select"
+                            [(ngModel)]="this.newUserData['custom:log_in_access']"
+                            *ngIf="this.newUserData['custom:role'] === 'user' " name="empsCanLogIn">
                             <option selected value="no">No</option>
                             <option value="yes">Yes</option>
 
                         </select>
-                        <span *ngIf="this.newUserData['custom:role'] === 'admin' " >: Yes</span>
+
+                        <span *ngIf="this.newUserData['custom:role'] === 'admin' ">: Yes</span>
 
 
 
-                      
+
 
 
 
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-success">
+                        <button type="submit" class="btn btn-outline-success" [disabled]="!inputform.valid">
                             Save
                         </button>
 

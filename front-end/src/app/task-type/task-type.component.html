@@ -9,18 +9,19 @@
             <div class="addtasktype d-flex">
 
                 <h3>TaskTypes </h3>
-                
+
 
                 <button type="button" class="btn addbtn btn-outline-dark" data-toggle="modal"
                     data-target="#addtasktypeId" (click)="openAddNewTaskType()">Add Task type</button>
 
             </div>
 
-       
+
             <br>
 
 
-            <div class="modal  " id="#addtasktypeId" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleAdd}">
+            <div class="modal  " id="#addtasktypeId" tabindex="-1" role="dialog"
+                [ngStyle]="{'display':displayStyleAdd}">
 
                 <div class="modal-dialog modal-dialog-centered" role="document">
 
@@ -28,24 +29,54 @@
 
                         <div class="modal-header">
                             <h4 class="modal-title">Add New Task Type</h4>
+                            <span class="badge badge-primary badge-pill badge-danger"><i (click)="closeAddNewTaskType()"
+                                    class="fa fa-times" aria-hidden="true"></i></span>
                         </div>
-                       <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
+                        <form #saveNewTaskType="ngForm" (ngSubmit)="addNewTaskType(saveNewTaskType)">
                             <div class="modal-body">
 
 
 
                                 <label for="newTaskTypeTitle">Enter New Task Type</label>
-                                <input type="text" id="newTaskTypeTitle" onfocus="this.value=''" value="" ngModel
-                                    name="newTaskTypeTitle" class="form-control" />
+                                <input type="text" required minlength="4" id="newTaskTypeTitle" onfocus="this.value=''"
+                                    value="" ngModel name="newTaskTypeTitle" class="form-control"
+                                    #newTaskTypeTitle="ngModel" />
+                                <div class="error"
+                                    *ngIf="!newTaskTypeTitle?.valid && (newTaskTypeTitle?.dirty || newTaskTypeTitle?.touched)">
+
+                                    <div *ngIf="newTaskTypeTitle.errors?.['required']">
+                                        Task Type Title is required
+                                    </div>
+                                    <div *ngIf="newTaskTypeTitle.errors?.['minlength']">
+                                        Task Type Title Minimum Length is
+                                        {{newTaskTypeTitle.errors?.["minlength"]["requiredLength"]}}
+                                    </div>
+                                </div>
 
                                 <label for="newTaskTypeDesc">Enter New Task Type Description</label>
-                                <input type="text" id="newTaskTypeDesc" onfocus="this.value=''" value="" ngModel
-                                    name="newTaskTypeDesc" class="form-control" />
+
+                                <textarea id="newTaskTypeDesc" required minlength="10" rows="5" onfocus="this.value=''"
+                                    value="" ngModel name="newTaskTypeDesc" #newTaskTypeDesc="ngModel"
+                                    class="form-control ">
+
+                                    </textarea>
+                                <div class="error"
+                                    *ngIf="!newTaskTypeDesc?.valid && (newTaskTypeDesc?.dirty || newTaskTypeDesc?.touched)">
+
+                                    <div *ngIf="newTaskTypeDesc.errors?.['required']">
+                                        Task Type Description is required
+                                    </div>
+                                    <div *ngIf="newTaskTypeDesc.errors?.['minlength']">
+                                        Task Type Description Minimum Length is
+                                        {{newTaskTypeDesc.errors?.["minlength"]["requiredLength"]}}
+                                    </div>
+                                </div>
 
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-outline-success">
+                                <button type="submit" [disabled]="!saveNewTaskType.valid"
+                                    class="btn btn-outline-success">
                                     Save
                                 </button>
 
@@ -77,22 +108,50 @@
 
                             <div class="modal-header">
                                 <h4 class="modal-title">Edit Task Type</h4>
+                                <span class="badge badge-primary badge-pill badge-danger"><i
+                                        (click)="closeEditTaskType()" class="fa fa-times" aria-hidden="true"></i></span>
                             </div>
                             <form #editTaskTypeform="ngForm" (ngSubmit)="EditTaskType(editTaskTypeform)">
                                 <div class="modal-body d-flex editpop">
 
-                                    <label for="newTaskTypeTitle">Task Type</label>
-                                    <input type="text" id="editTaskTypeTitle" [(ngModel)]="ctasktitle"
-                                        name="editTaskTypeTitle" class="form-control" />
+                                    <label for="editTaskTypeTitle">Task Type</label>
+                                    <input type="text" required minlength="4" id="editTaskTypeTitle"
+                                        [(ngModel)]="ctasktitle" name="editTaskTypeTitle" class="form-control" #editTaskTypeTitle = "ngModel" />
+                                    <div class="error"
+                                        *ngIf="!editTaskTypeTitle?.valid && (editTaskTypeTitle?.dirty || editTaskTypeTitle?.touched)">
+
+                                        <div *ngIf="editTaskTypeTitle.errors?.['required']">
+                                            Task Type Title is required
+                                        </div>
+                                        <div *ngIf="editTaskTypeTitle.errors?.['minlength']">
+                                            Task Type Title Minimum Length is
+                                            {{editTaskTypeTitle.errors?.["minlength"]["requiredLength"]}}
+                                        </div>
+                                    </div>
 
                                     <label for="newTaskTypeDesc">Task Type Description</label>
-                                    <input type="text" id="editTaskTypeDesc" [(ngModel)] = "ctaskdesc"
-                                        name="editTaskTypeDesc" class="form-control" />
 
 
+                                    <textarea id="editTaskTypeDesc" required minlength="10" rows="5"
+                                        [(ngModel)]="ctaskdesc" name="editTaskTypeDesc" #editTaskTypeDesc="ngModel"
+                                        class="form-control ">
+
+                                    </textarea>
+                                    <div class="error"
+                                    *ngIf="!newTaskTypeDesc?.valid && (newTaskTypeDesc?.dirty || newTaskTypeDesc?.touched)">
+
+                                    <div *ngIf="newTaskTypeDesc.errors?.['required']">
+                                        Task Type Description is required
+                                    </div>
+                                    <div *ngIf="newTaskTypeDesc.errors?.['minlength']">
+                                        Task Type Description Minimum Length is
+                                        {{newTaskTypeDesc.errors?.["minlength"]["requiredLength"]}}
+                                    </div>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success">
+                                    <button type="submit" [disabled]="!editTaskTypeform.valid"
+                                        class="btn btn-outline-success">
                                         Save
                                     </button>
 
@@ -115,8 +174,8 @@
 
 
             <br>
-            <table class="table  table-bordered table-striped table-hover" datatable
-                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <table class="table  table-bordered table-striped table-hover" datatable [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger">
 
                 <thead>
 
@@ -124,8 +183,8 @@
 
                         <th class="headings">Task Type</th>
                         <th class="headings">Description</th>
-                                                 
-                       <th class="headings" >  </th>
+
+                        <th class="headings"> </th>
                         <th class="headings"> </th>
                     </tr>
 
@@ -137,12 +196,12 @@
 
                         <td>{{tasksTypes['tasktype']}}</td>
                         <td>{{tasksTypes['description']}}</td>
-                        
 
-                        <td><button type="button" class="btn " data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="openEditTaskType(tasksTypes)"><i class="fas fa-edit"></i></button></td>
-                        <td><button type="button" class="btn " data-toggle="modal"
-                                data-target="#edittasktypeId" (click)="manageTaskType(tasksTypes)"> <i class="fas fa-tasks"></i></button></td>
+
+                        <td><button type="button" class="btn " data-toggle="modal" data-target="#edittasktypeId"
+                                (click)="openEditTaskType(tasksTypes)"><i class="fas fa-edit"></i></button></td>
+                        <td><button type="button" class="btn " data-toggle="modal" data-target="#edittasktypeId"
+                                (click)="manageTaskType(tasksTypes)"> <i class="fas fa-tasks"></i></button></td>
 
                     </tr>
 

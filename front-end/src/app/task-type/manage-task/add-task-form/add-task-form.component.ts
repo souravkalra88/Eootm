@@ -43,8 +43,12 @@ export class AddTaskFormComponent  implements OnInit {
     this.newTaskList.push(this.newTaskItem)
     
 
-     this.getAllUsers.getAllUsers().subscribe((data: any[])=>{
-      this.adminsList = data
+     this.getAllUsers.getAllUsers().subscribe((responsedata: any[])=>{
+      responsedata.forEach((val: any) => {
+        if (val['custom:role'] === 'admin') {
+          this.adminsList.push(val);
+        }
+      })
      // console.log(this.adminsList)
      })
     }
