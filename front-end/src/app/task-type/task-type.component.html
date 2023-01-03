@@ -64,7 +64,7 @@
                                     *ngIf="!newTaskTypeDesc?.valid && (newTaskTypeDesc?.dirty || newTaskTypeDesc?.touched)">
 
                                     <div *ngIf="newTaskTypeDesc.errors?.['required']">
-                                        Task Type Title is required
+                                        Task Type Description is required
                                     </div>
                                     <div *ngIf="newTaskTypeDesc.errors?.['minlength']">
                                         Task Type Description Minimum Length is
@@ -124,7 +124,7 @@
                                             Task Type Title is required
                                         </div>
                                         <div *ngIf="editTaskTypeTitle.errors?.['minlength']">
-                                            Task Type Description Minimum Length is
+                                            Task Type Title Minimum Length is
                                             {{editTaskTypeTitle.errors?.["minlength"]["requiredLength"]}}
                                         </div>
                                     </div>
@@ -137,7 +137,17 @@
                                         class="form-control ">
 
                                     </textarea>
+                                    <div class="error"
+                                    *ngIf="!newTaskTypeDesc?.valid && (newTaskTypeDesc?.dirty || newTaskTypeDesc?.touched)">
 
+                                    <div *ngIf="newTaskTypeDesc.errors?.['required']">
+                                        Task Type Description is required
+                                    </div>
+                                    <div *ngIf="newTaskTypeDesc.errors?.['minlength']">
+                                        Task Type Description Minimum Length is
+                                        {{newTaskTypeDesc.errors?.["minlength"]["requiredLength"]}}
+                                    </div>
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" [disabled]="!editTaskTypeform.valid"
