@@ -138,12 +138,12 @@
 
                                     </textarea>
                                     <div class="error"
-                                    *ngIf="!newTaskTypeDesc?.valid && (newTaskTypeDesc?.dirty || newTaskTypeDesc?.touched)">
+                                    *ngIf="!editTaskTypeDesc?.valid && (editTaskTypeDesc?.dirty || editTaskTypeDesc?.touched)">
 
-                                    <div *ngIf="newTaskTypeDesc.errors?.['required']">
+                                    <div *ngIf="editTaskTypeDesc.errors?.['required']">
                                         Task Type Description is required
                                     </div>
-                                    <div *ngIf="newTaskTypeDesc.errors?.['minlength']">
+                                    <div *ngIf="editTaskTypeDesc.errors?.['minlength']">
                                         Task Type Description Minimum Length is
                                         {{newTaskTypeDesc.errors?.["minlength"]["requiredLength"]}}
                                     </div>

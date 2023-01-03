@@ -15,7 +15,7 @@
         <tr *ngFor="let admin of allAdminsList   ">
             <td>{{admin.name}}</td>
             <td>{{admin.email}}</td>
-            <td>{{admin.phone_number}}</td>
+            <td>{{admin.phone_number | slice:3:13}}</td>
             <td class="del"><button class=" btn " type="button" (click)="removeAdmin(admin)">
                     <i class="fa fa-trash"></i>
                 </button>

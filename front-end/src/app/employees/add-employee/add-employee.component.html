@@ -80,7 +80,7 @@
 
 
                         <label for="empsprofile" class="textbox-label">Profile</label>
-                        <input type="text" id="empsprofile" #empsprofile="ngModel" required minlength="4" onfocus="this.value=''" value=""
+                        <input type="text" id="empsprofile" #empsprofile="ngModel" required minlength="2" onfocus="this.value=''" value=""
                             [(ngModel)]="newUserData.profile" name="empsprofile" class="form-control" />
                         <div class="error" *ngIf="!empsprofile?.valid && (empsprofile?.dirty || empsprofile?.touched)">
 

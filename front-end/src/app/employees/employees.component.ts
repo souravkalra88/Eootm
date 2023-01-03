@@ -76,7 +76,7 @@ openEditPopup(employee: any,inputForm: NgForm){
   this.currentUserSelected['name'] = employee.name;
   this.currentUserSelected['email'] = employee.email;
   this.currentUserSelected['custom:role'] = employee['custom:role']
-  this.currentUserSelected['phone_number'] = employee.phone_number;
+  this.currentUserSelected['phone_number'] = employee.phone_number.substring(3);
   this.currentUserSelected['custom:date_of_joining']= employee['custom:date_of_joining'];
   this.currentUserSelected['gender'] = employee.gender;
   this.currentUserSelected['profile'] = employee.profile;
@@ -95,7 +95,7 @@ closeEditPopup() {
 }
  
 saveEditEmploee(){
-
+  this.currentUserSelected['phone_number'] = '+91' + this.currentUserSelected['phone_number']
   this.updateUser.updateUser(this.currentUserSelected).subscribe(data => {
    
     const currentRoute = this.router.url;
