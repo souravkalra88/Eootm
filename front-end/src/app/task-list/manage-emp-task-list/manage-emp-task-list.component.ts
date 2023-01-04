@@ -58,7 +58,7 @@ export class ManageEmpTaskListComponent implements OnInit {
         this.getTaskByType.allTaskByTaskType(url).subscribe((data: any) => {
   
           this.eTasks = data;
-          console.log(this.eTasks)
+         
           this.eTasks.forEach((task:any) => task.due = this.assignDue(task.due_duration) )
           this.eTasks.sort((a:any,b:any) => a.due-b.due)
          
