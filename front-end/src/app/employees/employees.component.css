@@ -1,38 +1,28 @@
-app-header{
-    position: fixed;
-    width: 100%;
-    top: 0px;
-    height: 4rem;
-    z-index:2;
-
-}
-main{
-    position: absolute;
-    width: 100%;
-    top : 4rem;
-    z-index:1;
-
-}
-app-sidenav{
-    
-    background-color:#DDDDDD;
- 
-    margin-top: -7px;
- 
+.modal-body{
    
-    position: fixed;
-    left:0rem;
-    width: 200px;
- 
-    height: calc(100vh );
- 
+    overflow-y: auto;
+    padding: 15px;
+    max-height:80%;
+    
+
 }
-.display-area{
-    position: absolute;
-    left: 230px;
-    /* width: calc(100%-230px); */
-    width: 100%;
-    top: 64px;
+
+.container {
+    max-height: 100%;
+    overflow-y: auto;
+    
+}
+.dialog-box{
+   height: 95%;
+}
+.modal-content{
+    max-height: 80%;
+    overflow-y: auto;
+}
+.modal-dialog{
+    overflow-y: initial !important;
+    margin-top: 4%;
+    
 }
 .title{
     justify-content: space-between;
