@@ -22,30 +22,33 @@
                 <div class="form-row " *ngFor="let obj of newTaskList; let i=index">
 
                   <div class="form-group col-md-2"><input type="taskTitle" name="taskTitle{{i}}"
-                      [(ngModel)]="obj.taskTitle" #newTaskTitle = "ngModel" id="newTaskTitle" required minlength="4" placeholder="Title" class="form-control"></div>
+                      [(ngModel)]="obj.taskTitle" #newTaskTitle="ngModel" id="newTaskTitle" required minlength="4"
+                      placeholder="Title" class="form-control">
 
-                  <div class="error"
-                    *ngIf="!newTaskTitle?.valid && (newTaskTitle?.dirty || newTaskTitle?.touched)">
+                    <div class="error" *ngIf="!newTaskTitle?.valid && (newTaskTitle?.dirty || newTaskTitle?.touched)">
 
-                    <!-- <span *ngIf="newTaskTitle.errors?.['required']">
-                       required
-                    </span>
-                    <span *ngIf="newTaskTitle.errors?.['minlength']">
-                      Task Title Minimum Length is
-                      {{newTaskTitle.errors?.["minlength"]["requiredLength"]}}
-                    </span> -->
+                      <span *ngIf="newTaskTitle.errors?.['required']">
+                        required
+                      </span>
+                      <span *ngIf="newTaskTitle.errors?.['minlength']">
+                        Task Title Minimum Length is
+                        {{newTaskTitle.errors?.["minlength"]["requiredLength"]}}
+                      </span>
+                    </div>
                   </div>
 
-                  <div class="form-group col-md-4">
 
-                    <textarea id="newTaskTypeDesc" rows="4" required minlength="10" onfocus="this.value=''" placeholder="  Description"
-                      class="form-control" value="" #newTaskTypeDesc = "ngModel" [(ngModel)]="obj.taskDescription" name="taskDescription{{i}}"
-                      class="form-control ">
+
+                  <div class="form-group col-md-5">
+
+                    <textarea id="newTaskTypeDesc" rows="4" required minlength="10" onfocus="this.value=''"
+                      placeholder="  Description" class="form-control" value="" #newTaskTypeDesc="ngModel"
+                      [(ngModel)]="obj.taskDescription" name="taskDescription{{i}}" class="form-control ">
 
                       </textarea>
-                      <span class="error"
+                    <span class="error"
                       *ngIf="!newTaskTypeDesc?.valid && (newTaskTypeDesc?.dirty || newTaskTypeDesc?.touched)">
-  
+
                       <span *ngIf="newTaskTypeDesc.errors?.['required']">
                         Task Description is required
                       </span>
@@ -53,66 +56,66 @@
                         Task Description Minimum Length is
                         {{newTaskTypeDesc.errors?.["minlength"]["requiredLength"]}}
                       </span>
-                    </span>  
+                    </span>
                   </div>
 
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-2">
 
 
-                    <select id = "ownedby" #ownedby= "ngModel"  required class="form-select form-select-sm form-control" aria-label=".form-select-sm example"
-                      required name="taskOwnedBy{{i}}" [(ngModel)]="obj.taskOwnedBy">
+                    <select id="ownedby" #ownedby="ngModel" required class="form-select form-select-sm form-control"
+                      aria-label=".form-select-sm example" required name="taskOwnedBy{{i}}"
+                      [(ngModel)]="obj.taskOwnedBy">
                       <option hidden value="">Owned By</option>
                       <option *ngFor="let admin of adminsList" [value]="admin.name">{{admin.name}}</option>
 
 
                     </select>
-                    <span class="error"
-                    *ngIf="!ownedby?.valid && (ownedby?.dirty || ownedby?.touched)">
+                    <span class="error" *ngIf="!ownedby?.valid && (ownedby?.dirty || ownedby?.touched)">
 
-                    <span *ngIf="ownedby.errors?.['required']">
-                      Task Owned By is required
+                      <span *ngIf="ownedby.errors?.['required']">
+                        Task Owned By is required
+                      </span>
+
                     </span>
-                    
-                  </span>  
-                    
+
                   </div>
 
 
                   <div class="form-group col-md-1">
-                    <input type="number" id="dueDays" required #dueDays = "ngModel" name="dueDays{{i}}" value="" [(ngModel)]="obj.dueDays" placeholder="days"
-                      class="form-control">
-                      <span class="error"
-                    *ngIf="!dueDays?.valid && (dueDays?.dirty || dueDays?.touched)">
+                    <input type="number" id="dueDays" required #dueDays="ngModel" name="dueDays{{i}}" value=""
+                      [(ngModel)]="obj.dueDays" placeholder="days" class="form-control">
+                    <span class="error" *ngIf="!dueDays?.valid && (dueDays?.dirty || dueDays?.touched)">
 
-                    <span *ngIf="dueDays.errors?.['required']">
-                     Due Days is required
+                      <span *ngIf="dueDays.errors?.['required']">
+                        Due Days is required
+                      </span>
+
                     </span>
-                    
-                  </span> 
 
                   </div>
 
 
                   <div class="form-group col-md-1" required>
 
-                    <span class="radio" >
+                    <span class="radio">
                       <label>
-                        <input type="radio" name="daysType{{i}}" id="daysType" #daysType="ngModel" required  value="before" [(ngModel)]="obj.daysType"> before
+                        <input type="radio" name="daysType{{i}}" id="daysType" #daysType="ngModel" required
+                          value="before" [(ngModel)]="obj.daysType"> before
                       </label>
                       <label>
-                        <input type="radio" name="daysType{{i}}" id="daysType" #daysType="ngModel"  required value="after" [(ngModel)]="obj.daysType"> after
+                        <input type="radio" name="daysType{{i}}" id="daysType" #daysType="ngModel" required
+                          value="after" [(ngModel)]="obj.daysType"> after
                       </label>
 
 
                     </span>
-                    <span class="error"
-                    *ngIf="!daysType?.valid && (daysType?.dirty || daysType?.touched)">
+                    <span class="error" *ngIf="!daysType?.valid && (daysType?.dirty || daysType?.touched)">
 
-                    <span *ngIf="daysType.errors?.['required']">
-                      Task completion day type is required
+                      <span *ngIf="daysType.errors?.['required']">
+                        Task completion day type is required
+                      </span>
+
                     </span>
-                    
-                  </span> 
                   </div>
 
                   <div class="form-group">

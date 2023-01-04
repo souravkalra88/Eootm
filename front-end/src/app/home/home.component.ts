@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>=new Subject<any>();
    sideNavStatus:boolean = false;
+  loaded:boolean = false; 
   alltasktypes:any;
   all_task_type_assigned_users:any[]=[];
   this_week_employees:any[]=[];
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit{
 }
 ngOnInit(): void{
   this.GetAllTasktypeAssignedUsers.get_all_tasktype_assigned_users().subscribe((responsedata:any)=>{
+    this.loaded = true;
     this.all_task_type_assigned_users=responsedata;
     this.dtTrigger.next(void 0);
     var users_for_the_week:any[]=[];

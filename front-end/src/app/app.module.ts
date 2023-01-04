@@ -5,7 +5,7 @@ import { DataTablesModule } from "angular-datatables";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {HttpClientModule} from '@angular/common/http'
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http'
 
 import { DatePipe } from '@angular/common';
 
@@ -32,6 +32,7 @@ import { AddAdminsComponent } from './admins/add-admins/add-admins.component';
 import { FilterByStatusPipe } from './admins/filter-status-by-pipe';
 import { UserViewComponent } from './user-view/user-view.component';
 import { SidenavUserComponent } from './sidenav-user/sidenav-user.component';
+import { HttpErrorInterceptor } from './http-error-interceptor';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,11 @@ import { SidenavUserComponent } from './sidenav-user/sidenav-user.component';
     HttpClientModule,
     
   ],
-  providers: [AuthService , DatePipe],
+  providers: [AuthService , DatePipe , {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent ]
 })
 export class AppModule { }

@@ -17,7 +17,7 @@
 
             <br><br>
 
-            <div class="list">
+            <div class="list" *ngIf="this.loaded === true">
                 <div *ngIf="this.tasksList.length > 0 ; else noData">
                     <div class="container">
                         <div class="row">
