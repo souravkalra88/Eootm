@@ -1,48 +1,4 @@
-app-header{
-    position: fixed;
-    width: 100%;
-    top: 0px;
-    height: 4rem;
-    z-index:2;
 
-}
-
-.heading{
-    font-size:x-large;
-}
-main{
-    position: absolute;
-    width: 100%;
-    top : 4rem;
-    z-index:1;
-
-}
-
-.title{
-    justify-content: space-between;
-}
-
-app-sidenav{
-    
-    background-color:#DDDDDD;
- 
-    margin-top: -7px;
- 
-   
-    position: fixed;
-    left:0rem;
-    width: 200px;
- 
-    height: calc(100vh );
- 
-}
-.display-area{
-    position: absolute;
-    left: 230px;
-    /* width: calc(100%-230px); */
-    width: 100%;
-    top: 64px;
-}
 
 
 .item{
@@ -59,7 +15,7 @@ li{
 
 .list{
     max-height: calc(100vh - 250px);
-    /* border: 1px solid black; */
+   
     overflow-y: auto;
 }
 

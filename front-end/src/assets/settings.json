@@ -1,4 +1,5 @@
 {
+    "forgetPasswordUrl": "https://eoomt.auth.ap-south-1.amazoncognito.com/forgotPassword?client_id=48hko2q1qsd36p6d3kcrla334j&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone&redirect_uri=https://eootm-7b03e.web.app/",
     "views": {
         "user_view": "user_view",
         "admin_view": "admin_view"
