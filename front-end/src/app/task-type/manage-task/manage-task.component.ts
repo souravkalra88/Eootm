@@ -12,7 +12,8 @@ import { timer } from 'rxjs';
 @Component({
   selector: 'app-manage-task',
   templateUrl: './manage-task.component.html',
-  styleUrls: ['./manage-task.component.css']
+  styleUrls: ['./manage-task.component.css'],
+  
 })
 export class ManageTaskComponent implements OnInit {
   doneClicked = false
@@ -20,7 +21,7 @@ export class ManageTaskComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   displayStyleAddTask = "none";
   title: string = ""
-  eTasks: any
+  eTasks: any[] = []
   taskTypes: any
   openPopup: boolean = false
   url: string = ""
@@ -44,22 +45,30 @@ export class ManageTaskComponent implements OnInit {
       this.url += "/" + this.title.toLowerCase()
       this.getTaskByType.allTaskByTaskType(this.url).subscribe((data: any) => {
 
-        this.eTasks = data;
+      
 
-     
-        this.dtTrigger.next(void 0);
+        data.forEach((task:any) => task.due = this.assignDue(task.due_duration) )
+        data.sort((a:any,b:any) => a.due-b.due)
+        this.eTasks = data;this.dtTrigger.next(void 0); 
+       
+       
       });
     });
-
-
-
-
 
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [5, 10, 15, 20],
     };
+
+    
+
+    
+  }
+
+  ngDocheck(){
+    
+    
   }
 
   switchType(type: any) {
@@ -91,6 +100,13 @@ export class ManageTaskComponent implements OnInit {
       });
     });
   }
-
+  assignDue(duration:any):number{
+    let number:number = duration.slice(0,-1) as number;
+    let dueType:string = duration.substring(duration.length - 1) ;
+    let idx = 0;
+    if(dueType === 'b') return idx - number ;
+    return number
+    
+  }
 
 }

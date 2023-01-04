@@ -12,8 +12,7 @@ import settings from "src/assets/settings.json"
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any>=new Subject<any>();
+ 
    sideNavStatus:boolean = false;
   loaded:boolean = false; 
   alltasktypes:any;
@@ -26,8 +25,8 @@ ngOnInit(): void{
   this.GetAllTasktypeAssignedUsers.get_all_tasktype_assigned_users().subscribe((responsedata:any)=>{
     this.loaded = true;
     this.all_task_type_assigned_users=responsedata;
-    this.dtTrigger.next(void 0);
-    var users_for_the_week:any[]=[];
+    
+    
     
     this.all_task_type_assigned_users.forEach( (value) => {
       const date_today_obj=new Date()             
@@ -40,7 +39,10 @@ ngOnInit(): void{
             this.this_week_employees.push(value)
                 }
       }
+
       )
+      this.this_week_employees = this.this_week_employees.sort((a:any , b:any) => new Date(a.date).getTime() - new Date(b.date).getTime()) 
+      
   
       });
     }  

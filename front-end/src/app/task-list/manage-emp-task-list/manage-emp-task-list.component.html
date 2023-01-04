@@ -43,20 +43,22 @@
                         <th>Completetion Status</th>
                         <th>Available Tasks</th>
                         <th>Description</th>
-                        <th>Assignee</th>
+                        <th>Owned By</th>
+                        
+
 
 
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let task of eTasks">
+                    <tr *ngFor="let task of eTasks ">
 
                         <!-- 
                         
                     
                     -->
-                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault" 
+                        <td class="status"> <input type="checkbox" class="checkbox" id="flexCheckDefault"
                                 [ngModel]="this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'"
                                 (change)="Checked(task,$event)"> </td>
                         <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
@@ -65,6 +67,7 @@
                             {{task.task_description}}</td>
                         <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
                             {{task.owned_by}}</td>
+                        
 
                     </tr>
                 </tbody>
