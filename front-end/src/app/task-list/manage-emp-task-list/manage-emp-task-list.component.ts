@@ -58,6 +58,7 @@ export class ManageEmpTaskListComponent implements OnInit {
         this.getTaskByType.allTaskByTaskType(url).subscribe((data: any) => {
   
           this.eTasks = data;
+          
          
           this.dtTrigger.next(void 0);
         });

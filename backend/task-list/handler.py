@@ -19,8 +19,9 @@ def add_new_task(event,context):
             response = batch.put_item(
                 Item={
                     "pk": eItem["tasktype"],
-                    "sk": taskid,
-                    "assignee": eItem["owned_by"],
+                   "sk": taskid,
+                    "owned_by": eItem["owned_by"],
+                    "assignee": eItem["CurrentUser"],
                     "created_at": eItem["created_at"],
                     "created_by": eItem["CurrentUser"],
                     "due_duration": eItem["due_duration"],

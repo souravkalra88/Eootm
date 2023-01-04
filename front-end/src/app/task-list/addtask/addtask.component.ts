@@ -59,8 +59,10 @@ resp:any;
     
   NewTasktypeEmployee(form:NgForm){
     if(form.valid){
+     
       let emp_index= form.value.emp
-      let task_index=form.value.tasktype
+      console.log(emp_index)
+      let task_index=form.value.empTaskType
       let date=form.value.date
       let tasktypID=this.TaskTypes[task_index]['sk']
       let tasktype_name=this.TaskTypes[task_index]['tasktype']
