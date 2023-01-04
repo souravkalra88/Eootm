@@ -89,7 +89,7 @@ img{
 .sub-active-item{
     text-decoration: underline ;
     
-    text-decoration-color: black !important;
+    text-decoration-color: #FFFFFF !important;
     text-underline-offset: 20%;
     text-decoration-thickness: 10%;
     
