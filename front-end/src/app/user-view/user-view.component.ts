@@ -27,6 +27,8 @@ export class UserViewComponent implements OnInit {
 
     this.getCurrentUserTasks.allTaskByTaskType(this.emp_id).subscribe(response => {
         this.tasksList = response
+      
+        this.tasksList.sort((a:any , b:any) => new Date(a.due_date).getTime() - new Date(b.due_date).getTime()) 
         this.loaded = true;
     })
     this.statusByEmpId.getTasksStatusByEmpId(this.emp_id).subscribe((data: any) =>{

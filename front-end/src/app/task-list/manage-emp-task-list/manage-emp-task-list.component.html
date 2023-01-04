@@ -44,7 +44,7 @@
                         <th>Available Tasks</th>
                         <th>Description</th>
                         <th>Owned By</th>
-                        <th>Assignee</th>
+                        
 
 
 
@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let task of eTasks">
+                    <tr *ngFor="let task of eTasks ">
 
                         <!-- 
                         
@@ -67,8 +67,7 @@
                             {{task.task_description}}</td>
                         <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
                             {{task.owned_by}}</td>
-                        <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
-                            {{task.assignee}}</td>
+                        
 
                     </tr>
                 </tbody>

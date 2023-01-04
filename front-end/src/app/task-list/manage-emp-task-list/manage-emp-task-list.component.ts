@@ -58,7 +58,9 @@ export class ManageEmpTaskListComponent implements OnInit {
         this.getTaskByType.allTaskByTaskType(url).subscribe((data: any) => {
   
           this.eTasks = data;
-          
+          console.log(this.eTasks)
+          this.eTasks.forEach((task:any) => task.due = this.assignDue(task.due_duration) )
+          this.eTasks.sort((a:any,b:any) => a.due-b.due)
          
           this.dtTrigger.next(void 0);
         });
@@ -117,5 +119,13 @@ export class ManageEmpTaskListComponent implements OnInit {
   isCheckedInv(event:any , task:any){
     this.isChecked = event.value;
   
+  }
+  assignDue(duration:any):number{
+    let number:number = duration.slice(0,-1) as number;
+    let dueType:string = duration.substring(duration.length - 1) ;
+    let idx = 0;
+    if(dueType === 'b') return idx - number ;
+    return number
+    
   }
 }
