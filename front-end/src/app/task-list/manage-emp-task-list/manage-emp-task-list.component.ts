@@ -7,6 +7,7 @@ import { GetAllTasktypeAssignedUsersService } from 'src/app/service/get-all-task
 import { GetTaskByTasktypesService } from 'src/app/service/get-task-by-tasktypes.service';
 import { GetTasksStatusByEmployeeService } from 'src/app/service/get-tasks-status-by-employee.service';
 import { UpdateCompletionStatusService } from 'src/app/service/update-completion-status.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-manage-emp-task-list',
@@ -61,6 +62,7 @@ export class ManageEmpTaskListComponent implements OnInit {
          
           this.eTasks.forEach((task:any) => task.due = this.assignDue(task.due_duration) )
           this.eTasks.sort((a:any,b:any) => a.due-b.due)
+          this.eTasks = this.eTasks.filter((task:any)=> { return task['owned_by'].trim() === environment.currentUser})
          
           this.dtTrigger.next(void 0);
         });

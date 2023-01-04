@@ -25,7 +25,7 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.roles = settings.roles;
     this.genders = settings.genders
-    console.log(this.genders)
+  
   } 
   Input(form:  NgForm){
    

@@ -43,7 +43,7 @@
                         <th>Completetion Status</th>
                         <th>Available Tasks</th>
                         <th>Description</th>
-                        <th>Owned By</th>
+                        <th>Assignee</th>
                         
 
 
@@ -66,7 +66,7 @@
                         <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
                             {{task.task_description}}</td>
                         <td [ngClass]="{'complete': this.TasksCompleteionStatusByEmployee[task['sk']] === 'complete'}">
-                            {{task.owned_by}}</td>
+                            {{task.assignee}}</td>
                         
 
                     </tr>
