@@ -18,7 +18,8 @@
             </div>
             <div class="addTask center-block d-flex flex-column">
 
-                <app-add-employee class="addEmp" *ngIf="this.openAddPopup" (closeClicked)="closeAddPopUpFn()"></app-add-employee>
+                <app-add-employee class="addEmp" *ngIf="this.openAddPopup"
+                    (closeClicked)="closeAddPopUpFn()"></app-add-employee>
 
 
             </div>
@@ -26,8 +27,8 @@
             <br>
             <br>
 
-            <table class="table table-bordered table-striped table-hover " datatable
-                [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <table class="table table-bordered table-striped table-hover " datatable [dtOptions]="dtOptions"
+                [dtTrigger]="dtTrigger">
                 <thead>
                     <tr>
                         <th class="headings">Name</th>
@@ -47,7 +48,7 @@
                     <tr *ngFor="let employee of AllEmployees">
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.email }}</td>
-                        <td>{{ employee.phone_number }}</td>
+                        <td>{{ employee.phone_number | slice:3:13 }}</td>
                         <td>{{ employee.profile }}</td>
                         <td>{{ employee.gender }}</td>
 
@@ -66,14 +67,14 @@
             <br>
 
             <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleEdit}" id="#editModal">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog dialog modal-dialog-centered" role="document">
+                    <div class="modal-content ">
 
                         <div class="modal-header">
                             <h4 class="modal-title">Edit Employee</h4>
-                            <span  class="badge badge-primary badge-pill badge-danger"><i   (click)="closeEditPopup()" class="fa fa-times"
-                                aria-hidden="true"></i></span>
-                      
+                            <span class="badge badge-primary badge-pill badge-danger"><i (click)="closeEditPopup()"
+                                    class="fa fa-times" aria-hidden="true"></i></span>
+
                         </div>
 
                         <form #inputform="ngForm" (ngSubmit)="saveEditEmploee()" class="popup">
@@ -83,45 +84,104 @@
 
 
                                     <label for="editName" class="textbox-label">Name</label>
-                                    <input type="text" id="editName" [(ngModel)]="this.currentUserSelected['name']"
-                                        name="editName" class="form-control" />
+                                    <input type="text" id="editName" #editName="ngModel" required minlength="4"
+                                        [(ngModel)]="this.currentUserSelected['name']" name="editName"
+                                        class="form-control" />
+                                    <div class="error"
+                                        *ngIf="!editName?.valid && (editName?.dirty || editName?.touched)">
+
+                                        <div *ngIf="editName.errors?.['required']">
+                                            Name is required
+                                        </div>
+                                        <div *ngIf="editName.errors?.['minlength']">
+                                            Minimum Length is
+                                            {{editName.errors?.["minlength"]["requiredLength"]}}
+                                        </div>
+                                    </div>
 
 
 
                                     <label for="editEmail" class="textbox-label">Email</label>
-                                    <input type="text" id="editEmail" [(ngModel)]="this.currentUserSelected['email']"
-                                        name="editEmail" class="form-control" />
+                                    <input type="text" required email minlength="4" id="editEmail" #editEmail="ngModel"
+                                        [(ngModel)]="this.currentUserSelected['email']" name="editEmail"
+                                        class="form-control" />
+                                    <div class="error"
+                                        *ngIf="!editEmail?.valid && (editEmail?.dirty || editEmail?.touched)">
+
+                                        <div *ngIf="editEmail.errors?.['required']">
+                                            email is required
+                                        </div>
+                                        <div *ngIf="editEmail.errors?.['email']">
+                                            Invalid Email Address
+                                        </div>
+                                        <div *ngIf="editEmail.errors?.['maxlength']">
+                                            Maximum Length is
+                                            {{editEmail.errors?.["maxlength"]["requiredLength"]}}
+                                        </div>
+                                    </div>
+
 
                                     <label for="editPhone" class="textbox-label">Phone</label>
-                                    <input type="text" id="editPhone"
+                                    <input type="text" id="editPhone" required maxlength="10" #editPhone="ngModel"
                                         [(ngModel)]="this.currentUserSelected['phone_number']" name="editPhone"
                                         class="form-control" />
+                                    <div class="error"
+                                        *ngIf="!editPhone?.valid && (editPhone?.dirty || editPhone?.touched)">
+
+                                        <div *ngIf="editPhone.errors?.['required']">
+                                            phone is required
+                                        </div>
+                                        <div *ngIf="editPhone.errors?.['maxlength']">
+                                            Maximum Length is
+                                            {{editPhone.errors?.["maxlength"]["requiredLength"]}}
+                                        </div>
+                                    </div>
 
 
                                     <label for="editGender" class="textbox-label">Gender</label>
-                                    <select id="editGender" class="browser-default custom-select"
-                                        [(ngModel)]="this.currentUserSelected['gender']" name="editGender">
-                                        <option selected value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                    <select id="editGender" class="browser-default custom-select" required
+                                        #editGender="ngModel" [(ngModel)]="this.currentUserSelected['gender']"
+                                        name="editGender">
+                                        <option *ngFor="let gender of genders" [value]="gender.gender">{{gender.gender}}</option>
+                           
 
                                     </select>
+                                    <div class="error"
+                                        *ngIf="!editGender?.valid && (editGender?.dirty || editGender?.touched)">
+
+                                        <div *ngIf="editGender.errors?.['required']">
+                                            Gender is required
+                                        </div>
+
+                                    </div>
 
                                     <label for="editProfile" class="textbox-label">Profile</label>
-                                    <input type="text" id="editProfile"
-                                        [(ngModel)]="this.currentUserSelected['profile']" name="editprofile"
+                                    <input type="text" id="editProfile" #editProfile = "ngModel" required minlength="2"
+                                        [(ngModel)]="this.currentUserSelected['profile'] " name="editprofile"
                                         class="form-control" />
+                                    <div class="error"
+                                        *ngIf="!editProfile?.valid && (editProfile?.dirty || editProfile?.touched)">
 
-                                    
+                                        <div *ngIf="editProfile.errors?.['required']">
+                                            Employee Profile is required
+                                        </div>
+                                        <div *ngIf="editProfile.errors?.['minlength']">
+                                            Minimum Length is
+                                            {{editProfile.errors?.["minlength"]["requiredLength"]}}
+                                        </div>
+                                    </div>
+
 
                                     <label for="empsCanLogIn" class="textbox-label">Can Login</label>
-                                    <select id="empsCanLogIn" class="browser-default custom-select" *ngIf="this.currentUserSelected['custom:role'] === 'user' "
+                                    <select id="empsCanLogIn" class="browser-default custom-select"
+                                        *ngIf="this.currentUserSelected['custom:role'] === 'user' "
                                         [(ngModel)]="this.currentUserSelected['custom:log_in_access']"
                                         name="empsCanLogIn">
                                         <option value="no">No</option>
                                         <option value="yes">Yes</option>
 
                                     </select>
-                                    <span *ngIf="this.currentUserSelected['custom:role'] === 'admin' " >: Yes</span>
+                                    <span *ngIf="this.currentUserSelected['custom:role'] === 'admin' ">: Yes</span>
 
                                     <br>
 
@@ -134,7 +194,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-outline-success">
+                                    <button type="submit" class="btn btn-outline-success" [disabled]="!inputform.valid">
                                         Save
                                     </button>
 

@@ -66,8 +66,9 @@
                         <label for="empsgender" class="textbox-label">Gender</label>
                         <select id="empsgender" #empsgender="ngModel" required class="browser-default custom-select"
                             [(ngModel)]="newUserData.gender" name="empsgender">
-                            <option selected value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option *ngFor="let gender of genders" [value]="gender.gender">{{gender.gender}}</option>
+                           
+                            
 
                         </select>
                         <div class="error" *ngIf="!empsgender?.valid && (empsgender?.dirty || empsgender?.touched)">
@@ -80,7 +81,7 @@
 
 
                         <label for="empsprofile" class="textbox-label">Profile</label>
-                        <input type="text" id="empsprofile" #empsprofile="ngModel" required minlength="4" onfocus="this.value=''" value=""
+                        <input type="text" id="empsprofile" #empsprofile="ngModel" required minlength="2" onfocus="this.value=''" value=""
                             [(ngModel)]="newUserData.profile" name="empsprofile" class="form-control" />
                         <div class="error" *ngIf="!empsprofile?.valid && (empsprofile?.dirty || empsprofile?.touched)">
 
@@ -98,8 +99,8 @@
                         <label for="empsRole" class="textbox-label">Role</label>
                         <select id="empsRole" #empsRole="ngModel" class="browser-default custom-select" required
                             [(ngModel)]="this.newUserData['custom:role']" name="empsrole">
-                            <option selected value="user">User</option>
-                            <option value="admin">Admin</option>
+                            <option *ngFor="let role of roles" [value]="role.role">{{role.role}}</option>
+                           
 
                         </select>
                         <div class="error" *ngIf="!empsRole?.valid && (empsRole?.dirty || empsRole?.touched)">

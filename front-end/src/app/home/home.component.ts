@@ -4,7 +4,7 @@ import { GetAllTaskTypesService } from '../service/get-all-task-types.service';
 import { Subject } from 'rxjs';
 import { GetAllTasktypeAssignedUsersService } from '../service/get-all-tasktype-assigned-users.service';
 import { Router } from '@angular/router';
-
+import settings from "src/assets/settings.json"
 
 @Component({
   selector: 'app-home',
@@ -15,14 +15,16 @@ export class HomeComponent implements OnInit{
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>=new Subject<any>();
    sideNavStatus:boolean = false;
+  loaded:boolean = false; 
   alltasktypes:any;
   all_task_type_assigned_users:any[]=[];
   this_week_employees:any[]=[];
   constructor(private router : Router ,private http : HttpClient, private GetAllTasktypeAssignedUsers : GetAllTasktypeAssignedUsersService){
-    
+  
 }
 ngOnInit(): void{
   this.GetAllTasktypeAssignedUsers.get_all_tasktype_assigned_users().subscribe((responsedata:any)=>{
+    this.loaded = true;
     this.all_task_type_assigned_users=responsedata;
     this.dtTrigger.next(void 0);
     var users_for_the_week:any[]=[];

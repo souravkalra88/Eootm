@@ -1,6 +1,6 @@
 <div class="w-100 vh-100">
 
-    <main class="d-flex h-100">
+    <main class="d-flex ">
 
         <app-header></app-header>
 
@@ -15,7 +15,7 @@
                 </button>
 
             </div>
-            <app-add-admins *ngIf="this.addAdminPopUp" [users] = "this.allNonAdminsList"  (closeClicked)="closeAddAdmin()"></app-add-admins>
+            <app-add-admins class="table" *ngIf="this.addAdminPopUp" [users] = "this.allNonAdminsList"  (closeClicked)="closeAddAdmin()"></app-add-admins>
             <br><br>
             <app-admins-table [allAdminsList]= "this.allAdminsList" [allNonAdminsList] = "this.allNonAdminsList" [allUsers] = "this.allUsers"></app-admins-table>
         </div>

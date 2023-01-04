@@ -19,6 +19,7 @@ export class AddAdminsComponent implements OnInit {
   @Output() closeClicked = new EventEmitter();
   displayStyle = "block"
   searchText: string = ""
+  checked:boolean = true
   constructor(private router: Router, private getAllUsers: GetAllUsersService, private addUser: AddUserService, private removeUserFromAdmin: ChangeUserAttrService, private changeRole: SwitchRoleService) { }
 
 
@@ -68,7 +69,10 @@ export class AddAdminsComponent implements OnInit {
 
 
   }
-
+  itemchecked(){
+    if(this.checked)
+    this.checked = !this.checked
+  }
   closePopup() {
     this.closeClicked.emit()
     this.displayStyle = "none";

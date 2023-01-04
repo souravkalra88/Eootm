@@ -6,8 +6,8 @@
 
             <div class="modal-header">
                 <h4 class="modal-title">Edit Task Type</h4>
-                <span  class="badge badge-primary badge-pill badge-danger"><i (click)="closePopup()" class="fa fa-times"
-                    aria-hidden="true"></i></span>
+                <span class="badge badge-primary badge-pill badge-danger"><i (click)="closePopup()" class="fa fa-times"
+                        aria-hidden="true"></i></span>
             </div>
             <form #saveEditTaskType="ngForm" (ngSubmit)="Input(saveEditTaskType)">
                 <div class="modal-body">
@@ -18,25 +18,28 @@
 
                     <input type="text" id="name" disabled [(ngModel)]="editEmpTask.name" name="name"
                         class="form-control" />
-                        <!-- <select class="form-select form-select-sm form-control" 
-                        aria-label=".form-select-sm example" id="emp" name="emp" [(ngModel)]="editEmpTask.name">
-                        <option *ngFor="let emp of allUsers;  let i=index"  [value]="i" >{{emp.name}}</option>
-                    </select> -->
 
                     <label for="tasktype">Task Type</label>
-                    
-                    <select class="form-select form-select-sm form-control" 
-                        aria-label=".form-select-sm example" id="tasktype" name="tasktype" [(ngModel)]="editEmpTask.tasktype" >
-                        <option *ngFor="let task of taskTypes ; let i=index" [value]="task.tasktype"  >{{task.tasktype}}</option>
+
+                    <select class="form-select form-select-sm form-control" aria-label=".form-select-sm example"
+                        id="tasktype" name="tasktype" [(ngModel)]="editEmpTask.tasktype">
+                        <option *ngFor="let task of taskTypes ; let i=index" [value]="task.tasktype">{{task.tasktype}}
+                        </option>
                     </select>
 
 
-                    <label for="DOJ">Date</label>
-                    <input type="date" id="DOJ"   [(ngModel)]="editEmpTask.date" name="DOJ" class="form-control"  />
+                    <label for="date">Date</label>
+                    <input type="date" id="date" #date="ngModel" required [(ngModel)]="editEmpTask.date" name="date"
+                        class="form-control" />
+                    <div class="error" *ngIf="!date?.valid && (date?.dirty || date?.touched)">
 
+                        <div *ngIf="date.errors?.['required']">
+                            Date is required
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-success">
+                    <button type="submit" class="btn btn-outline-success" [disabled]="!saveEditTaskType.valid">
                         Save
                     </button>
 

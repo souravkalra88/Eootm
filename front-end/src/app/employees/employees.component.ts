@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { GetAllEmployeesService } from '../service/get-all-employees.service';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
- 
+import settings from 'src/assets/settings.json' 
 import { Router } from '@angular/router';
 import { GetAllUsersService } from '../service/get-all-usersservice';
 import { User } from '../models/UserModel';
@@ -22,7 +22,7 @@ export class EmployeesComponent {
  
   tasktypes:string[]=["onboarding","offboarding"];
   selectedtask:string = "";
-  
+  genders:any[]=[]
   currentUserSelected : User = new User();
   
   openAddPopup:boolean = false; 
@@ -37,7 +37,7 @@ export class EmployeesComponent {
  
 }
 ngOnInit(): void{
-  
+  this.genders=settings.genders
   this.getAllUsers.getAllUsers().subscribe((responsedata: any) => {
     
   
@@ -76,7 +76,7 @@ openEditPopup(employee: any,inputForm: NgForm){
   this.currentUserSelected['name'] = employee.name;
   this.currentUserSelected['email'] = employee.email;
   this.currentUserSelected['custom:role'] = employee['custom:role']
-  this.currentUserSelected['phone_number'] = employee.phone_number;
+  this.currentUserSelected['phone_number'] = employee.phone_number.substring(3);
   this.currentUserSelected['custom:date_of_joining']= employee['custom:date_of_joining'];
   this.currentUserSelected['gender'] = employee.gender;
   this.currentUserSelected['profile'] = employee.profile;
@@ -95,7 +95,7 @@ closeEditPopup() {
 }
  
 saveEditEmploee(){
-
+  this.currentUserSelected['phone_number'] = '+91' + this.currentUserSelected['phone_number']
   this.updateUser.updateUser(this.currentUserSelected).subscribe(data => {
    
     const currentRoute = this.router.url;

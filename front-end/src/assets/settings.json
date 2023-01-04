@@ -1,0 +1,22 @@
+{
+    "views": {
+        "user_view": "user_view",
+        "admin_view": "admin_view"
+    },
+    "roles": [
+        {
+            "role": "admin"
+        },
+        {
+            "role": "user"
+        }
+    ],
+    "genders": [
+        {
+            "gender": "Male"
+        },
+        {
+            "gender": "Female"
+        }
+    ]
+}

@@ -37,7 +37,7 @@
 
             </div>
             
-            <app-add-task-form *ngIf="this.openPopup" [title]="this.title" (closeClicked)  ="closeAddNewTask()" (saveClicked)  ="saveAddNewTask()" ></app-add-task-form>
+            <app-add-task-form class ="addTask" *ngIf="this.openPopup" [title]="this.title" (closeClicked)  ="closeAddNewTask()" (saveClicked)  ="saveAddNewTask()" ></app-add-task-form>
 
             <br>
             <br>

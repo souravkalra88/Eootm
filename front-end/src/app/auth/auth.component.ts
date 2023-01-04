@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { environment } from 'src/environments/environment';
 import { SwitchHeaderService } from '../service/switch-header.service';
-
+import settings from 'src/assets/settings.json';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -54,10 +54,10 @@ export class AuthComponent implements OnInit{
         environment.idToken = result.getIdToken().getJwtToken()
         environment.currentUserName = result.getIdToken().payload['cognito:username']
         if(environment.role === 'admin'){
-        this.switchView.setView("admin_view");this.router.navigate(["admin-view/home"])
+        this.switchView.setView(settings.views['admin_view']);this.router.navigate(["admin-view/home"])
       }
 
-        else{ this.switchView.setView("user_view") ; this.router.navigate(["user-view"]) }
+        else{ this.switchView.setView(settings.views['user_view']) ; this.router.navigate(["user-view"]) }
        
     
       },

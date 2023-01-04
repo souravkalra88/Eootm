@@ -18,10 +18,10 @@
                     <table class="table    table-bordered table-striped table-hover display " >
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>Select</th>
                                 <th> Name</th>
                                 <th> Email</th>
-                                <th> Contact</th>
+                             
 
 
 
@@ -30,12 +30,12 @@
                         <tbody>
 
                             <tr *ngFor="let user of users | filter:searchText  ">
-                                <td><input type="checkbox" class="checkbox" id="flexCheckDefault"
-                                        [(ngModel)]="this.user.selected"
+                                <td class="text-center checkbox"><input type="checkbox" class="checkbox" id="flexCheckDefault"
+                                        [(ngModel)]="this.user.selected" (change)="itemchecked()"
                                         > </td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
-                                <td>{{user.phone_number}}</td>
+                               
 
 
 
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-success" (click)="makeAdmin()">
+                    <button type="button" class="btn btn-outline-success" [disabled]="this.checked" (click)="makeAdmin()">
                         Save
                     </button>
 

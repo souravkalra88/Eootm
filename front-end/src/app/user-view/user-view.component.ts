@@ -15,7 +15,7 @@ import { GetTasksStatusByEmployeeService } from '../service/get-tasks-status-by-
 })
 
 export class UserViewComponent implements OnInit {
-
+  loaded:boolean=false
   emp_id: string = (environment.emp_id) as string
   tasksList:any[] = []
   listStatus:any 
@@ -27,7 +27,7 @@ export class UserViewComponent implements OnInit {
 
     this.getCurrentUserTasks.allTaskByTaskType(this.emp_id).subscribe(response => {
         this.tasksList = response
-       
+        this.loaded = true;
     })
     this.statusByEmpId.getTasksStatusByEmpId(this.emp_id).subscribe((data: any) =>{
       this.listStatus = data

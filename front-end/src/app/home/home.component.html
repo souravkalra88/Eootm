@@ -14,7 +14,7 @@
 
             </div>
             <br><br>
-            <div class="list">
+            <div class="list" *ngIf="this.loaded === true">
                 <div *ngIf = "this.this_week_employees.length > 0 ; else noData">
                     <div class="container">
                         <div class="row">

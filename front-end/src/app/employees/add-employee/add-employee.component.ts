@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/UserModel';
 import { AddUserService } from 'src/app/service/add-user.service';
-
+import settings from 'src/assets/settings.json'
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
@@ -15,10 +15,17 @@ export class AddEmployeeComponent implements OnInit {
   @Output() closeClicked = new EventEmitter();
   newUserData:User = new User()
   displayStyle = "block";
-  constructor(private router :Router, private addUser:AddUserService){}
-
-  ngOnInit(): void {
+  roles:any[] = []
+  genders:any[] = []
+  constructor(private router :Router, private addUser:AddUserService){
     
+    
+  }
+    
+  ngOnInit(): void {
+    this.roles = settings.roles;
+    this.genders = settings.genders
+    console.log(this.genders)
   } 
   Input(form:  NgForm){
    
